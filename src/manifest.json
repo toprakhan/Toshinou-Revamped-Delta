@@ -67,6 +67,10 @@
     }
   ],
 
+  "background": {
+    "scripts": ["js/background/filter.js"]
+  },
+
   "web_accessible_resources": [
     "res/injectables/*"
   ],
@@ -78,6 +82,8 @@
 
   "permissions": [
     "<all_urls>",
-    "storage"
+    "storage",
+    "webRequest",
+    "webRequestBlocking"
   ]
 }

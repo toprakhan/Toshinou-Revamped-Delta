@@ -7,9 +7,11 @@ For more information join the Discord! https://discordapp.com/invite/6awg2te
 How to install/use?
 ----------
 ### Firefox
-1. Install the addon through about:debugging panel
-2. Use any web proxy to replace the main.swf and preloader.swf
-3. Enjoy!
+1. ~~Install the addon through about:debugging panel~~
+2. ~~Use any web proxy to replace the main.swf and preloader.swf~~
+3. ~~Enjoy!~~
+
+Support for Firefox has been dropped.
 
 ### Chrome/Chromium
 1. Download and extract it

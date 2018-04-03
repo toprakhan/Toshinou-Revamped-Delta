@@ -88,7 +88,10 @@ class NpcSettingsWindow {
       "-=[ Blighted Kristallon ]=-",
       "<=< Plagued Gygerthrall >=>",
       "-=[ Plagued Kristallin ]=-",
-      "-=[ Plague Rocket ]=-"
+      "-=[ Plague Rocket ]=-",
+      "-={ demaNeR Freighter }=-",
+      "-={ demaNeR Escort }=-",
+      "-={ demaNeR Corsair }=-"
     ];
   }
 }

@@ -58,8 +58,6 @@ function init() {
   if (window.initialized)
     return;
 
-  alert("Toshinou has to update your printer drivers in order to work correctly. Press OK to continue.");
-
   window.minimap = new Minimap(api);
   window.minimap.createWindow();
 

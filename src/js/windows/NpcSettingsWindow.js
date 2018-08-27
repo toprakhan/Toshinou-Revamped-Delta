@@ -1,10 +1,10 @@
-/*
-Created by Freshek on 11.11.2017
-*/
-
 class NpcSettingsWindow {
   createWindow() {
-    this.npcSettingsWindow = WindowFactory.createWindow({ width: 300, maxHeight: 100, text: "Exclude NPC to attack" });
+    this.npcSettingsWindow = WindowFactory.createWindow({
+      width: 320,
+      maxHeight: 300,
+      text: chrome.i18n.getMessage("excludenpcto")
+    });
 
     let controls = [];
 
@@ -22,7 +22,7 @@ class NpcSettingsWindow {
     });
 
 
-    controls.forEach((control)=>{
+    controls.forEach((control) => {
       this[control.name] = ControlFactory.createControl(control);
     });
   }
@@ -49,6 +49,7 @@ class NpcSettingsWindow {
       "-=[ Saboteur ]=-",
       "-=[ Annihilator ]=-",
       "-=[ Battleray ]=-",
+      "-=[ Deadly Battleray ]=-",
       "..::{ Boss Streuner }::..",
       "..::{ Boss Lordakia }::..",
       "..::{ Boss Mordon }::..",
@@ -89,9 +90,14 @@ class NpcSettingsWindow {
       "<=< Plagued Gygerthrall >=>",
       "-=[ Plagued Kristallin ]=-",
       "-=[ Plague Rocket ]=-",
-      "-={ demaNeR Freighter }=-",
+      "..::{ Boss Lordakium }::... δ21",
+      "..::{ Boss Lordakium }::... δ23",
+      "..::{ Boss Lordakium }::... δ25",
       "-={ demaNeR Escort }=-",
-      "-={ demaNeR Corsair }=-"
+      "-={ Demaner Corsair }=-",
+      "-={ demaNeR Freighter }=-",
+      "-=[ Hitac 2.0 ]=-",
+      "-=[ Hitac-Minion ]=-"
     ];
   }
 }

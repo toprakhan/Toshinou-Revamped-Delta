@@ -1,21 +1,16 @@
-/*
-Created on 04.11.2017 by Freshek
-*/
-
 class ShipSelectedHandler {
   static get ID() {
-    return 11261;
+    return 0;
   }
 
   constructor() {
-    this._handler = function(e, a) {
-      var parsedJson = JSON.parse(e.detail);
+    this._handler = function (e, a) {
+      let parsedJson = JSON.parse(e.detail);
 
-      var ship = a.ships[parsedJson.userId];
-
-      ship.maxHp = parsedJson[Variables.selectMaxHp];
-      ship.maxShd = parsedJson[Variables.selectMaxShd];
-      ship.hp = parsedJson[Variables.selectHp];
+      let ship = a.ships[parsedJson.userId];
+      ship.maxHp = parsedJson[Variables.selectMaxHp]; //
+      ship.maxShd = parsedJson[Variables.selectMaxShd]; // 
+      ship.hp = parsedJson[Variables.selectHp];//_-p2W 
       ship.shd = parsedJson.shield;
 
       if (ship != null)

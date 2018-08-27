@@ -1,0 +1,251 @@
+{
+  "toshidescription": {
+    "message": "Cheat/nástroj/bot/cokoliv pro prohlíeèovou FlashPalyer hru DarkOrbit. Docela funkènì pomáhá, ale stále je silnì ve vıvoji.",
+    "description": "Toshinou popis"
+  },
+  "desextension": {
+    "message": "Bot pro DarkOrbit, vytvoøil Freshek.",
+    "description": "Popis rozšíøení Toshinou"
+  },
+  "appearance": {
+    "message": "Vzhled"
+  },
+  "translateby": {
+    "message": "",
+    "description": "Popis rozšíøení Toshinou"
+  },
+  "discordserver": {
+    "message": "Discord Server"
+  },
+  "saveall": {
+    "message": "Uloit vše"
+  },
+  "headercolor": {
+    "message": "Barva záhlaví"
+  },
+  "opacity": {
+    "message": "Prùhlednost"
+  },
+  "windowbackgroundcolor": {
+    "message": "Barva pozadí okna"
+  },
+  "statisticwindow": {
+    "message": "Statistiky"
+  },
+  "windowstotabs": {
+    "message": "Karty místo oken"
+  },
+  "showruntime": {
+    "message": "Zobrazit èas botování"
+  },
+  "speedformat": {
+    "message": "Formát úèinosti"
+  },
+  "hour": {
+    "message": "hodin"
+  },
+  "min": {
+    "message": "minut"
+  },
+  "deltaoptions": {
+    "message": "Zpøístupnit Delta funkce. Nemusí pracovat správnì."
+  },
+  "palladiumlogic": {
+    "message": "Palladium logika (Pouze pokud jsou Delta funkce a palladium bot aktivní)"
+  },
+  "shipconfigs": {
+    "message": "Konfigurace lodì"
+  },
+  "attackconfig": {
+    "message": "Útoèná konfigurace:"
+  },
+  "flyingconfig": {
+    "message": "Zdrhací konfigurace:"
+  },
+  "advanced": {
+    "message": "Pokroèilé (zaèáteèníci, toto není pro vás!)"
+  },
+  "logictick": {
+    "message": "Nakliknutí (Thick Logic) (ms)"
+  },
+  "refreshsettings": {
+    "message": "Nastavení pro obnovení stránky"
+  },
+  "enablerefresh": {
+    "message": "Povolit obnovení stránky"
+  },
+  "refreshtime": {
+    "message": "Interval obnovení stránky (min)"
+  },
+  "enablenpcblocklist": {
+    "message": "Zahrnout seznam nechtìnıch NPC do funkce obnovení stránky"
+  },
+  "clearsettings": {
+    "message": "Vyèistit pamì nastavení (Funkce obnovení)"
+  },
+  "reviveat": {
+    "message": "Opravit na"
+  },
+  "base": {
+    "message": "Základnì"
+  },
+  "gate": {
+    "message": "Bránì"
+  },
+  "spot": {
+    "message": "Místì"
+  },
+  "norevive": {
+    "message": "Neopravovat"
+  },
+  "revivelimit": {
+    "message": "Poèet oprav"
+  },
+  "workmap": {
+    "message": "Mapa botování"
+  },
+  "any": {
+    "message": "Jakıkoliv"
+  },
+  "onlyworkdelta": {
+    "message": "(pouze, pokud jsou Delta funkce aktivní)"
+  },
+  "boxsettings": {
+    "message": "Nastavení boxíkovaní"
+  },
+  "bonusbox": {
+    "message": "Bonusové boxy"
+  },
+  "materials": {
+    "message": "Materiály"
+  },
+  "cargobox": {
+    "message": "Cargo-boxy"
+  },
+  "greenorgoldbooty": {
+    "message": "Zelené | Zlaté boxy koøisti"
+  },
+  "redbooty": {
+    "message": "Èervené boxy koøisti"
+  },
+  "bluebooty": {
+    "message": "Modré boxy koøisti"
+  },
+  "masquebooty": {
+    "message": "Apokaliptické boxy koøisti"
+  },
+  "collectboxwhencircle": {
+    "message": "Sbírat boxy pøi krouení (Pokud jsou Delta funkce aktivní)"
+  },
+  "target": {
+    "message": "Cíl: "
+  },
+  "hp": {
+    "message": "HP: "
+  },
+  "shd": {
+    "message": "Štíty: "
+  },
+  "palladiumbot": {
+    "message": "Palladium Bot"
+  },
+  "moverandomly": {
+    "message": "Nahodilı pohyb lodi"
+  },
+  "killnpcs": {
+    "message": "Støílet NPC"
+  },
+  "fleefromenemy": {
+    "message": "Uletìt pøed nepøáteli"
+  },
+  "avoidattackednpc": {
+    "message": "Nestøílet do ji napadenıch NPC <br>(Nepouívat s PETem)"
+  },
+  "circle": {
+    "message": "Krouit"
+  },
+  "circleradius": {
+    "message": "Rádius krouení <span> (500px)</span>"
+  },
+  "dontcirclewhenhp": {
+    "message": "Nekrouit, kdy HP < 25%"
+  },
+  "repairwhenhp": {
+    "message": "Opravit, kdy HP < <span> (10%)</span>"
+  },
+  "jumpandreturn": {
+    "message": "Skoèit a vrátit se"
+  },
+  "autochangeconfig": {
+    "message": "Automaticky zmìnit konfiguraci"
+  },
+  "dodgethecbs": {
+    "message": "Vyhıbat se klanovım stanicím"
+  },
+  "resettarget": {
+    "message": "Zmìnit cíl, kdy HP < 25%"
+  },
+  "savesettingsandenable": {
+    "message": "Uloit nastavení & Aktivovat obnovení stránky"
+  },
+  "attackdetails": {
+    "message": "Detaily útoku"
+  },
+  "general": {
+    "message": "Hlavní"
+  },
+  "gghelper": {
+    "message": "GG Pomocník"
+  },
+  "ggbot": {
+    "message": "GG Bot (Testování)"
+  },
+  "jumpin": {
+    "message": "Skoèit"
+  },
+  "minimap": {
+    "message": "Minimapa"
+  },
+  "excludenpcto": {
+    "message": "Neútoèit na NPC"
+  },
+  "statistic": {
+    "message": "Statistiky"
+  },
+  "startat": {
+    "message": "Spuštìno v: "
+  },
+  "credits": {
+    "message": "Kredity: "
+  },
+  "uridium": {
+    "message": "Uridium: "
+  },
+  "ggenergy": {
+    "message": "GG Energie: "
+  },
+  "ammo": {
+    "message": "Munice: "
+  },
+  "experiencie": {
+    "message": "Zkušenost: "
+  },
+  "honor": {
+    "message": "Èest: "
+  },
+  "rank": {
+    "message": "Rankingové body: "
+  },
+  "death": {
+    "message": "Poèet úmrtí: "
+  },
+  "speed": {
+    "message": "Úèinnost: "
+  },
+  "runtime": {
+    "message": "Èas botování: "
+  },
+  "reset": {
+    "message": "Reset"
+  }
+}

@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "Toshinou",
-  "version": "1.0",
-
-  "description": "Cheat & Tool for DarkOrbit",
+  "name": "Toshinou Revamped Delta",
+  "version": "0.19",
+  "default_locale": "en",
+  "description": "__MSG_desextension__",
 
   "content_scripts": [
     {
@@ -24,6 +24,7 @@
         "js/preferences/GlobalSettings.js",
         "js/utils/math/Vector2D.js",
         "js/utils/math/MathUtils.js",
+        "js/utils/math/graph.js",
         "js/utils/WebClient.js",
         "js/utils/BoxType.js",
         "js/utils/ColorConverter.js",
@@ -32,7 +33,7 @@
         "js/windows/Minimap.js",
         "js/windows/AttackWindow.js",
         "js/windows/GeneralSettingsWindow.js",
-        "js/windows/AutolockWindow.js",
+        "js/windows/GGSettingsWindow.js",
         "js/windows/NpcSettingsWindow.js",
         "js/windows/StatisticWindow.js",
         "js/objects/Movable.js",
@@ -40,10 +41,17 @@
         "js/objects/Hero.js",
         "js/objects/Ship.js",
         "js/objects/Gate.js",
+        "js/objects/Portal.js",
+        "js/objects/Map.js",
+        "js/objects/CBS/Battlestation.js",
+        "js/objects/CBS/BattlestationModule.js",
         "js/handlers/HandlersManager.js",
+        "js/handlers/events/HeroDisconnectedEventHandler.js",
+        "js/handlers/events/HeroConnectedEventHandler.js",
         "js/handlers/events/MovementDoneEventHandler.js",
         "js/handlers/events/HeroPositionUpdateEventHandler.js",
         "js/handlers/commands/BoxInitHandler.js",
+        "js/handlers/commands/ResourceInitHandler.js",
         "js/handlers/commands/ShipAttackHandler.js",
         "js/handlers/commands/ShipCreateHandler.js",
         "js/handlers/commands/AssetRemovedHandler.js",
@@ -56,6 +64,7 @@
         "js/handlers/commands/MessagesHandler.js",
         "js/handlers/commands/HeroDiedHandler.js",
         "js/handlers/commands/HeroUpdateHitpointsHandler.js",
+        "js/handlers/commands/AssetCreatedHandler.js",
         "js/Api.js",
         "js/ControlFactory.js",
         "js/worker.js"
@@ -77,7 +86,7 @@
 
   "options_ui": {
     "page": "html/settings.html",
-    "open_in_tab": false
+    "open_in_tab": true
   },
 
   "permissions": [

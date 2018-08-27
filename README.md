@@ -1,19 +1,10 @@
 Toshinou Revamped Delta
 ==========
-A cheat/tool/bot/whatever for a browser flash game named DarkOrbit.
+Only the extension
+
+A bot for a browser flash game named DarkOrbit.
 It does some pretty neat stuff and is still under heavy development.
 
-How to install/use?
-
-### Chrome/Chromium
-1. Download and extract it
-2. Open any web proxy and locate the options
-3. Enable HTTPS decryption (you maybe have to trust the certification and restart the proxy)
-4. Install the addon through chrome://extensions
-5. Use any web proxy to replace the main.swf and preloader.swf
-6. Enjoy!
-
-Issues
+Donate
 ----------
-If the tool doesn't work, try to use Private mode/Incognito.
-Other situations should be reported in [issues](../../issues) (game updates are fine there too).
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://paypal.me/dm94dani)<br/>

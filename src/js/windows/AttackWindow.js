@@ -1,19 +1,18 @@
-/*
-Created by Freshek on 09.10.2017
-*/
-
 class AttackWindow {
   createWindow() {
-    this.attackWindow = WindowFactory.createWindow({width: 300, text: "Attack Details"});
+    this.attackWindow = WindowFactory.createWindow({
+      width: 320,
+      text: chrome.i18n.getMessage("attackdetails")
+    });
 
     this.targetNameTxt = jQuery("<h4>");
-    this.targetNameTxt.text("Target: -");
+    this.targetNameTxt.text(chrome.i18n.getMessage("target")+" - ");
 
     this.hpTxt = jQuery("<h4>");
-    this.hpTxt.text("HP: -");
+    this.hpTxt.text(chrome.i18n.getMessage("hp")+" - ");
 
     this.shdTxt = jQuery("<h4>");
-    this.shdTxt.text("SHD: -");
+    this.shdTxt.text(chrome.i18n.getMessage("shd")+" - ");
 
     this.targetNameTxt.appendTo(this.attackWindow);
     this.hpTxt.appendTo(this.attackWindow);
@@ -21,20 +20,20 @@ class AttackWindow {
   }
 
   removeTarget() {
-    this.targetName.text("Target: -");
-    this.hpTxt.text("HP: -");
-    this.shdTxt.text("SHD: -");
+    this.targetName.text(chrome.i18n.getMessage("target"));
+    this.hpTxt.text(chrome.i18n.getMessage("hp"));
+    this.shdTxt.text(chrome.i18n.getMessage("shd"));
   }
 
   targetName(value) {
-    this.targetNameTxt.text("Target: " + value);
+    this.targetNameTxt.text(chrome.i18n.getMessage("target") + value);
   }
 
   hp(value) {
-    this.hpTxt.text("HP: " + value);
+    this.hpTxt.text(chrome.i18n.getMessage("hp") + value);
   }
 
   shd(value) {
-    this.shdTxt.text("SHD: " + value);
+    this.shdTxt.text(chrome.i18n.getMessage("shd") + value);
   }
 }

@@ -1,66 +1,94 @@
-/*
-Created by Freshek on 12.10.2017
-Thanks for the idea to iNk
-*/
-
 class Variables {
+
   static get boxType() {
-    return "_-e11";
+    return "";
   }
 
   static get attackerId() {
-    return "_-uU";
+    return "";
   }
 
   static get attackHp() {
-    return "_-v35";
+    return "";
   }
 
   static get attackShd() {
-    return "_-r3e";
+    return "";
   }
 
   static get attackedId() {
-    return "_-1B";
+    return "";
   }
 
   static get moveDuration() {
-    return "_-P47";
+    return "";
   }
 
   static get shipDestoyedId() {
-    return "_-I1L";
+    return "";
   }
 
   static get heroInitMaxHp() {
-    return "_-E4b";
+    return "";
   }
 
   static get heroInitMaxShd() {
-    return "_-p4N";
+    return "";
   }
 
   static get heroInitHp() {
-    return "_-r16";
+    return "";
   }
 
   static get hpUpdateMaxHp() {
-    return "_-P1t";
+    return "";
   }
 
   static get hpUpdateHp() {
-    return "_-O1D";
+    return "";
   }
 
   static get selectMaxHp() {
-    return "_-P1t";
+    return "";
   }
 
   static get selectMaxShd() {
-    return "_-p4N";
+    return "";
   }
 
   static get selectHp() {
-    return "_-O1D";
+    return "";
+  }
+
+  static get clanDiplomacy() {
+    return "";
+  }
+
+  static get gateId() {
+    return "";
+  }
+
+  static get gateType() {
+    return "";
+  }
+
+  static get resource() {
+    return "";
+  }
+
+  static get resourceType() {
+    return "";
+  }
+
+  static get assetCreateX() {
+    return "";
+  }
+
+  static get assetCreateY() {
+    return "";
+  }
+
+  static get battlestationClanDiplomacy() {
+    return "";
   }
 }

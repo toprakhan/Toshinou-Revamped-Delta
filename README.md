@@ -8,3 +8,5 @@ It does some pretty neat stuff and is still under heavy development.
 Buttons
 ----------
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://paypal.me/dm94dani)<br/>
+[![GitHub release](https://img.shields.io/github/release/dm94/TRD-Extension.svg)](https://github.com/dm94/TRD-Extension/releases)
+[![Github All Releases](https://img.shields.io/github/downloads/dm94/TRD-Extension/total.svg)](https://github.com/dm94/TRD-Extension/releases)

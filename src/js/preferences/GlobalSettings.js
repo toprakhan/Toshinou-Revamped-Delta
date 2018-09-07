@@ -9,6 +9,7 @@ class GlobalSettings {
       timerTick: 300,
       showRuntime: true,
       enableRefresh: false,
+      refreshToReconnect: false,
       enableNPCBlockList: false,
       refreshTime: 60,
       speedFormat: 'hour',
@@ -63,6 +64,10 @@ class GlobalSettings {
 
   get enableRefresh() {
     return this._settings.enableRefresh;
+  }
+
+  get refreshToReconnect(){
+    return this._settings.refreshToReconnect;
   }
 
   get enableNPCBlockList() {

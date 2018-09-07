@@ -626,7 +626,7 @@ class Api {
      let portals38 = [];
      portals38.push(new Portal(150000312,27)); //3-8 | 3-7
      portals38.push(new Portal(150000310,26)); //3-8 | 3-6
-     this.starSystem.push(new Map(24, portals38));
+     this.starSystem.push(new Map(28, portals38));
   }
 
   completeRute(imcompleteRute){

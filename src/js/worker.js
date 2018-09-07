@@ -3,6 +3,13 @@ let api;
 let notrightId;
 let state = false;
 
+//gets how many times the page reloaded
+//it fixes the fake unsafe js 
+let refreshCounter;
+chrome.storage.local.get("refreshCount", function(result) {
+  refreshCounter = result["refreshCount"];
+});
+
 $(document).ready(function () {
   api = new Api();
 
@@ -10,6 +17,13 @@ $(document).ready(function () {
   $("#preloader").remove();
 
   let check = SafetyChecker.check();
+  
+  //Try to fix false positive on JS Change
+  // it refreshes the page 3 times
+  if(refreshCounter > 0 && !check){
+    api.changeRefreshCount(refreshCounter-1);
+    window.location.reload();
+  }
 
   if (check !== true) {
     let warning = jQuery("<div>");
@@ -98,6 +112,9 @@ function init() {
 
   window.setInterval(logic, window.tickTime);
   
+  //set refreshcount to 3 if page loaded until here
+  api.changeRefreshCount(3);
+  
   $(document).keyup(function (e) {
     let key = e.key;
 
@@ -169,7 +186,14 @@ function logic() {
       window.fleeFromEnemy = false;
     }
     if (api.disconnectTime && $.now() - api.disconnectTime > 10000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.globalSettings.reviveLimit) {
-      api.reconnect();
+      if(window.globalSettings.enableRefresh && window.globalSettings.refreshToReconnect){
+        if(api.disconnectTime > 30000){ // Waits 30 seconds to refresh page after disconnect
+          window.location.reload();
+          state = true;
+        }
+      }else{
+        api.reconnect();
+      }
     }
     return;
   }

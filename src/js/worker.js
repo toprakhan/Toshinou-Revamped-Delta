@@ -288,15 +288,15 @@ function logic() {
         }
       }
       if (window.settings.jumpFromEnemy) {
-    	let gate = api.findNearestGate();
-    	if (gate.gate) {
-  	      let x = gate.gate.position.x + MathUtils.random(-100, 100);
-  	      let y = gate.gate.position.y + MathUtils.random(-100, 100);
-  	      let dist = window.hero.distanceTo(gate.gate.position);
-  	      api.resetTarget("all");
-  	      api.move(x, y);
-  	      if (api.jumpAndGoBack(gate.gate.gateId)) {
-  	    	window.movementDone = false;
+        let gate = api.findNearestGate();
+        if (gate.gate) {
+          let x = gate.gate.position.x + MathUtils.random(-100, 100);
+          let y = gate.gate.position.y + MathUtils.random(-100, 100);
+          let dist = window.hero.distanceTo(gate.gate.position);
+          api.resetTarget("all");
+          api.move(x, y);
+          if (api.jumpAndGoBack(gate.gate.gateId)) {
+            window.movementDone = false;
             window.fleeingFromEnemy = true;
             setTimeout(() => {
               window.movementDone = true;
@@ -307,17 +307,17 @@ function logic() {
                 }
               }
             }, MathUtils.random(30000, 35000));
-  	      }
+          }
           return;
         }
       } else {
-    	let gate = api.findNearestGateForRunAway(enemyResult.enemy);
+        let gate = api.findNearestGateForRunAway(enemyResult.enemy);
         if (gate.gate) {
-	      let x = gate.gate.position.x + MathUtils.random(-100, 100);
-	      let y = gate.gate.position.y + MathUtils.random(-100, 100);
-	      let dist = window.hero.distanceTo(gate.gate.position);
-	      api.resetTarget("all");
-	      api.move(x, y);
+          let x = gate.gate.position.x + MathUtils.random(-100, 100);
+          let y = gate.gate.position.y + MathUtils.random(-100, 100);
+          let dist = window.hero.distanceTo(gate.gate.position);
+          api.resetTarget("all");
+          api.move(x, y);
           window.movementDone = false;
           window.fleeingFromEnemy = true;
           setTimeout(() => {
@@ -364,7 +364,7 @@ function logic() {
         api.resetTarget("all");
         if (window.settings.jumpFromEnemy) {
           if (api.jumpAndGoBack(gate.gate.gateId)) {
-        	  api.isRepairing = true;
+              api.isRepairing = true;
           }
           return;
         } else {
@@ -390,8 +390,8 @@ function logic() {
   } else {
     api.rute = null;
   }
-
-  if (window.X1Map) {
+  
+  if (window.X1Map || (window.settings.palladium && window.hero.mapId != 93)) {
     return;
   }
 
@@ -494,14 +494,14 @@ function logic() {
     if (api.battlestation.isEnemy) {
       let result = api.checkForCBS();
       if (result.walkAway) {
-    	if (api.targetBoxHash) {
-    		let box = api.boxes[api.targetBoxHash];
-	    	if (box && box.distanceTo(result.cbsPos) < 1800) {
-	    	  delete api.boxes[api.targetBoxHash];
-	    	  api.blackListHash(api.targetBoxHash);
-	    	  api.resetTarget("box");
-		    }
-    	}
+        if (api.targetBoxHash) {
+            let box = api.boxes[api.targetBoxHash];
+            if (box && box.distanceTo(result.cbsPos) < 1800) {
+              delete api.boxes[api.targetBoxHash];
+              api.blackListHash(api.targetBoxHash);
+              api.resetTarget("box");
+            }
+        }
         let f = Math.atan2(window.hero.position.x - result.cbsPos.x, window.hero.position.y - result.cbsPos.y) + 0.5;
         let s = Math.PI / 180;
         f += s;

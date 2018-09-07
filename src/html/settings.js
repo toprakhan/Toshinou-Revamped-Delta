@@ -37,13 +37,13 @@ function saveOptions(e) {
 }
 
 function restore() {
-	$('[data-resource]').each(function() {
-		  var el = $(this);
-		  var resourceName = el.data('resource');
-		  var resourceText = chrome.i18n.getMessage(resourceName);
-		  el.text(resourceText);
-		});
-	
+    $('[data-resource]').each(function() {
+          var el = $(this);
+          var resourceName = el.data('resource');
+          var resourceText = chrome.i18n.getMessage(resourceName);
+          el.text(resourceText);
+        });
+    
   var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "showRuntime", "enableRefresh", "enableNPCBlockList", "refreshTime", "speedFormat", "windowsToTabs", "deltaOptions", "attackConfig", "flyingConfig", "reviveType", "reviveLimit", "bonusBox", "materials", "cargoBox", "greenOrGoldBooty", "redBooty", "blueBooty", "masqueBooty", "collectBoxWhenCircle", "workmap", "palladiumLogic"];
 
   var onGet = items => {

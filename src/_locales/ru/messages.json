@@ -80,6 +80,9 @@
   "enablenpcblocklist": {
     "message": "Сохранить настройки ЧЕРНОГО СПИСКА при обновлении страницы"
   },
+  "refreshtoreconnect": {
+    "message": "Refresh page when disconnected"
+  },
   "clearsettings": {
     "message": "Очистить сохраненные настройки (Функция обновления)"
   },

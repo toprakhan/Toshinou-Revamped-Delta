@@ -127,6 +127,7 @@ class ControlFactory {
       event.call(this, ev);
     });
 
+
     return {
       input,
       label

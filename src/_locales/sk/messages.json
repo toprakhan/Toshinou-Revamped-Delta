@@ -80,6 +80,9 @@
   "enablenpcblocklist": {
     "message": "Zahrnúť čierny list NPC do funkcie obnovovania"
   },
+  "refreshtoreconnect": {
+    "message": "Refresh page when disconnected"
+  },
   "clearsettings": {
     "message": "Obnovoviť pamäť nastavení (Obnoviť nastavenia)"
   },
@@ -138,13 +141,13 @@
     "message": "Zbierať boxy počas krúženia (Ak je delta aktívkna)"
   },
   "target": {
-    "message": "Ciel: -"
+    "message": "Ciel: "
   },
   "hp": {
-    "message": "HP: -"
+    "message": "HP: "
   },
   "shd": {
-    "message": "SHD: -"
+    "message": "SHD: "
   },
   "palladiumbot": {
     "message": "Palladium Bot"

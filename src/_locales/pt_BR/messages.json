@@ -78,10 +78,13 @@
     "message": "Intervalo de atualizao (minutos)"
   },
   "enablenpcblocklist": {
-    "message": "Incluir lista negra do npc na funo de atualizao da pgina"
+    "message": "Incluir lista negra do npc na funo de atualizao da página"
+  },
+  "refreshtoreconnect": {
+    "message": "Atualizar a página quando for disconectado."
   },
   "clearsettings": {
-    "message": "Limpar armazenamento de configuraes (Funo de atualizao)"
+    "message": "Limpar armazenamento de configurações (Funo de atualizao)"
   },
   "reviveat": {
     "message": "Reviver em"
@@ -138,13 +141,13 @@
     "message": "Collect Box When Circle (Se delta ativo)"
   },
   "target": {
-    "message": "Alvo: -"
+    "message": "Alvo: "
   },
   "hp": {
-    "message": "Vida: -"
+    "message": "Vida: "
   },
   "shd": {
-    "message": "Escudo: -"
+    "message": "Escudo: "
   },
   "palladiumbot": {
     "message": "Palladium Bot"

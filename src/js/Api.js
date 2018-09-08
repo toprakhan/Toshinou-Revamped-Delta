@@ -20,6 +20,11 @@ class Api {
     this.changeConfigTime = $.now();
   }
 
+  changeRefreshCount(n){
+    chrome.storage.local.set({"refreshCount": n});
+  }
+
+
   lockShip(ship) {
     if (!(ship instanceof Ship))
       return;

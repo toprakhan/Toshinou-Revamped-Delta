@@ -80,6 +80,9 @@
   "enablenpcblocklist": {
     "message": "Incluir la lista de NPCs en la función Refresh"
   },
+  "refreshtoreconnect": {
+    "message": "Refresh page when disconnected"
+  },
   "clearsettings": {
     "message": "Limpiar configuraciones(Función Refresh)"
   },

@@ -80,6 +80,9 @@
   "enablenpcblocklist": {
     "message": "Po odświeżeniu czarna lista wciąż jest aktywna"
   },
+  "refreshtoreconnect": {
+    "message": "Refresh page when disconnected"
+  },
   "clearsettings": {
     "message": "Wyczyść ustawienia (Ośwież strone ustawienia Funkcji)"
   },
@@ -138,13 +141,13 @@
     "message": "Zbieraj boxy robiąc orbitki (jeśli wersja delta jest aktywna)"
   },
   "target": {
-    "message": "Cel: -"
+    "message": "Cel: "
   },
   "hp": {
-    "message": "HP: -"
+    "message": "HP: "
   },
   "shd": {
-    "message": "SHD: -"
+    "message": "SHD: "
   },
   "palladiumbot": {
     "message": "Palladium Bot"

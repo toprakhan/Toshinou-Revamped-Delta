@@ -65,11 +65,9 @@ class GlobalSettings {
   get enableRefresh() {
     return this._settings.enableRefresh;
   }
-
   get refreshToReconnect(){
     return this._settings.refreshToReconnect;
   }
-
   get enableNPCBlockList() {
     return this._settings.enableNPCBlockList;
   }

@@ -80,6 +80,9 @@
   "enablenpcblocklist": {
     "message": "Include npc black list into refresh page function"
   },
+  "refreshtoreconnect": {
+    "message": "Refresh page when disconnected"
+  },
   "clearsettings": {
     "message": "Clear settings storage (Refresh function)"
   },
@@ -138,13 +141,13 @@
     "message": "Collect Box When Circle (If delta active)"
   },
   "target": {
-    "message": "Target: -"
+    "message": "Target: "
   },
   "hp": {
-    "message": "HP: -"
+    "message": "HP: "
   },
   "shd": {
-    "message": "SHD: -"
+    "message": "SHD: "
   },
   "palladiumbot": {
     "message": "Palladium Bot"

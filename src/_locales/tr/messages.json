@@ -80,6 +80,9 @@
   "enablenpcblocklist": {
     "message": "Kestirmeyecegin npcleri tekrar ayarla"
   },
+  "refreshtoreconnect": {
+    "message": "Refresh page when disconnected"
+  },
   "clearsettings": {
     "message": "Uygulanmis ayarlari temizle (Ozelligi yenile)"
   },
@@ -138,13 +141,13 @@
     "message": "Daire cizerken kutulari topla(Sadece delta acikken)"
   },
   "target": {
-    "message": "Hedef: -"
+    "message": "Hedef: "
   },
   "hp": {
-    "message": "Can: -"
+    "message": "Can: "
   },
   "shd": {
-    "message": "Kalkan: -"
+    "message": "Kalkan: "
   },
   "palladiumbot": {
     "message": "Palladium Botu"

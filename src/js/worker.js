@@ -3,12 +3,13 @@ let api;
 let notrightId;
 let state = false;
 
-//gets how many times the page reloaded
-//it fixes the fake unsafe js 
+// gets how many times the page reloaded
+// it fixes the fake unsafe js 
 let refreshCounter;
 chrome.storage.local.get("refreshCount", function(result) {
   refreshCounter = result["refreshCount"];
 });
+
 
 $(document).ready(function () {
   api = new Api();
@@ -17,13 +18,14 @@ $(document).ready(function () {
   $("#preloader").remove();
 
   let check = SafetyChecker.check();
-  
-  //Try to fix false positive on JS Change
+
+  // Try to fix false positive on JS Change
   // it refreshes the page 3 times
   if(refreshCounter > 0 && !check){
     api.changeRefreshCount(refreshCounter-1);
     window.location.reload();
   }
+
 
   if (check !== true) {
     let warning = jQuery("<div>");
@@ -39,7 +41,7 @@ $(document).ready(function () {
 
     jQuery("<h1>").text("The tool detected changes in the game.").appendTo(warning);
     jQuery("<h2>").text("Loading stopped! Your account has to stay safe.").appendTo(warning);
-    jQuery("<h3>").text("Reason: " + check).appendTo(warning);
+    jQuery("<h3>").text("Reason: UNSAFE JS").appendTo(warning);
 
     warning.appendTo("body");
     throw new Error("Safety tests failed!");
@@ -112,9 +114,9 @@ function init() {
 
   window.setInterval(logic, window.tickTime);
   
-  //set refreshcount to 3 if page loaded until here
+  // set refreshcount to 3 if page loaded until here
   api.changeRefreshCount(3);
-  
+
   $(document).keyup(function (e) {
     let key = e.key;
 
@@ -180,7 +182,6 @@ function init() {
 function logic() {
 
   let circleBox = null;
-
   if (api.isDisconnected) {
     if (window.fleeingFromEnemy) {
       window.fleeFromEnemy = false;
@@ -197,7 +198,6 @@ function logic() {
     }
     return;
   }
-
   if (window.globalSettings.enableRefresh && !window.settings.ggbot) {
     if (window.globalSettings.enableNPCBlockList) {
         let NPCSavingFix = [
@@ -302,46 +302,24 @@ function logic() {
     }
   }
 
-  if (window.settings.fleeFromEnemy) {
-    let enemyResult = api.checkForEnemy();
+if (window.settings.fleeFromEnemy) {
+  let enemyResult = api.checkForEnemy();
 
-    if (enemyResult.run) {
-      if (window.settings.autoChangeConfig) {
-        if (window.globalSettings.flyingConfig != window.hero.shipconfig) {
-          api.changeConfig();
-        }
+  if (enemyResult.run) {
+    if (window.settings.autoChangeConfig) {
+      if (window.globalSettings.flyingConfig != window.hero.shipconfig) {
+        api.changeConfig();
       }
-      if (window.settings.jumpFromEnemy) {
-        let gate = api.findNearestGate();
-        if (gate.gate) {
-          let x = gate.gate.position.x + MathUtils.random(-100, 100);
-          let y = gate.gate.position.y + MathUtils.random(-100, 100);
-          let dist = window.hero.distanceTo(gate.gate.position);
-          api.resetTarget("all");
-          api.move(x, y);
-          if (api.jumpAndGoBack(gate.gate.gateId)) {
-            window.movementDone = false;
-            window.fleeingFromEnemy = true;
-            setTimeout(() => {
-              window.movementDone = true;
-              window.fleeingFromEnemy = false;
-              if (window.settings.autoChangeConfig){
-                if (window.globalSettings.attackConfig != window.hero.shipconfig) {
-                  api.changeConfig();
-                }
-              }
-            }, MathUtils.random(30000, 35000));
-          }
-          return;
-        }
-      } else {
-        let gate = api.findNearestGateForRunAway(enemyResult.enemy);
-        if (gate.gate) {
-          let x = gate.gate.position.x + MathUtils.random(-100, 100);
-          let y = gate.gate.position.y + MathUtils.random(-100, 100);
-          let dist = window.hero.distanceTo(gate.gate.position);
-          api.resetTarget("all");
-          api.move(x, y);
+    }
+    if (window.settings.jumpFromEnemy) {
+      let gate = api.findNearestGate();
+      if (gate.gate) {
+        let x = gate.gate.position.x + MathUtils.random(-100, 100);
+        let y = gate.gate.position.y + MathUtils.random(-100, 100);
+        let dist = window.hero.distanceTo(gate.gate.position);
+        api.resetTarget("all");
+        api.move(x, y);
+        if (api.jumpAndGoBack(gate.gate.gateId)) {
           window.movementDone = false;
           window.fleeingFromEnemy = true;
           setTimeout(() => {
@@ -353,11 +331,33 @@ function logic() {
               }
             }
           }, MathUtils.random(30000, 35000));
-          return;
         }
+        return;
+      }
+    } else {
+      let gate = api.findNearestGateForRunAway(enemyResult.enemy);
+      if (gate.gate) {
+        let x = gate.gate.position.x + MathUtils.random(-100, 100);
+        let y = gate.gate.position.y + MathUtils.random(-100, 100);
+        let dist = window.hero.distanceTo(gate.gate.position);
+        api.resetTarget("all");
+        api.move(x, y);
+        window.movementDone = false;
+        window.fleeingFromEnemy = true;
+        setTimeout(() => {
+          window.movementDone = true;
+          window.fleeingFromEnemy = false;
+          if (window.settings.autoChangeConfig){
+            if (window.globalSettings.attackConfig != window.hero.shipconfig) {
+              api.changeConfig();
+            }
+          }
+        }, MathUtils.random(30000, 35000));
+        return;
       }
     }
   }
+}
 
   if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent || api.isRepairing) {
     if (window.settings.ggbot) {
@@ -388,7 +388,7 @@ function logic() {
         api.resetTarget("all");
         if (window.settings.jumpFromEnemy) {
           if (api.jumpAndGoBack(gate.gate.gateId)) {
-              api.isRepairing = true;
+        	  api.isRepairing = true;
           }
           return;
         } else {
@@ -414,7 +414,7 @@ function logic() {
   } else {
     api.rute = null;
   }
-  
+
   if (window.X1Map || (window.settings.palladium && window.hero.mapId != 93)) {
     return;
   }
@@ -518,14 +518,14 @@ function logic() {
     if (api.battlestation.isEnemy) {
       let result = api.checkForCBS();
       if (result.walkAway) {
-        if (api.targetBoxHash) {
-            let box = api.boxes[api.targetBoxHash];
-            if (box && box.distanceTo(result.cbsPos) < 1800) {
-              delete api.boxes[api.targetBoxHash];
-              api.blackListHash(api.targetBoxHash);
-              api.resetTarget("box");
-            }
-        }
+    	if (api.targetBoxHash) {
+    		let box = api.boxes[api.targetBoxHash];
+	    	if (box && box.distanceTo(result.cbsPos) < 1800) {
+	    	  delete api.boxes[api.targetBoxHash];
+	    	  api.blackListHash(api.targetBoxHash);
+	    	  api.resetTarget("box");
+		    }
+    	}
         let f = Math.atan2(window.hero.position.x - result.cbsPos.x, window.hero.position.y - result.cbsPos.y) + 0.5;
         let s = Math.PI / 180;
         f += s;
@@ -582,7 +582,7 @@ function logic() {
       y = api.targetShip.position.y + MathUtils.random(-200, 200);
     } else if (api.lockedShip && api.lockedShip.id == api.targetShip.id) {
       if (window.settings.circleNpc) {
-        let enemy = api.targetShip.position;
+        let enemy = api.targetShip.position;        
         let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
         let s = Math.PI / 180;
         let rot = MathUtils.random(-10, 10);

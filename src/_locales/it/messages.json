@@ -79,6 +79,9 @@
   "enablenpcblocklist": {
     "message": "Includi npc della lista nera nella funzione per aggiornare la pagina"
   },
+  "refreshtoreconnect": {
+    "message": "Refresh page when disconnected"
+  },
   "clearsettings": {
     "message": "Azzera impostazioni salvate (aggiornamento pagina)"
   },
@@ -137,13 +140,13 @@
     "message": "Colleziona Box quando circola (Se opzione delta attiva)"
   },
   "target": {
-    "message": "Bersaglio: -"
+    "message": "Bersaglio: "
   },
   "hp": {
-    "message": "PV: -"
+    "message": "PV: "
   },
   "shd": {
-    "message": "SHD: -"
+    "message": "SHD: "
   },
   "palladiumbot": {
     "message": "Bot Palladio"

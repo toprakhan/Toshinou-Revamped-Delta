@@ -80,6 +80,9 @@
   "enablenpcblocklist": {
     "message": "Inclure la blacklist des NPCs dans la fonction de rafraîchissement de la page"
   },
+  "refreshtoreconnect": {
+    "message": "Refresh page when disconnected"
+  },
   "clearsettings": {
     "message": "Effacer les paramètres de stockage (fonction de rafraîchissement)"
   },
@@ -138,13 +141,13 @@
     "message": "Collecter les box en même temps de faire des cercles autours des NPCs (si delta actif)"
   },
   "target": {
-    "message": "Cible: -"
+    "message": "Cible: "
   },
   "hp": {
-    "message": "HP: -"
+    "message": "HP: "
   },
   "shd": {
-    "message": "SHD: -"
+    "message": "SHD: "
   },
   "palladiumbot": {
     "message": "Palladium Bot"

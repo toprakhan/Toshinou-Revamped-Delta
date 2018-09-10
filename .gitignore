@@ -36,3 +36,4 @@ src/js/handlers/commands/ShipMoveHandler.js
 src/js/handlers/commands/ShipRemovedHandler.js
 src/js/handlers/commands/ShipSelectedHandler.js
 src/js/utils/Variables.js
+src/js/handlers/commands/AssetCreatedHandler.js

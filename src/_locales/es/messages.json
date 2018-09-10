@@ -81,10 +81,10 @@
     "message": "Incluir la lista de NPCs en la función Refresh"
   },
   "refreshtoreconnect": {
-    "message": "Refresh page when disconnected"
+    "message": "Refrescar la pagina cuando se desconecte"
   },
   "clearsettings": {
-    "message": "Limpiar configuraciones(Función Refresh)"
+    "message": "Limpiar configuraciones (Función Refresh)"
   },
   "reviveat": {
     "message": "Revivir en"
@@ -250,5 +250,32 @@
   },
   "reset": {
     "message": "Reiniciar Estadísticas"
+  },
+  "shipsettings": {
+    "message": "Configuración de la Nave"
+  },
+  "changedroneformation": {
+    "message": "Cambiar la formación de los drones"
+  },
+  "attackformationslot": {
+    "message": "Slot de la formación de ataque"
+  },
+  "flyingformationslot": {
+    "message": "Slot de la formación de velocidad"
+  },
+  "droneformations": {
+    "message": "Formaciones de drones (BETA)"
+  },
+  "shiphability": {
+    "message": "Habilidad de nave (BETA)"
+  },
+  "usehability": {
+    "message": "Usar habilidad"
+  },
+  "habilityslot": {
+    "message": "Slot de la habilidad"
+  },
+  "refreshsettings": {
+    "message": "Configuración de refresh"
   }
 }

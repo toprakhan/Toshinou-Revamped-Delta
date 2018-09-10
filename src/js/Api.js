@@ -18,12 +18,65 @@ class Api {
     this.starSystem = [];
     this.workmap = null;
     this.changeConfigTime = $.now();
+    this.autoLocked = false;
+    this.lastAutoLock = $.now();
+    // QuickSlot stuff
+    this.habilityCoolDown = 1;
+    this.changeFormationTime = $.now();
+    this.formation = -1;
   }
 
+  useHability(){
+    var cooldownlist = {"cyborg":310000,"solace":140000,"diminisher":161000,"venom":180000 ,"sentinel":235000 ,"spectrum":210000};
+    if(this.habilityCoolDown && $.now() - this.habilityCoolDown > cooldownlist[window.hero.skillName]){
+      this.quickSlot(window.globalSettings.habilitySlot);
+      this.habilityCoolDown = $.now();
+      return true;
+    }
+    return false;
+  }
+  
+  useHability(){
+    var cooldownlist = {"cyborg":310000,"solace":140000,"diminisher":161000,"venom":180000 ,"sentinel":235000 ,"spectrum":210000};
+    if(this.habilityCoolDown && $.now() - this.habilityCoolDown > cooldownlist[window.hero.skillName]){
+      this.quickSlot(window.globalSettings.habilitySlot);
+      this.habilityCoolDown = $.now();
+      return true;
+    }
+    return false;
+  }
+
+  getShipName(fullname){
+    let namelist = /(cyborg|venom|solace|diminisher|spectrum|sentinel)/;
+    let rname = namelist.exec(fullname);
+    if(rname != null){
+      return rname[0]
+    }else{
+      return false;
+    }
+  }
+
+  changeFormation(n){
+    if (this.changeFormationTime && $.now() - this.changeFormationTime > 3000){
+        this.changeFormationTime = $.now();
+        this.formation = n;
+        this.quickSlot(n);
+    }
+  }
+  
+  quickSlot(n){
+    if(n>=0 && n< 10){
+      let slots = [48,49,50,51,52,53,54,55,56,57];
+      Injector.injectScript('document.getElementById("preloader").pressKey('+slots[n]+');');
+      setTimeout(() => {
+        Injector.injectScript('document.getElementById("preloader").pressKey('+slots[n]+');');
+      }, 700);
+    }
+  }
+  
   changeRefreshCount(n){
     chrome.storage.local.set({"refreshCount": n});
   }
-
 
   lockShip(ship) {
     if (!(ship instanceof Ship))
@@ -173,12 +226,13 @@ class Api {
   }
 
   jumpAndGoBack(gateId){
-    let hasJumped = this.jumpInGateByID(gateId);
     if (window.globalSettings.workmap != null) {
       this.workmap = window.globalSettings.workmap;
     } else {
       this.workmap = window.hero.mapId;
     }
+    let hasJumped = this.jumpInGateByID(gateId);
+    
     return hasJumped;
   }
 

@@ -1,8 +1,8 @@
 class HeroDiedHandler {
   static get ID() {
-    return 0;
+    return 20859;
   }
-  
+
   constructor() {
     this._handler = function (e, a) {
        let parsedJson = JSON.parse(e.detail);

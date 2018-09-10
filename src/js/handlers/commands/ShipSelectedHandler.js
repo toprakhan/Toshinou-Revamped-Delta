@@ -1,6 +1,6 @@
 class ShipSelectedHandler {
   static get ID() {
-    return 0;
+    return 13233;//32473;
   }
 
   constructor() {
@@ -13,8 +13,16 @@ class ShipSelectedHandler {
       ship.hp = parsedJson[Variables.selectHp];//_-p2W 
       ship.shd = parsedJson.shield;
 
-      if (ship != null)
+      if (ship != null){
         a.lockedShip = ship;
+        if(window.settings.autoAttack || window.settings.autoAttackNpcs && a.autoLocked && $.now() - a.lastAutoLock < 900){
+          if (!a.attacking && window.settings.avoidAttackedNpcs || !a.attacking && a.lockedShip) {
+            a.startLaserAttack();
+            a.lastAttack = $.now();
+            a.attacking = true;
+          }
+        }
+      }
     }
   }
 

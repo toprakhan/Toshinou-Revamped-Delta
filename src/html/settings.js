@@ -5,33 +5,36 @@ Created by Freshek on 31.10.2017
 function saveOptions(e) {
   e.preventDefault();
   var elements = {
-    headerColor: $("#headerColor").val(),
-    headerOpacity: $("#headerOpacity").val(),
-    windowColor: $("#windowColor").val(),
-    windowOpacity: $("#windowOpacity").val(),
-    timerTick: $("#timerTick").val(),
-    showRuntime: $("#showRuntime").prop('checked'),
-    enableRefresh: $("#enableRefresh").prop('checked'),
+    headerColor:        $("#headerColor").val(),
+    headerOpacity:      $("#headerOpacity").val(),
+    windowColor:        $("#windowColor").val(),
+    windowOpacity:      $("#windowOpacity").val(),
+    timerTick:          $("#timerTick").val(),
+    enableRefresh:      $("#enableRefresh").prop('checked'),
     enableNPCBlockList: $("#enableNPCBlockList").prop('checked'),
     refreshToReconnect: $("#refreshToReconnect").prop('checked'),
-    refreshTime: $("#refreshTime").val(),
-    speedFormat: $('input[name="speedFormat"]:checked').val(),
-    windowsToTabs: $("#windowsToTabs").prop('checked'),
-    deltaOptions: $("#deltaOptions").prop('checked'),
-    attackConfig: $("#attackConfig").val(),
-    flyingConfig: $("#flyingConfig").val(),
-    reviveType: $("#reviveType").val(),
-    reviveLimit: $("#reviveLimit").val(),
-    bonusBox: $("#bonusBox").prop('checked'),
-    materials: $("#materials").prop('checked'),
-    cargoBox: $("#cargoBox").prop('checked'),
-    greenOrGoldBooty: $("#greenOrGoldBooty").prop('checked'),
-    redBooty: $("#redBooty").prop('checked'),
-    blueBooty: $("#blueBooty").prop('checked'),
-    masqueBooty: $("#masqueBooty").prop('checked'),
+    refreshTime:        $("#refreshTime").val(),
+    speedFormat:        $('input[name="speedFormat"]:checked').val(),
+    windowsToTabs:      $("#windowsToTabs").prop('checked'),
+    autoChangeConfig:   $("#autoChangeConfig").prop('checked'),
+    attackConfig:       $("#attackConfig").val(),
+    changeFormation:    $("#changeFormation").prop('checked'),
+    flyingFormation:    $("#flyingFormation").val(),
+    attackFormation:    $("#attackFormation").val(),
+    flyingConfig:       $("#flyingConfig").val(),
+    useHability:        $("#useHability").prop('checked'),
+    habilitySlot:       $("#habilitySlot").val(),
+    reviveType:         $("#reviveType").val(),
+    reviveLimit:        $("#reviveLimit").val(),
+    bonusBox:           $("#bonusBox").prop('checked'),
+    materials:          $("#materials").prop('checked'),
+    cargoBox:           $("#cargoBox").prop('checked'),
+    greenOrGoldBooty:   $("#greenOrGoldBooty").prop('checked'),
+    redBooty:           $("#redBooty").prop('checked'),
+    blueBooty:          $("#blueBooty").prop('checked'),
+    masqueBooty:        $("#masqueBooty").prop('checked'),
     collectBoxWhenCircle: $("#collectBoxWhenCircle").prop('checked'),
     workmap: $("#workmap").val(),
-    palladiumLogic: $("#palladiumLogic").prop('checked'),
   };
 
   chrome.storage.local.set(elements);
@@ -45,7 +48,13 @@ function restore() {
 		  el.text(resourceText);
 		});
 	
-  var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "showRuntime", "enableRefresh", "enableNPCBlockList","refreshToReconnect", "refreshTime", "speedFormat", "windowsToTabs", "deltaOptions", "attackConfig", "flyingConfig", "reviveType", "reviveLimit", "bonusBox", "materials", "cargoBox", "greenOrGoldBooty", "redBooty", "blueBooty", "masqueBooty", "collectBoxWhenCircle", "workmap", "palladiumLogic"];
+  var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "windowsToTabs",
+                "enableRefresh", "enableNPCBlockList","refreshToReconnect", "refreshTime", 
+                "speedFormat", "autoChangeConfig", "attackConfig", "flyingConfig",
+                "useHability","habilitySlot", "changeFormation","flyingFormation",
+                "attackFormation","reviveType", "reviveLimit",
+                "bonusBox", "materials", "cargoBox", "greenOrGoldBooty",
+                "redBooty", "blueBooty", "masqueBooty", "collectBoxWhenCircle", "workmap"];
 
   var onGet = items => {
 
@@ -59,8 +68,6 @@ function restore() {
       $("#windowOpacity").val(items.windowOpacity);
     if (items.timerTick)
       $("#timerTick").val(items.timerTick);
-    if (items.showRuntime)
-      $("#showRuntime").prop('checked', true);
     if (items.enableRefresh)
       $("#enableRefresh").prop('checked', true);
     if (items.enableNPCBlockList)
@@ -69,21 +76,41 @@ function restore() {
       $("#refreshToReconnect").prop('checked', true);
     if (items.refreshTime)
       $("#refreshTime").val(items.refreshTime);
+
     if (items.speedFormat) {
       let sel = `#speedFormat_${items.speedFormat}`;
       $(sel).prop('checked', true);
     }
+    
     if (items.windowsToTabs) {
       $("#windowsToTabs").prop('checked', true);
     }
-    if (items.deltaOptions) {
-      $("#deltaOptions").prop('checked', true);
+    if (items.autoChangeConfig) {
+      $("#autoChangeConfig").prop('checked', true);
     }
     if (items.attackConfig) {
       $("#attackConfig").val(items.attackConfig);
     }
     if (items.flyingConfig) {
       $("#flyingConfig").val(items.flyingConfig);
+    }
+    if (items.changeFormation) {
+      $("#changeFormation").prop('checked', true);
+    }
+    if (items.attackFormation) {
+      $("#attackFormation").val(items.attackFormation);
+    }
+    if (items.flyingFormation) {
+      $("#flyingFormation").val(items.flyingFormation);
+    }
+    if (items.useHability) {
+      $("#useHability").prop('checked', true);
+    }
+    if (items.habilitySlot) {
+      $("#habilitySlot").val(items.habilitySlot);
+    }
+    if (items.workmap) {
+      $("#workmap").val(items.workmap);
     }
     if (items.reviveType) {
       $("#reviveType").val(items.reviveType);
@@ -117,9 +144,6 @@ function restore() {
     }
     if (items.workmap) {
       $("#workmap").val(items.workmap);
-    }
-    if (items.palladiumLogic) {
-      $("#palladiumLogic").prop('checked', true);
     }
   };
 

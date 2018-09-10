@@ -39,6 +39,22 @@ class GeneralSettingsWindow {
         }
       },
       {
+        name: 'jumpFromEnemy',
+        labelText: chrome.i18n.getMessage("jumpandreturn"),
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.jumpFromEnemy = this.checked;
+        }
+      },
+      {
+        name: 'dodgeTheCbs',
+        labelText: chrome.i18n.getMessage("dodgethecbs"),
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.dodgeTheCbs = this.checked;
+        }
+      },
+      {
         name: 'avoidAttackedNpcs',
         labelText: chrome.i18n.getMessage("avoidattackednpc"),
         appendTo: this.botSettingsWindow,
@@ -80,6 +96,14 @@ class GeneralSettingsWindow {
         }
       },
       {
+        name: 'resetTargetWhenHpBelow25Percent',
+        labelText: chrome.i18n.getMessage("resettarget"),
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.resetTargetWhenHpBelow25Percent = this.checked;
+        }
+      },
+      {
         name: 'repairWhenHpIsLowerThanPercent',
         labelText: chrome.i18n.getMessage("repairwhenhp"),
         type: 'range',
@@ -97,56 +121,6 @@ class GeneralSettingsWindow {
         }
       }
     ];
-
-
-    if (window.globalSettings.deltaOptions) {
-      controls.splice(5,0,
-        {
-          name: 'jumpFromEnemy',
-          labelText: chrome.i18n.getMessage("jumpandreturn"),
-          appendTo: this.botSettingsWindow,
-          event: function () {
-            window.settings.jumpFromEnemy = this.checked;
-          }
-        }
-      );
-      controls.splice(6,0,
-        {
-          name: 'autoChangeConfig',
-          labelText: chrome.i18n.getMessage("autochangeconfig"),
-          appendTo: this.botSettingsWindow,
-          event: function () {
-            window.settings.autoChangeConfig = this.checked;
-          }
-        }
-      );
-      controls.splice(7,0,
-        {
-          name: 'dodgeTheCbs',
-          labelText: chrome.i18n.getMessage("dodgethecbs"),
-          appendTo: this.botSettingsWindow,
-          event: function () {
-            window.settings.dodgeTheCbs = this.checked;
-          }
-        }
-      );
-      controls.splice(11,0,
-        {
-          name: 'resetTargetWhenHpBelow25Percent',
-          labelText: chrome.i18n.getMessage("resettarget"),
-          appendTo: this.botSettingsWindow,
-          event: function () {
-            window.settings.resetTargetWhenHpBelow25Percent = this.checked;
-          }
-        }
-      );
-    } else {
-      window.settings.travelsystem = false;
-      window.settings.jumpFromEnemy = false;
-      window.settings.autoChangeConfig = false;
-      window.settings.dodgeTheCbs = false;
-      window.settings.resetTargetWhenHpBelow25Percent = false;
-    }
 
     controls.forEach((control) => {
       this[control.name] = ControlFactory.createControl(control);

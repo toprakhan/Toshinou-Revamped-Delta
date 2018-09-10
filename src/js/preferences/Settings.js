@@ -1,10 +1,10 @@
 class Settings {
   constructor(pause, 
-    palladium, refresh, moveRandomly, killNpcs, fleeFromEnemy, jumpFromEnemy, autoChangeConfig, dodgeTheCbs, avoidAttackedNpcs, circleNpc, dontCircleWhenHpBelow25Percent, resetTargetWhenHpBelow25Percent, repairWhenHpIsLowerThanPercent,
+    palladium, refresh, moveRandomly, killNpcs, fleeFromEnemy, jumpFromEnemy, dodgeTheCbs, avoidAttackedNpcs, circleNpc, dontCircleWhenHpBelow25Percent, resetTargetWhenHpBelow25Percent, repairWhenHpIsLowerThanPercent,
 
     ggbot, alpha, beta, gamma, delta, epsilon, zeta, kappa, lambda, kronos, hades, kuiper,
 
-    lockNpcs, lockPlayers, autoAttack) 
+    lockNpcs, lockPlayers, autoAttack, autoAttackNpcs) 
   {
     this._pause = pause === true;
 
@@ -14,7 +14,6 @@ class Settings {
     this._killNpcs = killNpcs === true;    
     this._fleeFromEnemy = fleeFromEnemy === true;
     this._jumpFromEnemy = jumpFromEnemy === true;
-    this._autoChangeConfig = autoChangeConfig === true;
     this._dodgeTheCbs = dodgeTheCbs === true;
     this._avoidAttackedNpcs = avoidAttackedNpcs === true;
     this._circleNpc = circleNpc === true;
@@ -39,6 +38,9 @@ class Settings {
     this._lockNpcs = lockNpcs === true;
     this._lockPlayers = lockPlayers === true;
     this._autoAttack = autoAttack === true;
+
+    this._autoAttackNpcs = autoAttackNpcs === true;
+
 
     this._npcs = new Array();
   }
@@ -97,14 +99,6 @@ class Settings {
 
   set jumpFromEnemy(value) {
     this._jumpFromEnemy = value === true;
-  }
-
-  get autoChangeConfig() {
-    return this._autoChangeConfig;
-  }
-
-  set autoChangeConfig(value) {
-    this._autoChangeConfig = value === true;
   }
 
   get dodgeTheCbs() {

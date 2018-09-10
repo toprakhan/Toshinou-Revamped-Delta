@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Toshinou Revamped Delta",
-  "version": "0.22",
+  "version": "0.23",
   "default_locale": "en",
   "description": "__MSG_desextension__",
 
@@ -36,6 +36,7 @@
         "js/windows/GGSettingsWindow.js",
         "js/windows/NpcSettingsWindow.js",
         "js/windows/StatisticWindow.js",
+        "js/windows/AutolockWindow.js",
         "js/objects/Movable.js",
         "js/objects/Box.js",
         "js/objects/Hero.js",
@@ -65,6 +66,8 @@
         "js/handlers/commands/HeroDiedHandler.js",
         "js/handlers/commands/HeroUpdateHitpointsHandler.js",
         "js/handlers/commands/AssetCreatedHandler.js",
+        "js/handlers/commands/HeroUpdateShieldHandler.js",
+        "js/handlers/commands/QuickSlotHandler.js",
         "js/Api.js",
         "js/ControlFactory.js",
         "js/worker.js"

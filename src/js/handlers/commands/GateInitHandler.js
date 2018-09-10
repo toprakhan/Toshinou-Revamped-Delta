@@ -1,11 +1,12 @@
 class GateInitHandler {
   static get ID() {
-    return 0;
+    return 4179;
   }
 
   constructor() {
     this._handler = function (e, a) {
       let parsedJson = JSON.parse(e.detail);
+
       let id = parsedJson[Variables.gateId];
       let typeId = parsedJson[Variables.gateType];
 

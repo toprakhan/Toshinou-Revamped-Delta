@@ -25,16 +25,6 @@ class Api {
     this.changeFormationTime = $.now();
     this.formation = -1;
   }
-
-  useHability(){
-    var cooldownlist = {"cyborg":310000,"solace":140000,"diminisher":161000,"venom":180000 ,"sentinel":235000 ,"spectrum":210000};
-    if(this.habilityCoolDown && $.now() - this.habilityCoolDown > cooldownlist[window.hero.skillName]){
-      this.quickSlot(window.globalSettings.habilitySlot);
-      this.habilityCoolDown = $.now();
-      return true;
-    }
-    return false;
-  }
   
   useHability(){
     var cooldownlist = {"cyborg":310000,"solace":140000,"diminisher":161000,"venom":180000 ,"sentinel":235000 ,"spectrum":210000};
@@ -58,20 +48,24 @@ class Api {
 
   changeFormation(n){
     if (this.changeFormationTime && $.now() - this.changeFormationTime > 3000){
-        this.changeFormationTime = $.now();
-        this.formation = n;
-        this.quickSlot(n);
+      this.changeFormationTime = $.now();
+      this.formation = n;
+      this.quickSlot(n);
     }
   }
   
   quickSlot(n){
     if(n>=0 && n< 10){
       let slots = [48,49,50,51,52,53,54,55,56,57];
-      Injector.injectScript('document.getElementById("preloader").pressKey('+slots[n]+');');
+      this.pressKey(slots[n]);
       setTimeout(() => {
-        Injector.injectScript('document.getElementById("preloader").pressKey('+slots[n]+');');
+    	this.pressKey(slots[n]);
       }, 700);
     }
+  }
+  
+  pressKey(n) {
+	Injector.injectScript('document.getElementById("preloader").pressKey('+n+');');
   }
   
   changeRefreshCount(n){
@@ -141,17 +135,20 @@ class Api {
   }
 
   startLaserAttack() {
-    Injector.injectScript('document.getElementById("preloader").laserAttack()');
+    //Injector.injectScript('document.getElementById("preloader").laserAttack()');
+	this.pressKey(17);
   }
 
   jumpGate() {
-    Injector.injectScript('document.getElementById("preloader").jumpGate();');
+    //Injector.injectScript('document.getElementById("preloader").jumpGate();');
+    this.pressKey(74);
   }
 
   changeConfig() {
     if (this.changeConfigTime && $.now() - this.changeConfigTime > 5000) {
       this.changeConfigTime = $.now();
-      Injector.injectScript('document.getElementById("preloader").changeConfig();');
+      //Injector.injectScript('document.getElementById("preloader").changeConfig();');
+      this.pressKey(67);
     }
   }
 
@@ -386,7 +383,6 @@ class Api {
       let ship = this.ships[property];
       ship.update();
       let dist = ship.distanceTo(window.hero.position);
-
       if (dist < minDist) {
         if (ship.isNpc && window.settings.getNpc(ship.name) && !ship.isAttacked) {
           finalShip = ship;

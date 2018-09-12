@@ -111,9 +111,6 @@ function init() {
   window.statisticWindow = new StatisticWindow();
   window.statisticWindow.createWindow();
   
-  window.autolockWindow = new AutolockWindow();
-  window.autolockWindow.createWindow();
-  
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
   window.setInterval(logic, window.tickTime);
@@ -135,30 +132,8 @@ function init() {
         window.settings.pause = false;
       }
     }
-    
-    if (key == "x" && (!window.settings.autoAttackNpcs || (!api.lastAutoLock || $.now() - api.lastAutoLock > 1000)) ||
-	  key == "z" && (!window.settings.autoAttack || (!api.lastAutoLock || $.now() - api.lastAutoLock > 1000))) {
-	  let maxDist = 1000;
-	  let finDist = 1000000;
-	  let finalShip;
-	    
-	  for (let property in api.ships) {
-	    let ship = api.ships[property];
-	    let dist = ship.distanceTo(window.hero.position);
-
-	    if (dist < maxDist && dist < finDist && ((ship.isNpc && window.settings.lockNpc && key == "x" && (!window.settings.excludeNpcs || window.settings.getNpc(ship.name))) || (!ship.isNpc && ship.isEnemy && window.settings.lockPlayers && key == "z"))) {
-	      finalShip = ship;
-	      finDist = dist;
-	    }
-	  }
-      if (finalShip != null) {
-        api.lockShip(finalShip);
-        api.lastAutoLock = $.now();
-        api.autoLocked = true;
-      }
-	}
   });
-
+  
   window.settings.pause = true;
   $(document).on('click', '.cnt_minimize_window', () => {
     if (window.statusMiniWindow) {
@@ -450,6 +425,11 @@ if (window.settings.fleeFromEnemy) {
   }
 
   if (!window.settings.palladium && !window.settings.ggbot && window.globalSettings.workmap != 0 &&  window.hero.mapId != window.globalSettings.workmap) {
+    if (window.globalSettings.autoChangeConfig){
+      if (window.globalSettings.attackConfig != window.hero.shipconfig) {
+        api.changeConfig();
+      }
+    }
     api.goToMap(window.globalSettings.workmap);
     return;
   } else {
@@ -543,9 +523,8 @@ if (window.settings.fleeFromEnemy) {
       window.settings.setNpc(npc, true);
     });
 
-  window.settings.moveRandomly = true;
-  window.settings.circleNpc = true;
-
+    window.settings.moveRandomly = true;
+    window.settings.circleNpc = true;
     let percenlife = MathUtils.percentFrom(window.hero.hp, window.hero.maxHp);
     if (percenlife < 98) {
       api.battlerayFix();

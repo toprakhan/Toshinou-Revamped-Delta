@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Toshinou Revamped Delta",
-  "version": "3.25",
+  "version": "3.27",
   "default_locale": "en",
   "description": "__MSG_desextension__",
 
@@ -34,7 +34,6 @@
         "js/windows/AttackWindow.js",
         "js/windows/GeneralSettingsWindow.js",
         "js/windows/GGSettingsWindow.js",
-        "js/windows/NpcSettingsWindow.js",
         "js/windows/StatisticWindow.js",
         "js/objects/Movable.js",
         "js/objects/Box.js",

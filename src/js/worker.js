@@ -105,9 +105,6 @@ function init() {
   window.GGSettingsWindow = new GGSettingsWindow();
   window.GGSettingsWindow.createWindow();
 
-  window.npcSettingsWindow = new NpcSettingsWindow();
-  window.npcSettingsWindow.createWindow();
-
   window.statisticWindow = new StatisticWindow();
   window.statisticWindow.createWindow();
   
@@ -197,32 +194,12 @@ function logic() {
     }
     return;
   }
+  let npcList = window.globalSettings.npcList;
+  for (i = 0; i < npcList.length; i++) {
+	window.settings.updateNpc(npcList[i]["name"], npcList[i]);
+  }
+
   if (window.globalSettings.enableRefresh && !window.settings.ggbot) {
-    if (window.globalSettings.enableNPCBlockList) {
-    	let NPCSavingFix = [
-            "-=[ Devolarium ]=-",
-            "..::{ Boss Devolarium }::..",
-            "-=[ Sibelon ]=-",
-            "..::{ Boss Sibelon }::..",    
-            "..::{ Boss Lordakium }::...",
-            "-=[ Blighted Kristallon ]=-",
-            "..::{ Boss Kristallon }::..",
-            "..::{ Boss StreuneR }::..",
-            "<=< Icy >=>",
-            "<=< Ice Meteoroid >=>",
-            "<=< Super Ice Meteoroid >=>",
-            "-=[ Battleray ]=-",
-            "( Uber Barracuda )",
-            "( Uber Saboteur )",
-            "( Uber Annihilator )",
-            "-={ demaNeR Escort }=-",
-            "-={ Demaner Corsair }=-",
-            "-={ demaNeR Freighter }=-",
-          ];
-      NPCSavingFix.forEach(npc => {
-        window.settings.setNpc(npc, true);
-      });
-    };
     if ($.now() - api.getSettingsTime > 10000) {
       api.getSettings();
       if (window.newSettings.refresh)
@@ -520,12 +497,12 @@ if (window.settings.fleeFromEnemy) {
     "( Uber Barracuda )",
     ];
     palladiumBlackList.forEach(npc => {
-      window.settings.setNpc(npc, true);
+      window.settings.setNpc(npc, "0");
     });
 
     window.settings.moveRandomly = true;
     window.settings.circleNpc = true;
-    let percenlife = MathUtils.percentFrom(window.hero.hp, window.hero.maxHp);
+    let percenlife = MathUtils.percentFrom(window.hero.shd, window.hero.maxShd);
     if (percenlife < 98) {
       api.battlerayFix();
       window.settings.killNpcs = true;
@@ -592,6 +569,20 @@ if (window.settings.fleeFromEnemy) {
           api.useHability();
         }
       }
+      if(window.globalSettings.changeAmmunition) {
+    	let ammunition = window.settings.getNpc(api.targetShip.name)["ammo"];
+    	if (ammunition == 11 && api.targetShip.shd > 200) {
+          api.changeAmmunition(6);
+    	} else if (ammunition == 11 && api.targetShip.shd < 200) {
+          api.changeAmmunition(1);
+    	} else if (ammunition == 21 && api.targetShip.shd > 200) {
+          api.changeAmmunition(6);
+    	} else if (ammunition == 21 && api.targetShip.shd < 200) {
+          api.changeAmmunition(2);
+    	} else {
+    	  api.changeAmmunition(ammunition);
+    	}
+      }
     }
     api.targetShip.update();
     let dist = api.targetShip.distanceTo(window.hero.position);
@@ -618,14 +609,18 @@ if (window.settings.fleeFromEnemy) {
       x = api.targetShip.position.x + MathUtils.random(-200, 200);
       y = api.targetShip.position.y + MathUtils.random(-200, 200);
     } else if (api.lockedShip && api.lockedShip.id == api.targetShip.id) {
-      if (window.settings.circleNpc) {
+      if (window.settings.circleNpc && api.lockedShip.isNpc) {
+    	let radius = window.settings.getNpc(api.lockedShip.name)["range"];
+    	if(radius == null || radius < 400){
+    	  radius = 500;
+    	}
         let enemy = api.targetShip.position;        
         let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
         let s = Math.PI / 180;
         let rot = MathUtils.random(-10, 10);
         f += s;
-        x = enemy.x + window.settings.npcCircleRadius * Math.sin(f);
-        y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
+        x = enemy.x + radius * Math.sin(f);
+        y = enemy.y + radius * Math.cos(f);
         
         if(window.globalSettings.collectBoxWhenCircle){
           let nearestBox = api.findNearestBox();

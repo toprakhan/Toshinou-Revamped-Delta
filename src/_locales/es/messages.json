@@ -51,7 +51,7 @@
     "message": "Activar funciones Delta. Algunas pueden contener Bugs"
   },
   "palladiumlogic": {
-    "message": "Función de Paladio (Solo funciona si Delta y Bot de Paladio están activos)"
+    "message": "Función de Paladio"
   },
   "shipconfigs": {
     "message": "Configuraciones de Nave"
@@ -138,7 +138,7 @@
     "message": "Cofres Apocalipsis"
   },
   "collectboxwhencircle": {
-    "message": "Colectar mientras gira (Solo si Delta está activo)"
+    "message": "Colectar mientras gira"
   },
   "target": {
     "message": "Objetivo: "
@@ -277,5 +277,11 @@
   },
   "refreshsettings": {
     "message": "Configuración de refresh"
+  },
+  "slotsAmmunition": {
+    "message": "Configuración de la munición"
+  },
+  "autochangeammunition": {
+    "message": "Auto cambiar municion"
   }
 }

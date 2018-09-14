@@ -17,7 +17,6 @@ class Settings {
     this._dodgeTheCbs = dodgeTheCbs === true;
     this._avoidAttackedNpcs = avoidAttackedNpcs === true;
     this._circleNpc = circleNpc === true;
-    this.npcCircleRadius = 500;
     this._dontCircleWhenHpBelow25Percent = dontCircleWhenHpBelow25Percent === true;
     this._resetTargetWhenHpBelow25Percent = resetTargetWhenHpBelow25Percent === true;
     this._repairWhenHpIsLowerThanPercent = repairWhenHpIsLowerThanPercent;
@@ -269,17 +268,28 @@ class Settings {
     this._autoAttack = value === true;
   }
 
-  setNpc(name, val) {
-    if(this._npcs[name] = null){
+  setNpc(name,val) {
+	this._npcs[name]["priority"] = val;
+  }
+  
+  updateNpc(name, val) {
+    if (this._npcs[name] = null){
       this._npcs.push(name);
-    }else{
+    } else{
       this._npcs[name] = val;
     }
   }
 
   getNpc(name) {
-    return !this._npcs[name];
+    return this._npcs[name];
   }
-
+  
+  get npcs() {
+	return this._npcs;
+  }
+  
+  getPriority(name){
+	let npc = this.getNpc(ship.name);
+  }
   
 }

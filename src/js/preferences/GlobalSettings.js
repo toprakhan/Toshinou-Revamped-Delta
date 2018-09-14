@@ -9,7 +9,6 @@ class GlobalSettings {
       timerTick: 300,
       enableRefresh: false,
       refreshToReconnect: false,
-      enableNPCBlockList: false,
       refreshTime: 60,
       speedFormat: 'hour',
       windowsToTabs: false,
@@ -32,6 +31,13 @@ class GlobalSettings {
       flyingFormation: -2,
       useHability: false,
       habilitySlot: -1,
+      npcList: null,
+      changeAmmunition: false,
+      x1Slot: -1,
+      x2Slot: -1,
+      x3Slot: -1,
+      x4Slot: -1,
+      sabSlot: -1
     }, items => {
       self._settings = items;
     });
@@ -82,11 +88,9 @@ class GlobalSettings {
   get enableRefresh() {
     return this._settings.enableRefresh;
   }
+  
   get refreshToReconnect(){
     return this._settings.refreshToReconnect;
-  }
-  get enableNPCBlockList() {
-    return this._settings.enableNPCBlockList;
   }
 
   get refreshTime() {
@@ -151,4 +155,33 @@ class GlobalSettings {
   get workmap() {
     return this._settings.workmap;
   }
+  
+  get npcList() {
+	return this._settings.npcList;
+  }
+
+  get changeAmmunition() {
+    return this._settings.changeAmmunition;
+  }
+
+  get x1Slot() {
+    return this._settings.x1Slot;
+  }
+
+  get x2Slot() {
+    return this._settings.x2Slot;
+  }
+
+  get x3Slot() {
+    return this._settings.x3Slot;
+  }
+
+  get x4Slot() {
+    return this._settings.x4Slot;
+  }
+
+  get sabSlot() {
+    return this._settings.sabSlot;
+  }
+
 }

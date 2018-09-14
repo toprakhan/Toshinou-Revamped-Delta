@@ -138,7 +138,7 @@
     "message": "Apocalyptic booty boxes"
   },
   "collectboxwhencircle": {
-    "message": "Collect Box When Circle (If delta active)"
+    "message": "Collect Box When Circle"
   },
   "target": {
     "message": "Target: "
@@ -277,5 +277,11 @@
   },
   "refreshsettings": {
     "message": "Refresh settings"
+  },
+  "slotsAmmunition": {
+    "message": "Config of ammunition"
+  },
+  "autochangeammunition": {
+    "message": "Auto Change Ammunition"
   }
 }

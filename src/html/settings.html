@@ -49,7 +49,7 @@
         </td>
       </tr>
       <tr>
-        <td colspan="2">
+        <td colspan="4">
           <input type="checkbox" id="windowsToTabs" />
           <label for="windowsToTabs"><span data-resource="windowstotabs">Tabs instead of windows</span></label>
         </td>
@@ -71,14 +71,14 @@
       <tr>
         <th colspan="2"><span data-resource="shipconfigs">Ship Configs</span></th>
         <td>
-            <input type="checkbox" id="autoChangeConfig" name="autoChangeConfig">
-            <label for="autoChangeConfig" data-resource="autochangeconfig">Change Configs</label>
+          <input type="checkbox" id="autoChangeConfig" name="autoChangeConfig">
+          <label for="autoChangeConfig" data-resource="autochangeconfig">Change Configs</label>
         </td>
         <td>
-          <label for="attackConfig"><span data-resource="attackconfig">Attack Config</span>
-          <input type="number" id="attackConfig" min="1" max="2" value="1"><br>
-          <label for="flyingConfig"><span data-resource="flyingconfig">Flying Config</label>
-          <input type="number" id="flyingConfig" min="1" max="2" value="1">
+          <p><label for="attackConfig"><span data-resource="attackconfig">Attack Config</span></label>
+          <input type="number" id="attackConfig" min="1" max="2" value="1"></p>
+          <p><label for="flyingConfig"><span data-resource="flyingconfig">Flying Config</label>
+          <input type="number" id="flyingConfig" min="1" max="2" value="1"></p>
         </td>
       </tr>
       <tr>
@@ -88,10 +88,10 @@
           <label for="changeFormation" data-resource="changedroneformation">Change Drone Formation</label>
         </td>
         <td>
-          <label for="attackFormation"><span data-resource="attackformationslot">Attack Formation Slot</span>: </label>
-          <input type="number" id="attackFormation" min="0" max="10" value="1">
-          <label for="flyingFormation"><span data-resource="flyingformationslot">Flying Formation Slot</span>: </label>
-          <input type="number" id="flyingFormation" min="0" max="10" value="1">
+          <p><label for="attackFormation"><span data-resource="attackformationslot">Attack Formation Slot</span>: </label>
+          <input type="number" id="attackFormation" min="0" max="10" value="1"></p>
+          <p><label for="flyingFormation"><span data-resource="flyingformationslot">Flying Formation Slot</span>: </label>
+          <input type="number" id="flyingFormation" min="0" max="10" value="1"></p>
         </td>
       </tr>
       <tr>
@@ -101,12 +101,12 @@
           <label for="useHability"><span data-resource="usehability">Use Hability</span></label>
         </td>
         <td>
-          <b><label for="habilitySlot"><span data-resource="habilityslot">Hability slot</span>: </label></b>
+          <label for="habilitySlot"><span data-resource="habilityslot">Hability slot</span>: </label>
           <input type="number" id="habilitySlot" min="0" max="10" value="0">
         </td>
       </tr>
       <tr>
-        <td>
+        <td colspan="2">
           <b><label for="reviveType"><span data-resource="reviveat">Revive at</span>: </label></b>
           <select id="reviveType">
             <option value="0"><span data-resource="base">Base</span></option>
@@ -119,7 +119,7 @@
           <b><label for="reviveLimit"><span data-resource="revivelimit">Revive limit</span>: </label></b>
           <input type="number" id="reviveLimit" min="1" max="99" value="5">
         </td>
-        <td colspan="2">
+        <td>
           <b><label for="workmap"><span data-resource="workmap">Work Map</span>:</label></b>
           <select id="workmap">
             <option value="0"><span data-resource="any">Any</span></option>
@@ -153,10 +153,38 @@
         </td>
       </tr>
       <tr>
-        <th class="settingsTitle" colspan="4"><center><span data-resource="refreshsettings">Refresh settings</span></center></th>
+        <td colspan="2"><b><span data-resource="slotsAmmunition">Slots of ammunition</span>:</b></td>
+        <td>
+        <input type="checkbox" id="changeAmmunition" name="changeAmmunition">
+          <label for="changeAmmunition"><span data-resource="autochangeammunition">Auto Change Ammunition</span></label>
+        </td>
+        <td>
+          <label for="x1Slot">Slot X1: </label>
+          <input type="number" id="x1Slot" min="0" max="10" value="0">
+        </td>
       </tr>
       <tr>
-        <th colspan="2"><span data-resource="refreshsettings">Refresh page function settings</span></th>
+        <td>
+          <label for="x2Slot">Slot X2: </label>
+          <input type="number" id="x2Slot" min="0" max="10" value="0">
+        </td>
+        <td>
+          <label for="x3Slot">Slot X3: </label>
+          <input type="number" id="x3Slot" min="0" max="10" value="0">
+        </td>
+        <td>
+          <label for="x4Slot">Slot X4: </label>
+          <input type="number" id="x4Slot" min="0" max="10" value="0">
+        </td>
+        <td>
+          <label for="sabSlot">Slot SAB: </label>
+          <input type="number" id="sabSlot" min="0" max="10" value="0">
+        </td>
+      </tr>
+      <tr>
+        <th class="settingsTitle" colspan="4"><center><span data-resource="refreshsettings">Refresh page function settings</span></center></th>
+      </tr>
+      <tr>
         <td>
           <input type="checkbox" id="enableRefresh">
           <label for="enableRefresh"><span data-resource="enablerefresh">Enable refresh function</span></label>
@@ -165,17 +193,11 @@
           <label for="refreshTime"><span data-resource="refreshtime">Refresh interval (min)</span></label>
           <input type="number" id="refreshTime" min="30" max="300" value="60">
         </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <input type="checkbox" id="enableNPCBlockList" />
-          <label for="enableNPCBlockList"><span data-resource="enablenpcblocklist">Include npc black list into refresh page function</span></label>
-        </td>
         <td>
           <input type="checkbox" id="refreshToReconnect">
           <label for="refreshToReconnect"><span data-resource="refreshtoreconnect">Refresh instead of reconnect</span></label>
         </td>
-        <td colspan="2">
+        <td>
             <center><button class="clearSettings btn btn-warning"><span data-resource="clearsettings">Clear settings storage (Refresh function)</span></button></center>
         </td>
       </tr>
@@ -215,19 +237,31 @@
         </td>
         <td>
           <input type="checkbox" id="collectBoxWhenCircle">
-          <label for="collectBoxWhenCircle" data-resource="collectboxwhencircle">Collect Box When Circle (If delta active)</label>
+          <label for="collectBoxWhenCircle" data-resource="collectboxwhencircle">Collect Box When Circle</label>
         </td>
       </tr>
       <tr>
           <th class="settingsTitle" colspan="4"><center><span data-resource="advanced">Advanced settings</span></center></th>
         </tr>
       <tr>
-          <th colspan="2"><span data-resource="advanced">Advanced (beginners, go away!)</span></th>
-          <td colspan="2">
-            <label for="timerTick"><span data-resource="logictick">Logic tick (ms)</span></label>
-            <input type="number" id="timerTick" min="50" max="20000" value="300">
-          </td>
-        </tr>
+        <td colspan="4">
+          <center><label for="timerTick"><span data-resource="logictick">Logic tick (ms)</span></label>
+          <input type="number" id="timerTick" min="50" max="20000" value="300"></center>
+        </td>
+       </tr>
+    </table>
+    <table class="table table-bordered">
+       <tr>
+         <th class="settingsTitle" colspan="4"><center><span >NPC List</span></center></th>
+       </tr>
+       <tr>
+         <td>NPC Name</td>
+         <td>Range</td>
+         <td>Ammo</td>
+         <td>Priority</td>
+       </tr>
+       <form id="npclist"><script src="npclist.js"></script>
+       </form>
     </table>
     </form>
   <script src="/js/libs/jquery-3.2.1.min.js"></script>

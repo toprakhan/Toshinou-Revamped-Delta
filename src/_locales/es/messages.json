@@ -283,5 +283,14 @@
   },
   "autochangeammunition": {
     "message": "Auto cambiar municion"
+  },
+  "piratebot": {
+    "message": "5-2 pirata (puerta izquierda)"
+  },
+  "cubibot": {
+    "message": "Protegit Bot"
+  },
+  "gatestonpc": {
+    "message": "NPCs en portal"
   }
 }

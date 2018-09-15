@@ -108,11 +108,15 @@ function init() {
   window.statisticWindow = new StatisticWindow();
   window.statisticWindow.createWindow();
   
+  window.botModesWindows = new BotModesWindow();
+  window.botModesWindows.createWindow();
+  
+  
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
   let npcList = window.globalSettings.npcList;
   for (i = 0; i < npcList.length; i++) {
-	window.settings.updateNpc(npcList[i]["name"], npcList[i]);
+    window.settings.updateNpc(npcList[i]["name"], npcList[i]);
   }
   
   window.setInterval(logic, window.tickTime);
@@ -239,7 +243,7 @@ function logic() {
   }
   
   if(window.globalSettings.useHability && window.hero.skillName == "solace"){
-	if(MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < 70) {
+    if(MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < 70) {
       if(api.useHability())
         return;
     }
@@ -341,7 +345,7 @@ if (window.settings.fleeFromEnemy) {
           window.movementDone = true;
           window.fleeingFromEnemy = false;
           if (window.globalSettings.autoChangeConfig && window.globalSettings.attackConfig != window.hero.shipconfig) {
-        	api.changeConfig();
+            api.changeConfig();
           }
           if (window.globalSettings.changeFormation && api.formation != window.globalSettings.flyingFormation) {
             api.changeFormation(window.globalSettings.flyingFormation);
@@ -382,7 +386,7 @@ if (window.settings.fleeFromEnemy) {
         api.resetTarget("all");
         if (window.settings.jumpFromEnemy) {
           if (api.jumpAndGoBack(gate.gate.gateId)) {
-        	api.isRepairing = true;
+            api.isRepairing = true;
           }
           return;
         } else {
@@ -425,13 +429,13 @@ if (window.settings.fleeFromEnemy) {
 
     if ((ship.distance > 1000 || !ship.ship) && (box.box)) {
       if (!(MathUtils.percentFrom(window.hero.shd, window.hero.maxShd) < 90) && window.globalSettings.autoChangeConfig && window.settings.palladium) {
-	    if(window.globalSettings.changeFormation && api.formation != window.globalSettings.flyingFormation){
-	      api.changeFormation(window.globalSettings.flyingFormation);
-	    }
-	    if (window.globalSettings.flyingConfig != window.hero.shipconfig) {
-	      api.changeConfig();
-	    }
-	  }
+        if(window.globalSettings.changeFormation && api.formation != window.globalSettings.flyingFormation){
+          api.changeFormation(window.globalSettings.flyingFormation);
+        }
+        if (window.globalSettings.flyingConfig != window.hero.shipconfig) {
+          api.changeConfig();
+        }
+      }
       api.collectBox(box.box);
       api.targetBoxHash = box.box.hash;
       return;
@@ -513,19 +517,63 @@ if (window.settings.fleeFromEnemy) {
     }
   }
   
+  if (window.settings.piratebot) {
+    let korsanbotBlackList = [
+    "-=[ Battleray ]=-",
+    "( Uber Annihilator )", 
+    "( Uber Saboteur )", 
+    "( Uber Barracuda )",
+    ];
+    korsanbotBlackList.forEach(npc => {
+      window.settings.setNpc(npc, "0");
+    });
+    window.settings.killNpcs = true;
+    window.settings.gatestonpc = true;
+    window.settings.moveRandomly = true;
+  }
+  
+  if (window.settings.cubibot) {
+    let cubibotblacklist = [
+    "-=[ Battleray ]=-",
+    "-=[ Kristallin ]=-",
+    "-=[ Kristallon ]=-",
+    "..::{ Boss Kristallin }::..",
+    "-=[ Plagued Kristallin ]=-",
+    "( Uber Annihilator )", 
+    "( Uber Saboteur )", 
+    "( Uber Barracuda )",
+    ];
+    cubibotblacklist.forEach(npc => {
+      window.settings.setNpc(npc, "0");
+    });
+
+    window.settings.killNpcs = true;
+    window.settings.moveRandomly = true;
+    window.settings.circleNpc = true;
+    
+    if (api.lockedShip && api.lockedShip.percentOfHp > 5 && api.lockedShip.name == "-=[ Cubikon ]=-"){
+        api.resetTarget("enemy");
+    }
+     
+    let percenlife = MathUtils.percentFrom(window.hero.hp, window.hero.maxHp);
+    if (percenlife < 99) {
+      api.protegitmode;     
+    } 
+  }
+  
   /*Dodge the CBS*/
   if (window.settings.dodgeTheCbs && api.battlestation != null) {
     if (api.battlestation.isEnemy) {
       let result = api.checkForCBS();
       if (result.walkAway) {
-    	if (api.targetBoxHash) {
-    		let box = api.boxes[api.targetBoxHash];
-	    	if (box && box.distanceTo(result.cbsPos) < 1800) {
-	    	  delete api.boxes[api.targetBoxHash];
-	    	  api.blackListHash(api.targetBoxHash);
-	    	  api.resetTarget("box");
-		    }
-    	}
+        if (api.targetBoxHash) {
+            let box = api.boxes[api.targetBoxHash];
+            if (box && box.distanceTo(result.cbsPos) < 1800) {
+              delete api.boxes[api.targetBoxHash];
+              api.blackListHash(api.targetBoxHash);
+              api.resetTarget("box");
+            }
+        }
         let f = Math.atan2(window.hero.position.x - result.cbsPos.x, window.hero.position.y - result.cbsPos.y) + 0.5;
         let s = Math.PI / 180;
         f += s;
@@ -549,10 +597,18 @@ if (window.settings.fleeFromEnemy) {
     x = MathUtils.random(13000, 30400);
     y = MathUtils.random(19000, 25500)
   }
+  if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && window.settings.cubibot) { 
+    x = MathUtils.random(7000, 14000);
+    y = MathUtils.random(3000, 8500);   
+  }
+  if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && window.settings.piratebot) { 
+    x = MathUtils.random(600, 4600);
+    y = MathUtils.random(1500, 11500);  
+  }
 
   if (api.targetShip && window.settings.killNpcs && api.targetBoxHash == null) {
-	if(api.attacking){
-	  if (window.globalSettings.autoChangeConfig && window.globalSettings.attackConfig != window.hero.shipconfig){
+    if(api.attacking){
+      if (window.globalSettings.autoChangeConfig && window.globalSettings.attackConfig != window.hero.shipconfig){
         api.changeConfig();
       }
       if (window.globalSettings.changeFormation && !api.isRepairing){
@@ -572,18 +628,18 @@ if (window.settings.fleeFromEnemy) {
         }
       }
       if(window.globalSettings.changeAmmunition) {
-    	let ammunition = window.settings.getNpc(api.targetShip.name)["ammo"];
-    	if (ammunition == 11 && api.targetShip.shd > 200) {
+        let ammunition = window.settings.getNpc(api.targetShip.name)["ammo"];
+        if (ammunition == 11 && api.targetShip.shd > 200) {
           api.changeAmmunition(6);
-    	} else if (ammunition == 11 && api.targetShip.shd < 200) {
+        } else if (ammunition == 11 && api.targetShip.shd < 200) {
           api.changeAmmunition(1);
-    	} else if (ammunition == 21 && api.targetShip.shd > 200) {
+        } else if (ammunition == 21 && api.targetShip.shd > 200) {
           api.changeAmmunition(6);
-    	} else if (ammunition == 21 && api.targetShip.shd < 200) {
+        } else if (ammunition == 21 && api.targetShip.shd < 200) {
           api.changeAmmunition(2);
-    	} else {
-    	  api.changeAmmunition(ammunition);
-    	}
+        } else {
+          api.changeAmmunition(ammunition);
+        }
       }
     }
     api.targetShip.update();
@@ -607,15 +663,15 @@ if (window.settings.fleeFromEnemy) {
       }
     } else if (window.settings.ggbot && window.settings.resetTargetWhenHpBelow25Percent && api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id ) {
       api.resetTarget("enemy");
-    } else if (dist > 300 && api.lockedShip && api.lockedShip.id == api.targetShip.id & !window.settings.circleNpc) {
+    } else if (dist > 300 && api.lockedShip && api.lockedShip.id == api.targetShip.id & !window.settings.circleNpc && !window.settings.gatestonpc) {
       x = api.targetShip.position.x + MathUtils.random(-200, 200);
       y = api.targetShip.position.y + MathUtils.random(-200, 200);
     } else if (api.lockedShip && api.lockedShip.id == api.targetShip.id) {
       if (window.settings.circleNpc) {
-    	let radius = window.settings.getNpc(api.lockedShip.name)["range"];
-    	if(radius == null || radius < 400){
-    	  radius = 500;
-    	}
+        let radius = window.settings.getNpc(api.lockedShip.name)["range"];
+        if(radius == null || radius < 400){
+          radius = 500;
+        }
         let enemy = api.targetShip.position;        
         let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
         let s = Math.PI / 180;
@@ -628,6 +684,27 @@ if (window.settings.fleeFromEnemy) {
           let nearestBox = api.findNearestBox();
           if (nearestBox && nearestBox.box && nearestBox.distance < 300) {
             circleBox = nearestBox;
+          }
+        }
+      }
+      if (window.settings.gatestonpc) {
+        let enemy = api.targetShip.position; 
+        let gate = api.findNearestGate();   
+        let distgate = window.hero.distanceTo(gate.gate.position);
+        if (dist > 500 && api.lockedShip.percentOfHp == 100 ){
+          api.resetTarget("enemy");
+        } else if (gate.gate && api.lockedShip.percentOfHp < 97 ) {
+          if (distgate > 300){
+            let x = gate.gate.position.x + 1;
+            let y = gate.gate.position.y + 1;
+            api.move(x, y);
+            window.movementDone = false;
+            return;
+          } else if (enemy.distanceTo(gate.gate.position) < 1000 && api.lockedShip.id == api.targetShip.id){
+            if (api.targetShip == null){
+              window.movementDone = false;
+              return;
+            }
           }
         }
       }
@@ -647,4 +724,3 @@ if (window.settings.fleeFromEnemy) {
   }
   window.dispatchEvent(new CustomEvent("logicEnd"));
 }
-

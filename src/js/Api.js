@@ -59,9 +59,9 @@ class Api {
     if(n>=0 && n< 10){
       let slots = [48,49,50,51,52,53,54,55,56,57];
       this.pressKey(slots[n]);
-      /*setTimeout(() => {
+      setTimeout(() => {
     	this.pressKey(slots[n]);
-      }, 700);*/
+      }, 700);
     }
   }
   
@@ -76,16 +76,17 @@ class Api {
   changeAmmunition(ammo) {
     if(this.ammunition != ammo) {
       if (ammo == 1) {
-        this.pressKey(window.globalSettings.x1Slot);
+        this.quickSlot(window.globalSettings.x1Slot);
       } else if (ammo == 2) {
-        this.pressKey(window.globalSettings.x2Slot);
+        this.quickSlot(window.globalSettings.x2Slot);
       } else if (ammo == 3) {
-        this.pressKey(window.globalSettings.x3Slot);
+        this.quickSlot(window.globalSettings.x3Slot);
       } else if (ammo == 4) {
-        this.pressKey(window.globalSettings.x4Slot);
+        this.quickSlot(window.globalSettings.x4Slot);
       } else if (ammo == 6) {
-        this.pressKey(window.globalSettings.sabSlot);
+        this.quickSlot(window.globalSettings.sabSlot);
       }
+      this.ammunition = ammo;
     }
   }
 
@@ -193,6 +194,7 @@ class Api {
       this.attacking = false;
       this.triedToLock = false;
       this.lockedShip = null;
+      this.ammunition = -1;
     } else if (target == "box") {
       this.targetBoxHash = null;
     } else if (target == "all") {
@@ -201,6 +203,7 @@ class Api {
       this.triedToLock = false;
       this.lockedShip = null;
       this.targetBoxHash = null;
+      this.ammunition = -1;
     }
   }
 
@@ -401,9 +404,10 @@ class Api {
       let ship = this.ships[property];
       ship.update();
       if (ship.isNpc) {
-        let priority = window.settings.getNpc(ship.name)["priority"];
+	    let npcdata =  window.settings.getNpc(ship.name);
+	    let priority = npcdata["priority"];
         if (priority >= minPriority) {
-    	  let dist = ship.distanceTo(window.hero.position);
+	      let dist = ship.distanceTo(window.hero.position);
           if (dist < minDist) {
             if (!ship.isAttacked) {
               finalShip = ship;

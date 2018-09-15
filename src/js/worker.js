@@ -110,7 +110,13 @@ function init() {
   
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
+  let npcList = window.globalSettings.npcList;
+  for (i = 0; i < npcList.length; i++) {
+	window.settings.updateNpc(npcList[i]["name"], npcList[i]);
+  }
+  
   window.setInterval(logic, window.tickTime);
+  
   
   // set refreshcount to 3 if page loaded until here
   api.changeRefreshCount(3);
@@ -193,10 +199,6 @@ function logic() {
       }
     }
     return;
-  }
-  let npcList = window.globalSettings.npcList;
-  for (i = 0; i < npcList.length; i++) {
-	window.settings.updateNpc(npcList[i]["name"], npcList[i]);
   }
 
   if (window.globalSettings.enableRefresh && !window.settings.ggbot) {
@@ -609,7 +611,7 @@ if (window.settings.fleeFromEnemy) {
       x = api.targetShip.position.x + MathUtils.random(-200, 200);
       y = api.targetShip.position.y + MathUtils.random(-200, 200);
     } else if (api.lockedShip && api.lockedShip.id == api.targetShip.id) {
-      if (window.settings.circleNpc && api.lockedShip.isNpc) {
+      if (window.settings.circleNpc) {
     	let radius = window.settings.getNpc(api.lockedShip.name)["range"];
     	if(radius == null || radius < 400){
     	  radius = 500;

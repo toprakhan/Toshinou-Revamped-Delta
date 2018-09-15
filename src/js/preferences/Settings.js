@@ -273,15 +273,16 @@ class Settings {
   }
   
   updateNpc(name, val) {
-    if (this._npcs[name] = null){
-      this._npcs.push(name);
-    } else{
-      this._npcs[name] = val;
-    }
+    this._npcs[name] = val;
   }
 
   getNpc(name) {
-    return this._npcs[name];
+	if (this._npcs.hasOwnProperty(name)){
+	  return this._npcs[name];
+	} else {
+      var npcdata = {"name": name, "range": "500", "ammo": "1", "priority": "1"};
+	  return npcdata;
+	}
   }
   
   get npcs() {

@@ -2,7 +2,7 @@ class Settings {
   constructor(pause, 
     refresh, moveRandomly, killNpcs, fleeFromEnemy, jumpFromEnemy, dodgeTheCbs, avoidAttackedNpcs, circleNpc, dontCircleWhenHpBelow25Percent, resetTargetWhenHpBelow25Percent, repairWhenHpIsLowerThanPercent, gatestonpc,
     ggbot, alpha, beta, gamma, delta, epsilon, zeta, kappa, lambda, kronos, hades, kuiper,
-    lockNpcs, lockPlayers, autoAttack, autoAttackNpcs, npcs,
+    lockNpcs, lockPlayers, autoAttack, autoAttackNpcs,
     palladium, piratebot, cubibot) 
   {
     this._pause = pause === true;

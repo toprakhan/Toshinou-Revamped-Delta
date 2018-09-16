@@ -211,7 +211,7 @@ function logic() {
       if (window.newSettings.refresh)
         api.updateSettings();
     }
-    if((window.settings.npcs).length < 1){
+    if(window.settings.npcs != null && (window.settings.npcs).length < 1){
 	  let npcList = window.globalSettings.npcList;
 	  for (i = 0; i < npcList.length; i++) {
 	    window.settings.updateNpc(npcList[i]["name"], npcList[i]);

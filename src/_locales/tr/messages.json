@@ -278,32 +278,46 @@
   "refreshsettings": {
     "message": "Ayarları Sıfırla"
   },
-  "lockNpc": {
-    "message": "NPCleri Tut (x) "
-  },
-  "lockPlayers": {
-    "message": "İnsanları Tut (z) "
-  },
-  "korsanbot": {
-    "message": "5-2 korsan(sol kapıya bırakın) "
-  },
-  "korsanbotkisim": {
-    "message": "Korsan Bot "
-  },
-  "gatestonpc": {
-    "message": "Npcs Kapıya Çek Kes "
-  },
-  "cubibot": {
-    "message": "Prodegit Botudur(elmas var ise elmasta kullanın "
-  },
   "slotsAmmunition": {
-    "message": "Lazer Yeri "
+    "message": "Config of ammunition"
   },
   "autochangeammunition": {
-    "message": "Lazer Değiştirmeyi Aktif Et"
+    "message": "Auto Change Ammunition"
   },
-  "korsanbotaktif": {
-    "message": "5-2 korsan(sol kapıya bırakın)  "
+  "piratebot": {
+    "message": "5-2 Pirate bot - Gate Left"
+  },
+  "cubibot": {
+    "message": "Protegit Bot"
+  },
+  "gatestonpc": {
+    "message": "NPCs in gate"
+  },
+  "x1Slot": {
+    "message": "Slot x1"
+  },
+  "x2Slot": {
+    "message": "Slot x2"
+  },
+  "x3Slot": {
+    "message": "Slot x3"
+  },
+  "x4Slot": {
+    "message": "Slot x4"
+  },
+  "SABSlot": {
+    "message": "Slot SAB"
+  },
+  "npcname": {
+    "message": "NPC Name"
+  },
+  "npcrange": {
+    "message": "Range"
+  },
+  "npcammo": {
+    "message": "Ammo"
+  },
+  "npcpriority": {
+    "message": "Priority"
   }
-  
 }

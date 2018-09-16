@@ -292,5 +292,32 @@
   },
   "gatestonpc": {
     "message": "NPCs en portal"
+  },
+  "x1Slot": {
+    "message": "Slot x1"
+  },
+  "x2Slot": {
+    "message": "Slot x2"
+  },
+  "x3Slot": {
+    "message": "Slot x3"
+  },
+  "x4Slot": {
+    "message": "Slot x4"
+  },
+  "SABSlot": {
+    "message": "Slot SAB"
+  },
+  "npcname": {
+    "message": "Nombre NPC"
+  },
+  "npcrange": {
+    "message": "Rango"
+  },
+  "npcammo": {
+    "message": "Munición"
+  },
+  "npcpriority": {
+    "message": "Prioridad"
   }
 }

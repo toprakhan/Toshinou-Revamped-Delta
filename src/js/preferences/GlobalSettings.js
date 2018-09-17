@@ -37,7 +37,8 @@ class GlobalSettings {
       x2Slot: -1,
       x3Slot: -1,
       x4Slot: -1,
-      sabSlot: -1
+      sabSlot: -1,
+      stopafterxminutes: 0
     }, items => {
       self._settings = items;
     });
@@ -182,6 +183,10 @@ class GlobalSettings {
 
   get sabSlot() {
     return this._settings.sabSlot;
+  }
+  
+  get stopafterxminutes() {
+	return this._settings.stopafterxminutes;
   }
 
 }

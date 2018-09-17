@@ -16,6 +16,7 @@ class Settings {
     this._dodgeTheCbs = dodgeTheCbs === true;
     this._avoidAttackedNpcs = avoidAttackedNpcs === true;
     this._circleNpc = circleNpc === true;
+    this.npcCircleRadius = 500;
     this._dontCircleWhenHpBelow25Percent = dontCircleWhenHpBelow25Percent === true;
     this._resetTargetWhenHpBelow25Percent = resetTargetWhenHpBelow25Percent === true;
     this._repairWhenHpIsLowerThanPercent = repairWhenHpIsLowerThanPercent;
@@ -303,7 +304,12 @@ class Settings {
   }
 
   setNpc(name,val) {
-	this._npcs[name]["priority"] = val;
+	if (this._npcs.hasOwnProperty(name)){
+	  this._npcs[name]["priority"] = val;
+	} else {
+      var npcdata = {"name": name, "range": this.npcCircleRadius, "ammo": "1", "priority": val};
+	  this._npcs[name] = val;
+	}
   }
   
   updateNpc(name, val) {
@@ -314,7 +320,7 @@ class Settings {
 	if (this._npcs.hasOwnProperty(name)){
 	  return this._npcs[name];
 	} else {
-      var npcdata = {"name": name, "range": this._circleNpc, "ammo": "1", "priority": "1"};
+      var npcdata = {"name": name, "range": this.npcCircleRadius, "ammo": "1", "priority": "1"};
 	  return npcdata;
 	}
   }

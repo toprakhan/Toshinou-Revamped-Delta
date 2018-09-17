@@ -25,6 +25,7 @@ class Api {
     this.changeFormationTime = $.now();
     this.formation = -1;
     this.ammunition = -1;
+    
   }
   
   useHability(){

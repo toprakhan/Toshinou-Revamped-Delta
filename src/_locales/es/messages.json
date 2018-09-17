@@ -319,5 +319,17 @@
   },
   "npcpriority": {
     "message": "Prioridad"
+  },
+  "piratebotsag": {
+    "message": "5-2 Bot Pirata Detecha"
+  },
+  "npclist": {
+    "message": "Lista NPC"
+  },
+  "generalsettings": {
+    "message": "Configuración General"
+  },
+  "stopafterxminutes": {
+    "message": "Parar despues de x minutos (0 = No parar)"
   }
 }

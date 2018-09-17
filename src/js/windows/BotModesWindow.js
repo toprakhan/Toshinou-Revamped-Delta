@@ -13,19 +13,27 @@ class BotModesWindow {
       },
       {
         name: 'piratebot',
-          labelText: chrome.i18n.getMessage("piratebot"),
-          appendTo: this.BotModesWindow,
-          event: function () {
-            window.settings.piratebot = this.checked;
-          }
+        labelText: chrome.i18n.getMessage("piratebot"),
+        appendTo: this.BotModesWindow,
+        event: function () {
+          window.settings.piratebot = this.checked;
+        }
+      },
+      {
+        name: 'piratebotsag',
+        labelText: chrome.i18n.getMessage("piratebotsag"),
+        appendTo: this.BotModesWindow,
+        event: function () {
+          window.settings.piratebotsag = this.checked;
+        }
       },
       {
         name: 'cubibot',
-          labelText: chrome.i18n.getMessage("cubibot"),
-          appendTo: this.BotModesWindow,
-          event: function () {
-            window.settings.cubibot = this.checked;
-          }
+        labelText: chrome.i18n.getMessage("cubibot"),
+        appendTo: this.BotModesWindow,
+        event: function () {
+          window.settings.cubibot = this.checked;
+        }
       }
     ];
 

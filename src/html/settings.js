@@ -116,14 +116,15 @@ function saveOptions(e) {
     blueBooty:          $("#blueBooty").prop('checked'),
     masqueBooty:        $("#masqueBooty").prop('checked'),
     collectBoxWhenCircle: $("#collectBoxWhenCircle").prop('checked'),
-    workmap: $("#workmap").val(),
-    npcList: npcList,
+    workmap:            $("#workmap").val(),
+    npcList:            npcList,
     changeAmmunition:   $("#changeAmmunition").prop('checked'),
-    x1Slot:    $("#x1Slot").val(),
-    x2Slot:    $("#x2Slot").val(),
-    x3Slot:    $("#x3Slot").val(),
-    x4Slot:    $("#x4Slot").val(),
-    sabSlot:    $("#sabSlot").val()
+    x1Slot:             $("#x1Slot").val(),
+    x2Slot:             $("#x2Slot").val(),
+    x3Slot:             $("#x3Slot").val(),
+    x4Slot:             $("#x4Slot").val(),
+    sabSlot:            $("#sabSlot").val(),
+    stopafterxminutes:  $("#stopafterxminutes").val()
   };
 
   chrome.storage.local.set(elements);
@@ -143,7 +144,7 @@ $('[data-resource]').each(function() {
                 "useHability","habilitySlot", "changeFormation","flyingFormation",
                 "attackFormation","reviveType", "reviveLimit",
                 "bonusBox", "materials", "cargoBox", "greenOrGoldBooty",
-                "redBooty", "blueBooty", "masqueBooty", "collectBoxWhenCircle", "workmap", "npcList", "changeAmmunition", "x1Slot", "x2Slot", "x3Slot", "x4Slot", "sabSlot"];
+                "redBooty", "blueBooty", "masqueBooty", "collectBoxWhenCircle", "workmap", "npcList", "changeAmmunition", "x1Slot", "x2Slot", "x3Slot", "x4Slot", "sabSlot", "stopafterxminutes"];
 
   var onGet = items => {
 
@@ -249,6 +250,9 @@ $('[data-resource]').each(function() {
     }
     if (items.sabSlot) {
       $("#sabSlot").val(items.sabSlot);
+    }
+    if (items.stopafterxminutes) {
+      $("#stopafterxminutes").val(items.stopafterxminutes);
     }
     if (items.npcList) {
       var knownNpcList = items.npcList;

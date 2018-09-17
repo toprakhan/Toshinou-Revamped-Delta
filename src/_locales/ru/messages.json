@@ -325,5 +325,11 @@
   },
   "autochangeammunition": {
     "message": "Автоматическая смена амуниции"
+  },
+  "generalsettings": {
+    "message": "General settings"
+  },
+  "stopafterxminutes": {
+    "message": "Stop after x minutes (0 = No Stop)"
   }
 }

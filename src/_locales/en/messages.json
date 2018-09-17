@@ -319,5 +319,17 @@
   },
   "npcpriority": {
     "message": "Priority"
+  },
+  "piratebotsag": {
+    "message": "Pirate Bottle Right"
+  },
+  "npclist": {
+    "message": "NPC List"
+  },
+  "generalsettings": {
+    "message": "General settings"
+  },
+  "stopafterxminutes": {
+    "message": "Stop after x minutes (0 = No Stop)"
   }
 }

@@ -221,7 +221,7 @@ function logic() {
 
   window.minimap.draw();
 
-  if (api.heroDied || window.settings.pause || (window.settings.fleeFromEnemy && window.fleeingFromEnemy)) {
+  if (api.heroDied || window.settings.pause || (window.settings.fleeFromEnemy && window.fleeingFromEnemy) || window.settings.waitingAfterDead) {
     api.resetTarget("all");
     return;
   }
@@ -334,7 +334,6 @@ if (window.settings.fleeFromEnemy) {
         let x = gate.gate.position.x + MathUtils.random(-100, 100);
         let y = gate.gate.position.y + MathUtils.random(-100, 100);
         let dist = window.hero.distanceTo(gate.gate.position);
-        api.resetTarget("all");
         api.move(x, y);
         if (api.jumpAndGoBack(gate.gate.gateId)) {
           window.movementDone = false;

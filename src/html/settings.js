@@ -124,7 +124,8 @@ function saveOptions(e) {
     x3Slot:             $("#x3Slot").val(),
     x4Slot:             $("#x4Slot").val(),
     sabSlot:            $("#sabSlot").val(),
-    stopafterxminutes:  $("#stopafterxminutes").val()
+    stopafterxminutes:  $("#stopafterxminutes").val(),
+    waitafterRepair:    $("#waitafterRepair").val()
   };
 
   chrome.storage.local.set(elements);
@@ -144,7 +145,8 @@ $('[data-resource]').each(function() {
                 "useHability","habilitySlot", "changeFormation","flyingFormation",
                 "attackFormation","reviveType", "reviveLimit",
                 "bonusBox", "materials", "cargoBox", "greenOrGoldBooty",
-                "redBooty", "blueBooty", "masqueBooty", "collectBoxWhenCircle", "workmap", "npcList", "changeAmmunition", "x1Slot", "x2Slot", "x3Slot", "x4Slot", "sabSlot", "stopafterxminutes"];
+                "redBooty", "blueBooty", "masqueBooty", "collectBoxWhenCircle", 
+                "workmap", "npcList", "changeAmmunition", "x1Slot", "x2Slot", "x3Slot", "x4Slot", "sabSlot", "stopafterxminutes", "waitafterRepair"];
 
   var onGet = items => {
 
@@ -253,6 +255,9 @@ $('[data-resource]').each(function() {
     }
     if (items.stopafterxminutes) {
       $("#stopafterxminutes").val(items.stopafterxminutes);
+    }
+    if (items.waitafterRepair) {
+      $("#waitafterRepair").val(items.waitafterRepair);
     }
     if (items.npcList) {
       var knownNpcList = items.npcList;

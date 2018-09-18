@@ -331,5 +331,8 @@
   },
   "stopafterxminutes": {
     "message": "Stop after x minutes (0 = No Stop)"
+  },
+  "waitafterRepair" : {
+    "message": "Stop x minutes after revive (0 = No Stop)"
   }
 }

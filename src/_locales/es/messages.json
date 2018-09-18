@@ -331,5 +331,8 @@
   },
   "stopafterxminutes": {
     "message": "Parar despues de x minutos (0 = No parar)"
+  },
+  "waitafterRepair" : {
+    "message": "Esperar x minutos despues de que la nave reviva (0 = No parar)"
   }
 }

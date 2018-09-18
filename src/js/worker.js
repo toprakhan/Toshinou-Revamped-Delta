@@ -430,7 +430,7 @@ if (window.settings.fleeFromEnemy) {
     }
   }
 
-  if (!window.settings.palladium && !window.settings.ggbot && window.globalSettings.workmap != 0 &&  window.hero.mapId != window.globalSettings.workmap) {
+  if (!window.settings.piratebotsag && !window.settings.piratebot && !window.settings.palladium && !window.settings.ggbot && window.globalSettings.workmap != 0 &&  window.hero.mapId != window.globalSettings.workmap) {
     if (window.globalSettings.autoChangeConfig){
       if (window.globalSettings.flyingConfig != window.hero.shipconfig) {
         api.changeConfig();

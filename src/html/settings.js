@@ -84,7 +84,7 @@ function saveOptions(e) {
 	    ammo:        $("#ammo"+i).val(),
 	    priority:        $("#priority"+i).val() 
 	  }
-	  npcList.push(npcdata);
+   npcList.push(npcdata);
   }
   
   var elements = {
@@ -106,6 +106,9 @@ function saveOptions(e) {
     flyingConfig:       $("#flyingConfig").val(),
     useHability:        $("#useHability").prop('checked'),
     habilitySlot:       $("#habilitySlot").val(),
+    habilitySlotTwo:    $("#habilitySlotTwo").val(),
+    habilitySlotThree:  $("#habilitySlotThree").val(),
+    habilitySlotFour:   $("#habilitySlotFour").val(),
     reviveType:         $("#reviveType").val(),
     reviveLimit:        $("#reviveLimit").val(),
     bonusBox:           $("#bonusBox").prop('checked'),
@@ -117,7 +120,6 @@ function saveOptions(e) {
     masqueBooty:        $("#masqueBooty").prop('checked'),
     collectBoxWhenCircle: $("#collectBoxWhenCircle").prop('checked'),
     workmap:            $("#workmap").val(),
-    npcList:            npcList,
     changeAmmunition:   $("#changeAmmunition").prop('checked'),
     x1Slot:             $("#x1Slot").val(),
     x2Slot:             $("#x2Slot").val(),
@@ -125,10 +127,156 @@ function saveOptions(e) {
     x4Slot:             $("#x4Slot").val(),
     sabSlot:            $("#sabSlot").val(),
     stopafterxminutes:  $("#stopafterxminutes").val(),
-    waitafterRepair:    $("#waitafterRepair").val()
+    waitafterRepair:    $("#waitafterRepair").val(),
+    npcList:            npcList
   };
 
   chrome.storage.local.set(elements);
+}
+
+function downloadProfile(e) {
+  e.preventDefault();
+  let knownNpcList = [
+    "-=[ Streuner ]=-",
+    "-=[ Aider Streuner ]=-",
+    "-=[ Recruit Streuner ]=-",
+    "-=[ Lordakia ]=-",
+    "-=[ Devolarium ]=-",
+    "-=[ Mordon ]=-",
+    "-=[ Sibelon ]=-",
+    "-=[ Saimon ]=-",
+    "-=[ Lordakium ]=-",
+    "-=[ Sibelonit ]=-",
+    "-=[ Kristallin ]=-",
+    "-=[ Kristallon ]=-",
+    "-=[ StreuneR ]=-",
+    "-=[ Protegit ]=-",
+    "-=[ Cubikon ]=-",
+    "-=[ Interceptor ]=-",
+    "-=[ Barracuda ]=-",
+    "-=[ Saboteur ]=-",
+    "-=[ Annihilator ]=-",
+    "-=[ Battleray ]=-",
+    "-=[ Deadly Battleray ]=-",
+    "..::{ Boss Streuner }::..",
+    "..::{ Boss Lordakia }::..",
+    "..::{ Boss Mordon }::..",
+    "..::{ Boss Saimon }::..",
+    "..::{ Boss Devolarium }::..",
+    "..::{ Boss Sibelonit }::..",
+    "..::{ Boss Sibelon }::..",
+    "..::{ Boss Lordakium }::...",
+    "..::{ Boss Kristallin }::..",
+    "..::{ Boss Kristallon }::..",
+    "..::{ Boss StreuneR }::..",
+    "( UberStreuner )",
+    "( UberLordakia )",
+    "( UberMordon )",
+    "( UberSaimon )",
+    "( UberDevolarium )",
+    "( UberSibelonit )",
+    "( UberSibelon )",
+    "( UberLordakium )",
+    "( UberKristallin )",
+    "( UberKristallon )",
+    "( UberStreuneR )",
+    "( Uber Interceptor )",
+    "( Uber Barracuda )",
+    "( Uber Saboteur )",
+    "( Uber Annihilator )",
+    "( Uber Battleray )",
+    "-=[ Referee-Bot ]=-",
+    "<=< Icy >=>",
+    "<=< Ice Meteoroid >=>",
+    "<=< Super Ice Meteoroid >=>",
+    "-=[ Skoll ]=-",
+    "<=< Skoll's Icy >=>",
+    "-=[ Santa -1100101 ]=-",
+    "<=< Gygerthrall >=>",
+    "<=< Blighted Gygerthrall >=>",
+    "-=[ Blighted Kristallon ]=-",
+    "<=< Plagued Gygerthrall >=>",
+    "-=[ Plagued Kristallin ]=-",
+    "-=[ Plague Rocket ]=-",
+    "..::{ Boss Lordakium }::... δ21",
+    "..::{ Boss Lordakium }::... δ23",
+    "..::{ Boss Lordakium }::... δ25",
+    "-={ demaNeR Escort }=-",
+    "-={ Demaner Corsair }=-",
+    "-={ demaNeR Freighter }=-",
+    "-=[ Hitac 2.0 ]=-",
+    "-=[ Hitac-Minion ]=-"
+  ];
+  
+  var npcList = []; 
+  for (i = 0; i < knownNpcList.length; i++) { 
+	  var npcdata = {
+	    name:        $("#name"+i).val(),
+	    range:        $("#range"+i).val(),
+	    ammo:        $("#ammo"+i).val(),
+	    priority:        $("#priority"+i).val() 
+	  }
+   npcList.push(npcdata);
+  }
+  
+  var elements = {
+    headerColor:        $("#headerColor").val(),
+    headerOpacity:      $("#headerOpacity").val(),
+    windowColor:        $("#windowColor").val(),
+    windowOpacity:      $("#windowOpacity").val(),
+    timerTick:          $("#timerTick").val(),
+    enableRefresh:      $("#enableRefresh").prop('checked'),
+    refreshToReconnect: $("#refreshToReconnect").prop('checked'),
+    refreshTime:        $("#refreshTime").val(),
+    speedFormat:        $('input[name="speedFormat"]:checked').val(),
+    windowsToTabs:      $("#windowsToTabs").prop('checked'),
+    autoChangeConfig:   $("#autoChangeConfig").prop('checked'),
+    attackConfig:       $("#attackConfig").val(),
+    changeFormation:    $("#changeFormation").prop('checked'),
+    flyingFormation:    $("#flyingFormation").val(),
+    attackFormation:    $("#attackFormation").val(),
+    flyingConfig:       $("#flyingConfig").val(),
+    useHability:        $("#useHability").prop('checked'),
+    habilitySlot:       $("#habilitySlot").val(),
+    habilitySlotTwo:    $("#habilitySlotTwo").val(),
+    habilitySlotThree:  $("#habilitySlotThree").val(),
+    habilitySlotFour:   $("#habilitySlotFour").val(),
+    reviveType:         $("#reviveType").val(),
+    reviveLimit:        $("#reviveLimit").val(),
+    bonusBox:           $("#bonusBox").prop('checked'),
+    materials:          $("#materials").prop('checked'),
+    cargoBox:           $("#cargoBox").prop('checked'),
+    greenOrGoldBooty:   $("#greenOrGoldBooty").prop('checked'),
+    redBooty:           $("#redBooty").prop('checked'),
+    blueBooty:          $("#blueBooty").prop('checked'),
+    masqueBooty:        $("#masqueBooty").prop('checked'),
+    collectBoxWhenCircle: $("#collectBoxWhenCircle").prop('checked'),
+    workmap:            $("#workmap").val(),
+    changeAmmunition:   $("#changeAmmunition").prop('checked'),
+    x1Slot:             $("#x1Slot").val(),
+    x2Slot:             $("#x2Slot").val(),
+    x3Slot:             $("#x3Slot").val(),
+    x4Slot:             $("#x4Slot").val(),
+    sabSlot:            $("#sabSlot").val(),
+    stopafterxminutes:  $("#stopafterxminutes").val(),
+    waitafterRepair:    $("#waitafterRepair").val(),
+    npcList:            npcList
+  };
+
+  download("profile.json", JSON.stringify(elements));
+}
+
+function download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
 }
 
 function restore() {
@@ -136,13 +284,15 @@ $('[data-resource]').each(function() {
 	  var el = $(this);
 	  var resourceName = el.data('resource');
 	  var resourceText = chrome.i18n.getMessage(resourceName);
-	  el.text(resourceText);
+	  if(resourceText){
+		el.text(resourceText);
+	  }
 	});
 
   var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "windowsToTabs",
                 "enableRefresh","refreshToReconnect", "refreshTime", 
                 "speedFormat", "autoChangeConfig", "attackConfig", "flyingConfig",
-                "useHability","habilitySlot", "changeFormation","flyingFormation",
+                "useHability","habilitySlot", "habilitySlotTwo", "habilitySlotThree", "habilitySlotFour", "changeFormation","flyingFormation",
                 "attackFormation","reviveType", "reviveLimit",
                 "bonusBox", "materials", "cargoBox", "greenOrGoldBooty",
                 "redBooty", "blueBooty", "masqueBooty", "collectBoxWhenCircle", 
@@ -198,6 +348,15 @@ $('[data-resource]').each(function() {
     }
     if (items.habilitySlot) {
       $("#habilitySlot").val(items.habilitySlot);
+    }
+    if (items.habilitySlotTwo) {
+      $("#habilitySlotTwo").val(items.habilitySlotTwo);
+    }
+    if (items.habilitySlotThree) {
+      $("#habilitySlotThree").val(items.habilitySlotThree);
+    }
+    if (items.habilitySlotFour) {
+      $("#habilitySlotFour").val(items.habilitySlotFour);
     }
     if (items.workmap) {
       $("#workmap").val(items.workmap);
@@ -273,6 +432,7 @@ $('[data-resource]').each(function() {
   chrome.storage.local.get(items, onGet);
 }
 
+$('.donwloadprofile').on("click", downloadProfile);
 $('.clearSettings').on("click", chrome.storage.sync.clear());
 $("form").on("submit", saveOptions);
 $(document).ready(restore);

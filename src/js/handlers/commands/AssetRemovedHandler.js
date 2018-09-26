@@ -6,7 +6,7 @@ class AssetRemovedHandler {
   constructor() {
     this._handler = function (e, a) {
       let parsedCmd = JSON.parse(e.detail);
-      
+      console.log(parsedCmd);
       if (parsedCmd.hash == a.targetBoxHash) {
         a.resetTarget("box");
       }

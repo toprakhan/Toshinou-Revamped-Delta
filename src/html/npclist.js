@@ -147,7 +147,7 @@ for (i = 0; i < knownNpcList.length; i++) {
   document.write('<tr><td><input style="width: 100%" type="text" id="name'+i+'" value="'+knownNpcList[i]+'" readonly></input></td>');
   document.write('<td><input type="number" id="range'+i+'" min="300" max="900" value="'+knownCirceList[i]+'"></td>');
   document.write('<td><select id="ammo'+i+'"><option value="1">X1</option><option value="2">X2</option><option value="3">X3</option><option value="4">X4</option><option value="11">X1 + SAB</option><option value="21">X2 + SAB</option></select></td>');
-  document.write('<td><select id="priority'+i+'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="0">No attack</option></select></td>');
+  document.write('<td><select id="priority'+i+'"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="0">No attack</option></select></td>');
   document.write('</tr>');
 }
 

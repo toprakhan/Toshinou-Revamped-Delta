@@ -31,6 +31,9 @@ class GlobalSettings {
       flyingFormation: -2,
       useHability: false,
       habilitySlot: -1,
+      habilitySlotTwo: -1,
+      habilitySlotThree: -1,
+      habilitySlotFour: -1,
       npcList: null,
       changeAmmunition: false,
       x1Slot: -1,
@@ -46,6 +49,15 @@ class GlobalSettings {
   }
   get habilitySlot(){
     return this._settings.habilitySlot;
+  }
+  get habilitySlotTwo(){
+    return this._settings.habilitySlotTwo;
+  }
+  get habilitySlotThree(){
+    return this._settings.habilitySlotThree;
+  }
+  get habilitySlotFour(){
+    return this._settings.habilitySlotFour;
   }
   get useHability(){
     return this._settings.useHability;

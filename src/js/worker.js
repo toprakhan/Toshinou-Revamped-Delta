@@ -3,8 +3,7 @@ let api;
 let notrightId;
 let state = false;
 
-// gets how many times the page reloaded
-// it fixes the fake unsafe js 
+/* gets how many times the page reloaded it fixes the fake unsafe js */
 let refreshCounter;
 chrome.storage.local.get("refreshCount", function(result) {
   refreshCounter = result["refreshCount"];
@@ -19,8 +18,7 @@ $(document).ready(function () {
 
   let check = SafetyChecker.check();
 
-  // Try to fix false positive on JS Change
-  // it refreshes the page 3 times
+  /* Try to fix false positive on JS Change it refreshes the page 3 times */
   if(refreshCounter > 0 && !check){
     api.changeRefreshCount(refreshCounter-1);
     window.location.reload();
@@ -122,7 +120,7 @@ function init() {
   window.setInterval(logic, window.tickTime);
   
   
-  // set refreshcount to 3 if page loaded until here
+  /* set refreshcount to 3 if page loaded until here */
   api.changeRefreshCount(3);
 
   $(document).keyup(function (e) {
@@ -194,7 +192,7 @@ function logic() {
     if (window.fleeingFromEnemy) {
       window.fleeFromEnemy = false;
     }
-    if (api.disconnectTime && $.now() - api.disconnectTime > 100000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.globalSettings.reviveLimit) {
+    if (api.disconnectTime && $.now() - api.disconnectTime > 200000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.globalSettings.reviveLimit) {
       if(window.globalSettings.enableRefresh && window.globalSettings.refreshToReconnect){
         window.location.reload();
         state = true;
@@ -212,10 +210,10 @@ function logic() {
         api.updateSettings();
     }
     if(window.settings.npcs != null && (window.settings.npcs).length < 1){
-	  let npcList = window.globalSettings.npcList;
-	  for (i = 0; i < npcList.length; i++) {
-	    window.settings.updateNpc(npcList[i]["name"], npcList[i]);
-	  }
+      let npcList = window.globalSettings.npcList;
+      for (i = 0; i < npcList.length; i++) {
+        window.settings.updateNpc(npcList[i]["name"], npcList[i]);
+      }
     }
   }
 
@@ -232,9 +230,9 @@ function logic() {
       let x = gate.gate.position.x + MathUtils.random(-100, 100);
       let y = gate.gate.position.y + MathUtils.random(-100, 100);
       if (window.hero.position.distanceTo(gate.gate.position) < 200 && !state) {
-    	window.settings.pause = true;
-    	setTimeout(() => {
-    	  api.pressKey(76);
+        window.settings.pause = true;
+        setTimeout(() => {
+          api.pressKey(76);
         }, 7000);
       }
       api.resetTarget("all");
@@ -244,7 +242,7 @@ function logic() {
     } 
   }
   
-  if (($.now() - api.setSettingsTime > window.globalSettings.refreshTime * 60000 || api.disconnectTime > 100000) && window.globalSettings.enableRefresh && !window.settings.ggbot) {
+  if (($.now() - api.setSettingsTime > window.globalSettings.refreshTime * 60000 || api.disconnectTime > 200000) && window.globalSettings.enableRefresh && !window.settings.ggbot) {
     if ((api.Disconected && !state) || window.settings.palladium) {
       window.location.reload();
       state = true;
@@ -265,14 +263,33 @@ function logic() {
     }   
   }
   
-  if(window.globalSettings.useHability && window.hero.skillName == "solace"){
-    if(MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < 70) {
-      if(api.useHability())
-        return;
+  if (window.globalSettings.useHability) {
+    if (window.hero.skillName == "solace"){
+      if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < 70) {
+        if(api.useHability()){
+          return;
+        }
+      }
+    } else if (window.hero.skillName == "aegis" || window.hero.skillName == "hammerclaw"){
+      if (window.hero.maxHp - window.hero.hp <= 150000) {
+        api.useHability();
+      }
+      if (window.hero.maxShd - window.hero.shd <= 100000) {
+        api.useHabilityTwo();
+      }
+    } else if (window.hero.skillName == "spearhead") {
+      api.useHabilityFour();
     }
   }
+  
+  
 
   if ((api.isRepairing && window.hero.hp !== window.hero.maxHp) && !window.settings.ggbot && !window.settings.palladium) {
+    if (window.globalSettings.useHability && (window.hero.skillName == "aegis" || window.hero.skillName == "hammerclaw")){
+      if (api.useHabilityThree()){
+        return; 
+      }  
+    }
     return;
   } else if (api.isRepairing && window.hero.hp === window.hero.maxHp) {
     api.isRepairing = false;
@@ -288,7 +305,7 @@ function logic() {
     api.resetBlackListTime = $.now();
   }
 
-  /*GG BOT for Alpha, Beta and Gamma Gates*/
+  /* GG BOT for Alpha, Beta and Gamma Gates */
   if(window.settings.ggbot){
     window.settings.moveRandomly = true;
     window.settings.killNpcs = true;
@@ -322,8 +339,17 @@ if (window.settings.fleeFromEnemy) {
     if (window.globalSettings.autoChangeConfig && window.globalSettings.flyingConfig != window.hero.shipconfig) {
       api.changeConfig();
     }
-    if (window.globalSettings.useHability && window.hero.skillName == "spectrum") {
-      api.useHability();
+    if (window.globalSettings.useHability) {
+      if (window.hero.skillname == "mimesis") {
+        api.useHabilityTwo();
+      }
+      if (window.hero.skillName == "spectrum" || window.hero.skillName == "spearhead" || window.hero.skillName == "lightning" || window.hero.skillname == "mimesis") {
+        api.useHability();
+      } else if (window.hero.skillName == "citadel") {
+        api.useHabilityTwo();
+      } else if (window.hero.skillName == "spearhead" && enemyResult.edist <= 300) {
+        api.useHabilityTwo();
+      }
     }
     if (window.globalSettings.changeFormation && api.formation != window.globalSettings.flyingFormation) {
       api.changeFormation(window.globalSettings.flyingFormation);
@@ -391,7 +417,8 @@ if (window.settings.fleeFromEnemy) {
         f += s;
         let x = 10890 + 4000 * Math.sin(f);
         let y = 6750 + 4000 * Math.cos(f);
-        if (x > 20800 && x < 500 && y > 12900 && y < 500) {//To avoid entering radiation
+        if (x > 20800 && x < 500 && y > 12900 && y < 500) {// To avoid entering
+                                                            // radiation
           x = MathUtils.random(500, 20800);
           y = MathUtils.random(500, 12900);
         } else {
@@ -481,6 +508,9 @@ if (window.settings.fleeFromEnemy) {
       if (dist < 600) {
         api.lockShip(api.targetShip);
         api.triedToLock = true;
+        if (api.targetShip.name == "..::{ Boss Saimon }::.." || api.targetShip.name == "..::{ Boss StreuneR }::..") {
+          api.distanceToPoint = 10000;
+        }
         return;
       }
     }
@@ -532,15 +562,16 @@ if (window.settings.fleeFromEnemy) {
     window.settings.circleNpc = true;
     let percenlife = MathUtils.percentFrom(window.hero.shd, window.hero.maxShd);
     if (percenlife < 98) {
-      api.battlerayFix();
       window.settings.killNpcs = true;
+      window.settings.setNpc("-=[ Battleray ]=-", "1");
+      window.settings.setNpc("-=[ Interceptor ]=-", "4");
     }  else if (!api.attacking) {
       window.settings.killNpcs = false;
     }
   }
   
   if (window.settings.piratebotsag){
-	window.settings.piratebot = true;
+    window.settings.piratebot = true;
   }
   
   if (window.settings.piratebot) {
@@ -587,7 +618,7 @@ if (window.settings.fleeFromEnemy) {
     } 
   }
   
-  /*Dodge the CBS*/
+  /* Dodge the CBS */
   if (window.settings.dodgeTheCbs && api.battlestation != null) {
     if (api.battlestation.isEnemy) {
       let result = api.checkForCBS();
@@ -628,8 +659,8 @@ if (window.settings.fleeFromEnemy) {
     y = MathUtils.random(3000, 8500);   
   }
   if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && window.settings.piratebotsag){
-	  x = MathUtils.random(15900, 20300);
-	  y = MathUtils.random(1100, 11100);
+      x = MathUtils.random(15900, 20300);
+      y = MathUtils.random(1100, 11100);
   } else if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && window.settings.piratebot && !window.settings.piratebotsag) { 
     x = MathUtils.random(600, 4600);
     y = MathUtils.random(1500, 11500);  
@@ -646,14 +677,16 @@ if (window.settings.fleeFromEnemy) {
         }
       }
       if(window.globalSettings.useHability && window.hero.skillName){
-        if((window.hero.skillname == "cyborg" && api.targetShip.hp > 100000)||// make this a user option
-          (window.hero.skillName == "venom" && api.targetShip.hp > 60000))
+        if ((window.hero.skillname == "cyborg" && api.targetShip.hp > 100000)||
+           (window.hero.skillName == "venom" && api.targetShip.hp > 60000))
         { 
           api.useHability();
-        } else if(window.hero.skillName == "diminisher" && api.targetShip.shd > 60000){ // this one too
+        } else if (window.hero.skillName == "diminisher" && api.targetShip.shd > 60000){
           api.useHability();
-        } else if(window.hero.skillname == "sentinel"){
+        } else if (window.hero.skillname == "sentinel" || window.hero.skillname == "tartarus"){
           api.useHability();
+        } else if (window.hero.skillname == "spearhead") {
+          api.useHabilityThree();   
         }
       }
       if(window.globalSettings.changeAmmunition) {
@@ -674,11 +707,11 @@ if (window.settings.fleeFromEnemy) {
     api.targetShip.update();
     let dist = api.targetShip.distanceTo(window.hero.position);
     if (window.settings.ggbot && api.targetShip.position.x == 20999 && api.targetShip.position.y == 13499) {
-    //GG bottom right corner
+    // GG bottom right corner
       x = 20495;
       y = 13363;
     } else if (window.settings.ggbot && api.targetShip.position.x == 0 && api.targetShip.position.y == 0) {
-    //GG top left corner
+    // GG top left corner
       x = 450;
       y = 302;
     } else if ((dist > 600 && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id) && $.now() - api.lastMovement > 1000)) {
@@ -701,7 +734,11 @@ if (window.settings.fleeFromEnemy) {
         if(radius == null || radius < 400){
           radius = window.settings.npcCircleRadius;
         }
-        let enemy = api.targetShip.position;        
+        
+        let enemy = api.targetShip.position;
+        if (api.invertedMove) {
+          radius = -radius;
+        }
         let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
         let s = Math.PI / 180;
         let rot = MathUtils.random(-10, 10);
@@ -714,6 +751,22 @@ if (window.settings.fleeFromEnemy) {
           if (nearestBox && nearestBox.box && nearestBox.distance < 300) {
             circleBox = nearestBox;
           }
+        }
+        
+        if (api.targetShip.name == "..::{ Boss Saimon }::.." || api.targetShip.name == "..::{ Boss StreuneR }::..") {
+          api.move(x, y);
+          api.targetShip.update(); 
+          dist = api.targetShip.distanceTo(window.hero.position); 
+          if (dist < radius) {
+	        let position = new Vector2D(x, y); 
+	        let distance = position.distanceTo(window.hero.position); 
+	        if (distance > api.distanceToPoint) { 
+	          api.invertedMove = true;
+	        } else {
+	          api.invertedMove = false;
+	        }
+	        api.distanceToPoint = distance; 
+          } 
         }
       }
       if (window.settings.gatestonpc && api.lockedShip.percentOfHp > 25) {

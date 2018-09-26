@@ -22,14 +22,18 @@ class Api {
     this.lastAutoLock = $.now();
     // QuickSlot stuff
     this.habilityCoolDown = 1;
+    this.habilityCoolDownTwo = 1;
+    this.habilityCoolDownThree = 1;
+    this.habilityCoolDownFour = 1;
     this.changeFormationTime = $.now();
     this.formation = -1;
     this.ammunition = -1;
-    
+    this.distanceToPoint = 10000;
+    this.invertedMove = false;
   }
   
   useHability(){
-    var cooldownlist = {"cyborg":310000,"solace":140000,"diminisher":161000,"venom":180000 ,"sentinel":235000 ,"spectrum":210000};
+    var cooldownlist = {"cyborg":310000,"solace":140000,"diminisher":161000,"venom":180000,"sentinel":235000,"spectrum":210000,"lightning":185000,"aegis":100000,"spearhead":400000,"citadel":45000,"mimesis":360000,"hammerclaw":170000,"tartarus":27000};
     if(this.habilityCoolDown && $.now() - this.habilityCoolDown > cooldownlist[window.hero.skillName]){
       this.quickSlot(window.globalSettings.habilitySlot);
       this.habilityCoolDown = $.now();
@@ -37,9 +41,39 @@ class Api {
     }
     return false;
   }
+  
+  useHabilityTwo(){
+    var cooldownlist = {"aegis":35000,"spearhead":190000,"citadel":50000, "mimesis":300000,"hammerclaw":100000,"tartarus":70000};
+    if(this.habilityCoolDownTwo && $.now() - this.habilityCoolDownTwo > cooldownlist[window.hero.skillName]){
+      this.quickSlot(window.globalSettings.habilitySlotTwo);
+      this.habilityCoolDownTwo = $.now();
+      return true;
+    }
+    return false;
+  }
+  
+  useHabilityThree(){
+    var cooldownlist = {"aegis":130000,"spearhead":55000,"citadel":70000, "hammerclaw":146000};
+    if(this.habilityCoolDownThree && $.now() - this.habilityCoolDownThree > cooldownlist[window.hero.skillName]){
+      this.quickSlot(window.globalSettings.habilitySlotThree);
+      this.habilityCoolDownThree = $.now();
+      return true;
+    }
+    return false;
+  }
+  
+  useHabilityFour(){
+    var cooldownlist = {"citadel":370000,"spearhead":150000};
+    if(this.habilityCoolDownFour && $.now() - this.habilityCoolDownFour > cooldownlist[window.hero.skillName]){
+      this.quickSlot(window.globalSettings.habilitySlotFour);
+      this.habilityCoolDownFour = $.now();
+      return true;
+    }
+    return false;
+  }
 
   getShipName(fullname){
-    let namelist = /(cyborg|venom|solace|diminisher|spectrum|sentinel)/;
+    let namelist = /(cyborg|venom|solace|diminisher|spectrum|sentinel|aegis|spearhead|citadel|mimesis|hammerclaw|tartarus|lightning)/;
     let rname = namelist.exec(fullname);
     if(rname != null){
       return rname[0]
@@ -154,19 +188,16 @@ class Api {
   }
 
   startLaserAttack() {
-    //Injector.injectScript('document.getElementById("preloader").laserAttack()');
 	this.pressKey(17);
   }
 
   jumpGate() {
-    //Injector.injectScript('document.getElementById("preloader").jumpGate();');
     this.pressKey(74);
   }
 
   changeConfig() {
     if (this.changeConfigTime && $.now() - this.changeConfigTime > 5000) {
       this.changeConfigTime = $.now();
-      //Injector.injectScript('document.getElementById("preloader").changeConfig();');
       this.pressKey(67);
     }
   }
@@ -294,24 +325,6 @@ class Api {
       }
     }
   }
-
-  battlerayFix() {
-   for (let property in this.ships) {
-      let ship = this.ships[property];
-      if (ship && (ship.name == "-=[ Battleray ]=-") && ship.distanceTo(window.hero.position) < 700) {
-        let shipsCount = this.countNpcAroundByType("-=[ Interceptor ]=-", 600);
-        if (shipsCount > 1 && !(lockedShip && lockedShip.percentOfHp > 80 && lockedShip.name == "-=[ Battleray ]=-")) {
-          window.settings.setNpc(ship.name, "0");
-          if (this.targetShip == ship){
-            this.resetTarget("enemy");
-          }
-        } else {
-          window.settings.setNpc(ship.name, "1");
-          this.targetShip = ship;
-        }
-      }
-    }
-  }
   
   protegitmode() {
    for (let property in this.ships) {
@@ -357,23 +370,6 @@ class Api {
       }
     }
     return shipsAround;
-  }
-
-  allNPCInCorner(){
-    let shipsCount = Object.keys(this.ships).length;
-    let shipsInCorner = 0;
-    for (let property in this.ships) {
-      let ship = this.ships[property];
-      if((ship.position.x == 20999 && ship.position.y == 13499) || (ship.position.x == 0 && ship.position.y == 0)) {
-        shipsInCorner++;
-      }
-    }
-    
-    if(shipsInCorner == shipsCount){
-      return true;
-    }else{
-      return false;
-    }
   }
 
    findNearestBox() {
@@ -430,7 +426,22 @@ class Api {
 	    let npcdata =  window.settings.getNpc(ship.name);
 	    let priority = npcdata["priority"];
         if (priority >= minPriority) {
-	      let dist = ship.distanceTo(window.hero.position);
+          if (!ship.isAttacked) {
+            finalShip = ship;
+            minPriority = priority;
+          }
+        }
+      }
+    }
+    
+    for (let property in this.ships) {
+      let ship = this.ships[property];
+      ship.update();
+      if (ship.isNpc) {
+        let npcdata =  window.settings.getNpc(ship.name);
+        let priority = npcdata["priority"];
+        if (priority >= minPriority) {
+          let dist = ship.distanceTo(window.hero.position);
           if (dist < minDist) {
             if (!ship.isAttacked) {
               finalShip = ship;

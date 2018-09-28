@@ -96,14 +96,6 @@ class GeneralSettingsWindow {
         }
       },
       {
-        name: 'resetTargetWhenHpBelow25Percent',
-        labelText: chrome.i18n.getMessage("resettarget"),
-        appendTo: this.botSettingsWindow,
-        event: function () {
-          window.settings.resetTargetWhenHpBelow25Percent = this.checked;
-        }
-      },
-      {
         name: 'repairWhenHpIsLowerThanPercent',
         labelText: chrome.i18n.getMessage("repairwhenhp"),
         type: 'range',

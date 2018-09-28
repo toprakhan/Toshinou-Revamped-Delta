@@ -90,7 +90,7 @@ class StatisticWindow {
       },
       {
         name: 'palladium',
-        labelText: "Materials: ",
+        labelText: "Materials/Boxes/Paladium: ",
         spanText: '0',
         appendTo: this.botStatisticWindow
       }

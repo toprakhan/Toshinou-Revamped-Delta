@@ -293,11 +293,7 @@ function logic() {
     return;
   } else if (api.isRepairing && window.hero.hp === window.hero.maxHp) {
     api.isRepairing = false;
-    if (window.globalSettings.autoChangeConfig){
-      if (window.globalSettings.attackConfig != window.hero.shipconfig) {
-        api.changeConfig();
-      }
-    }
+    api.attackMode();
   }
 
   if ($.now() - api.resetBlackListTime > api.blackListTimeOut) {
@@ -310,7 +306,7 @@ function logic() {
     window.settings.moveRandomly = true;
     window.settings.killNpcs = true;
     window.settings.circleNpc = true;
-    window.settings.resetTargetWhenHpBelow25Percent = true;
+    api.resetTargetWhenHpBelow25Percent = true;
     window.settings.dontCircleWhenHpBelow25Percent = false;
     if (window.hero.mapId == 73) {
       api.ggZetaFix();
@@ -336,9 +332,7 @@ if (window.settings.fleeFromEnemy) {
   let enemyResult = api.checkForEnemy();
 
   if (enemyResult.run) {
-    if (window.globalSettings.autoChangeConfig && window.globalSettings.flyingConfig != window.hero.shipconfig) {
-      api.changeConfig();
-    }
+    api.speedMode();
     if (window.globalSettings.useHability) {
       if (window.hero.skillname == "mimesis") {
         api.useHabilityTwo();
@@ -350,9 +344,6 @@ if (window.settings.fleeFromEnemy) {
       } else if (window.hero.skillName == "spearhead" && enemyResult.edist <= 300) {
         api.useHabilityTwo();
       }
-    }
-    if (window.globalSettings.changeFormation && api.formation != window.globalSettings.flyingFormation) {
-      api.changeFormation(window.globalSettings.flyingFormation);
     }
     if (window.settings.jumpFromEnemy) {
       let gate = api.findNearestGate();
@@ -417,8 +408,7 @@ if (window.settings.fleeFromEnemy) {
         f += s;
         let x = 10890 + 4000 * Math.sin(f);
         let y = 6750 + 4000 * Math.cos(f);
-        if (x > 20800 && x < 500 && y > 12900 && y < 500) {// To avoid entering
-                                                            // radiation
+        if (x > 20800 && x < 500 && y > 12900 && y < 500) {
           x = MathUtils.random(500, 20800);
           y = MathUtils.random(500, 12900);
         } else {
@@ -457,11 +447,7 @@ if (window.settings.fleeFromEnemy) {
   }
 
   if (!window.settings.piratebotsag && !window.settings.piratebot && !window.settings.palladium && !window.settings.ggbot && window.globalSettings.workmap != 0 &&  window.hero.mapId != window.globalSettings.workmap) {
-    if (window.globalSettings.autoChangeConfig){
-      if (window.globalSettings.flyingConfig != window.hero.shipconfig) {
-        api.changeConfig();
-      }
-    }
+	api.speedMode();
     api.goToMap(window.globalSettings.workmap);
     return;
   } else {
@@ -477,14 +463,7 @@ if (window.settings.fleeFromEnemy) {
     let ship = api.findNearestShip();
 
     if ((ship.distance > 1000 || !ship.ship) && (box.box)) {
-      if (!(MathUtils.percentFrom(window.hero.shd, window.hero.maxShd) < 90) && window.globalSettings.autoChangeConfig && window.settings.palladium) {
-        if(window.globalSettings.changeFormation && api.formation != window.globalSettings.flyingFormation){
-          api.changeFormation(window.globalSettings.flyingFormation);
-        }
-        if (window.globalSettings.flyingConfig != window.hero.shipconfig) {
-          api.changeConfig();
-        }
-      }
+      api.speedMode();
       api.collectBox(box.box);
       api.targetBoxHash = box.box.hash;
       return;
@@ -668,14 +647,7 @@ if (window.settings.fleeFromEnemy) {
 
   if (api.targetShip && window.settings.killNpcs && api.targetBoxHash == null) {
     if(api.attacking){
-      if (window.globalSettings.autoChangeConfig && window.globalSettings.attackConfig != window.hero.shipconfig){
-        api.changeConfig();
-      }
-      if (window.globalSettings.changeFormation && !api.isRepairing){
-        if (window.globalSettings.attackFormation != api.formation) {
-          api.changeFormation(window.globalSettings.attackFormation);
-        }
-      }
+      api.attackMode();
       if(window.globalSettings.useHability && window.hero.skillName){
         if ((window.hero.skillname == "cyborg" && api.targetShip.hp > 100000)||
            (window.hero.skillName == "venom" && api.targetShip.hp > 60000))
@@ -723,7 +695,7 @@ if (window.settings.fleeFromEnemy) {
         x = api.targetShip.position.x + MathUtils.random(-30, 30);
         y = api.targetShip.position.y + MathUtils.random(-30, 30);
       }
-    } else if (window.settings.ggbot && window.settings.resetTargetWhenHpBelow25Percent && api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id ) {
+    } else if (window.settings.ggbot && api.resetTargetWhenHpBelow25Percent && api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id ) {
       api.resetTarget("enemy");
     } else if (dist > 300 && api.lockedShip && api.lockedShip.id == api.targetShip.id & !window.settings.circleNpc && !window.settings.gatestonpc) {
       x = api.targetShip.position.x + MathUtils.random(-200, 200);
@@ -736,9 +708,6 @@ if (window.settings.fleeFromEnemy) {
         }
         
         let enemy = api.targetShip.position;
-        if (api.invertedMove) {
-          radius = -radius;
-        }
         let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
         let s = Math.PI / 180;
         let rot = MathUtils.random(-10, 10);
@@ -751,22 +720,6 @@ if (window.settings.fleeFromEnemy) {
           if (nearestBox && nearestBox.box && nearestBox.distance < 300) {
             circleBox = nearestBox;
           }
-        }
-        
-        if (api.targetShip.name == "..::{ Boss Saimon }::.." || api.targetShip.name == "..::{ Boss StreuneR }::..") {
-          api.move(x, y);
-          api.targetShip.update(); 
-          dist = api.targetShip.distanceTo(window.hero.position); 
-          if (dist < radius) {
-	        let position = new Vector2D(x, y); 
-	        let distance = position.distanceTo(window.hero.position); 
-	        if (distance > api.distanceToPoint) { 
-	          api.invertedMove = true;
-	        } else {
-	          api.invertedMove = false;
-	        }
-	        api.distanceToPoint = distance; 
-          } 
         }
       }
       if (window.settings.gatestonpc && api.lockedShip.percentOfHp > 25) {

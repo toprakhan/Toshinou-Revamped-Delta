@@ -28,8 +28,7 @@ class Api {
     this.changeFormationTime = $.now();
     this.formation = -1;
     this.ammunition = -1;
-    this.distanceToPoint = 10000;
-    this.invertedMove = false;
+    this.resetTargetWhenHpBelow25Percent = false;
   }
   
   useHability(){
@@ -293,7 +292,7 @@ class Api {
         ship.name == "-=[ Lordakium ]=- δ9" || 
         ship.name == "-=[ Sibelon ]=- δ14" || 
         ship.name == "-=[ Kristallon ]=- δ19")) {
-        window.settings.resetTargetWhenHpBelow25Percent=false;
+        this.resetTargetWhenHpBelow25Percent=false;
         if (shipsCount > 1) {
           window.settings.setNpc(ship.name, "0");
           if (this.targetShip == ship){
@@ -312,7 +311,7 @@ class Api {
     for (let property in this.ships) {
       let ship = this.ships[property];
       if (ship && (ship.name == "-=[ Devourer ]=- ζ25" || ship.name == "-=[ Devourer ]=- ζ27")) {
-        window.settings.resetTargetWhenHpBelow25Percent=false;
+        this.resetTargetWhenHpBelow25Percent=false;
         if (shipsCount > 1) {
           window.settings.setNpc(ship.name, "0");
           if (this.targetShip == ship) {
@@ -769,6 +768,26 @@ class Api {
       if(portals[i].idLinkedMap == idGoMap){
         return portals[i];
       }
+    }
+  }
+  
+  attackMode() {
+    if (window.globalSettings.autoChangeConfig && window.globalSettings.attackConfig != window.hero.shipconfig){
+      this.changeConfig();
+    }
+    if (window.globalSettings.changeFormation && window.globalSettings.attackFormation != api.formation){
+      this.changeFormation(window.globalSettings.attackFormation);
+    }
+  }
+  
+  speedMode() {
+    if (window.globalSettings.autoChangeConfig) {
+      if( window.globalSettings.flyingConfig != window.hero.shipconfig) {
+        this.changeConfig();
+      }
+    }
+    if (window.globalSettings.changeFormation && api.formation != window.globalSettings.flyingFormation) {
+      this.changeFormation(window.globalSettings.flyingFormation);
     }
   }
   

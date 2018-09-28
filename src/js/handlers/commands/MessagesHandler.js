@@ -1,7 +1,7 @@
 class MessagesHandler {
 
   static get ID() {
-    return 31694;
+    return 22581;//up
   }
 
   constructor() {
@@ -35,7 +35,9 @@ class MessagesHandler {
       }
 
       if("SLA" == message[2]){
-    	  this.palladium(message);
+	    if(message.length == 5) {
+		  this.palladium(message);
+	    }
       }
       if (_events.hasOwnProperty(message[3])) {
         this[_events[message[3]]](message);

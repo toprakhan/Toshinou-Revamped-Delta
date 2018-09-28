@@ -1,12 +1,12 @@
 class AssetRemovedHandler {
   static get ID() {
-    return 30862;
+    return 8791;//up
   }
 
   constructor() {
     this._handler = function (e, a) {
       let parsedCmd = JSON.parse(e.detail);
-      console.log(parsedCmd);
+      
       if (parsedCmd.hash == a.targetBoxHash) {
         a.resetTarget("box");
       }

@@ -1,6 +1,6 @@
 class Settings {
   constructor(pause, 
-    refresh, moveRandomly, killNpcs, fleeFromEnemy, jumpFromEnemy, dodgeTheCbs, avoidAttackedNpcs, circleNpc, dontCircleWhenHpBelow25Percent, resetTargetWhenHpBelow25Percent, repairWhenHpIsLowerThanPercent, gatestonpc,
+    refresh, moveRandomly, killNpcs, fleeFromEnemy, jumpFromEnemy, dodgeTheCbs, avoidAttackedNpcs, circleNpc, dontCircleWhenHpBelow25Percent, repairWhenHpIsLowerThanPercent, gatestonpc,
     ggbot, alpha, beta, gamma, delta, epsilon, zeta, kappa, lambda, kronos, hades, kuiper,
     lockNpcs, lockPlayers, autoAttack, autoAttackNpcs,
     palladium, piratebot, cubibot) 
@@ -18,7 +18,6 @@ class Settings {
     this._circleNpc = circleNpc === true;
     this.npcCircleRadius = 500;
     this._dontCircleWhenHpBelow25Percent = dontCircleWhenHpBelow25Percent === true;
-    this._resetTargetWhenHpBelow25Percent = resetTargetWhenHpBelow25Percent === true;
     this._repairWhenHpIsLowerThanPercent = repairWhenHpIsLowerThanPercent;
     this._gatestonpc = gatestonpc === true;
 
@@ -133,14 +132,6 @@ class Settings {
 
   set dontCircleWhenHpBelow25Percent(value) {
     this._dontCircleWhenHpBelow25Percent = value === true;
-  }
-
-  get resetTargetWhenHpBelow25Percent() {
-    return this._resetTargetWhenHpBelow25Percent;
-  }
-
-  set resetTargetWhenHpBelow25Percent(value) {
-    this._resetTargetWhenHpBelow25Percent = value === true;
   }
 
   get repairWhenHpIsLowerThanPercent() {

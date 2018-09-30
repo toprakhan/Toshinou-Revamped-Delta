@@ -334,5 +334,8 @@
   },
   "waitafterRepair" : {
     "message": "Esperar x minutos despues de que la nave reviva (0 = No parar)"
+  },
+  "loadSettings": {
+    "message": "Cargar configuración"
   }
 }

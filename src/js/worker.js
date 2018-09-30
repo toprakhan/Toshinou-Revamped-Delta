@@ -149,6 +149,7 @@ function init() {
     window.statusMiniWindow = !window.statusMiniWindow;
   });
 
+  
   let cntBtnPlay = $('.cnt_btn_play .btn_play');
   cntBtnPlay.on('click', (e) => {
     if (window.statusPlayBot) {
@@ -164,6 +165,13 @@ function init() {
     }
     window.statusPlayBot = !window.statusPlayBot;
   });
+  
+  let reloadBtn = $('.reloadSettings .btn_reload');
+  reloadBtn.on('click', (e) => {
+	window.globalSettings = new GlobalSettings();
+	api.rute = null;
+  });
+  
   if (window.globalSettings.enableRefresh) {
     let saveBtn = $('.saveButton .btn_save');
     saveBtn.on('click', (e) => {
@@ -192,14 +200,13 @@ function logic() {
     if (window.fleeingFromEnemy) {
       window.fleeFromEnemy = false;
     }
-    if (api.disconnectTime && $.now() - api.disconnectTime > 200000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.globalSettings.reviveLimit) {
-      if(window.globalSettings.enableRefresh && window.globalSettings.refreshToReconnect){
-        window.location.reload();
-        state = true;
-      }else{
-        api.reconnect();
-      }
+    if (api.disconnectTime && $.now() - api.disconnectTime > 5000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.settings.settings.reviveLimit) {
+      api.reconnect();
     }
+	if(api.reconnectTime && $.now() - api.reconnectTime > 60000 && window.settings.settings.enableRefresh){
+	  window.location.reload();
+	  state = true;
+	}
     return;
   }
 

@@ -122,5 +122,7 @@ class GeneralSettingsWindow {
       let saveButton = jQuery('<div class="saveButton"><button class="btn_save save btn">'+chrome.i18n.getMessage("savesettingsandenable")+'</button></div>');
     this.botSettingsWindow.append(saveButton);
     }
+    let reloadSettings = jQuery('<div class="reloadSettings"><button class="btn_reload reload btn">'+chrome.i18n.getMessage("loadSettings")+'</button></div>');
+    this.botSettingsWindow.append(reloadSettings);
   }
 }

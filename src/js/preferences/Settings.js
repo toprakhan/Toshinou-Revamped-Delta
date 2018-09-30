@@ -299,7 +299,7 @@ class Settings {
 	  this._npcs[name]["priority"] = val;
 	} else {
       var npcdata = {"name": name, "range": this.npcCircleRadius, "ammo": "1", "priority": val};
-	  this._npcs[name] = val;
+	  this._npcs[name] = npcdata;
 	}
   }
   

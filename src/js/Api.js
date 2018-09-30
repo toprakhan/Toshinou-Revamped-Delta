@@ -299,7 +299,7 @@ class Api {
             this.resetTarget("enemy");
           }
         } else {
-          window.settings.setNpc(ship.name, "1");
+          window.settings.setNpc(ship.name, "9");
           this.targetShip = ship;
         }
       }
@@ -318,7 +318,7 @@ class Api {
             this.resetTarget("enemy");
           }
         } else {
-          window.settings.setNpc(ship.name, "1");
+          window.settings.setNpc(ship.name, "9");
           this.targetShip = ship;
         }
       }

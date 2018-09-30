@@ -271,26 +271,21 @@ function logic() {
         }
       }
     } else if (window.hero.skillName == "aegis" || window.hero.skillName == "hammerclaw"){
-      if (window.hero.maxHp - window.hero.hp <= 150000) {
+      if ((window.hero.maxHp - window.hero.hp) >= 150000) {
         api.useHability();
       }
-      if (window.hero.maxShd - window.hero.shd <= 100000) {
+      if ((window.hero.maxShd - window.hero.shd) >= 100000) {
         api.useHabilityTwo();
       }
     } else if (window.hero.skillName == "spearhead") {
       api.useHabilityFour();
     }
   }
-  
-  
 
   if ((api.isRepairing && window.hero.hp !== window.hero.maxHp) && !window.settings.ggbot && !window.settings.palladium) {
     if (window.globalSettings.useHability && (window.hero.skillName == "aegis" || window.hero.skillName == "hammerclaw")){
-      if (api.useHabilityThree()){
-        return; 
-      }  
+      api.useHabilityThree();
     }
-    return;
   } else if (api.isRepairing && window.hero.hp === window.hero.maxHp) {
     api.isRepairing = false;
     api.attackMode();
@@ -459,15 +454,18 @@ if (window.settings.fleeFromEnemy) {
   }
 
   if (api.targetBoxHash == null && api.targetShip == null) {
-    let box = api.findNearestBox();
     let ship = api.findNearestShip();
 
-    if ((ship.distance > 1000 || !ship.ship) && (box.box)) {
-      api.speedMode();
-      api.collectBox(box.box);
-      api.targetBoxHash = box.box.hash;
-      return;
-    } else if (ship.ship && ship.distance < 1000 && window.settings.killNpcs && ship.ship.id != notrightId) {
+    if (!ship.ship || ship.distance > 1000) {
+      let box = api.findNearestBox();
+      if (box.box) {
+    	api.speedMode();
+    	api.collectBox(box.box);
+        api.targetBoxHash = box.box.hash;
+        return;
+      }
+    }
+    if (ship.ship && ship.distance < 1000 && window.settings.killNpcs && ship.ship.id != notrightId) {
       api.lockShip(ship.ship);
       api.triedToLock = true;
       api.targetShip = ship.ship;
@@ -487,9 +485,6 @@ if (window.settings.fleeFromEnemy) {
       if (dist < 600) {
         api.lockShip(api.targetShip);
         api.triedToLock = true;
-        if (api.targetShip.name == "..::{ Boss Saimon }::.." || api.targetShip.name == "..::{ Boss StreuneR }::..") {
-          api.distanceToPoint = 10000;
-        }
         return;
       }
     }
@@ -631,7 +626,7 @@ if (window.settings.fleeFromEnemy) {
     y = MathUtils.random(500, 25700);
   } else if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && window.settings.palladium) {
     x = MathUtils.random(13000, 30400);
-    y = MathUtils.random(19000, 25500)
+    y = MathUtils.random(19000, 25500);
   }
   if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && window.settings.cubibot) { 
     x = MathUtils.random(7000, 14000);
@@ -671,7 +666,11 @@ if (window.settings.fleeFromEnemy) {
           api.changeAmmunition(6);
         } else if (ammunition == 21 && api.targetShip.shd < 200) {
           api.changeAmmunition(2);
-        } else {
+        } else if (ammunition == 31 && api.targetShip.shd > 200) {
+          api.changeAmmunition(6);
+        } else if (ammunition == 31 && api.targetShip.shd < 200) {
+          api.changeAmmunition(3);
+        }else {
           api.changeAmmunition(ammunition);
         }
       }

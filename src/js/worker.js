@@ -100,9 +100,6 @@ function init() {
   window.generalSettingsWindow = new GeneralSettingsWindow();
   window.generalSettingsWindow.createWindow();
 
-  window.GGSettingsWindow = new GGSettingsWindow();
-  window.GGSettingsWindow.createWindow();
-
   window.statisticWindow = new StatisticWindow();
   window.statisticWindow.createWindow();
   
@@ -226,7 +223,7 @@ function logic() {
 
   window.minimap.draw();
 
-  if (api.heroDied || window.settings.pause || (window.settings.fleeFromEnemy && window.fleeingFromEnemy) || window.settings.waitingAfterDead) {
+  if (api.heroDied || window.settings.pause || (window.globalSettings.fleeFromEnemy && window.fleeingFromEnemy) || window.settings.waitingAfterDead) {
     api.resetTarget("all");
     return;
   }
@@ -316,21 +313,21 @@ function logic() {
       api.ggDeltaFix();
     }
     if (api.targetBoxHash == null) {
-      api.jumpInGG(2, window.settings.alpha);
-      api.jumpInGG(3, window.settings.beta);
-      api.jumpInGG(4, window.settings.gamma);
-      api.jumpInGG(5, window.settings.delta);
-      api.jumpInGG(53, window.settings.epsilon);
-      api.jumpInGG(54, window.settings.zeta);
-      api.jumpInGG(70, window.settings.kappa);
-      api.jumpInGG(71, window.settings.lambda);
-      api.jumpInGG(72, window.settings.kronos);
-      api.jumpInGG(74, window.settings.hades);
-      api.jumpInGG(82, window.settings.kuiper);
+      api.jumpInGG(2, window.globalSettings.alpha);
+      api.jumpInGG(3, window.globalSettings.beta);
+      api.jumpInGG(4, window.globalSettings.gamma);
+      api.jumpInGG(5, window.globalSettings.delta);
+      api.jumpInGG(53, window.globalSettings.epsilon);
+      api.jumpInGG(54, window.globalSettings.zeta);
+      api.jumpInGG(70, window.globalSettings.kappa);
+      api.jumpInGG(71, window.globalSettings.lambda);
+      api.jumpInGG(72, window.globalSettings.kronos);
+      api.jumpInGG(74, window.globalSettings.hades);
+      api.jumpInGG(82, window.globalSettings.kuiper);
     }
   }
 
-if (window.settings.fleeFromEnemy) {
+if (window.globalSettings.fleeFromEnemy) {
   let enemyResult = api.checkForEnemy();
 
   if (enemyResult.run) {
@@ -347,7 +344,7 @@ if (window.settings.fleeFromEnemy) {
         api.useHabilityTwo();
       }
     }
-    if (window.settings.jumpFromEnemy) {
+    if (window.globalSettings.jumpFromEnemy) {
       let gate = api.findNearestGate();
       if (gate.gate) {
         let x = gate.gate.position.x + MathUtils.random(-100, 100);
@@ -425,7 +422,7 @@ if (window.settings.fleeFromEnemy) {
       let gate = api.findNearestGate();
       if (gate.gate) {
         api.resetTarget("all");
-        if (window.settings.jumpFromEnemy) {
+        if (window.globalSettings.jumpFromEnemy) {
           if (api.jumpAndGoBack(gate.gate.gateId)) {
             api.isRepairing = true;
           }
@@ -600,7 +597,7 @@ if (window.settings.fleeFromEnemy) {
   }
   
   /* Dodge the CBS */
-  if (window.settings.dodgeTheCbs && api.battlestation != null) {
+  if (window.globalSettings.dodgeTheCbs && api.battlestation != null) {
     if (api.battlestation.isEnemy) {
       let result = api.checkForCBS();
       if (result.walkAway) {

@@ -128,6 +128,20 @@ function saveOptions(e) {
     sabSlot:            $("#sabSlot").val(),
     stopafterxminutes:  $("#stopafterxminutes").val(),
     waitafterRepair:    $("#waitafterRepair").val(),
+    fleeFromEnemy:      $("#fleeFromEnemy").prop('checked'),
+    jumpFromEnemy:      $("#jumpFromEnemy").prop('checked'),
+    dodgeTheCbs:        $("#dodgeTheCbs").prop('checked'),
+    alpha:              $("#alpha").prop('checked'),
+    beta:               $("#beta").prop('checked'),
+    gamma:              $("#gamma").prop('checked'),
+    delta:              $("#delta").prop('checked'),
+    epsilon:            $("#epsilon").prop('checked'),
+    zeta:               $("#zeta").prop('checked'),
+    kappa:              $("#kappa").prop('checked'),
+    lambda:             $("#lambda").prop('checked'),
+    kronos:             $("#kronos").prop('checked'),
+    hades:              $("#hades").prop('checked'),
+    kuiper:             $("#kuiper").prop('checked'),
     npcList:            npcList
   };
 
@@ -260,6 +274,20 @@ function downloadProfile(e) {
     sabSlot:            $("#sabSlot").val(),
     stopafterxminutes:  $("#stopafterxminutes").val(),
     waitafterRepair:    $("#waitafterRepair").val(),
+    fleeFromEnemy:      $("#fleeFromEnemy").prop('checked'),
+    jumpFromEnemy:      $("#jumpFromEnemy").prop('checked'),
+    dodgeTheCbs:        $("#dodgeTheCbs").prop('checked'),
+    alpha:              $("#alpha").prop('checked'),
+    beta:               $("#beta").prop('checked'),
+    gamma:              $("#gamma").prop('checked'),
+    delta:              $("#delta").prop('checked'),
+    epsilon:            $("#epsilon").prop('checked'),
+    zeta:               $("#zeta").prop('checked'),
+    kappa:              $("#kappa").prop('checked'),
+    lambda:             $("#lambda").prop('checked'),
+    kronos:             $("#kronos").prop('checked'),
+    hades:              $("#hades").prop('checked'),
+    kuiper:             $("#kuiper").prop('checked'),
     npcList:            npcList
   };
 
@@ -296,7 +324,9 @@ $('[data-resource]').each(function() {
                 "attackFormation","reviveType", "reviveLimit",
                 "bonusBox", "materials", "cargoBox", "greenOrGoldBooty",
                 "redBooty", "blueBooty", "masqueBooty", "collectBoxWhenCircle", 
-                "workmap", "npcList", "changeAmmunition", "x1Slot", "x2Slot", "x3Slot", "x4Slot", "sabSlot", "stopafterxminutes", "waitafterRepair"];
+                "workmap", "npcList", "changeAmmunition", "x1Slot", "x2Slot", "x3Slot", "x4Slot", "sabSlot", 
+                "stopafterxminutes", "waitafterRepair", "fleeFromEnemy", "jumpFromEnemy", "dodgeTheCbs",
+                "alpha", "beta", "gamma", "delta", "epsilon", "zeta", "kappa", "lambda", "kronos", "hades", "kuiper"];
 
   var onGet = items => {
 
@@ -417,6 +447,48 @@ $('[data-resource]').each(function() {
     }
     if (items.waitafterRepair) {
       $("#waitafterRepair").val(items.waitafterRepair);
+    }
+    if (items.fleeFromEnemy) {
+      $("#fleeFromEnemy").prop('checked', true);
+    }
+    if (items.jumpFromEnemy) {
+      $("#jumpFromEnemy").prop('checked', true);
+    }
+    if (items.dodgeTheCbs) {
+      $("#dodgeTheCbs").prop('checked', true);
+    }
+    if (items.alpha) {
+      $("#alpha").prop('checked', true);
+    }
+    if (items.beta) {
+      $("#beta").prop('checked', true);
+    }
+    if (items.gamma) {
+      $("#gamma").prop('checked', true);
+    }
+    if (items.delta) {
+      $("#delta").prop('checked', true);
+    }
+    if (items.epsilon) {
+      $("#epsilon").prop('checked', true);
+    }
+    if (items.zeta) {
+      $("#zeta").prop('checked', true);
+    }
+    if (items.kappa) {
+      $("#kappa").prop('checked', true);
+    }
+    if (items.lambda) {
+      $("#lambda").prop('checked', true);
+    }
+    if (items.kronos) {
+      $("#kronos").prop('checked', true);
+    }
+    if (items.hades) {
+      $("#hades").prop('checked', true);
+    }
+    if (items.kuiper) {
+      $("#kuiper").prop('checked', true);
     }
     if (items.npcList) {
       var knownNpcList = items.npcList;

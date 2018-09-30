@@ -1,19 +1,14 @@
 class Settings {
   constructor(pause, 
-    refresh, moveRandomly, killNpcs, fleeFromEnemy, jumpFromEnemy, dodgeTheCbs, avoidAttackedNpcs, circleNpc, dontCircleWhenHpBelow25Percent, repairWhenHpIsLowerThanPercent, gatestonpc,
-    ggbot, alpha, beta, gamma, delta, epsilon, zeta, kappa, lambda, kronos, hades, kuiper,
+    refresh, moveRandomly, killNpcs, avoidAttackedNpcs, circleNpc, dontCircleWhenHpBelow25Percent, repairWhenHpIsLowerThanPercent, gatestonpc,
     lockNpcs, lockPlayers, autoAttack, autoAttackNpcs,
-    palladium, piratebot, cubibot) 
+    ggbot, palladium, piratebot, cubibot) 
   {
     this._pause = pause === true;
 
-    this._palladium = palladium === true;
     this._refresh = refresh === true;
     this._moveRandomly = moveRandomly === true;
     this._killNpcs = killNpcs === true;    
-    this._fleeFromEnemy = fleeFromEnemy === true;
-    this._jumpFromEnemy = jumpFromEnemy === true;
-    this._dodgeTheCbs = dodgeTheCbs === true;
     this._avoidAttackedNpcs = avoidAttackedNpcs === true;
     this._circleNpc = circleNpc === true;
     this.npcCircleRadius = 500;
@@ -21,25 +16,14 @@ class Settings {
     this._repairWhenHpIsLowerThanPercent = repairWhenHpIsLowerThanPercent;
     this._gatestonpc = gatestonpc === true;
 
-    this._ggbot = ggbot === true;
-    this._alpha = alpha === true;
-    this._beta = beta === true;
-    this._gamma = gamma === true;
-    this._delta = delta === true;
-    this._epsilon = epsilon === true;
-    this._zeta = zeta === true;
-    this._kappa = kappa === true;
-    this._lambda = lambda === true;
-    this._kronos = kronos === true;
-    this._hades = hades === true;
-    this._kuiper = kuiper === true;
-
     this._lockNpcs = lockNpcs === true;
     this._lockPlayers = lockPlayers === true;
     this._autoAttack = autoAttack === true;
 
     this._autoAttackNpcs = autoAttackNpcs === true;
     
+    this._palladium = palladium === true;
+    this._ggbot = ggbot === true;
     this._piratebot = piratebot === true;
     this._cubibot = cubibot === true;
 
@@ -85,31 +69,7 @@ class Settings {
   set killNpcs(value) {
     this._killNpcs = value === true;
   }
-
-  get fleeFromEnemy() {
-    return this._fleeFromEnemy;
-  }
-
-  set fleeFromEnemy(value) {
-    this._fleeFromEnemy = value === true;
-  }
-
-  get jumpFromEnemy() {
-    return this._jumpFromEnemy;
-  }
-
-  set jumpFromEnemy(value) {
-    this._jumpFromEnemy = value === true;
-  }
-
-  get dodgeTheCbs() {
-    return this._dodgeTheCbs;
-  }
-
-  set dodgeTheCbs(value) {
-    this._dodgeTheCbs = value === true;
-  }
-
+ 
   get avoidAttackedNpcs() {
     return this._avoidAttackedNpcs;
   }
@@ -156,94 +116,6 @@ class Settings {
 
   set ggbot(value) {
     this._ggbot = value === true;
-  }
-
-  get alpha() {
-    return this._alpha;
-  }
-
-  set alpha(value) {
-    this._alpha = value === true;
-  }
-
-  get beta() {
-    return this._beta;
-  }
-
-  set beta(value) {
-    this._beta = value === true;
-  }
-
-  get gamma() {
-    return this._gamma;
-  }
-
-  set gamma(value) {
-    this._gamma = value === true;
-  }
-
-  get delta() {
-    return this._delta;
-  }
-
-  set delta(value) {
-    this._delta = value === true;
-  }
-
-  get epsilon() {
-    return this._epsilon;
-  }
-
-  set epsilon(value) {
-    this._epsilon = value === true;
-  }
-
-  get zeta() {
-    return this._zeta;
-  }
-
-  set zeta(value) {
-    this._zeta = value === true;
-  }
-
-  get kappa() {
-    return this._kappa;
-  }
-
-  set kappa(value) {
-    this._kappa = value === true;
-  }
-
-  get lambda() {
-    return this._lambda;
-  }
-
-  set lambda(value) {
-    this._lambda = value === true;
-  }
-
-  get kronos() {
-    return this._kronos;
-  }
-
-  set kronos(value) {
-    this._kronos = value === true;
-  }
-
-  get hades() {
-    return this._hades;
-  }
-
-  set hades(value) {
-    this._hades = value === true;
-  }
-
-  get kuiper() {
-    return this._kuiper;
-  }
-
-  set kuiper(value) {
-    this._kuiper = value === true;
   }
 
   get lockNpcs() {

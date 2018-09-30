@@ -539,7 +539,6 @@
   "waitafterRepair" : {
     "message": "Stop x minutes after revive (0 = No Stop)"
   },
-  ,
   "loadSettings": {
     "message": "Load Settings"
   }

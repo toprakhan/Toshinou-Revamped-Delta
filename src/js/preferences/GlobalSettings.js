@@ -42,7 +42,21 @@ class GlobalSettings {
       x4Slot: -1,
       sabSlot: -1,
       stopafterxminutes: 0,
-      waitafterRepair: 0
+      waitafterRepair: 0,
+      fleeFromEnemy: false,
+      jumpFromEnemy: false,
+      dodgeTheCbs: false,
+      alpha: false,
+      beta: false,
+      gamma: false,
+      delta: false,
+      epsilon: false,
+      zeta: false,
+      kappa: false,
+      lambda: false,
+      kronos: false,
+      hades: false,
+      kuiper: false,
     }, items => {
       self._settings = items;
     });
@@ -134,6 +148,18 @@ class GlobalSettings {
     return this._settings.reviveLimit;
   }
 
+  get fleeFromEnemy() {
+	return this._settings.fleeFromEnemy;
+  }
+  
+  get jumpFromEnemy() {
+	return this._settings.jumpFromEnemy;
+  }
+  
+  get dodgeTheCbs() {
+	return this._settings.dodgeTheCbs;
+  }
+  
   get bonusBox() {
     return this._settings.bonusBox;
   }
@@ -204,6 +230,50 @@ class GlobalSettings {
   
   get waitafterRepair() {
     return this._settings.waitafterRepair;
-  } 
+  }
+  
+  get alpha() {
+    return this._settings.alpha;
+  }
+  
+  get beta() {
+    return this._settings.beta;
+  }
+  
+  get gamma() {
+    return this._settings.gamma;
+  }
+  
+  get delta() {
+    return this._settings.delta;
+  }
+  
+  get epsilon() {
+    return this._settings.epsilon;
+  }
+  
+  get zeta() {
+    return this._settings.zeta;
+  }
+  
+  get kappa() {
+    return this._settings.kappa;
+  }
+  
+  get lambda() {
+    return this._settings.lambda;
+  }
+  
+  get kronos() {
+    return this._settings.kronos;
+  }
+  
+  get hades() {
+    return this._settings.hades;
+  }
+  
+  get kuiper() {
+    return this._settings.kuiper;
+  }
 
 }

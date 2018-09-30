@@ -23,30 +23,6 @@ class GeneralSettingsWindow {
         }
       },
       {
-        name: 'fleeFromEnemy',
-        labelText: chrome.i18n.getMessage("fleefromenemy"),
-        appendTo: this.botSettingsWindow,
-        event: function () {
-          window.settings.fleeFromEnemy = this.checked;
-        }
-      },
-      {
-        name: 'jumpFromEnemy',
-        labelText: chrome.i18n.getMessage("jumpandreturn"),
-        appendTo: this.botSettingsWindow,
-        event: function () {
-          window.settings.jumpFromEnemy = this.checked;
-        }
-      },
-      {
-        name: 'dodgeTheCbs',
-        labelText: chrome.i18n.getMessage("dodgethecbs"),
-        appendTo: this.botSettingsWindow,
-        event: function () {
-          window.settings.dodgeTheCbs = this.checked;
-        }
-      },
-      {
         name: 'avoidAttackedNpcs',
         labelText: chrome.i18n.getMessage("avoidattackednpc"),
         appendTo: this.botSettingsWindow,

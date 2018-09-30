@@ -125,6 +125,48 @@
 	    if (items.waitafterRepair) {
 	      $("#waitafterRepair").val(items.waitafterRepair);
 	    }
+	    if (items.fleeFromEnemy) {
+	      $("#fleeFromEnemy").prop('checked', true);
+	    }
+	    if (items.jumpFromEnemy) {
+	      $("#jumpFromEnemy").prop('checked', true);
+	    }
+	    if (items.dodgeTheCbs) {
+          $("#dodgeTheCbs").prop('checked', true);
+        }
+	    if (items.alpha) {
+	      $("#alpha").prop('checked', true);
+	    }
+	    if (items.beta) {
+	      $("#beta").prop('checked', true);
+	    }
+	    if (items.gamma) {
+	      $("#gamma").prop('checked', true);
+	    }
+	    if (items.delta) {
+	      $("#delta").prop('checked', true);
+	    }
+	    if (items.epsilon) {
+	      $("#epsilon").prop('checked', true);
+	    }
+	    if (items.zeta) {
+	      $("#zeta").prop('checked', true);
+	    }
+        if (items.kappa) {
+	      $("#kappa").prop('checked', true);
+	    }
+	    if (items.lambda) {
+	      $("#lambda").prop('checked', true);
+	    }
+	    if (items.kronos) {
+	      $("#kronos").prop('checked', true);
+	    }
+	    if (items.hades) {
+	      $("#hades").prop('checked', true);
+	    }
+	    if (items.kuiper) {
+	      $("#kuiper").prop('checked', true);
+	    }
 	    if (items.npcList) {
 	      var knownNpcList = items.npcList;
 		  for (i = 0; i < knownNpcList.length; i++) {

@@ -34,7 +34,15 @@ class BotModesWindow {
         event: function () {
           window.settings.cubibot = this.checked;
         }
-      }
+      },
+      {
+        name: 'ggbot',
+        labelText: chrome.i18n.getMessage("ggbot"),
+        appendTo: this.BotModesWindow,
+        event: function () {
+          window.settings.ggbot = this.checked;
+        }
+  	  }
     ];
 
     options.forEach((option)=>{

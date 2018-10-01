@@ -76,7 +76,7 @@ class Api {
     let rname = namelist.exec(fullname);
     if(rname != null){
       return rname[0]
-    }else{
+    } else {
       return false;
     }
   }
@@ -86,6 +86,9 @@ class Api {
       this.changeFormationTime = $.now();
       this.formation = n;
       this.quickSlot(n);
+      return true;
+    } else {
+      return false;
     }
   }
   
@@ -198,6 +201,9 @@ class Api {
     if (this.changeConfigTime && $.now() - this.changeConfigTime > 5000) {
       this.changeConfigTime = $.now();
       this.pressKey(67);
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -781,14 +787,21 @@ class Api {
   }
   
   speedMode() {
+	let changeVelo = false;
     if (window.globalSettings.autoChangeConfig) {
       if( window.globalSettings.flyingConfig != window.hero.shipconfig) {
-        this.changeConfig();
+    	if (this.changeConfig()) {
+    	  changeVelo = true;
+    	}
       }
     }
     if (window.globalSettings.changeFormation && api.formation != window.globalSettings.flyingFormation) {
       this.changeFormation(window.globalSettings.flyingFormation);
+      if (this.changeFormation(window.globalSettings.flyingFormation)) {
+    	changeVelo = true;
+      }
     }
+    return changeVelo;
   }
   
 

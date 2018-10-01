@@ -19,21 +19,21 @@
 	      $("#windowOpacity").val(items.windowOpacity);
 	    if (items.timerTick)
 	      $("#timerTick").val(items.timerTick);
-	    if (items.enableRefresh)
-	      $("#enableRefresh").prop('checked', true);
-	    if(items.refreshToReconnect)
-	      $("#refreshToReconnect").prop('checked', true);
+	    if (items.enableRefresh != null)
+	      $("#enableRefresh").prop('checked', items.enableRefresh);
+	    if(items.refreshToReconnect != null)
+	      $("#refreshToReconnect").prop('checked', items.refreshToReconnect);
 	    if (items.refreshTime)
 	      $("#refreshTime").val(items.refreshTime);
-	    if (items.speedFormat) {
+	    if (items.speedFormat != null) {
 	      let sel = `#speedFormat_${items.speedFormat}`;
-	      $(sel).prop('checked', true);
+	      $(sel).prop('checked', items.speedFormat);
 	    }
-	    if (items.windowsToTabs) {
-	      $("#windowsToTabs").prop('checked', true);
+	    if (items.windowsToTabs != null) {
+	      $("#windowsToTabs").prop('checked', items.windowsToTabs);
 	    }
-	    if (items.autoChangeConfig) {
-	      $("#autoChangeConfig").prop('checked', true);
+	    if (items.autoChangeConfig != null) {
+	      $("#autoChangeConfig").prop('checked', items.autoChangeConfig);
 	    }
 	    if (items.attackConfig) {
 	      $("#attackConfig").val(items.attackConfig);
@@ -41,8 +41,8 @@
 	    if (items.flyingConfig) {
 	      $("#flyingConfig").val(items.flyingConfig);
 	    }
-	    if (items.changeFormation) {
-	      $("#changeFormation").prop('checked', true);
+	    if (items.changeFormation != null) {
+	      $("#changeFormation").prop('checked', items.changeFormation);
 	    }
 	    if (items.attackFormation) {
 	      $("#attackFormation").val(items.attackFormation);
@@ -50,8 +50,8 @@
 	    if (items.flyingFormation) {
 	      $("#flyingFormation").val(items.flyingFormation);
 	    }
-	    if (items.useHability) {
-	      $("#useHability").prop('checked', true);
+	    if (items.useHability != null) {
+	      $("#useHability").prop('checked', items.useHability);
 	    }
 	    if (items.habilitySlot) {
 	      $("#habilitySlot").val(items.habilitySlot);
@@ -74,35 +74,35 @@
 	    if (items.reviveLimit) {
 	      $("#reviveLimit").val(items.reviveLimit);
 	    }
-	    if (items.bonusBox) {
-	      $("#bonusBox").prop('checked', true);
+	    if (items.bonusBox != null) {
+	      $("#bonusBox").prop('checked', items.bonusBox);
 	    }
-	    if (items.materials) {
-	      $("#materials").prop('checked', true);
+	    if (items.materials != null) {
+	      $("#materials").prop('checked', items.materials);
 	    }
-	    if (items.cargoBox) {
-	      $("#cargoBox").prop('checked', true);
+	    if (items.cargoBox != null) {
+	      $("#cargoBox").prop('checked', items.cargoBox);
 	    }
-	    if (items.greenOrGoldBooty) {
-	      $("#greenOrGoldBooty").prop('checked', true);
+	    if (items.greenOrGoldBooty != null) {
+	      $("#greenOrGoldBooty").prop('checked', items.greenOrGoldBooty);
 	    }
-	    if (items.redBooty) {
-	      $("#redBooty").prop('checked', true);
+	    if (items.redBooty != null) {
+	      $("#redBooty").prop('checked', items.redBooty);
 	    }
-	    if (items.blueBooty) {
-	      $("#blueBooty").prop('checked', true);
+	    if (items.blueBooty != null) {
+	      $("#blueBooty").prop('checked', items.blueBooty);
 	    }
-	    if (items.masqueBooty) {
-	      $("#masqueBooty").prop('checked', true);
+	    if (items.masqueBooty != null) {
+	      $("#masqueBooty").prop('checked', items.masqueBooty);
 	    }
-	    if (items.collectBoxWhenCircle) {
-	      $("#collectBoxWhenCircle").prop('checked', true);
+	    if (items.collectBoxWhenCircle != null) {
+	      $("#collectBoxWhenCircle").prop('checked', items.collectBoxWhenCircle);
 	    }
 	    if (items.workmap) {
 	      $("#workmap").val(items.workmap);
 	    }
-	    if (items.changeAmmunition) {
-	      $("#changeAmmunition").prop('checked', true);
+	    if (items.changeAmmunition != null) {
+	      $("#changeAmmunition").prop('checked', items.changeAmmunition);
 	    }
 	    if (items.x1Slot) {
 	      $("#x1Slot").val(items.x1Slot);
@@ -125,50 +125,50 @@
 	    if (items.waitafterRepair) {
 	      $("#waitafterRepair").val(items.waitafterRepair);
 	    }
-	    if (items.fleeFromEnemy) {
-	      $("#fleeFromEnemy").prop('checked', true);
+	    if (items.fleeFromEnemy != null) {
+	      $("#fleeFromEnemy").prop('checked', items.fleeFromEnemy);
 	    }
-	    if (items.jumpFromEnemy) {
-	      $("#jumpFromEnemy").prop('checked', true);
+	    if (items.jumpFromEnemy != null) {
+	      $("#jumpFromEnemy").prop('checked', items.jumpFromEnemy);
 	    }
-	    if (items.dodgeTheCbs) {
-          $("#dodgeTheCbs").prop('checked', true);
+	    if (items.dodgeTheCbs != null) {
+          $("#dodgeTheCbs").prop('checked', items.dodgeTheCbs);
         }
-	    if (items.moveRandomly) {
-	      $("#moveRandomly").prop('checked', true);
+	    if (items.moveRandomly != null) {
+	      $("#moveRandomly").prop('checked', items.moveRandomly);
 	    }
-	    if (items.alpha) {
-	      $("#alpha").prop('checked', true);
+	    if (items.alpha != null) {
+	      $("#alpha").prop('checked', items.alpha);
 	    }
-	    if (items.beta) {
-	      $("#beta").prop('checked', true);
+	    if (items.beta != null) {
+	      $("#beta").prop('checked', items.beta);
 	    }
-	    if (items.gamma) {
-	      $("#gamma").prop('checked', true);
+	    if (items.gamma != null) {
+	      $("#gamma").prop('checked', items.gamma);
 	    }
-	    if (items.delta) {
-	      $("#delta").prop('checked', true);
+	    if (items.delta != null) {
+	      $("#delta").prop('checked', items.delta);
 	    }
-	    if (items.epsilon) {
-	      $("#epsilon").prop('checked', true);
+	    if (items.epsilon != null) {
+	      $("#epsilon").prop('checked', items.epsilon);
 	    }
-	    if (items.zeta) {
-	      $("#zeta").prop('checked', true);
+	    if (items.zeta != null) {
+	      $("#zeta").prop('checked', items.zeta);
 	    }
-        if (items.kappa) {
-	      $("#kappa").prop('checked', true);
+        if (items.kappa != null) {
+	      $("#kappa").prop('checked', items.kappa);
 	    }
-	    if (items.lambda) {
-	      $("#lambda").prop('checked', true);
+	    if (items.lambda != null) {
+	      $("#lambda").prop('checked', items.lambda);
 	    }
-	    if (items.kronos) {
-	      $("#kronos").prop('checked', true);
+	    if (items.kronos != null) {
+	      $("#kronos").prop('checked', items.kronos);
 	    }
-	    if (items.hades) {
-	      $("#hades").prop('checked', true);
+	    if (items.hades != null) {
+	      $("#hades").prop('checked', items.hades);
 	    }
-	    if (items.kuiper) {
-	      $("#kuiper").prop('checked', true);
+	    if (items.kuiper != null) {
+	      $("#kuiper").prop('checked', items.kuiper);
 	    }
 	    if (items.npcList) {
 	      var knownNpcList = items.npcList;

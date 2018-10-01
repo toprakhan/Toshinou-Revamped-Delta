@@ -172,9 +172,12 @@ function init() {
 	api.rute = null;
 	let npcList = window.globalSettings.npcList;
 	window.settings.moveRandomly = window.globalSettings.moveRandomly;
-    for (i = 0; i < npcList.length; i++) {
-      window.settings.updateNpc(npcList[i]["name"], npcList[i]);
-    }
+	if(window.settings.npcs != null){
+      let npcList = window.globalSettings.npcList;
+      for (i = 0; i < npcList.length; i++) {
+        window.settings.updateNpc(npcList[i]["name"], npcList[i]);
+      }
+	}
   });
   
   if (window.globalSettings.enableRefresh) {

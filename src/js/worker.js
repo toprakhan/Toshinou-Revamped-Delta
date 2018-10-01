@@ -633,16 +633,20 @@ if (window.globalSettings.fleeFromEnemy && !window.settings.palladium) {
   }
   
   if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && !window.settings.palladium && !window.bigMap) {
+	api.speedMode();
     x = MathUtils.random(200, 20800);
     y = MathUtils.random(200, 12900);
   } else if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && !window.settings.palladium && window.bigMap) {
+	api.speedMode();
     x = MathUtils.random(500, 41500);
     y = MathUtils.random(500, 25700);
   } else if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && window.settings.palladium) {
+	api.speedMode();
     x = MathUtils.random(13000, 30400);
     y = MathUtils.random(19000, 25500);
   }
-  if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && window.settings.cubibot) { 
+  if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && window.settings.cubibot) {
+	api.speedMode();
     x = MathUtils.random(7000, 14000);
     y = MathUtils.random(3000, 8500);   
   }

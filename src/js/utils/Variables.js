@@ -1,97 +1,107 @@
 class Variables {
 
   static get boxType() {
-    return "_-41y"; //up
+    return "_-Pg";
   }
 
   static get attackerId() {
-    return "_-NZ"; //Agresor
+    return "_-m23";
   }
 
   static get attackHp() {
-    return "_-6n"; //up
+    return "_-m3F";
   }
 
   static get attackShd() {
-    return "_-G2S";  //up
+    return "_-r1H";
   }
 
   static get attackedId() {
-    return "_-d4P"; //Agredido
+    return "_-E2I";
+  }
+
+  static get heroAttackedId() {
+    return "_-E2I";
   }
 
   static get moveDuration() {
-    return "_-VN";  //Up
+    return "_-Z2l";
   }
 
   static get shipDestoyedId() {
-    return "_-65s"; //up
+    return "_-N4j";
   }
 
   static get heroInitMaxHp() {
-    return "_-q21";  //up
+    return "_-b1E";
   }
 
   static get heroInitMaxShd() {
-    return "_-qW"; //Up
+    return "_-c4z";
   }
 
   static get heroInitHp() {
-    return "_-m1u"; //Up
+    return "_-Ut";
   }
+  
   static get heroUpdateShd(){
-    return "_-83K"; //up
+    return "_-r2D";
   }
 
   static get hpUpdateMaxHp() {
-    return "_-15x";  //Up
+    return "_-z1x";
   }
 
   static get hpUpdateHp() {
-    return "_-63C"; //Up
+    return "_-Nn";
   }
 
   static get selectMaxHp() {
-    return "_-15x"; //Up
+    return "_-z1x";
   }
 
   static get selectMaxShd() {
-    return "_-qW"; //ip
+    return "_-c4z";
   }
 
   static get selectHp() {
-    return "_-63C";  //Up
+    return "_-Nn";
   }
 
   static get clanDiplomacy() {
-    return "_-Q1X"; //uP
+    return "_-87";
   }
 
   static get gateId() {
-    return "_-Q2V"; //uo
+    return "_-y3Z";
   }
 
   static get gateType() {
-    return "_-u49"; //uo
+    return "_-DD";
   }
 
   static get resource() {
-    return "_-R3h";//up
+    return "_-y4N";
   }
 
   static get resourceType() {
-    return "_-S27";	//up
+    return "_-52U";
   }
 
   static get assetCreateX() {
-    return "_-U18";//Up
+    return "_-14L";
   }
 
   static get assetCreateY() {
-    return "_-b3H";//Up
+    return "_-O4e";
   }
 
   static get battlestationClanDiplomacy() {
-    return "_-51z"; //Up
+    return "_-j1e";
   }
+
+  static get heroPetId() {
+    return "_-y2m";
+  }
+  
 }

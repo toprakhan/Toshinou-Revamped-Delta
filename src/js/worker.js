@@ -61,6 +61,7 @@ $(document).ready(function () {
     window.hasJumped = false;
     window.debug = false;
     window.tickTime = window.globalSettings.timerTick;
+    window.settings.moveRandomly = false;
     let hm = new HandlersManager(api);
 
     hm.registerCommand(BoxInitHandler.ID, new BoxInitHandler());
@@ -115,6 +116,7 @@ function init() {
     window.settings.updateNpc(npcList[i]["name"], npcList[i]);
   }
   
+  window.settings.moveRandomly = window.globalSettings.moveRandomly;
   window.setInterval(logic, window.tickTime);
   
   
@@ -169,6 +171,7 @@ function init() {
 	window.globalSettings = new GlobalSettings();
 	api.rute = null;
 	let npcList = window.globalSettings.npcList;
+	window.settings.moveRandomly = window.globalSettings.moveRandomly;
     for (i = 0; i < npcList.length; i++) {
       window.settings.updateNpc(npcList[i]["name"], npcList[i]);
     }
@@ -614,12 +617,7 @@ if (window.globalSettings.fleeFromEnemy && !window.settings.palladium) {
             api.blackListHash(api.targetBoxHash);
             api.resetTarget("box");
           }
-        } else if(api.targetShip) {
-		  if (api.targetShip.distanceTo(result.cbsPos) < 1800) {
-			api.blackListId(api.targetShip.id);
-			api.resetTarget("enemy");
-		  }
-		}
+        }
         
         let f = Math.atan2(window.hero.position.x - result.cbsPos.x, window.hero.position.y - result.cbsPos.y) + 0.5;
         let s = Math.PI / 180;

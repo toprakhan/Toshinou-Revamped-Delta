@@ -1,13 +1,12 @@
 class Settings {
   constructor(pause, 
-    refresh, moveRandomly, killNpcs, avoidAttackedNpcs, circleNpc, dontCircleWhenHpBelow25Percent, repairWhenHpIsLowerThanPercent, gatestonpc,
+    refresh, killNpcs, avoidAttackedNpcs, circleNpc, dontCircleWhenHpBelow25Percent, repairWhenHpIsLowerThanPercent, gatestonpc,
     lockNpcs, lockPlayers, autoAttack, autoAttackNpcs,
     ggbot, palladium, piratebot, cubibot) 
   {
     this._pause = pause === true;
 
     this._refresh = refresh === true;
-    this._moveRandomly = moveRandomly === true;
     this._killNpcs = killNpcs === true;    
     this._avoidAttackedNpcs = avoidAttackedNpcs === true;
     this._circleNpc = circleNpc === true;
@@ -52,14 +51,6 @@ class Settings {
 
   set refresh(value) {
     this._refresh = value === true;
-  }
-
-  get moveRandomly() {
-    return this._moveRandomly;
-  }
-
-  set moveRandomly(value) {
-    this._moveRandomly = value === true;
   }
 
   get killNpcs() {

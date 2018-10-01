@@ -134,6 +134,9 @@
 	    if (items.dodgeTheCbs) {
           $("#dodgeTheCbs").prop('checked', true);
         }
+	    if (items.moveRandomly) {
+	      $("#moveRandomly").prop('checked', true);
+	    }
 	    if (items.alpha) {
 	      $("#alpha").prop('checked', true);
 	    }

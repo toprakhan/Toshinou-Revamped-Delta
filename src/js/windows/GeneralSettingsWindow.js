@@ -7,14 +7,6 @@ class GeneralSettingsWindow {
 
     let controls = [
       {
-        name: 'moveRandomly',
-        labelText: chrome.i18n.getMessage("moverandomly"),
-        appendTo: this.botSettingsWindow,
-        event: function () {
-          window.settings.moveRandomly = this.checked;
-        }
-      },
-      {
         name: 'npcKiller',
         labelText: chrome.i18n.getMessage("killnpcs"),
         appendTo: this.botSettingsWindow,

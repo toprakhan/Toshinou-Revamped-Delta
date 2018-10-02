@@ -63,6 +63,9 @@ class Minimap {
 
       if (ship.isNpc) {
         ct.fillStyle = "rgb(255, 0, 245)";
+      } else if (ship.inGroup) {
+    	ct.fillStyle = "rgb(17, 214, 0)";
+    	ct.fillText(ship.name, pos.x / window.b1 + 1, pos.y / window.b2 + 13);
       } else if (ship.isEnemy) {
         ct.fillStyle = "rgb(255, 0, 0)";
         if (ship.cloaked) {

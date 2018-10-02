@@ -18,7 +18,6 @@ class HandlersManager {
       let s = e.detail.split("|");
       let id = parseInt(s[0]);
       let cmd = s[1];
-      
       let h = self.handlers[id];
       if (h != null) {
         h({

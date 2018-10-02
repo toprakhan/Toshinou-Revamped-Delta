@@ -14,7 +14,7 @@ class ShipRemovedHandler {
 
       let ship = a.ships[id];
 
-      if (ship != null) {
+      if (ship != null && !ship.inGroup) {
         delete a.ships[id];
       }
     }

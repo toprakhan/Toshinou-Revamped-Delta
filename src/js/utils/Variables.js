@@ -104,4 +104,8 @@ class Variables {
     return "_-y2m";
   }
   
+  static get groupShipID() {
+	return "_-N4e";
+  }
+  
 }

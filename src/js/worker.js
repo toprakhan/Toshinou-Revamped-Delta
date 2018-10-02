@@ -62,6 +62,7 @@ $(document).ready(function () {
     window.debug = false;
     window.tickTime = window.globalSettings.timerTick;
     window.settings.moveRandomly = false;
+    window.invertedMovement = false;
     let hm = new HandlersManager(api);
 
     hm.registerCommand(BoxInitHandler.ID, new BoxInitHandler());
@@ -80,6 +81,9 @@ $(document).ready(function () {
     hm.registerCommand(HeroUpdateHitpointsHandler.ID, new HeroUpdateHitpointsHandler());
     hm.registerCommand(HeroUpdateShieldHandler.ID, new HeroUpdateShieldHandler());
     hm.registerCommand(AssetCreatedHandler.ID, new AssetCreatedHandler());
+    hm.registerCommand(ShipConditionHandler.ID, new ShipConditionHandler());
+    /*hm.registerCommand(GroupCreateHandler.ID, new GroupCreateHandler());
+    hm.registerCommand(GroupShipUpdatePosHandler.ID, new GroupShipUpdatePosHandler());*/
 
     hm.registerEvent("updateHeroPos", new HeroPositionUpdateEventHandler());
     hm.registerEvent("movementDone", new MovementDoneEventHandler());
@@ -301,6 +305,7 @@ function logic() {
     if (window.globalSettings.useHability && (window.hero.skillName == "aegis" || window.hero.skillName == "hammerclaw")){
       api.useHabilityThree();
     }
+    return;
   } else if (api.isRepairing && window.hero.hp === window.hero.maxHp) {
     api.isRepairing = false;
     api.attackMode();

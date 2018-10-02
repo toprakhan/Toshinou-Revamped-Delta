@@ -177,6 +177,10 @@ class Api {
 
   move(x, y) {
     if (!isNaN(x) && !isNaN(y)) {
+      if(window.invertedMovement){
+	    x = x + ((window.hero.position.x - x)*2);
+		y = y + ((window.hero.position.y - y)*2);
+	  }
       window.hero.move(new Vector2D(x, y));
     }
   }

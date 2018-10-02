@@ -78,7 +78,9 @@
 		"js/handlers/commands/HeroUpdateHitpointsHandler.js",
 		"js/handlers/commands/AssetCreatedHandler.js",
 		"js/handlers/commands/HeroUpdateShieldHandler.js",
-		"js/handlers/commands/QuickSlotHandler.js",
+		"js/handlers/commands/ShipConditionHandler.js",
+		"js/handlers/commands/GroupCreateHandler.js",
+		"js/handlers/commands/GroupShipUpdatePosHandler.js",
 		"js/Api.js",
 		"js/ControlFactory.js",
 		"js/worker.js"

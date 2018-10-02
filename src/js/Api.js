@@ -473,7 +473,7 @@ class Api {
     let finalGate;
 
     this.gates.forEach(gate => {
-      if(gate.gateId != 150000409 && gate.gateId != 150000410 && gate.gateId != 150000411){
+      if(gate.gateId != 150000409 && gate.gateId != 150000410 && gate.gateId != 150000411 && gate.gateType == 1){
         let dist = window.hero.distanceTo(gate.position);
         if (dist < minDist) {
           finalGate = gate;

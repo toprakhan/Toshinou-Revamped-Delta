@@ -174,7 +174,6 @@ function init() {
   reloadBtn.on('click', (e) => {
 	window.globalSettings = new GlobalSettings();
 	api.rute = null;
-	let npcList = window.globalSettings.npcList;
 	window.settings.moveRandomly = window.globalSettings.moveRandomly;
 	if(window.settings.npcs != null){
       let npcList = window.globalSettings.npcList;
@@ -206,7 +205,6 @@ function init() {
 }
 
 function logic() {
-
   let circleBox = null;
   if (api.isDisconnected) {
     if (window.fleeingFromEnemy) {

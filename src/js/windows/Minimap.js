@@ -21,9 +21,10 @@ class Minimap {
 
     this.canvas.click(function (e) {
       var pos = self.minimap.position();
-      var x = (e.clientX - pos.left) * (window.b1) - window.b3;
-      var y = (e.clientY - pos.top) * (window.b2) - window.b3;
-      Injector.injectScript('document.getElementById("preloader").moveShip(' + x + ',' + y + ');');
+
+      var x = (e.clientX - pos.left) * window.b1 - window.b3;
+      var y = (e.clientY - pos.top) * window.b2 - window.b3;
+      //Injector.injectScript('document.getElementById("preloader").moveShip(' + x + ',' + y + ');');
     });
   }
 

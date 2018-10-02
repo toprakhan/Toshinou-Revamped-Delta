@@ -473,7 +473,7 @@ class Api {
     let finalGate;
 
     this.gates.forEach(gate => {
-      if(gate.gateId != 150000409 && gate.gateId != 150000410 && gate.gateId != 150000411 && gate.gateType == 1){
+      if(gate.gateId != 150000409 && gate.gateId != 150000410 && gate.gateId != 150000411 && (gate.gateType == 1 || gate.gateType == 51 || gate.gateType == 52)){
         let dist = window.hero.distanceTo(gate.position);
         if (dist < minDist) {
           finalGate = gate;
@@ -596,7 +596,9 @@ class Api {
         11:{10:1,8:1,12:1},12:{10:1,11:1,15:2,4:1},15:{12:1,14:2,13:2,16:2},16:{13:2,14:2,15:2,17:1,21:1,25:1},29:{17:1,21:1,25:1},17:{16:2,29:3,19:1,18:1},18:{17:1,20:1},19:{17:1,20:1},20:{18:1,19:1},21:{16:2,29:3,22:1,23:1},22:{21:1,24:1},23:{21:1,24:1},24:{23:1,22:1},25:{29:3,16:2,27:1,26:1},27:{25:1,28:1},26:{25:1,28:1},28:{26:1,27:1}},
         graph = new Graph(mapSystem);
         let imcompleteRute = graph.findShortestPath(window.hero.mapId, idWorkMap);
-        this.rute = this.completeRute(imcompleteRute);
+        if(imcompleteRute != null){
+          this.rute = this.completeRute(imcompleteRute);
+        }
     }else{
         let map = this.rute[0];
         let portal = map.portals[0];

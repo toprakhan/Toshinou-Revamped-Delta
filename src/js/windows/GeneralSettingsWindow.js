@@ -7,13 +7,45 @@ class GeneralSettingsWindow {
 
     let controls = [
       {
-        name: 'npcKiller',
-        labelText: chrome.i18n.getMessage("killnpcs"),
+        name: 'palladium',
+        labelText: chrome.i18n.getMessage("palladiumbot"),
         appendTo: this.botSettingsWindow,
         event: function () {
-          window.settings.killNpcs = this.checked;
+          window.settings.palladium = this.checked;
         }
       },
+      {
+        name: 'piratebot',
+        labelText: chrome.i18n.getMessage("piratebot"),
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.piratebot = this.checked;
+        }
+      },
+      {
+        name: 'piratebotsag',
+        labelText: chrome.i18n.getMessage("piratebotsag"),
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.piratebotsag = this.checked;
+        }
+      },
+      {
+        name: 'cubibot',
+        labelText: chrome.i18n.getMessage("cubibot"),
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.cubibot = this.checked;
+        }
+      },
+	  {
+	    name: 'ggbot',
+	    labelText: chrome.i18n.getMessage("ggbot"),
+        appendTo: this.botSettingsWindow,
+	    event: function () {
+	      window.settings.ggbot = this.checked;
+	    }
+  	  },
       {
         name: 'avoidAttackedNpcs',
         labelText: chrome.i18n.getMessage("avoidattackednpc"),

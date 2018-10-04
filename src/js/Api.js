@@ -374,7 +374,7 @@ class Api {
     let shipsAround = 0;
     for (let property in this.ships) {
       let ship = this.ships[property];
-      if (ship && ship.distanceTo(window.hero.position) < distance) {
+      if (ship && ship.distanceTo(window.hero.position) <= distance) {
         shipsAround++;
       }
     }
@@ -573,6 +573,18 @@ class Api {
       return result;
     }
     return result;
+  }
+  
+  countShipsAround(distance) {
+	let shipsCount = Object.keys(this.ships).length;
+	 let shipsAround = 0;
+	 for (let property in this.ships) {
+	   let ship = this.ships[property];
+	   if (ship && ship.distanceTo(window.hero.position) < distance && !ship.isNpc) {
+	     shipsAround++;
+	   }
+	 }
+	 return shipsAround;
   }
 
   findGatebyID(gateId) {

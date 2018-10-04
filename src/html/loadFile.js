@@ -137,6 +137,9 @@
 	    if (items.moveRandomly != null) {
 	      $("#moveRandomly").prop('checked', items.moveRandomly);
 	    }
+	    if (items.killNpcs != null) {
+		  $("#killNpcs").prop('checked', items.killNpcs);
+		}
 	    if (items.alpha != null) {
 	      $("#alpha").prop('checked', items.alpha);
 	    }

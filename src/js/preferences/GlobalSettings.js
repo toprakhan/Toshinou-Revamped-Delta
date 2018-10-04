@@ -47,6 +47,7 @@ class GlobalSettings {
       jumpFromEnemy: false,
       dodgeTheCbs: false,
       moveRandomly: false,
+      killNpcs: false,
       alpha: false,
       beta: false,
       gamma: false,
@@ -163,6 +164,10 @@ class GlobalSettings {
   
   get moveRandomly() {
 	return this._settings.moveRandomly;
+  }
+
+  get killNpcs() {
+    return this._settings.killNpcs;
   }
   
   get bonusBox() {

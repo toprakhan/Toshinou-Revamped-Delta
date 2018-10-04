@@ -47,7 +47,6 @@
 		"js/windows/AttackWindow.js",
 		"js/windows/GeneralSettingsWindow.js",
 		"js/windows/StatisticWindow.js",
-		"js/windows/BotModesWindow.js",
 		"js/objects/Movable.js",
 		"js/objects/Box.js",
 		"js/objects/Hero.js",

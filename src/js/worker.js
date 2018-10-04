@@ -62,6 +62,7 @@ $(document).ready(function () {
     window.debug = false;
     window.tickTime = window.globalSettings.timerTick;
     window.settings.moveRandomly = false;
+    window.settings.killNpcs = false;
     window.invertedMovement = false;
     let hm = new HandlersManager(api);
 
@@ -109,10 +110,6 @@ function init() {
   window.statisticWindow = new StatisticWindow();
   window.statisticWindow.createWindow();
   
-  window.botModesWindows = new BotModesWindow();
-  window.botModesWindows.createWindow();
-  
-  
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
   let npcList = window.globalSettings.npcList;
@@ -121,6 +118,7 @@ function init() {
   }
   
   window.settings.moveRandomly = window.globalSettings.moveRandomly;
+  window.settings.killNpcs = window.globalSettings.killNpcs;
   window.setInterval(logic, window.tickTime);
   
   
@@ -174,13 +172,16 @@ function init() {
   reloadBtn.on('click', (e) => {
 	window.globalSettings = new GlobalSettings();
 	api.rute = null;
-	window.settings.moveRandomly = window.globalSettings.moveRandomly;
-	if(window.settings.npcs != null){
-      let npcList = window.globalSettings.npcList;
-      for (i = 0; i < npcList.length; i++) {
-        window.settings.updateNpc(npcList[i]["name"], npcList[i]);
-      }
-	}
+	setTimeout(() => {
+	  window.settings.moveRandomly = window.globalSettings.moveRandomly;
+	  window.settings.killNpcs = window.globalSettings.killNpcs;
+	  if(window.settings.npcs != null){
+	    let npcList = window.globalSettings.npcList;
+	    for (i = 0; i < npcList.length; i++) {
+	      window.settings.updateNpc(npcList[i]["name"], npcList[i]);
+	    }
+	  }
+    }, 7000);
   });
   
   if (window.globalSettings.enableRefresh) {
@@ -341,11 +342,10 @@ function logic() {
     }
   }
 
-if (window.globalSettings.fleeFromEnemy && !window.settings.palladium) {
+if (window.globalSettings.fleeFromEnemy) {
   let enemyResult = api.checkForEnemy();
 
   if (enemyResult.run) {
-    api.speedMode();
     if (window.globalSettings.useHability) {
       if (window.hero.skillname == "mimesis") {
         api.useHabilityTwo();
@@ -358,7 +358,8 @@ if (window.globalSettings.fleeFromEnemy && !window.settings.palladium) {
         api.useHabilityTwo();
       }
     }
-    if (window.globalSettings.jumpFromEnemy && !window.hasJumped) {
+    if (window.globalSettings.jumpFromEnemy && !window.hasJumped & !window.settings.palladium) {
+      api.speedMode();
       let gate = api.findNearestGate();
       if (gate.gate) {
         let x = gate.gate.position.x + MathUtils.random(-100, 100);
@@ -385,7 +386,8 @@ if (window.globalSettings.fleeFromEnemy && !window.settings.palladium) {
         }
         return;
       }
-    } else {
+    } else if (!window.settings.palladium) {
+      api.speedMode();
       let gate = api.findNearestGateForRunAway(enemyResult.enemy);
       if (gate.gate) {
         let x = gate.gate.position.x + MathUtils.random(-100, 100);
@@ -473,73 +475,6 @@ if (window.globalSettings.fleeFromEnemy && !window.settings.palladium) {
     return;
   }
 
-  if (api.targetBoxHash == null && api.targetShip == null) {
-    let ship = api.findNearestShip();
-
-    if (!ship.ship || ship.distance > 1000) {
-      let box = api.findNearestBox();
-      if (box.box) {
-    	api.collectBox(box.box);
-        api.targetBoxHash = box.box.hash;
-        return;
-      }
-    }
-    if (ship.ship && ship.distance < 1000 && window.settings.killNpcs && ship.ship.id != notrightId) {
-      api.lockShip(ship.ship);
-      api.triedToLock = true;
-      api.targetShip = ship.ship;
-      return;
-    } else if (ship.ship && window.settings.killNpcs && ship.ship.id != notrightId) {
-      ship.ship.update();
-      api.move(ship.ship.position.x - MathUtils.random(-50, 50), ship.ship.position.y - MathUtils.random(-50, 50));
-      api.targetShip = ship.ship;
-      return;
-    }
-  }
-
-  if (api.targetShip && window.settings.killNpcs) {
-    if (!api.triedToLock && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id)) {
-      api.targetShip.update();
-      let dist = api.targetShip.distanceTo(window.hero.position);
-      if (dist < 600) {
-        api.lockShip(api.targetShip);
-        api.triedToLock = true;
-        return;
-      }
-    }
-
-    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 != api.lockedShip.maxShd && window.settings.avoidAttackedNpcs) {
-      notrightId = api.lockedShip.id;
-      api.resetTarget("enemy");
-      return;
-    }
-
-    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 == api.lockedShip.maxShd && window.settings.avoidAttackedNpcs || !api.attacking && api.lockedShip && !window.settings.avoidAttackedNpcs) {
-      api.startLaserAttack();
-      api.lastAttack = $.now();
-      api.attacking = true;
-      return;
-    }
-  }
-
-  if (api.targetBoxHash && $.now() - api.collectTime > 7000) {
-    let box = api.boxes[api.targetBoxHash];
-    if (box && box.distanceTo(window.hero.position) > 1000) {
-      api.collectTime = $.now();
-    } else {
-      delete api.boxes[api.targetBoxHash];
-      api.blackListHash(api.targetBoxHash);
-      api.resetTarget("box");
-    }
-  }
-
-  if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) || ($.now() - api.lastAttack > 10000)) {
-    api.resetTarget("enemy");
-  }
-
-  let x;
-  let y;
-
   if (window.settings.palladium) {
     let palladiumBlackList = [
     "-=[ Battleray ]=-",
@@ -610,6 +545,84 @@ if (window.globalSettings.fleeFromEnemy && !window.settings.palladium) {
       api.protegitmode;     
     } 
   }
+	  
+  if (api.targetBoxHash == null && api.targetShip == null) {
+    let ship = api.findNearestShip();
+
+    if (!ship.ship || ship.distance > 1000) {
+      let box = api.findNearestBox();
+      if (box.box) {
+    	api.collectBox(box.box);
+        api.targetBoxHash = box.box.hash;
+        return;
+      }
+    }
+    if (ship.ship && ship.distance < 1000 && window.settings.killNpcs && ship.ship.id != notrightId) {
+      api.lockShip(ship.ship);
+      api.triedToLock = true;
+      api.targetShip = ship.ship;
+      return;
+    } else if (ship.ship && window.settings.killNpcs && ship.ship.id != notrightId) {
+      ship.ship.update();
+      api.move(ship.ship.position.x - MathUtils.random(-50, 50), ship.ship.position.y - MathUtils.random(-50, 50));
+      api.targetShip = ship.ship;
+      return;
+    }
+  }
+
+  if (api.targetShip && window.settings.killNpcs) {
+    if (!api.triedToLock && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id)) {
+      api.targetShip.update();
+      let dist = api.targetShip.distanceTo(window.hero.position);
+      if (dist < 600) {
+        api.lockShip(api.targetShip);
+        api.triedToLock = true;
+        return;
+      }
+    }
+
+    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 != api.lockedShip.maxShd && window.settings.avoidAttackedNpcs) {
+      notrightId = api.lockedShip.id;
+      api.resetTarget("enemy");
+      return;
+    }
+
+    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 == api.lockedShip.maxShd && window.settings.avoidAttackedNpcs || !api.attacking && api.lockedShip && !window.settings.avoidAttackedNpcs) {
+      api.startLaserAttack();
+      api.lastAttack = $.now();
+      api.attacking = true;
+      return;
+    }
+  }
+
+  if (window.settings.palladium && api.targetBoxHash && $.now() - api.collectTime > 1000) {
+	let box = api.boxes[api.targetBoxHash];
+    if(box && box.distanceTo(window.hero.position) < 200 && api.countShipsAround(200) > 0) {
+      delete api.boxes[api.targetBoxHash];
+      api.blackListHash(api.targetBoxHash);
+      api.resetTarget("box");
+      return;
+    }
+  }
+  
+  if (api.targetBoxHash && $.now() - api.collectTime > 7000) {
+    let box = api.boxes[api.targetBoxHash];
+    if (box && box.distanceTo(window.hero.position) > 1000) {
+      api.collectTime = $.now();
+    } else {
+      delete api.boxes[api.targetBoxHash];
+      api.blackListHash(api.targetBoxHash);
+      api.resetTarget("box");
+      return;
+    }
+  }
+
+  if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) || ($.now() - api.lastAttack > 10000)) {
+    api.resetTarget("enemy");
+  }
+
+  let x;
+  let y;
   
   /* Dodge the CBS */
   if (window.globalSettings.dodgeTheCbs && api.battlestation != null) {

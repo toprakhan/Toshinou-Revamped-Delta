@@ -133,6 +133,7 @@ function saveOptions(e) {
     dodgeTheCbs:        $("#dodgeTheCbs").prop('checked'),
     moveRandomly:       $("#moveRandomly").prop('checked'),
     killNpcs:			$("#killNpcs").prop('checked'),
+    avoidAttackedNpcs:  $("#avoidAttackedNpcs").prop('checked'),
     alpha:              $("#alpha").prop('checked'),
     beta:               $("#beta").prop('checked'),
     gamma:              $("#gamma").prop('checked'),
@@ -281,6 +282,7 @@ function downloadProfile(e) {
     dodgeTheCbs:        $("#dodgeTheCbs").prop('checked'),
     moveRandomly:       $("#moveRandomly").prop('checked'),
     killNpcs:           $("#killNpcs").prop('checked'),
+    avoidAttackedNpcs:  $("#avoidAttackedNpcs").prop('checked'),
     alpha:              $("#alpha").prop('checked'),
     beta:               $("#beta").prop('checked'),
     gamma:              $("#gamma").prop('checked'),
@@ -329,7 +331,7 @@ $('[data-resource]').each(function() {
                 "bonusBox", "materials", "cargoBox", "greenOrGoldBooty",
                 "redBooty", "blueBooty", "masqueBooty", "collectBoxWhenCircle", 
                 "workmap", "npcList", "changeAmmunition", "x1Slot", "x2Slot", "x3Slot", "x4Slot", "sabSlot", 
-                "stopafterxminutes", "waitafterRepair", "fleeFromEnemy", "jumpFromEnemy", "dodgeTheCbs", "moveRandomly", "killNpcs",
+                "stopafterxminutes", "waitafterRepair", "fleeFromEnemy", "jumpFromEnemy", "dodgeTheCbs", "moveRandomly", "killNpcs", "avoidAttackedNpcs",
                 "alpha", "beta", "gamma", "delta", "epsilon", "zeta", "kappa", "lambda", "kronos", "hades", "kuiper"];
 
   var onGet = items => {
@@ -466,6 +468,9 @@ $('[data-resource]').each(function() {
     }
     if (items.killNpcs) {
       $("#killNpcs").prop('checked', true);
+    }
+    if (items.avoidAttackedNpcs) {
+      $("#avoidAttackedNpcs").prop('checked', true);
     }
     if (items.alpha) {
       $("#alpha").prop('checked', true);

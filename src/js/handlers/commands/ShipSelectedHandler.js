@@ -15,7 +15,7 @@ class ShipSelectedHandler {
       if (ship != null){
         a.lockedShip = ship;
         if(window.settings.autoAttack || window.settings.autoAttackNpcs && a.autoLocked && $.now() - a.lastAutoLock < 900){
-          if (!a.attacking && window.settings.avoidAttackedNpcs || !a.attacking && a.lockedShip) {
+          if (!a.attacking && window.globalSettings.avoidAttackedNpcs || !a.attacking && a.lockedShip) {
             a.startLaserAttack();
             a.lastAttack = $.now();
             a.attacking = true;

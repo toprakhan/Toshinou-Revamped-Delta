@@ -328,95 +328,99 @@ function logic() {
       api.ggDeltaFix();
     }
     if (api.targetBoxHash == null) {
-      api.jumpInGG(2, window.globalSettings.alpha);
-      api.jumpInGG(3, window.globalSettings.beta);
-      api.jumpInGG(4, window.globalSettings.gamma);
-      api.jumpInGG(5, window.globalSettings.delta);
-      api.jumpInGG(53, window.globalSettings.epsilon);
-      api.jumpInGG(54, window.globalSettings.zeta);
-      api.jumpInGG(70, window.globalSettings.kappa);
-      api.jumpInGG(71, window.globalSettings.lambda);
-      api.jumpInGG(72, window.globalSettings.kronos);
-      api.jumpInGG(74, window.globalSettings.hades);
-      api.jumpInGG(82, window.globalSettings.kuiper);
+      api.jumpInGateByType(2, window.globalSettings.alpha);
+      api.jumpInGateByType(3, window.globalSettings.beta);
+      api.jumpInGateByType(4, window.globalSettings.gamma);
+      api.jumpInGateByType(5, window.globalSettings.delta);
+      api.jumpInGateByType(53, window.globalSettings.epsilon);
+      api.jumpInGateByType(54, window.globalSettings.zeta);
+      api.jumpInGateByType(70, window.globalSettings.kappa);
+      api.jumpInGateByType(71, window.globalSettings.lambda);
+      api.jumpInGateByType(72, window.globalSettings.kronos);
+      api.jumpInGateByType(74, window.globalSettings.hades);
+      api.jumpInGateByType(82, window.globalSettings.kuiper);
     }
   }
 
-if (window.globalSettings.fleeFromEnemy) {
-  let enemyResult = api.checkForEnemy();
+  if (window.X1Map || (window.settings.palladium && window.hero.mapId != 93)) {
+    return;
+  }
+  
+  if (window.globalSettings.fleeFromEnemy) {
+    let enemyResult = api.checkForEnemy();
 
-  if (enemyResult.run) {
-    if (window.globalSettings.useHability) {
-      if (window.hero.skillname == "mimesis") {
-        api.useHabilityTwo();
+    if (enemyResult.run) {
+      if (window.globalSettings.useHability) {
+        if (window.hero.skillname == "mimesis") {
+          api.useHabilityTwo();
+        }
+        if (window.hero.skillName == "spectrum" || window.hero.skillName == "spearhead" || window.hero.skillName == "v-lightning" || window.hero.skillname == "mimesis") {
+          api.useHability();
+        } else if (window.hero.skillName == "citadel") {
+          api.useHabilityTwo();
+        } else if (window.hero.skillName == "spearhead" && enemyResult.edist <= 300) {
+          api.useHabilityTwo();
+        }
       }
-      if (window.hero.skillName == "spectrum" || window.hero.skillName == "spearhead" || window.hero.skillName == "lightning" || window.hero.skillname == "mimesis") {
-        api.useHability();
-      } else if (window.hero.skillName == "citadel") {
-        api.useHabilityTwo();
-      } else if (window.hero.skillName == "spearhead" && enemyResult.edist <= 300) {
-        api.useHabilityTwo();
-      }
-    }
-    if (window.globalSettings.jumpFromEnemy && !window.hasJumped & !window.settings.palladium) {
-      api.speedMode();
-      let gate = api.findNearestGate();
-      if (gate.gate) {
-        let x = gate.gate.position.x + MathUtils.random(-100, 100);
-        let y = gate.gate.position.y + MathUtils.random(-100, 100);
-        let dist = window.hero.distanceTo(gate.gate.position);
-        api.move(x, y);
-        if (api.jumpAndGoBack(gate.gate.gateId)) {
+      if (window.globalSettings.jumpFromEnemy && !window.hasJumped & !window.settings.palladium) {
+        api.speedMode();
+        let gate = api.findNearestGate();
+        if (gate.gate) {
+          let x = gate.gate.position.x + MathUtils.random(-100, 100);
+          let y = gate.gate.position.y + MathUtils.random(-100, 100);
+          let dist = window.hero.distanceTo(gate.gate.position);
+          api.move(x, y);
+          if (api.jumpAndGoBack(gate.gate.gateId)) {
+            window.movementDone = false;
+            window.fleeingFromEnemy = true;
+            window.hasJumped = true;
+            setTimeout(() => {
+              window.movementDone = true;
+              window.fleeingFromEnemy = false;
+              window.hasJumped = false;
+              if (window.globalSettings.autoChangeConfig){
+                if (window.globalSettings.attackConfig != window.hero.shipconfig) {
+                  api.changeConfig();
+                }
+                if(window.globalSettings.changeFormation && api.formation != window.globalSettings.flyingFormation){
+                  api.changeFormation(window.globalSettings.flyingFormation);
+                }
+              }
+            }, MathUtils.random(30000, 35000));
+          }
+          return;
+        }
+      } else if (!window.settings.palladium) {
+        api.speedMode();
+        let gate = api.findNearestGateForRunAway(enemyResult.enemy);
+        if (gate.gate) {
+          let x = gate.gate.position.x + MathUtils.random(-100, 100);
+          let y = gate.gate.position.y + MathUtils.random(-100, 100);
+          let dist = window.hero.distanceTo(gate.gate.position);
+          api.resetTarget("all");
+          api.move(x, y);
           window.movementDone = false;
           window.fleeingFromEnemy = true;
-          window.hasJumped = true;
           setTimeout(() => {
             window.movementDone = true;
             window.fleeingFromEnemy = false;
-            window.hasJumped = false;
-            if (window.globalSettings.autoChangeConfig){
-              if (window.globalSettings.attackConfig != window.hero.shipconfig) {
-                api.changeConfig();
-              }
-              if(window.globalSettings.changeFormation && api.formation != window.globalSettings.flyingFormation){
-                api.changeFormation(window.globalSettings.flyingFormation);
-              }
+            if (window.globalSettings.autoChangeConfig && window.globalSettings.attackConfig != window.hero.shipconfig) {
+              api.changeConfig();
+            }
+            if (window.globalSettings.changeFormation && api.formation != window.globalSettings.flyingFormation) {
+              api.changeFormation(window.globalSettings.flyingFormation);
             }
           }, MathUtils.random(30000, 35000));
+          return;
         }
-        return;
-      }
-    } else if (!window.settings.palladium) {
-      api.speedMode();
-      let gate = api.findNearestGateForRunAway(enemyResult.enemy);
-      if (gate.gate) {
-        let x = gate.gate.position.x + MathUtils.random(-100, 100);
-        let y = gate.gate.position.y + MathUtils.random(-100, 100);
-        let dist = window.hero.distanceTo(gate.gate.position);
-        api.resetTarget("all");
-        api.move(x, y);
-        window.movementDone = false;
-        window.fleeingFromEnemy = true;
-        setTimeout(() => {
-          window.movementDone = true;
-          window.fleeingFromEnemy = false;
-          if (window.globalSettings.autoChangeConfig && window.globalSettings.attackConfig != window.hero.shipconfig) {
-            api.changeConfig();
-          }
-          if (window.globalSettings.changeFormation && api.formation != window.globalSettings.flyingFormation) {
-            api.changeFormation(window.globalSettings.flyingFormation);
-          }
-        }, MathUtils.random(30000, 35000));
-        return;
       }
     }
   }
-}
 
   if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent || api.isRepairing) {
     if (window.settings.ggbot) {
       api.resetTarget("all");
-      let npcCount = api.ggCountNpcAround(1000);
+      let npcCount = api.countNpcAround(1000);
       if (npcCount > 0) {
         let ship = api.findNearestShip();
         ship.ship.update();
@@ -462,6 +466,35 @@ if (window.globalSettings.fleeFromEnemy) {
       }
     }
   }
+  
+  let x;
+  let y;
+  
+  /* Dodge the CBS */
+  if (window.globalSettings.dodgeTheCbs && api.battlestation != null) {
+    if (api.battlestation.isEnemy) {
+      let result = api.checkForCBS();
+      if (result.walkAway) {
+        if (api.targetBoxHash) {
+          let box = api.boxes[api.targetBoxHash];
+          if (box && box.distanceTo(result.cbsPos) < 1800) {
+            delete api.boxes[api.targetBoxHash];
+            api.blackListHash(api.targetBoxHash);
+            api.resetTarget("box");
+          }
+        }
+        
+        let f = Math.atan2(window.hero.position.x - result.cbsPos.x, window.hero.position.y - result.cbsPos.y) + 0.5;
+        let s = Math.PI / 180;
+        f += s;
+        x = result.cbsPos.x + 1800 * Math.sin(f);
+        y = result.cbsPos.y + 1800 * Math.cos(f);
+        api.move(x, y);
+        window.movementDone = false;
+        return;
+      }
+    }
+  }
 
   if (!window.settings.piratebotsag && !window.settings.piratebot && !window.settings.palladium && !window.settings.ggbot && window.globalSettings.workmap != 0 &&  window.hero.mapId != window.globalSettings.workmap) {
 	api.speedMode();
@@ -469,10 +502,6 @@ if (window.globalSettings.fleeFromEnemy) {
     return;
   } else {
     api.rute = null;
-  }
-
-  if (window.X1Map || (window.settings.palladium && window.hero.mapId != 93)) {
-    return;
   }
 
   if (window.settings.palladium) {
@@ -519,14 +548,10 @@ if (window.globalSettings.fleeFromEnemy) {
   
   if (window.settings.cubibot) {
     let cubibotblacklist = [
-    "-=[ Battleray ]=-",
     "-=[ Kristallin ]=-",
     "-=[ Kristallon ]=-",
     "..::{ Boss Kristallin }::..",
     "-=[ Plagued Kristallin ]=-",
-    "( Uber Annihilator )", 
-    "( Uber Saboteur )", 
-    "( Uber Barracuda )",
     ];
     cubibotblacklist.forEach(npc => {
       window.settings.setNpc(npc, "0");
@@ -581,13 +606,13 @@ if (window.globalSettings.fleeFromEnemy) {
       }
     }
 
-    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 != api.lockedShip.maxShd && window.settings.avoidAttackedNpcs) {
+    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 != api.lockedShip.maxShd && window.globalSettings.avoidAttackedNpcs) {
       notrightId = api.lockedShip.id;
       api.resetTarget("enemy");
       return;
     }
 
-    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 == api.lockedShip.maxShd && window.settings.avoidAttackedNpcs || !api.attacking && api.lockedShip && !window.settings.avoidAttackedNpcs) {
+    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 == api.lockedShip.maxShd && window.globalSettings.avoidAttackedNpcs || !api.attacking && api.lockedShip && !window.globalSettings.avoidAttackedNpcs) {
       api.startLaserAttack();
       api.lastAttack = $.now();
       api.attacking = true;
@@ -619,36 +644,6 @@ if (window.globalSettings.fleeFromEnemy) {
 
   if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) || ($.now() - api.lastAttack > 10000)) {
     api.resetTarget("enemy");
-  }
-
-  let x;
-  let y;
-  
-  /* Dodge the CBS */
-  if (window.globalSettings.dodgeTheCbs && api.battlestation != null) {
-    if (api.battlestation.isEnemy) {
-      let result = api.checkForCBS();
-      if (result.walkAway) {
-        if (api.targetBoxHash) {
-          let box = api.boxes[api.targetBoxHash];
-          if (box && box.distanceTo(result.cbsPos) < 1800) {
-            delete api.boxes[api.targetBoxHash];
-            api.blackListHash(api.targetBoxHash);
-            api.resetTarget("box");
-          }
-        }
-        
-        let f = Math.atan2(window.hero.position.x - result.cbsPos.x, window.hero.position.y - result.cbsPos.y) + 0.5;
-        let s = Math.PI / 180;
-        f += s;
-        x = result.cbsPos.x + 1800 * Math.sin(f);
-        y = result.cbsPos.y + 1800 * Math.cos(f);
-        api.move(x, y);
-        api.resetTarget("all");
-        window.movementDone = false;
-        return;
-      }
-    }
   }
   
   if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly && !window.settings.palladium && !window.bigMap) {

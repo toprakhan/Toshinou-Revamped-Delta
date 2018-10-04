@@ -32,7 +32,7 @@ class Api {
   }
   
   useHability(){
-    var cooldownlist = {"cyborg":310000,"solace":140000,"diminisher":161000,"venom":180000,"sentinel":235000,"spectrum":210000,"lightning":185000,"aegis":100000,"spearhead":400000,"citadel":45000,"mimesis":360000,"hammerclaw":170000,"tartarus":27000};
+    var cooldownlist = {"cyborg":310000,"solace":140000,"diminisher":161000,"venom":180000,"sentinel":235000,"spectrum":210000,"v-lightning":185000,"aegis":100000,"spearhead":400000,"citadel":45000,"mimesis":360000,"hammerclaw":170000,"tartarus":27000};
     if(this.habilityCoolDown && $.now() - this.habilityCoolDown > cooldownlist[window.hero.skillName]){
       this.quickSlot(window.globalSettings.habilitySlot);
       this.habilityCoolDown = $.now();
@@ -72,10 +72,20 @@ class Api {
   }
 
   getShipName(fullname){
-    let namelist = /(cyborg|venom|solace|diminisher|spectrum|sentinel|aegis|spearhead|citadel|mimesis|hammerclaw|tartarus|lightning)/;
+	let namelist = /ship_(.*?)(_|$)/g;
     let rname = namelist.exec(fullname);
+    let shipType = "";
     if(rname != null){
-      return rname[0]
+      if(rname[1] == "a-veteran" || rname[1] == "a-elite") {
+    	shipType = "aegis";
+      } else if(rname[1] == "c-veteran" || rname[1] == "c-elite") {
+    	shipType = "citadel";
+      } else if(rname[1] == "s-veteran" || rname[1] == "s-elite") {
+    	shipType = "spearhead";
+      } else {
+    	shipType = rname[1];
+      }
+      return shipType;
     } else {
       return false;
     }
@@ -248,7 +258,7 @@ class Api {
     }
   }
 
-  jumpInGG(gateType, settings) { //Usage: api.jumpInGG(70, window.settings.kappa);
+  jumpInGateByType(gateType, settings) {
     if (settings) {
       let gate = this.findNearestGatebyGateType(gateType);
       if (gate.gate) {
@@ -339,7 +349,7 @@ class Api {
    for (let property in this.ships) {
       let ship = this.ships[property];
       if (ship && (ship.name == "-=[ Cubikon ]=-") && ship.distanceTo(window.hero.position) < 1000) {
-        let shipsCount = this.countNpcAroundByType("-=[ Protegit ]=-", 2000);
+        let shipsCount = this.countNpcAroundByName("-=[ Protegit ]=-", 2000);
         if (shipsCount > 1 && !(lockedShip && lockedShip.percentOfHp < 5 && lockedShip.name == "-=[ Cubikon ]=-")) {
           window.settings.setNpc(ship.name, true);
 		  if (lockedShip && lockedShip.percentOfHp < 99 && lockedShip.name == "-=[ Cubikon ]=-"){
@@ -357,19 +367,19 @@ class Api {
     }
   }
   
-  countNpcAroundByType(type, distance){
+  countNpcAroundByName(name, distance){
     let shipsCount = Object.keys(this.ships).length;
     let shipsAround = 0;
     for (let property in this.ships) {
       let ship = this.ships[property];
-      if (ship && (ship.distanceTo(window.hero.position) < distance) && (ship.name == type)) {
+      if (ship && (ship.distanceTo(window.hero.position) < distance) && (ship.name == name)) {
         shipsAround++;
       }
     }
     return shipsAround;
   }
 
-  ggCountNpcAround(distance){
+  countNpcAround(distance){
     let shipsCount = Object.keys(this.ships).length;
     let shipsAround = 0;
     for (let property in this.ships) {
@@ -492,7 +502,7 @@ class Api {
     let minDist = 100000;
     let finalGate;
     this.gates.forEach(gate => {
-      if(gate.gateId != 150000409 && gate.gateId != 150000410 && gate.gateId != 150000411){
+      if(gate.gateId != 150000409 && gate.gateId != 150000410 && gate.gateId != 150000411 && (gate.gateType == 1 || gate.gateType == 51 || gate.gateType == 52)){
         let enemeyDistance = enemy.distanceTo(gate.position);
         let dist = window.hero.distanceTo(gate.position);
         if (enemeyDistance < dist) {
@@ -645,10 +655,10 @@ class Api {
      portals14.push(new Portal(150000166,12));
      this.starSystem.push(new Map(4, portals14));
      let portals21 = [];
-     portals21.push(new Portal(150000171,6)); //2-1 | 2-2
+     portals21.push(new Portal(150000171,6)); /*2-1 | 2-2*/
      this.starSystem.push(new Map(5, portals21));
      let portals22 = [];
-     portals22.push(new Portal(150000165,7)); //2-2 | 2-3
+     portals22.push(new Portal(150000165,7)); /*2-2 | 2-3*/
      portals22.push(new Portal(150000172,8)); //2-2 | 2-4
      portals22.push(new Portal(150000170,5)); //2-2 | 2-4
      this.starSystem.push(new Map(6, portals22));

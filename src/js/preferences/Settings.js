@@ -1,14 +1,12 @@
 class Settings {
   constructor(pause, 
-    refresh, killNpcs, avoidAttackedNpcs, circleNpc, dontCircleWhenHpBelow25Percent, repairWhenHpIsLowerThanPercent, gatestonpc,
+    refresh, circleNpc, dontCircleWhenHpBelow25Percent, repairWhenHpIsLowerThanPercent, gatestonpc,
     lockNpcs, lockPlayers, autoAttack, autoAttackNpcs,
     ggbot, palladium, piratebot, cubibot) 
   {
     this._pause = pause === true;
 
     this._refresh = refresh === true;
-    this._killNpcs = killNpcs === true;    
-    this._avoidAttackedNpcs = avoidAttackedNpcs === true;
     this._circleNpc = circleNpc === true;
     this.npcCircleRadius = 500;
     this._dontCircleWhenHpBelow25Percent = dontCircleWhenHpBelow25Percent === true;
@@ -51,22 +49,6 @@ class Settings {
 
   set refresh(value) {
     this._refresh = value === true;
-  }
-
-  get killNpcs() {
-    return this._killNpcs;
-  }
-
-  set killNpcs(value) {
-    this._killNpcs = value === true;
-  }
- 
-  get avoidAttackedNpcs() {
-    return this._avoidAttackedNpcs;
-  }
-
-  set avoidAttackedNpcs(value) {
-    this._avoidAttackedNpcs = value === true;
   }
 
   get circleNpc() {

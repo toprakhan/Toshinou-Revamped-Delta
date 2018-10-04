@@ -47,14 +47,6 @@ class GeneralSettingsWindow {
 	    }
   	  },
       {
-        name: 'avoidAttackedNpcs',
-        labelText: chrome.i18n.getMessage("avoidattackednpc"),
-        appendTo: this.botSettingsWindow,
-        event: function () {
-          window.settings.avoidAttackedNpcs = this.checked;
-        }
-      },
-      {
         name: 'gatestonpc',
         labelText: chrome.i18n.getMessage("gatestonpc"),
         appendTo: this.botSettingsWindow,

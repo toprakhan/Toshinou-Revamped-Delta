@@ -48,6 +48,7 @@ class GlobalSettings {
       dodgeTheCbs: false,
       moveRandomly: false,
       killNpcs: false,
+      avoidAttackedNpcs: false,
       alpha: false,
       beta: false,
       gamma: false,
@@ -168,6 +169,10 @@ class GlobalSettings {
 
   get killNpcs() {
     return this._settings.killNpcs;
+  }
+  
+  get avoidAttackedNpcs() {
+	return this._settings.avoidAttackedNpcs;
   }
   
   get bonusBox() {

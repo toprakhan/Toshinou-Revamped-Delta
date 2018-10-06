@@ -100,9 +100,11 @@ function saveOptions(e) {
     windowsToTabs:      $("#windowsToTabs").prop('checked'),
     autoChangeConfig:   $("#autoChangeConfig").prop('checked'),
     attackConfig:       $("#attackConfig").val(),
+    escapeConfig:       $("#escapeConfig").val(),
     changeFormation:    $("#changeFormation").prop('checked'),
     flyingFormation:    $("#flyingFormation").val(),
     attackFormation:    $("#attackFormation").val(),
+    escapeFormation:    $("#escapeFormation").val(),
     flyingConfig:       $("#flyingConfig").val(),
     useHability:        $("#useHability").prop('checked'),
     habilitySlot:       $("#habilitySlot").val(),
@@ -249,9 +251,11 @@ function downloadProfile(e) {
     windowsToTabs:      $("#windowsToTabs").prop('checked'),
     autoChangeConfig:   $("#autoChangeConfig").prop('checked'),
     attackConfig:       $("#attackConfig").val(),
+    escapeConfig:       $("#escapeConfig").val(),
     changeFormation:    $("#changeFormation").prop('checked'),
     flyingFormation:    $("#flyingFormation").val(),
     attackFormation:    $("#attackFormation").val(),
+    escapeFormation:    $("#escapeFormation").val(),
     flyingConfig:       $("#flyingConfig").val(),
     useHability:        $("#useHability").prop('checked'),
     habilitySlot:       $("#habilitySlot").val(),
@@ -325,8 +329,8 @@ $('[data-resource]').each(function() {
 
   var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "windowsToTabs",
                 "enableRefresh","refreshToReconnect", "refreshTime", 
-                "speedFormat", "autoChangeConfig", "attackConfig", "flyingConfig",
-                "useHability","habilitySlot", "habilitySlotTwo", "habilitySlotThree", "habilitySlotFour", "changeFormation","flyingFormation",
+                "speedFormat", "autoChangeConfig", "attackConfig", "flyingConfig", "escapeConfig",
+                "useHability","habilitySlot", "habilitySlotTwo", "habilitySlotThree", "habilitySlotFour", "changeFormation","flyingFormation", "escapeFormation",
                 "attackFormation","reviveType", "reviveLimit",
                 "bonusBox", "materials", "cargoBox", "greenOrGoldBooty",
                 "redBooty", "blueBooty", "masqueBooty", "collectBoxWhenCircle", 
@@ -370,6 +374,9 @@ $('[data-resource]').each(function() {
     if (items.flyingConfig) {
       $("#flyingConfig").val(items.flyingConfig);
     }
+    if (items.escapeConfig) {
+      $("#escapeConfig").val(items.escapeConfig);
+    }
     if (items.changeFormation) {
       $("#changeFormation").prop('checked', true);
     }
@@ -378,6 +385,9 @@ $('[data-resource]').each(function() {
     }
     if (items.flyingFormation) {
       $("#flyingFormation").val(items.flyingFormation);
+    }
+    if (items.escapeFormation) {
+      $("#escapeFormation").val(items.escapeFormation);
     }
     if (items.useHability) {
       $("#useHability").prop('checked', true);

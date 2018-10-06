@@ -62,6 +62,9 @@
   "flyingconfig": {
     "message": "Configuración de Velocidad:"
   },
+  "escapeConfig": {
+    "message": "Configuración de Huida:"
+  },
   "advanced": {
     "message": "Avanzado(principiantes alejense!)"
   },
@@ -262,6 +265,9 @@
   },
   "flyingformationslot": {
     "message": "Slot de la formación de velocidad"
+  },
+  "escapeFormation": {
+    "message": "Slot de la formación de Huida"
   },
   "droneformations": {
     "message": "Formaciones de drones (BETA)"

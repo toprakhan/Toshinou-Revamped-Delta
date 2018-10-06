@@ -41,6 +41,9 @@
 	    if (items.flyingConfig) {
 	      $("#flyingConfig").val(items.flyingConfig);
 	    }
+	    if (items.escapeConfig) {
+	      $("#escapeConfig").val(items.escapeConfig);
+	    }
 	    if (items.changeFormation != null) {
 	      $("#changeFormation").prop('checked', items.changeFormation);
 	    }
@@ -49,6 +52,9 @@
 	    }
 	    if (items.flyingFormation) {
 	      $("#flyingFormation").val(items.flyingFormation);
+	    }
+	    if (items.escapeFormation) {
+	      $("#escapeFormation").val(items.escapeFormation);
 	    }
 	    if (items.useHability != null) {
 	      $("#useHability").prop('checked', items.useHability);

@@ -359,7 +359,7 @@ function logic() {
         }
       }
       if (window.globalSettings.jumpFromEnemy && !window.hasJumped & !window.settings.palladium) {
-        api.speedMode();
+        api.escapeMode();
         let gate = api.findNearestGate();
         if (gate.gate) {
           let x = gate.gate.position.x + MathUtils.random(-100, 100);
@@ -387,7 +387,7 @@ function logic() {
           return;
         }
       } else if (!window.settings.palladium) {
-        api.speedMode();
+        api.escapeMode();
         let gate = api.findNearestGateForRunAway(enemyResult.enemy);
         if (gate.gate) {
           let x = gate.gate.position.x + MathUtils.random(-100, 100);
@@ -450,12 +450,7 @@ function logic() {
           let y = gate.gate.position.y + MathUtils.random(-100, 100);
           api.move(x, y);
           window.movementDone = false;
-          if (window.globalSettings.autoChangeConfig && window.globalSettings.flyingConfig != window.hero.shipconfig) {
-            api.changeConfig();
-          }
-          if (window.globalSettings.changeFormation && api.formation != window.globalSettings.flyingFormation) {
-            api.changeFormation(window.globalSettings.flyingFormation);
-          }
+          api.escapeMode();
           api.isRepairing = true;
           return;
         }
@@ -622,7 +617,7 @@ function logic() {
     }
   }
 
-  if (window.settings.palladium && api.targetBoxHash && $.now() - api.collectTime > 500) {
+  if (window.settings.palladium && api.targetBoxHash && $.now() - api.collectTime > 1000) {
 	let box = api.boxes[api.targetBoxHash];
     if(box && box.distanceTo(window.hero.position) < 200 && api.countShipsAround(200) > 0) {
       delete api.boxes[api.targetBoxHash];

@@ -15,6 +15,7 @@ class GlobalSettings {
       autoChangeConfig: false,
       attackConfig: 1,
       flyingConfig: 1,
+      escapeConfig: 1,
       reviveType: 1,
       reviveLimit: 5,
       bonusBox: false,
@@ -29,6 +30,7 @@ class GlobalSettings {
       changeFormation: false,
       attackFormation: -2,
       flyingFormation: -2,
+      escapeFormation: -2,
       useHability: false,
       habilitySlot: -1,
       habilitySlotTwo: -1,
@@ -92,6 +94,10 @@ class GlobalSettings {
     return this._settings.flyingFormation;
   }
 
+  get escapeFormation(){
+	return this._settings.escapeFormation;
+  }
+  
   get headerColor() {
     return this._settings.headerColor;
   }
@@ -135,12 +141,17 @@ class GlobalSettings {
   get autoChangeConfig() {
     return this._settings.autoChangeConfig;
   }
+  
   get attackConfig() {
     return this._settings.attackConfig;
   }
 
   get flyingConfig() {
     return this._settings.flyingConfig;
+  }
+  
+  get escapeConfig() {
+    return this._settings.escapeConfig;
   }
 
   get reviveType() {

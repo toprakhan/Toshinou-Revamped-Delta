@@ -817,15 +817,31 @@ class Api {
   speedMode() {
 	let changeVelo = false;
     if (window.globalSettings.autoChangeConfig) {
-      if( window.globalSettings.flyingConfig != window.hero.shipconfig) {
+      if(window.globalSettings.flyingConfig != window.hero.shipconfig) {
     	if (this.changeConfig()) {
     	  changeVelo = true;
     	}
       }
     }
     if (window.globalSettings.changeFormation && api.formation != window.globalSettings.flyingFormation) {
-      this.changeFormation(window.globalSettings.flyingFormation);
       if (this.changeFormation(window.globalSettings.flyingFormation)) {
+    	changeVelo = true;
+      }
+    }
+    return changeVelo;
+  }
+  
+  escapeMode() {
+	let changeVelo = false;
+    if (window.globalSettings.autoChangeConfig) {
+      if(window.globalSettings.escapeConfig != window.hero.shipconfig) {
+    	if (this.changeConfig()) {
+    	  changeVelo = true;
+    	}
+      }
+    }
+    if (window.globalSettings.changeFormation && api.formation != window.globalSettings.escapeFormation) {
+      if (this.changeFormation(window.globalSettings.escapeFormation)) {
     	changeVelo = true;
       }
     }

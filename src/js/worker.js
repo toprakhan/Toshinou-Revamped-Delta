@@ -341,10 +341,6 @@ function logic() {
       api.jumpInGateByType(82, window.globalSettings.kuiper);
     }
   }
-
-  if (window.X1Map || (window.settings.palladium && window.hero.mapId != 93)) {
-    return;
-  }
   
   if (window.globalSettings.fleeFromEnemy) {
     let enemyResult = api.checkForEnemy();
@@ -503,6 +499,10 @@ function logic() {
   } else {
     api.rute = null;
   }
+  
+  if (window.X1Map || (window.settings.palladium && window.hero.mapId != 93)) {
+	return;
+  }
 
   if (window.settings.palladium) {
     let palladiumBlackList = [
@@ -587,11 +587,13 @@ function logic() {
       api.triedToLock = true;
       api.targetShip = ship.ship;
       return;
-    } else if (ship.ship && window.settings.killNpcs && ship.ship.id != notrightId) {
+    } else if (ship.ship && window.settings.killNpcs && ship.ship.id != notrightId && !window.settings.palladium) {
       ship.ship.update();
       api.move(ship.ship.position.x - MathUtils.random(-50, 50), ship.ship.position.y - MathUtils.random(-50, 50));
       api.targetShip = ship.ship;
       return;
+    } else if (window.settings.palladium) {
+      api.resetTarget("enemy");
     }
   }
 
@@ -620,7 +622,7 @@ function logic() {
     }
   }
 
-  if (window.settings.palladium && api.targetBoxHash && $.now() - api.collectTime > 1000) {
+  if (window.settings.palladium && api.targetBoxHash && $.now() - api.collectTime > 500) {
 	let box = api.boxes[api.targetBoxHash];
     if(box && box.distanceTo(window.hero.position) < 200 && api.countShipsAround(200) > 0) {
       delete api.boxes[api.targetBoxHash];

@@ -149,6 +149,9 @@
 	    if (items.avoidAttackedNpcs != null) {
 	      $("#avoidAttackedNpcs").prop('checked', items.killNpcs);
 	    }
+	    if (items.defendSentinel != null) {
+	      $("#defendSentinel").prop('checked', items.defendSentinel);
+	    }
 	    if (items.alpha != null) {
 	      $("#alpha").prop('checked', items.alpha);
 	    }

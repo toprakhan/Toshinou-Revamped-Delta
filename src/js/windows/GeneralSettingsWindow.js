@@ -46,6 +46,14 @@ class GeneralSettingsWindow {
 	      window.settings.ggbot = this.checked;
 	    }
   	  },
+  	  {
+  	    name: 'sentinelmode',
+  	    labelText: chrome.i18n.getMessage("sentinelmode"),
+        appendTo: this.botSettingsWindow,
+  	    event: function () {
+  	      window.settings.sentinelMode = this.checked;
+  	    }
+      },
       {
         name: 'gatestonpc',
         labelText: chrome.i18n.getMessage("gatestonpc"),

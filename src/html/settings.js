@@ -136,6 +136,8 @@ function saveOptions(e) {
     moveRandomly:       $("#moveRandomly").prop('checked'),
     killNpcs:			$("#killNpcs").prop('checked'),
     avoidAttackedNpcs:  $("#avoidAttackedNpcs").prop('checked'),
+    sentinelid:         $("#sentinelid").val(),
+    defendSentinel:     $("#defendSentinel").prop('checked'),
     alpha:              $("#alpha").prop('checked'),
     beta:               $("#beta").prop('checked'),
     gamma:              $("#gamma").prop('checked'),
@@ -287,6 +289,7 @@ function downloadProfile(e) {
     moveRandomly:       $("#moveRandomly").prop('checked'),
     killNpcs:           $("#killNpcs").prop('checked'),
     avoidAttackedNpcs:  $("#avoidAttackedNpcs").prop('checked'),
+    defendSentinel:     $("#defendSentinel").prop('checked'),
     alpha:              $("#alpha").prop('checked'),
     beta:               $("#beta").prop('checked'),
     gamma:              $("#gamma").prop('checked'),
@@ -336,6 +339,7 @@ $('[data-resource]').each(function() {
                 "redBooty", "blueBooty", "masqueBooty", "collectBoxWhenCircle", 
                 "workmap", "npcList", "changeAmmunition", "x1Slot", "x2Slot", "x3Slot", "x4Slot", "sabSlot", 
                 "stopafterxminutes", "waitafterRepair", "fleeFromEnemy", "jumpFromEnemy", "dodgeTheCbs", "moveRandomly", "killNpcs", "avoidAttackedNpcs",
+                "sentinelid", "defendSentinel",
                 "alpha", "beta", "gamma", "delta", "epsilon", "zeta", "kappa", "lambda", "kronos", "hades", "kuiper"];
 
   var onGet = items => {
@@ -481,6 +485,12 @@ $('[data-resource]').each(function() {
     }
     if (items.avoidAttackedNpcs) {
       $("#avoidAttackedNpcs").prop('checked', true);
+    }
+    if (items.sentinelid) {
+      $("#sentinelid").val(items.sentinelid);
+    }
+    if (items.defendSentinel) {
+      $("#defendSentinel").prop('checked', true);
     }
     if (items.alpha) {
       $("#alpha").prop('checked', true);

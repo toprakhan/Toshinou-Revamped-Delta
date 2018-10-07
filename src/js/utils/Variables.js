@@ -19,6 +19,10 @@ class Variables {
   static get attackedId() {
     return "_-E2I";
   }
+  
+  static get shipAttackedId() {
+	return "_-43S";
+  }
 
   static get heroAttackedId() {
     return "_-E2I";

@@ -334,5 +334,8 @@
   },
   "loadSettings": {
     "message": "Load Settings"
+  },
+  "sentinelmode": {
+	"message": "Sentinel Mode"
   }
 }

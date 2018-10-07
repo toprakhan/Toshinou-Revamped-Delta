@@ -83,8 +83,9 @@ $(document).ready(function () {
     hm.registerCommand(HeroUpdateShieldHandler.ID, new HeroUpdateShieldHandler());
     hm.registerCommand(AssetCreatedHandler.ID, new AssetCreatedHandler());
     hm.registerCommand(ShipConditionHandler.ID, new ShipConditionHandler());
-    /*hm.registerCommand(GroupCreateHandler.ID, new GroupCreateHandler());
-    hm.registerCommand(GroupShipUpdatePosHandler.ID, new GroupShipUpdatePosHandler());*/
+    hm.registerCommand(GroupCreateHandler.ID, new GroupCreateHandler());
+    hm.registerCommand(GroupShipUpdatePosHandler.ID, new GroupShipUpdatePosHandler());
+    hm.registerCommand(AttackHandler.ID, new AttackHandler());
 
     hm.registerEvent("updateHeroPos", new HeroPositionUpdateEventHandler());
     hm.registerEvent("movementDone", new MovementDoneEventHandler());
@@ -206,6 +207,7 @@ function init() {
 }
 
 function logic() {
+
   let circleBox = null;
   if (api.isDisconnected) {
     if (window.fleeingFromEnemy) {
@@ -297,6 +299,8 @@ function logic() {
       }
     } else if (window.hero.skillName == "spearhead") {
       api.useHabilityFour();
+    } else if (window.hero.skillName == "citadel" && window.settings.palladium) {
+      api.useHabilityTwo();
     }
   }
 
@@ -487,7 +491,7 @@ function logic() {
     }
   }
 
-  if (!window.settings.piratebotsag && !window.settings.piratebot && !window.settings.palladium && !window.settings.ggbot && window.globalSettings.workmap != 0 &&  window.hero.mapId != window.globalSettings.workmap) {
+  if (!window.settings.piratebotsag && !window.settings.piratebot && !window.settings.palladium && !window.settings.ggbot && window.globalSettings.workmap != 0 &&  window.hero.mapId != window.globalSettings.workmap && !window.settings.sentinelMode) {
 	api.speedMode();
     api.goToMap(window.globalSettings.workmap);
     return;
@@ -565,6 +569,11 @@ function logic() {
       api.protegitmode;     
     } 
   }
+  
+  if (window.settings.sentinelMode && api.sentinelship != null) {
+	sentinelLogic();
+	return;
+  }
 	  
   if (api.targetBoxHash == null && api.targetShip == null) {
     let ship = api.findNearestShip();
@@ -603,7 +612,7 @@ function logic() {
       }
     }
 
-    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 != api.lockedShip.maxShd && window.globalSettings.avoidAttackedNpcs) {
+    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 != api.lockedShip.maxShd && window.globalSettings.avoidAttackedNpcs && !window.settings.sentinelMode && !window.settings.ggbot) {
       notrightId = api.lockedShip.id;
       api.resetTarget("enemy");
       return;
@@ -617,16 +626,6 @@ function logic() {
     }
   }
 
-  if (window.settings.palladium && api.targetBoxHash && $.now() - api.collectTime > 1000) {
-	let box = api.boxes[api.targetBoxHash];
-    if(box && box.distanceTo(window.hero.position) < 200 && api.countShipsAround(200) > 0) {
-      delete api.boxes[api.targetBoxHash];
-      api.blackListHash(api.targetBoxHash);
-      api.resetTarget("box");
-      return;
-    }
-  }
-  
   if (api.targetBoxHash && $.now() - api.collectTime > 7000) {
     let box = api.boxes[api.targetBoxHash];
     if (box && box.distanceTo(window.hero.position) > 1000) {
@@ -784,6 +783,136 @@ function logic() {
       api.move(x, y);
     }
     window.movementDone = false;
+  }
+  window.dispatchEvent(new CustomEvent("logicEnd"));
+}
+
+function sentinelLogic() {
+  let shipAround;
+
+  for (let property in api.ships) {
+    let ship = api.ships[property];
+    
+    if (ship.id == window.globalSettings.sentinelid) {
+      shipAround = ship;
+    }
+  }
+  
+  let x;
+  let y;
+  
+  if (shipAround) {
+	api.rute = null;
+    if (shipAround.distanceTo(window.hero.position) > 500 && !api.targetShip) {
+      x = shipAround.position.x + MathUtils.random(-100, 100);
+      y = shipAround.position.y + MathUtils.random(-100, 100);
+      api.move(x, y);
+      return;
+    } else if (api.targetShip) {
+      api.targetShip.update();
+      let enemy = api.targetShip.position;
+      let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
+      let s = Math.PI / 180;
+      let rot = MathUtils.random(-10, 10);
+      f += s;
+      x = enemy.x + window.settings.npcCircleRadius * Math.sin(f);
+      y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
+    }
+  } else {
+    if(api.sentinelship.mapId == window.hero.mapId) {
+      x = api.sentinelship.x;
+      y = api.sentinelship.y;
+      api.rute = null;
+      if (x && y) {
+	    api.move(x, y);
+	    window.movementDone = false;
+	  }
+      return;
+    } else {
+      api.speedMode();
+      api.goToMap(api.sentinelship.mapId);
+      return;
+    }
+  }
+  
+  if (api.targetBoxHash == null && api.targetShip == null) {
+	let finalShip = null;
+	if (api.sentinelship.targetId != null) {
+	  for (let property in api.ships) {
+	    let ship = api.ships[property];	    
+	    if (ship.id == api.sentinelship.targetId) {
+		  finalShip = ship;
+	    }
+	  }
+	}
+	
+	if (api.sentinelship.attackerID != null && window.globalSettings.defendSentinel && finalShip != null) {
+	  for (let property in api.ships) {
+	    let ship = api.ships[property];
+	    if (ship.id == api.sentinelship.attackerID) {
+		  finalShip = ship;
+	    }
+	  }
+	}
+	  
+    if (finalShip == null || finalShip.distance > 1000) {
+      let box = api.findNearestBox();
+      if (box.box) {
+	    api.collectBox(box.box);
+        api.targetBoxHash = box.box.hash;
+        return;
+      }
+      api.sentinelship.targetId = null;
+    }
+    if (finalShip && finalShip.distance < 1000 && window.settings.killNpcs && finalShip.id != notrightId) {
+      api.lockShip(finalShip);
+      api.triedToLock = true;
+      api.targetShip = finalShip;
+      return;
+    } else if (finalShip && window.settings.killNpcs && finalShip.id != notrightId) {
+      finalShip.update();
+      api.move(finalShip.position.x - MathUtils.random(-50, 50), finalShip.position.y - MathUtils.random(-50, 50));
+      api.targetShip = finalShip;
+     return;
+    }
+  }
+
+  if (api.targetShip) {
+    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 != api.lockedShip.maxShd) {
+      api.targetShip.update();
+      let dist = api.targetShip.distanceTo(window.hero.position);
+      if (dist < 600) {
+        api.lockShip(api.targetShip);
+        api.triedToLock = true;
+        api.startLaserAttack();
+        api.lastAttack = $.now();
+        api.attacking = true;
+        return;
+      }
+    } else {
+       api.resetTarget("enemy");
+    }
+  }
+  
+  if (api.targetBoxHash && $.now() - api.collectTime > 7000) {
+    let box = api.boxes[api.targetBoxHash];
+    if (box && box.distanceTo(window.hero.position) > 1000) {
+      api.collectTime = $.now();
+    } else {
+      delete api.boxes[api.targetBoxHash];
+      api.blackListHash(api.targetBoxHash);
+      api.resetTarget("box");
+      return;
+    }
+  }
+
+  if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) || ($.now() - api.lastAttack > 10000)) {
+    api.resetTarget("enemy");
+  }
+  
+  if (x && y) {
+   api.move(x, y);
+   window.movementDone = false;
   }
   window.dispatchEvent(new CustomEvent("logicEnd"));
 }

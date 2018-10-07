@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Toshinou Revamped Delta",
-	"version": "3.54",
+	"version": "3.55",
 	"default_locale": "en",
 	"description": "__MSG_desextension__",
 	"page_action": {
@@ -80,6 +80,7 @@
 		"js/handlers/commands/ShipConditionHandler.js",
 		"js/handlers/commands/GroupCreateHandler.js",
 		"js/handlers/commands/GroupShipUpdatePosHandler.js",
+		"js/handlers/commands/AttackHandler.js",
 		"js/Api.js",
 		"js/ControlFactory.js",
 		"js/worker.js"

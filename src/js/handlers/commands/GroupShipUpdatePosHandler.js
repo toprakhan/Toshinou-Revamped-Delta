@@ -5,21 +5,21 @@ class GroupShipUpdatePosHandler {
     
     constructor(f) {
       this._handler = function (e, a) {
-        let parsedCmd = JSON.parse(e.detail);
-
-         let id = parsedCmd[Variables.groupShipID];
-         if (id != null &&  a.ships.hasOwnProperty(id)){
-           let ship = a.ships[id];
-           if(parsedCmd.updates[0].mapId == window.hero.mapId) {
-        	 ship.setPosition(parsedCmd.updates[0].x,parsedCmd.updates[0].y);
-        	 ship.setTarget(parsedCmd.updates[0].x,parsedCmd.updates[0].y,500);
-        	 ship.inGroup = true;
-           } else {
-        	 if (ship != null) {
-        	   delete a.ships[id];
-        	 }
-           }
-         }
+    	if (window.settings.sentinelMode) {
+		  let parsedCmd = JSON.parse(e.detail);
+		  let id = parsedCmd[Variables.groupShipID];
+		  if (id == window.globalSettings.sentinelid) {
+			if (parsedCmd.updates[0] != null) {
+			  if (a.sentinelship == null) {
+			    a.sentinelship = {mapId: parsedCmd.updates[0].mapId, x: parsedCmd.updates[0].x, y: parsedCmd.updates[0].y, targetId: null, attackerID: null};
+			  } else {
+			    a.sentinelship.mapId =  parsedCmd.updates[0].mapId;
+		        a.sentinelship.x =  parsedCmd.updates[0].x;
+		        a.sentinelship.y =  parsedCmd.updates[0].y;
+			  }
+			}
+	      }
+    	}
       }
     }
   

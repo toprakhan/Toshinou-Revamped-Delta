@@ -51,6 +51,8 @@ class GlobalSettings {
       moveRandomly: false,
       killNpcs: false,
       avoidAttackedNpcs: false,
+      sentinelid: 0,
+      defendSentinel: false,
       alpha: false,
       beta: false,
       gamma: false,
@@ -256,6 +258,14 @@ class GlobalSettings {
   
   get waitafterRepair() {
     return this._settings.waitafterRepair;
+  }
+  
+  get sentinelid() {
+    return this._settings.sentinelid;
+  }
+  
+  get defendSentinel() {
+    return this._settings.defendSentinel;
   }
   
   get alpha() {

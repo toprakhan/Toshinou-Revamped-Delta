@@ -29,10 +29,11 @@ class Api {
     this.formation = -1;
     this.ammunition = -1;
     this.resetTargetWhenHpBelow25Percent = false;
+    this.sentinelship = null;
   }
   
   useHability(){
-    var cooldownlist = {"cyborg":310000,"solace":140000,"diminisher":161000,"venom":180000,"sentinel":235000,"spectrum":210000,"v-lightning":185000,"aegis":100000,"spearhead":400000,"citadel":45000,"mimesis":360000,"hammerclaw":170000,"tartarus":27000};
+    var cooldownlist = {"cyborg":311000,"solace":141000,"diminisher":162000,"venom":181000,"sentinel":236000,"spectrum":211000,"v-lightning":186000,"aegis":101000,"spearhead":401000,"citadel":46000,"mimesis":361000,"hammerclaw":171000,"tartarus":28000};
     if(this.habilityCoolDown && $.now() - this.habilityCoolDown > cooldownlist[window.hero.skillName]){
       this.quickSlot(window.globalSettings.habilitySlot);
       this.habilityCoolDown = $.now();
@@ -42,7 +43,7 @@ class Api {
   }
   
   useHabilityTwo(){
-    var cooldownlist = {"aegis":35000,"spearhead":190000,"citadel":50000, "mimesis":300000,"hammerclaw":100000,"tartarus":70000};
+    var cooldownlist = {"aegis":36000,"spearhead":200000,"citadel":51000, "mimesis":301000,"hammerclaw":101000,"tartarus":71000};
     if(this.habilityCoolDownTwo && $.now() - this.habilityCoolDownTwo > cooldownlist[window.hero.skillName]){
       this.quickSlot(window.globalSettings.habilitySlotTwo);
       this.habilityCoolDownTwo = $.now();
@@ -52,7 +53,7 @@ class Api {
   }
   
   useHabilityThree(){
-    var cooldownlist = {"aegis":130000,"spearhead":55000,"citadel":70000, "hammerclaw":146000};
+    var cooldownlist = {"aegis":131000,"spearhead":56000,"citadel":71000, "hammerclaw":147000};
     if(this.habilityCoolDownThree && $.now() - this.habilityCoolDownThree > cooldownlist[window.hero.skillName]){
       this.quickSlot(window.globalSettings.habilitySlotThree);
       this.habilityCoolDownThree = $.now();

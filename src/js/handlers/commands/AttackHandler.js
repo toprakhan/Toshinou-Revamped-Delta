@@ -8,7 +8,7 @@ class AttackHandler {
       var shipAttackCmd = JSON.parse(e.detail);
       if (window.settings.sentinelMode) {
     	let attackerID = shipAttackCmd[Variables.attackerId];
-        let shipAttackedID = shipAttackCmd[Variables.shipAttackedId];
+        let shipAttackedID = shipAttackCmd[Variables.attackedId];
         
         if (attackerID == window.globalSettings.sentinelid) {
           a.sentinelship.targetId = shipAttackedID;

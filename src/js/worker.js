@@ -839,14 +839,14 @@ function sentinelLogic() {
 	let finalShip = null;
 	if (api.sentinelship.targetId != null) {
 	  for (let property in api.ships) {
-	    let ship = api.ships[property];	    
+	    let ship = api.ships[property];
 	    if (ship.id == api.sentinelship.targetId) {
 		  finalShip = ship;
 	    }
 	  }
 	}
 	
-	if (api.sentinelship.attackerID != null && window.globalSettings.defendSentinel && finalShip != null) {
+	if (api.sentinelship.attackerID != null && window.globalSettings.defendSentinel && finalShip == null) {
 	  for (let property in api.ships) {
 	    let ship = api.ships[property];
 	    if (ship.id == api.sentinelship.attackerID) {
@@ -864,12 +864,12 @@ function sentinelLogic() {
       }
       api.sentinelship.targetId = null;
     }
-    if (finalShip && finalShip.distance < 1000 && window.settings.killNpcs && finalShip.id != notrightId) {
+    if (finalShip && finalShip.distance < 1000 && finalShip.id != notrightId) {
       api.lockShip(finalShip);
       api.triedToLock = true;
       api.targetShip = finalShip;
       return;
-    } else if (finalShip && window.settings.killNpcs && finalShip.id != notrightId) {
+    } else if (finalShip && finalShip.id != notrightId) {
       finalShip.update();
       api.move(finalShip.position.x - MathUtils.random(-50, 50), finalShip.position.y - MathUtils.random(-50, 50));
       api.targetShip = finalShip;
@@ -878,19 +878,21 @@ function sentinelLogic() {
   }
 
   if (api.targetShip) {
-    if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 != api.lockedShip.maxShd) {
+    if (!api.triedToLock && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id)) {
       api.targetShip.update();
       let dist = api.targetShip.distanceTo(window.hero.position);
       if (dist < 600) {
         api.lockShip(api.targetShip);
         api.triedToLock = true;
-        api.startLaserAttack();
-        api.lastAttack = $.now();
-        api.attacking = true;
         return;
       }
-    } else {
-       api.resetTarget("enemy");
+    }
+
+    if (!api.attacking && api.lockedShip) {
+      api.startLaserAttack();
+      api.lastAttack = $.now();
+      api.attacking = true;
+      return;
     }
   }
   
@@ -915,4 +917,5 @@ function sentinelLogic() {
    window.movementDone = false;
   }
   window.dispatchEvent(new CustomEvent("logicEnd"));
+  return;
 }

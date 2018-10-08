@@ -1,115 +1,107 @@
 class Variables {
 
   static get boxType() {
-    return "_-Pg";
+    return "_-15Y";
   }
 
   static get attackerId() {
-    return "_-m23";
+    return "_-b4k";
   }
 
   static get attackHp() {
-    return "_-m3F";
+    return "_-l3K";
   }
 
   static get attackShd() {
-    return "_-r1H";
+    return "_-11c";
   }
 
   static get attackedId() {
-    return "_-E2I";
-  }
-  
-  static get shipAttackedId() {
-	return "_-43S";
+    return "_-32B";
   }
 
   static get heroAttackedId() {
-    return "_-E2I";
+    return "_-42K";
   }
 
   static get moveDuration() {
-    return "_-Z2l";
+    return "_-c2e";
   }
 
   static get shipDestoyedId() {
-    return "_-N4j";
+    return "_-t1u";
   }
 
   static get heroInitMaxHp() {
-    return "_-b1E";
+    return "_-E13";
   }
 
   static get heroInitMaxShd() {
-    return "_-c4z";
+    return "_-N4G";
   }
 
   static get heroInitHp() {
-    return "_-Ut";
+    return "_-S15";
   }
   
   static get heroUpdateShd(){
-    return "_-r2D";
+    return "_-Fq";
   }
 
   static get hpUpdateMaxHp() {
-    return "_-z1x";
+    return "_-l1I";
   }
 
   static get hpUpdateHp() {
-    return "_-Nn";
+    return "_-hr";
   }
 
   static get selectMaxHp() {
-    return "_-z1x";
+    return "_-l1I";
   }
 
   static get selectMaxShd() {
-    return "_-c4z";
+    return "_-N4G";
   }
 
   static get selectHp() {
-    return "_-Nn";
+    return "_-hr";
   }
 
   static get clanDiplomacy() {
-    return "_-87";
+    return "_-K4i";
   }
 
   static get gateId() {
-    return "_-y3Z";
+    return "_-u15";
   }
 
   static get gateType() {
-    return "_-DD";
+    return "_-G2s";
   }
 
   static get resource() {
-    return "_-y4N";
+    return "_-v1v";
   }
 
   static get resourceType() {
-    return "_-52U";
+    return "_-75g";
   }
 
   static get assetCreateX() {
-    return "_-14L";
+    return "_-s3g";
   }
 
   static get assetCreateY() {
-    return "_-O4e";
+    return "_-q4m";
   }
 
   static get battlestationClanDiplomacy() {
-    return "_-j1e";
-  }
-
-  static get heroPetId() {
-    return "_-y2m";
+    return "_-63c";
   }
   
   static get groupShipID() {
-	return "_-N4e";
+	return "_-p2N";
   }
   
 }

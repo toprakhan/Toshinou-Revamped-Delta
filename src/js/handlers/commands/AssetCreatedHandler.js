@@ -21,6 +21,7 @@ class AssetCreatedHandler {
           api.battlestation.name = parsedCmd.userName;
           api.battlestation.clanTag = parsedCmd.clanTag;
           api.battlestation.factionId = parsedCmd.factionId;
+          api.battlestation.clanDiplomacy = parsedCmd[Variables.battlestationClanDiplomacy].type;
         }
       }
 

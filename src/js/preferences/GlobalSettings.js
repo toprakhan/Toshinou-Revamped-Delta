@@ -43,6 +43,7 @@ class GlobalSettings {
       x3Slot: -1,
       x4Slot: -1,
       sabSlot: -1,
+      rsbSlot: -1,
       stopafterxminutes: 0,
       waitafterRepair: 0,
       fleeFromEnemy: false,
@@ -51,6 +52,8 @@ class GlobalSettings {
       moveRandomly: false,
       killNpcs: false,
       avoidAttackedNpcs: false,
+      respondPlayerAttacks: false,
+      playerAmmo: 0,
       sentinelid: 0,
       defendSentinel: false,
       alpha: false,
@@ -188,6 +191,14 @@ class GlobalSettings {
 	return this._settings.avoidAttackedNpcs;
   }
   
+  get respondPlayerAttacks() {
+	return this._settings.respondPlayerAttacks;
+  }
+  
+  get playerAmmo() {
+	return this._settings.playerAmmo;
+  }
+  
   get bonusBox() {
     return this._settings.bonusBox;
   }
@@ -250,6 +261,10 @@ class GlobalSettings {
 
   get sabSlot() {
     return this._settings.sabSlot;
+  }
+  
+  get rsbSlot() {
+    return this._settings.rsbSlot;
   }
   
   get stopafterxminutes() {

@@ -185,7 +185,7 @@
 					id="habilitySlotFour" min="0" max="9" value="0"></td>
 			</tr>
 			<tr>
-				<td colspan="2"><b><span data-resource="slotsAmmunition">Slots
+				<td><b><span data-resource="slotsAmmunition">Slots
 							of ammunition</span>:</b></td>
 				<td><input type="checkbox" id="changeAmmunition"
 					name="changeAmmunition"> <label for="changeAmmunition"><span
@@ -194,11 +194,11 @@
 				<td><label for="x1Slot"><span data-resource="x1Slot">Slot
 							X1</span></label> <input type="number" id="x1Slot" min="0" max="10" value="0">
 				</td>
-			</tr>
-			<tr>
 				<td><label for="x2Slot"><span data-resource="x2Slot">Slot
 							X2</span></label> <input type="number" id="x2Slot" min="0" max="10" value="0">
 				</td>
+			</tr>
+			<tr>
 				<td><label for="x3Slot"><span data-resource="x3Slot">Slot
 							X3</span></label> <input type="number" id="x3Slot" min="0" max="10" value="0">
 				</td>
@@ -207,6 +207,9 @@
 				</td>
 				<td><label for="sabSlot"><span data-resource="SABSlot">Slot
 							SAB</span></label> <input type="number" id="sabSlot" min="0" max="10" value="0">
+				</td>
+				<td><label for="rsbSlot"><span data-resource="rsbSlot">Slot
+							RSB</span></label> <input type="number" id="rsbSlot" min="0" max="10" value="0">
 				</td>
 			</tr>
 			<tr>
@@ -289,6 +292,23 @@
 				</td>
 				<td colspan="2">
 					<input type="checkbox" id="avoidAttackedNpcs"> <label for="avoidAttackedNpcs"><span data-resource="avoidattackednpc">Avoid attacked NPCs</span></label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" id="respondPlayerAttacks"> <label for="respondPlayerAttacks"><span data-resource="respondPlayerAttacks">Respond player attacks</span></label>
+				</td>
+				<td>
+					<label for="playerAmmo"><span data-resource="playerAmmo">Ammo for players</span></label>
+					<select id="playerAmmo">
+						<option value="1">X1</option>
+						<option value="2">X2</option>
+						<option value="3">X3</option>
+						<option value="4">X4</option>
+						<option value="11">X1 + SAB</option>
+						<option value="21">X2 + SAB</option>
+						<option value="31">X3 + SAB</option>
+					</select>
 				</td>
 			</tr>
 			<tr>

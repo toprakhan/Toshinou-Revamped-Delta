@@ -63,6 +63,7 @@ $(document).ready(function () {
     window.tickTime = window.globalSettings.timerTick;
     window.settings.moveRandomly = false;
     window.settings.killNpcs = false;
+    window.settings.onlyAnswerAttacks = false;
     window.invertedMovement = false;
     let hm = new HandlersManager(api);
 
@@ -505,7 +506,6 @@ function logic() {
 
   if (window.settings.palladium) {
     let palladiumBlackList = [
-    "-=[ Battleray ]=-",
     "( Uber Annihilator )", 
     "( Uber Saboteur )", 
     "( Uber Barracuda )",
@@ -513,17 +513,13 @@ function logic() {
     palladiumBlackList.forEach(npc => {
       window.settings.setNpc(npc, "0");
     });
+    window.settings.setNpc("-=[ Battleray ]=-", "1");
+    window.settings.setNpc("-=[ Interceptor ]=-", "4");
 
     window.settings.moveRandomly = true;
     window.settings.circleNpc = true;
-    let percenlife = MathUtils.percentFrom(window.hero.shd, window.hero.maxShd);
-    if (percenlife < 98) {
-      window.settings.killNpcs = true;
-      window.settings.setNpc("-=[ Battleray ]=-", "1");
-      window.settings.setNpc("-=[ Interceptor ]=-", "4");
-    }  else if (!api.attacking) {
-      window.settings.killNpcs = false;
-    }
+    window.settings.onlyAnswerAttacks = true;
+    window.settings.killNpcs = true;
   }
   
   if (window.settings.piratebotsag){
@@ -685,7 +681,12 @@ function logic() {
         }
       }
       if(window.globalSettings.changeAmmunition) {
-        let ammunition = window.settings.getNpc(api.targetShip.name)["ammo"];
+        let ammunition = 1;
+        if (api.targetShip.isNpc) {
+          ammunition = window.settings.getNpc(api.targetShip.name)["ammo"];
+        } else {
+          ammunition = window.globalSettings.playerAmmo;
+        }
         if (ammunition == 11 && api.targetShip.shd > 200) {
           api.changeAmmunition(6);
         } else if (ammunition == 11 && api.targetShip.shd < 200) {

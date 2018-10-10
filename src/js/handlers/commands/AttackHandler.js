@@ -6,10 +6,9 @@ class AttackHandler {
   constructor() {
     this._handler = function (e, a) {
       var shipAttackCmd = JSON.parse(e.detail);
-      if (window.settings.sentinelMode) {
-    	let attackerID = shipAttackCmd[Variables.attackerId];
-        let shipAttackedID = shipAttackCmd[Variables.attackedId];
-        
+      let attackerID = shipAttackCmd[Variables.attackerId];
+      let shipAttackedID = shipAttackCmd[Variables.attackedId];
+      if (window.settings.sentinelMode && a.sentinelship != null) {
         if (attackerID == window.globalSettings.sentinelid) {
           a.sentinelship.targetId = shipAttackedID;
         }
@@ -17,7 +16,15 @@ class AttackHandler {
         if (shipAttackedID == window.globalSettings.sentinelid) {
           a.sentinelship.attackerID = attackerID;
         }
-      }   
+      }
+      let ship = a.ships[attackerID];
+      if (ship != null){
+        if (shipAttackedID == window.hero.id) {
+          a.ships[attackerID].attacksUs = true;
+        } else {
+          a.ships[attackerID].attacksUs = false;	
+        }
+      }
     }
   }
 

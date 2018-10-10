@@ -11,7 +11,7 @@
     "message": "Apparenza"
   },
   "translateby": {
-    "message": "",
+    "message": "Tradotto da Kewai",
     "description": "Descrizione dell'estenzione Toshinou"
   },
   "discordserver": {
@@ -273,7 +273,7 @@
     "message": "Usa abilità"
   },
   "habilityslot": {
-    "message": "Slot abilità"
+    "message": "Slot abilità 1 "
   },
   "refreshsettings": {
     "message": "Impostazioni ricarica pagina"
@@ -321,21 +321,30 @@
     "message": "Priorità"
   },
   "npclist": {
-    "message": "NPC List"
+    "message": "Lista NPCs"
   },
   "generalsettings": {
-    "message": "General settings"
+    "message": "Impostazioni Generali"
   },
   "stopafterxminutes": {
-    "message": "Stop after x minutes (0 = No Stop)"
+    "message": "Ferma Bot dopo x minuti (0 = Non Fermarlo)"
   },
   "waitafterRepair" : {
-    "message": "Stop x minutes after revive (0 = No Stop)"
+    "message": "Ferma Bot per x minuti quando rianimato (0 = Non Fermarlo)"
   },
   "loadSettings": {
-    "message": "Load Settings"
+    "message": "Carica Impostazioni"
   },
   "sentinelmode": {
-	"message": "Sentinel Mode"
-  }
+    "message": "Sentinel Mode"
+  },
+  "habilitySlotTwo": {
+    "message": "Hability slot 2 (Aegis: Riparazione scudo, SpearHead: JAMX, Citadel: Travel, Mimesis: Translazione , Hammerclaw: Riparazione scudo, Tartarus: Speed Boost"
+  },
+  "habilitySlotThree": {
+    "message": "Hability slot 3 (Aegis: Unità Riparatrice, SpearHead: Puntamento, Citadel: Protection Hammerclaw: Rigenerazione HP"
+  },
+  "habilitySlotFour": {
+    "message": "Hability slot 4 (Citadel: Fortify, SpearHead: Ricognizione)"
+   }
 }

@@ -438,11 +438,20 @@ class Api {
         distance: minDist
       };
     }
-
+    
     for (let property in this.ships) {
       let ship = this.ships[property];
       ship.update();
-      if (ship.isNpc) {
+      if ((ship.isNpc  && (!window.settings.onlyAnswerAttacks || (window.settings.onlyAnswerAttacks && ship.attacksUs))) || 
+    	  (!ship.isNpc && window.globalSettings.respondPlayerAttacks && ship.attacksUs)) {
+	    if (!ship.isNpc) {
+      	  finalShip = ship;
+      	  let dist = ship.distanceTo(window.hero.position);
+      	  return {
+  	        ship: finalShip,
+  	        distance: dist
+  	      };
+        }
 	    let npcdata =  window.settings.getNpc(ship.name);
 	    let priority = npcdata["priority"];
         if (priority >= minPriority) {
@@ -457,7 +466,8 @@ class Api {
     for (let property in this.ships) {
       let ship = this.ships[property];
       ship.update();
-      if (ship.isNpc) {
+      if ((ship.isNpc  && (!window.settings.onlyAnswerAttacks || (window.settings.onlyAnswerAttacks && ship.attacksUs))) || 
+          (!ship.isNpc && window.globalSettings.respondPlayerAttacks && ship.attacksUs)) {
         let npcdata =  window.settings.getNpc(ship.name);
         let priority = npcdata["priority"];
         if (priority >= minPriority) {

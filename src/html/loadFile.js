@@ -125,6 +125,9 @@
 	    if (items.sabSlot) {
 	      $("#sabSlot").val(items.sabSlot);
 	    }
+	    if (items.rsbSlot) {
+          $("#rsbSlot").val(items.rsbSlot);
+        }
 	    if (items.stopafterxminutes) {
 	      $("#stopafterxminutes").val(items.stopafterxminutes);
 	    }
@@ -147,7 +150,13 @@
 		  $("#killNpcs").prop('checked', items.killNpcs);
 		}
 	    if (items.avoidAttackedNpcs != null) {
-	      $("#avoidAttackedNpcs").prop('checked', items.killNpcs);
+	      $("#avoidAttackedNpcs").prop('checked', items.avoidAttackedNpcs);
+	    }
+	    if (items.respondPlayerAttacks != null) {
+	      $("#respondPlayerAttacks").prop('checked', items.respondPlayerAttacks);
+	    }
+	    if (items.playerAmmo) {
+	      $("#playerAmmo").val(items.playerAmmo);
 	    }
 	    if (items.defendSentinel != null) {
 	      $("#defendSentinel").prop('checked', items.defendSentinel);

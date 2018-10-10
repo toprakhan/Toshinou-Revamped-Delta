@@ -128,6 +128,7 @@ function saveOptions(e) {
     x3Slot:             $("#x3Slot").val(),
     x4Slot:             $("#x4Slot").val(),
     sabSlot:            $("#sabSlot").val(),
+    rsbSlot:            $("#rsbSlot").val(),
     stopafterxminutes:  $("#stopafterxminutes").val(),
     waitafterRepair:    $("#waitafterRepair").val(),
     fleeFromEnemy:      $("#fleeFromEnemy").prop('checked'),
@@ -136,6 +137,8 @@ function saveOptions(e) {
     moveRandomly:       $("#moveRandomly").prop('checked'),
     killNpcs:			$("#killNpcs").prop('checked'),
     avoidAttackedNpcs:  $("#avoidAttackedNpcs").prop('checked'),
+    respondPlayerAttacks:  $("#respondPlayerAttacks").prop('checked'),
+    playerAmmo:         $("#playerAmmo").val(),
     sentinelid:         $("#sentinelid").val(),
     defendSentinel:     $("#defendSentinel").prop('checked'),
     alpha:              $("#alpha").prop('checked'),
@@ -281,6 +284,7 @@ function downloadProfile(e) {
     x3Slot:             $("#x3Slot").val(),
     x4Slot:             $("#x4Slot").val(),
     sabSlot:            $("#sabSlot").val(),
+    rsbSlot:            $("#rsbSlot").val(),
     stopafterxminutes:  $("#stopafterxminutes").val(),
     waitafterRepair:    $("#waitafterRepair").val(),
     fleeFromEnemy:      $("#fleeFromEnemy").prop('checked'),
@@ -289,6 +293,8 @@ function downloadProfile(e) {
     moveRandomly:       $("#moveRandomly").prop('checked'),
     killNpcs:           $("#killNpcs").prop('checked'),
     avoidAttackedNpcs:  $("#avoidAttackedNpcs").prop('checked'),
+    respondPlayerAttacks:  $("#respondPlayerAttacks").prop('checked'),
+    playerAmmo:         $("#playerAmmo").val(),
     defendSentinel:     $("#defendSentinel").prop('checked'),
     alpha:              $("#alpha").prop('checked'),
     beta:               $("#beta").prop('checked'),
@@ -337,8 +343,8 @@ $('[data-resource]').each(function() {
                 "attackFormation","reviveType", "reviveLimit",
                 "bonusBox", "materials", "cargoBox", "greenOrGoldBooty",
                 "redBooty", "blueBooty", "masqueBooty", "collectBoxWhenCircle", 
-                "workmap", "npcList", "changeAmmunition", "x1Slot", "x2Slot", "x3Slot", "x4Slot", "sabSlot", 
-                "stopafterxminutes", "waitafterRepair", "fleeFromEnemy", "jumpFromEnemy", "dodgeTheCbs", "moveRandomly", "killNpcs", "avoidAttackedNpcs",
+                "workmap", "npcList", "changeAmmunition", "x1Slot", "x2Slot", "x3Slot", "x4Slot", "sabSlot", "rsbSlot",
+                "stopafterxminutes", "waitafterRepair", "fleeFromEnemy", "jumpFromEnemy", "dodgeTheCbs", "moveRandomly", "killNpcs", "avoidAttackedNpcs", "respondPlayerAttacks", "playerAmmo",
                 "sentinelid", "defendSentinel",
                 "alpha", "beta", "gamma", "delta", "epsilon", "zeta", "kappa", "lambda", "kronos", "hades", "kuiper"];
 
@@ -462,6 +468,9 @@ $('[data-resource]').each(function() {
     if (items.sabSlot) {
       $("#sabSlot").val(items.sabSlot);
     }
+    if (items.rsbSlot) {
+      $("#rsbSlot").val(items.rsbSlot);
+    }
     if (items.stopafterxminutes) {
       $("#stopafterxminutes").val(items.stopafterxminutes);
     }
@@ -485,6 +494,12 @@ $('[data-resource]').each(function() {
     }
     if (items.avoidAttackedNpcs) {
       $("#avoidAttackedNpcs").prop('checked', true);
+    }
+    if (items.respondPlayerAttacks) {
+      $("#respondPlayerAttacks").prop('checked', true);
+    }
+    if (items.playerAmmo) {
+      $("#playerAmmo").val(items.playerAmmo);
     }
     if (items.sentinelid) {
       $("#sentinelid").val(items.sentinelid);

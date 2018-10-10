@@ -10,8 +10,8 @@ class Ship extends Movable {
     this.clanDiplomacy = clanDiplomacy;
     this.cloaked = cloaked;
     this.targetID = 0;
-    this.inGroup = false;
     this.mapId = 0;
+    this.attacksUs = false;
   }
 
   setTarget(targetX, targetY, time) {

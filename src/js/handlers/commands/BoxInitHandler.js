@@ -14,8 +14,14 @@ class BoxInitHandler {
       if (a.isOnBlacklist(box.hash)) {
         return;
       }
-      let pBox = new Box(box.x, box.y, box.hash, box[Variables.boxType]);
-      a.boxes[box.hash] = pBox;
+      try {
+        let pBox = new Box(box.x, box.y, box.hash, box[Variables.boxType]);
+        a.boxes[box.hash] = pBox;
+      } catch (exception) {
+    	console.error(exception);
+      	console.log("BoxInitHandler");
+        console.log(box);  
+      };
     };
   }
 

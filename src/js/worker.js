@@ -61,7 +61,7 @@ $(document).ready(function () {
     window.hasJumped = false;
     window.debug = false;
     window.tickTime = window.globalSettings.timerTick;
-    window.settings.moveRandomly = false;
+    window.settings.moveRandomly = true;
     window.settings.killNpcs = false;
     window.settings.onlyAnswerAttacks = false;
     window.invertedMovement = false;
@@ -214,7 +214,7 @@ function logic() {
     if (window.fleeingFromEnemy) {
       window.fleeFromEnemy = false;
     }
-    if (api.disconnectTime && $.now() - api.disconnectTime > 5000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.globalSettings.reviveLimit) {
+    if (api.disconnectTime && $.now() - api.disconnectTime > 20000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.globalSettings.reviveLimit) {
       api.reconnect();
     }
 	if(api.reconnectTime && $.now() - api.reconnectTime > 60000 && window.settings.settings.enableRefresh){
@@ -352,16 +352,22 @@ function logic() {
 
     if (enemyResult.run) {
       if (window.globalSettings.useHability) {
-        if (window.hero.skillname == "mimesis") {
-          api.useHabilityTwo();
-        }
-        if (window.hero.skillName == "spectrum" || window.hero.skillName == "spearhead" || window.hero.skillName == "v-lightning" || window.hero.skillname == "mimesis") {
-          api.useHability();
-        } else if (window.hero.skillName == "citadel") {
-          api.useHabilityTwo();
-        } else if (window.hero.skillName == "spearhead" && enemyResult.edist <= 300) {
-          api.useHabilityTwo();
-        }
+    	if (enemyResult.enemy.attacksUs) {
+		  if (window.hero.skillname == "mimesis") {
+            api.useHabilityTwo();
+          }
+          if (window.hero.skillName == "spectrum" || window.hero.skillName == "v-lightning" || window.hero.skillname == "mimesis") {
+            api.useHability();
+          } else if (window.hero.skillName == "citadel") {
+            api.useHabilityTwo();
+          } else if (window.hero.skillName == "spearhead" && enemyResult.edist <= 300) {
+            api.useHabilityTwo();
+          }
+    	} else {
+    	  if (window.hero.skillName == "spearhead") {
+    		api.useHability();
+    	  }
+    	}
       }
       if (window.globalSettings.jumpFromEnemy && !window.hasJumped & !window.settings.palladium) {
         api.escapeMode();
@@ -911,6 +917,89 @@ function sentinelLogic() {
 
   if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) || ($.now() - api.lastAttack > 10000)) {
     api.resetTarget("enemy");
+  }
+  
+  if (api.targetShip && window.settings.killNpcs && api.targetBoxHash == null) {
+    if(api.attacking){
+      api.attackMode();
+      if(window.globalSettings.useHability && window.hero.skillName){
+        if ((window.hero.skillname == "cyborg" && api.targetShip.hp > 100000)||
+           (window.hero.skillName == "venom" && api.targetShip.hp > 60000))
+        { 
+          api.useHability();
+        } else if (window.hero.skillName == "diminisher" && api.targetShip.shd > 60000){
+          api.useHability();
+        } else if (window.hero.skillname == "sentinel" || window.hero.skillname == "tartarus"){
+          api.useHability();
+        } else if (window.hero.skillname == "spearhead") {
+          api.useHabilityThree();   
+        }
+      }
+      if(window.globalSettings.changeAmmunition) {
+        let ammunition = 1;
+        if (api.targetShip.isNpc) {
+          ammunition = window.settings.getNpc(api.targetShip.name)["ammo"];
+        } else {
+          ammunition = window.globalSettings.playerAmmo;
+        }
+        if (ammunition == 11 && api.targetShip.shd > 200) {
+          api.changeAmmunition(6);
+        } else if (ammunition == 11 && api.targetShip.shd < 200) {
+          api.changeAmmunition(1);
+        } else if (ammunition == 21 && api.targetShip.shd > 200) {
+          api.changeAmmunition(6);
+        } else if (ammunition == 21 && api.targetShip.shd < 200) {
+          api.changeAmmunition(2);
+        } else if (ammunition == 31 && api.targetShip.shd > 200) {
+          api.changeAmmunition(6);
+        } else if (ammunition == 31 && api.targetShip.shd < 200) {
+          api.changeAmmunition(3);
+        }else {
+          api.changeAmmunition(ammunition);
+        }
+      }
+    }
+    api.targetShip.update();
+    let dist = api.targetShip.distanceTo(window.hero.position);
+    if ((dist > 600 && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id) && $.now() - api.lastMovement > 1000)) {
+      x = api.targetShip.position.x - MathUtils.random(-50, 50);
+      y = api.targetShip.position.y - MathUtils.random(-50, 50);
+      api.lastMovement = $.now();
+    } else if (api.lockedShip && window.settings.dontCircleWhenHpBelow25Percent && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id ) {
+      if (dist > 450) {
+        x = api.targetShip.position.x + MathUtils.random(-30, 30);
+        y = api.targetShip.position.y + MathUtils.random(-30, 30);
+      }
+    } else if (window.settings.ggbot && api.resetTargetWhenHpBelow25Percent && api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id ) {
+      api.resetTarget("enemy");
+    } else if (dist > 300 && api.lockedShip && api.lockedShip.id == api.targetShip.id & !window.settings.circleNpc && !window.settings.gatestonpc) {
+      x = api.targetShip.position.x + MathUtils.random(-200, 200);
+      y = api.targetShip.position.y + MathUtils.random(-200, 200);
+    } else if (api.lockedShip && api.lockedShip.id == api.targetShip.id) {
+      if (window.settings.circleNpc) {
+        let radius = window.settings.getNpc(api.lockedShip.name)["range"];
+        if(radius == null || radius < 400){
+          radius = window.settings.npcCircleRadius;
+        }
+        
+        let enemy = api.targetShip.position;
+        let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
+        let s = Math.PI / 180;
+        let rot = MathUtils.random(-10, 10);
+        f += s;
+        x = enemy.x + radius * Math.sin(f);
+        y = enemy.y + radius * Math.cos(f);
+        
+        if(window.globalSettings.collectBoxWhenCircle){
+          let nearestBox = api.findNearestBox();
+          if (nearestBox && nearestBox.box && nearestBox.distance < 300) {
+            circleBox = nearestBox;
+          }
+        }
+      }
+    } else {
+      api.resetTarget("enemy");
+    }
   }
   
   if (x && y) {

@@ -8,23 +8,28 @@ class AttackHandler {
       var shipAttackCmd = JSON.parse(e.detail);
       let attackerID = shipAttackCmd[Variables.attackerId];
       let shipAttackedID = shipAttackCmd[Variables.attackedId];
-      if (window.settings.sentinelMode && a.sentinelship != null) {
-        if (attackerID == window.globalSettings.sentinelid) {
-          a.sentinelship.targetId = shipAttackedID;
+      try {
+	    if (window.settings.sentinelMode && a.sentinelship != null) {
+	      if (attackerID == window.globalSettings.sentinelid) {
+	        a.sentinelship.targetId = shipAttackedID;
+	      }     
+	      if (shipAttackedID == window.globalSettings.sentinelid) {
+	        a.sentinelship.attackerID = attackerID;
+	      }
         }
-        
-        if (shipAttackedID == window.globalSettings.sentinelid) {
-          a.sentinelship.attackerID = attackerID;
-        }
-      }
-      let ship = a.ships[attackerID];
-      if (ship != null){
-        if (shipAttackedID == window.hero.id) {
-          a.ships[attackerID].attacksUs = true;
-        } else {
-          a.ships[attackerID].attacksUs = false;	
-        }
-      }
+	    let ship = a.ships[attackerID];
+	    if (ship != null){
+	      if (shipAttackedID == window.hero.id) {
+	        a.ships[attackerID].attacksUs = true;
+	      } else {
+	        a.ships[attackerID].attacksUs = false;	
+	      }
+	    }
+      } catch (exception) {
+    	console.error(exception);
+      	console.log("AttackHandler");
+        console.log(shipAttackCmd);  
+      };
     }
   }
 

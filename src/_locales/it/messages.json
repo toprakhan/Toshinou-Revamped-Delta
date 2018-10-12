@@ -11,7 +11,7 @@
     "message": "Apparenza"
   },
   "translateby": {
-    "message": "Tradotto da Kewai",
+    "message": "Tradotto da IT| Kewai",
     "description": "Descrizione dell'estenzione Toshinou"
   },
   "discordserver": {
@@ -339,12 +339,24 @@
     "message": "Sentinel Mode"
   },
   "habilitySlotTwo": {
-    "message": "Hability slot 2 (Aegis: Riparazione scudo, SpearHead: JAMX, Citadel: Travel, Mimesis: Translazione , Hammerclaw: Riparazione scudo, Tartarus: Speed Boost"
+    "message": "Abilità slot 2 (Aegis: Riparazione scudo, SpearHead: JAMX, Citadel: Travel, Mimesis: Translazione , Hammerclaw: Riparazione scudo, Tartarus: Speed Boost"
   },
   "habilitySlotThree": {
-    "message": "Hability slot 3 (Aegis: Unità Riparatrice, SpearHead: Puntamento, Citadel: Protection Hammerclaw: Rigenerazione HP"
+    "message": "Abilità slot 3 (Aegis: Unità Riparatrice, SpearHead: Puntamento, Citadel: Protection Hammerclaw: Rigenerazione HP"
   },
   "habilitySlotFour": {
-    "message": "Hability slot 4 (Citadel: Fortify, SpearHead: Ricognizione)"
-   }
+    "message": "Abilità slot 4 (Citadel: Fortify, SpearHead: Ricognizione)"
+  },
+	"escapeFormation": {
+    "message": "Formazione per scappare (slot)"
+  },
+  "escapeConfig": {
+    "message": "Configurazione per scappare"
+  },
+    "respondPlayerAttacks": {
+    "message": "Rispondi agli attacchi"
+  },
+    "playerAmmo": {
+    "message": "Munizioni per difesa"
+  }
 }

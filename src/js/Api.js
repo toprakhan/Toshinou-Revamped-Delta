@@ -26,6 +26,7 @@ class Api {
     this.habilityCoolDownThree = 1;
     this.habilityCoolDownFour = 1;
     this.changeFormationTime = $.now();
+    this.RSBTime = $.now();
     this.formation = -1;
     this.ammunition = -1;
     this.resetTargetWhenHpBelow25Percent = false;
@@ -133,8 +134,22 @@ class Api {
         this.quickSlot(window.globalSettings.x4Slot);
       } else if (ammo == 6) {
         this.quickSlot(window.globalSettings.sabSlot);
-      }
+      } 
       this.ammunition = ammo;
+      if (ammo == 45) {
+    	if ($.now() - this.RSBTime > 3000) {
+    	  this.quickSlot(window.globalSettings.rsbSlot);
+    	  this.ammunition = ammo;
+    	  this.RSBTime = $.now();
+    	  setTimeout(() => {
+    	    this.quickSlot(window.globalSettings.x4Slot);
+    	    this.ammunition = 4;
+	      }, 500);
+    	} else {
+    	  this.quickSlot(window.globalSettings.x4Slot);
+    	  this.ammunition = 4;
+    	}
+      }
     }
   }
 

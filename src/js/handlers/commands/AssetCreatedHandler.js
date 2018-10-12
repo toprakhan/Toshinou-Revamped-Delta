@@ -9,28 +9,34 @@ class AssetCreatedHandler {
       let typeObj = parsedCmd.type;
       let type = parseInt(typeObj[Object.keys(typeObj)[0]]);
 
-      let x = parsedCmd[Variables.assetCreateX];
-      let y = parsedCmd[Variables.assetCreateY];
+      try {
+    	let x = parsedCmd[Variables.assetCreateX];
+        let y = parsedCmd[Variables.assetCreateY];
 
-      if (type == 35 || type == 36) {
-        if (api.battlestation == null) {
-          api.battlestation = new Battlestation(x, y, parsedCmd.assetId, parsedCmd.userName, parsedCmd.clanTag, parsedCmd.factionId, parsedCmd[Variables.battlestationClanDiplomacy].type);
-        } else {
-          api.battlestation.setPosition(x, y);
-          api.battlestation.id = parsedCmd.assetId;
-          api.battlestation.name = parsedCmd.userName;
-          api.battlestation.clanTag = parsedCmd.clanTag;
-          api.battlestation.factionId = parsedCmd.factionId;
-          api.battlestation.clanDiplomacy = parsedCmd[Variables.battlestationClanDiplomacy].type;
+        if (type == 35 || type == 36) {
+          if (api.battlestation == null) {
+            api.battlestation = new Battlestation(x, y, parsedCmd.assetId, parsedCmd.userName, parsedCmd.clanTag, parsedCmd.factionId, parsedCmd[Variables.battlestationClanDiplomacy].type);
+          } else {
+            api.battlestation.setPosition(x, y);
+            api.battlestation.id = parsedCmd.assetId;
+            api.battlestation.name = parsedCmd.userName;
+            api.battlestation.clanTag = parsedCmd.clanTag;
+            api.battlestation.factionId = parsedCmd.factionId;
+            api.battlestation.clanDiplomacy = parsedCmd[Variables.battlestationClanDiplomacy].type;
+          }
         }
-      }
 
-      if (type == 37) {
-        if (api.battlestation == null)
-          api.battlestation = new Battlestation();
-
-        api.battlestation.modules[parsedCmd.assetId] = new BattlestationModule(x, y, parsedCmd.userName, parsedCmd.factionId);
-      }
+        if (type == 37) {
+          if (api.battlestation == null) {
+            api.battlestation = new Battlestation();
+          }
+          api.battlestation.modules[parsedCmd.assetId] = new BattlestationModule(x, y, parsedCmd.userName, parsedCmd.factionId);
+        }
+      } catch (exception) {
+    	console.error(exception);
+    	console.log("AssetCreatedHandler");
+        console.log(parsedCmd);
+      };
     }
   }
 

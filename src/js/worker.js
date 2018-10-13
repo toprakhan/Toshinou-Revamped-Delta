@@ -495,7 +495,7 @@ function logic() {
   
   /* Dodge the CBS */
   if (window.globalSettings.dodgeTheCbs && api.battlestation != null) {
-    if (api.battlestation.isEnemy && api.battlestation.modules.length > 0) {
+    if (api.battlestation.isEnemy && Object.keys(api.battlestation.modules).length > 0) {
       let result = api.checkForCBS();
       if (result.walkAway) {
         if (api.targetBoxHash) {

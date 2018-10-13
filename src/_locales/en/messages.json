@@ -162,7 +162,7 @@
         "message": "Flee from enemy"
     },
     "avoidattackednpc": {
-        "message": "Avoid attacked NPCs<br>(Dont use with PET)"
+        "message": "Avoid attacked NPCs(Dont use with PET)"
     },
     "circle": {
         "message": "Circle"

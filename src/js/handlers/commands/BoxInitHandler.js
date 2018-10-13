@@ -19,7 +19,6 @@ class BoxInitHandler {
         a.boxes[box.hash] = pBox;
       } catch (exception) {
     	console.error(exception);
-      	console.log("BoxInitHandler");
         console.log(box);  
       };
     };

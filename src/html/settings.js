@@ -139,6 +139,7 @@ function saveOptions(e) {
     avoidAttackedNpcs:  $("#avoidAttackedNpcs").prop('checked'),
     respondPlayerAttacks:  $("#respondPlayerAttacks").prop('checked'),
     playerAmmo:         $("#playerAmmo").val(),
+    useCBSZoneSegure:   $("#useCBSZoneSegure").prop('checked'),
     sentinelid:         $("#sentinelid").val(),
     defendSentinel:     $("#defendSentinel").prop('checked'),
     alpha:              $("#alpha").prop('checked'),
@@ -295,6 +296,7 @@ function downloadProfile(e) {
     avoidAttackedNpcs:  $("#avoidAttackedNpcs").prop('checked'),
     respondPlayerAttacks:  $("#respondPlayerAttacks").prop('checked'),
     playerAmmo:         $("#playerAmmo").val(),
+    useCBSZoneSegure:   $("#useCBSZoneSegure").prop('checked'),
     defendSentinel:     $("#defendSentinel").prop('checked'),
     alpha:              $("#alpha").prop('checked'),
     beta:               $("#beta").prop('checked'),
@@ -344,7 +346,7 @@ $('[data-resource]').each(function() {
                 "bonusBox", "materials", "cargoBox", "greenOrGoldBooty",
                 "redBooty", "blueBooty", "masqueBooty", "collectBoxWhenCircle", 
                 "workmap", "npcList", "changeAmmunition", "x1Slot", "x2Slot", "x3Slot", "x4Slot", "sabSlot", "rsbSlot",
-                "stopafterxminutes", "waitafterRepair", "fleeFromEnemy", "jumpFromEnemy", "dodgeTheCbs", "moveRandomly", "killNpcs", "avoidAttackedNpcs", "respondPlayerAttacks", "playerAmmo",
+                "stopafterxminutes", "waitafterRepair", "fleeFromEnemy", "jumpFromEnemy", "dodgeTheCbs", "moveRandomly", "killNpcs", "avoidAttackedNpcs", "respondPlayerAttacks", "playerAmmo", "useCBSZoneSegure",
                 "sentinelid", "defendSentinel",
                 "alpha", "beta", "gamma", "delta", "epsilon", "zeta", "kappa", "lambda", "kronos", "hades", "kuiper"];
 
@@ -500,6 +502,9 @@ $('[data-resource]').each(function() {
     }
     if (items.playerAmmo) {
       $("#playerAmmo").val(items.playerAmmo);
+    }
+    if (items.useCBSZoneSegure) {
+      $("#useCBSZoneSegure").prop('checked', true);
     }
     if (items.sentinelid) {
       $("#sentinelid").val(items.sentinelid);

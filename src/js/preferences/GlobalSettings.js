@@ -54,6 +54,7 @@ class GlobalSettings {
       avoidAttackedNpcs: false,
       respondPlayerAttacks: false,
       playerAmmo: 0,
+      useCBSZoneSegure: false,
       sentinelid: 0,
       defendSentinel: false,
       alpha: false,
@@ -197,6 +198,10 @@ class GlobalSettings {
   
   get playerAmmo() {
 	return this._settings.playerAmmo;
+  }
+  
+  get useCBSZoneSegure() {
+	return this._settings.useCBSZoneSegure;
   }
   
   get bonusBox() {

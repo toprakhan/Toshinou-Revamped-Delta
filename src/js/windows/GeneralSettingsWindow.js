@@ -47,7 +47,7 @@ class GeneralSettingsWindow {
 	    }
   	  },
   	  {
-  	    name: 'sentinelmode',
+  	    name: 'sentinelMode',
   	    labelText: chrome.i18n.getMessage("sentinelmode"),
         appendTo: this.botSettingsWindow,
   	    event: function () {
@@ -63,7 +63,7 @@ class GeneralSettingsWindow {
         }
       },
       {
-        name: 'npcCircle',
+        name: 'circleNpc',
         labelText: chrome.i18n.getMessage("circle"),
         appendTo: this.botSettingsWindow,
         event: function () {

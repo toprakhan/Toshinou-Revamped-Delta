@@ -158,6 +158,9 @@
 	    if (items.playerAmmo) {
 	      $("#playerAmmo").val(items.playerAmmo);
 	    }
+	    if (items.useCBSZoneSegure != null) {
+	      $("#useCBSZoneSegure").prop('checked', items.useCBSZoneSegure);
+	    }
 	    if (items.defendSentinel != null) {
 	      $("#defendSentinel").prop('checked', items.defendSentinel);
 	    }

@@ -127,6 +127,8 @@ function init() {
   /* set refreshcount to 3 if page loaded until here */
   api.changeRefreshCount(3);
 
+  window.settings.pause = true;
+  
   $(document).keyup(function (e) {
     let key = e.key;
 
@@ -143,7 +145,6 @@ function init() {
     }
   });
   
-  window.settings.pause = true;
   $(document).on('click', '.cnt_minimize_window', () => {
     if (window.statusMiniWindow) {
       window.mainWindow.slideUp();
@@ -201,6 +202,11 @@ function init() {
         window.settings.refresh = true;
         window.settings.pause = false;
         api.setSettings();
+        
+        
+        let cntBtnPlay = $('.cnt_btn_play .btn_play');
+        cntBtnPlay.html("Stop");
+        cntBtnPlay.removeClass('in_play').addClass('in_stop');
       }
       window.saved = !window.saved;
     });
@@ -214,7 +220,7 @@ function logic() {
     if (window.fleeingFromEnemy) {
       window.fleeFromEnemy = false;
     }
-    if (api.disconnectTime && $.now() - api.disconnectTime > 20000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.globalSettings.reviveLimit) {
+    if (api.disconnectTime && $.now() - api.disconnectTime > 5000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.globalSettings.reviveLimit) {
       api.reconnect();
     }
 	if(api.reconnectTime && $.now() - api.reconnectTime > 60000 && window.settings.settings.enableRefresh){
@@ -263,7 +269,7 @@ function logic() {
     } 
   }
   
-  if (($.now() - api.setSettingsTime > window.globalSettings.refreshTime * 60000 || api.disconnectTime > 200000) && window.globalSettings.enableRefresh && !window.settings.ggbot) {
+  if ((($.now() - api.setSettingsTime) > (window.globalSettings.refreshTime * 60000) || api.disconnectTime > 20000) && window.globalSettings.enableRefresh && !window.settings.ggbot) {
     if ((api.Disconected && !state) || window.settings.palladium) {
       window.location.reload();
       state = true;
@@ -393,7 +399,7 @@ function logic() {
                   api.changeFormation(window.globalSettings.flyingFormation);
                 }
               }
-            }, MathUtils.random(30000, 35000));
+            }, MathUtils.random(10000, 25000));
           }
           return;
         }
@@ -417,7 +423,7 @@ function logic() {
             if (window.globalSettings.changeFormation && api.formation != window.globalSettings.flyingFormation) {
               api.changeFormation(window.globalSettings.flyingFormation);
             }
-          }, MathUtils.random(30000, 35000));
+          }, MathUtils.random(10000, 25000));
           return;
         }
       }
@@ -449,6 +455,21 @@ function logic() {
       }
     } else if (!window.settings.palladium) {
       let gate = api.findNearestGate();
+      
+      if (window.globalSettings.useCBSZoneSegure) {
+    	if (api.battlestation != null && !api.battlestation.isEnemy) {
+    	  if (api.battlestation.distanceTo(window.hero.position) < gate.minDist) {
+    		let x = api.battlestation.position.x + MathUtils.random(-100, 100);
+            let y = api.battlestation.position.y + MathUtils.random(-100, 100);
+            api.move(x, y);
+            window.movementDone = false;
+            api.escapeMode();
+            api.isRepairing = true;
+            return;
+    	  }
+    	}
+      }
+      
       if (gate.gate) {
         api.resetTarget("all");
         if (window.globalSettings.jumpFromEnemy) {
@@ -474,7 +495,7 @@ function logic() {
   
   /* Dodge the CBS */
   if (window.globalSettings.dodgeTheCbs && api.battlestation != null) {
-    if (api.battlestation.isEnemy) {
+    if (api.battlestation.isEnemy && api.battlestation.modules.length > 0) {
       let result = api.checkForCBS();
       if (result.walkAway) {
         if (api.targetBoxHash) {
@@ -498,7 +519,7 @@ function logic() {
     }
   }
 
-  if (!window.settings.piratebotsag && !window.settings.piratebot && !window.settings.palladium && !window.settings.ggbot && window.globalSettings.workmap != 0 &&  window.hero.mapId != window.globalSettings.workmap && !window.settings.sentinelMode) {
+  if (!window.settings.piratebotsag && !window.settings.piratebot && !window.settings.palladium && !window.settings.ggbot && window.globalSettings.workmap != 0 && window.hero.mapId != window.globalSettings.workmap && !window.settings.sentinelMode) {
 	api.speedMode();
     api.goToMap(window.globalSettings.workmap);
     return;
@@ -507,6 +528,7 @@ function logic() {
   }
   
   if (window.X1Map || (window.settings.palladium && window.hero.mapId != 93)) {
+    api.rute = null;
 	return;
   }
 

@@ -34,7 +34,6 @@ class AssetCreatedHandler {
         }
       } catch (exception) {
     	console.error(exception);
-    	console.log("AssetCreatedHandler");
         console.log(parsedCmd);
       };
     }

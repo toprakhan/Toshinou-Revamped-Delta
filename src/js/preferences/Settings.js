@@ -5,7 +5,6 @@ class Settings {
     ggbot, palladium, piratebot, cubibot) 
   {
     this._pause = pause === true;
-
     this._refresh = refresh === true;
     this._circleNpc = circleNpc === true;
     this.npcCircleRadius = 500;

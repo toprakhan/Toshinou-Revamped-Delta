@@ -87,6 +87,7 @@ class ControlFactory {
 
   static createControl({
     type = "checkbox",
+    name,
     labelText,
     labelBefore = false,
     appendTo,
@@ -102,7 +103,7 @@ class ControlFactory {
     Object.keys(attrs).forEach((name) => {
       input.attr(name, attrs[name]);
     });
-
+    
     let label = jQuery("<label>");
     label.attr("for", labelText);
     label.html(labelText);

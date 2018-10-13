@@ -27,7 +27,6 @@ class AttackHandler {
 	    }
       } catch (exception) {
     	console.error(exception);
-      	console.log("AttackHandler");
         console.log(shipAttackCmd);  
       };
     }

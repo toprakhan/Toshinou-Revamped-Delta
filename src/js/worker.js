@@ -632,7 +632,7 @@ function logic() {
 		}
 	}
 
-	if (!window.settings.piratebotsag && !window.settings.piratebot && !window.settings.palladium && !window.settings.ggbot && window.globalSettings.workmap != 0 && window.hero.mapId != window.globalSettings.workmap && !window.settings.sentinelMode) {
+	if (!window.settings.ggbot && window.globalSettings.workmap != 0 && window.hero.mapId != window.globalSettings.workmap && !window.settings.sentinelMode) {
 		api.speedMode();
 		api.goToMap(window.globalSettings.workmap);
 		return;
@@ -640,7 +640,7 @@ function logic() {
 		api.rute = null;
 	}
 
-	if (window.X1Map || (window.settings.palladium && window.hero.mapId != 93)) {
+	if (window.X1Map) {
 		api.rute = null;
 		return;
 	}

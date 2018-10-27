@@ -31,7 +31,9 @@ class Api {
 		this.resetTargetWhenHpBelow25Percent = false;
 		this.sentinelship = null;
 		this.attacking = false;
+		this.map53 = [];
 		this.map52 = [];
+		this.map51 = [];
 		this.rutePirateMaps = null;
 	}
 
@@ -213,7 +215,11 @@ class Api {
 
 	moveWithFilter(x, y) {
 		if (window.hero.mapId == 93) {
+			this.moveFor53(x, y);
+		} else if (window.hero.mapId == 92) {
 			this.moveFor52(x, y);
+		} else if (window.hero.mapId == 91) {
+			this.moveFor51(x, y);
 		} else if (!window.bigMap && !window.settings.ggbot && ((x < 200 || x > 20800) || (y < 200 || y > 12900))) {
 			x = MathUtils.random(200, 20800);
 			y = MathUtils.random(200, 12900);
@@ -314,7 +320,7 @@ class Api {
 					this.jumpTime = $.now();
 				}
 				this.resetTarget("all");
-				this.move(x, y);
+				this.moveWithFilter(x, y);
 				window.movementDone = false;
 			}
 		}
@@ -332,7 +338,7 @@ class Api {
 				hasJumped = true;
 			}
 			this.resetTarget("all");
-			this.move(x, y);
+			this.moveWithFilter(x, y);
 			window.movementDone = false;
 		}
 		return hasJumped;
@@ -688,7 +694,7 @@ class Api {
 		if (this.rute == null) {
 			this.fillStarSystem();
 			let mapSystem = {1:{2:1},2:{1:1,3:1,4:1},3:{2:1,7:1,4:1},4:{2:1,3:1,13:2,13:1},13:{4:1,14:2,15:2,16:2},5:{6:1},6:{5:1,7:1,8:1},7:{6:1,3:1,8:1},8:{6:1,7:1,14:2,11:1},14:{8:1,13:2,15:2,16:2},9:{10:1},10:{9:1,12:1,11:1},
-					11:{10:1,8:1,12:1},12:{10:1,11:1,15:2,4:1},15:{12:1,14:2,13:2,16:2},16:{13:2,14:2,15:2,17:1,21:1,25:1},29:{17:1,21:1,25:1},17:{16:2,29:3,19:1,18:1},18:{17:1,20:1},19:{17:1,20:1},20:{18:1,19:1},21:{16:2,29:3,22:1,23:1},22:{21:1,24:1},23:{21:1,24:1},24:{23:1,22:1},25:{29:3,16:2,27:1,26:1},27:{25:1,28:1},26:{25:1,28:1},28:{26:1,27:1}},
+					11:{10:1,8:1,12:1},12:{10:1,11:1,15:2,4:1},15:{12:1,14:2,13:2,16:2},16:{13:2,14:2,15:2,17:1,21:1,25:1},29:{17:1,21:1,25:1,91:1},17:{16:2,29:3,19:1,18:1},18:{17:1,20:1},19:{17:1,20:1},20:{18:1,19:1},21:{16:2,29:3,22:1,23:1},22:{21:1,24:1},23:{21:1,24:1},24:{23:1,22:1},25:{29:3,16:2,27:1,26:1},27:{25:1,28:1},26:{25:1,28:1},28:{26:1,27:1},91:{92:1},92:{93:1},93:{16:1}},
 					graph = new Graph(mapSystem);
 			let imcompleteRute = graph.findShortestPath(window.hero.mapId, idWorkMap);
 			if (imcompleteRute != null) {
@@ -796,6 +802,9 @@ class Api {
 		portals45.push(new Portal(150000314,17)); // 4-5 | 1-5
 		portals45.push(new Portal(150000316,21)); // 4-5 | 2-5
 		portals45.push(new Portal(150000318,25)); // 4-5 | 3-5
+		portals45.push(new Portal(150000413,91)); // 4-5 | 5-1 MMO
+		portals45.push(new Portal(150000415,91)); // 4-5 | 5-1 EIC
+		portals45.push(new Portal(150000417,91)); // 4-5 | 5-1 VRU
 		this.starSystem.push(new Map(29, portals45));
 		let portals15 = [];
 		portals15.push(new Portal(150000284,16)); // 1-5 | 4-4
@@ -851,6 +860,21 @@ class Api {
 		portals38.push(new Portal(150000312,27)); // 3-8 | 3-7
 		portals38.push(new Portal(150000310,26)); // 3-8 | 3-6
 		this.starSystem.push(new Map(28, portals38));
+		let portals51 = [];
+		portals51.push(new Portal(150000419,92)); // 5-1 | 5-2 MMO
+		portals51.push(new Portal(150000423,92)); // 5-1 | 5-2 VRU
+		portals51.push(new Portal(150000421,92)); // 5-1 | 5-2 EIC
+		this.starSystem.push(new Map(91, portals51));
+		let portals52 = [];
+		portals52.push(new Portal(150000427,93)); // 5-2 | 5-3 EIC
+		portals52.push(new Portal(150000425,93)); // 5-2 | 5-3 MMO
+		portals52.push(new Portal(150000429,93)); // 5-2 | 5-3 VRU
+		this.starSystem.push(new Map(92, portals52));
+		let portals53 = [];
+		portals53.push(new Portal(150000433,16)); // 5-3 | 4-4
+		portals53.push(new Portal(150000431,16)); // 5-3 | 4-4
+		portals53.push(new Portal(150000435,16)); // 5-3 | 4-4
+		this.starSystem.push(new Map(93, portals53));
 	}
 
 	completeRute(imcompleteRute){
@@ -929,7 +953,7 @@ class Api {
 		} else {
 			ammunition = parseInt(window.globalSettings.playerAmmo);
 		}
-		if (ammunition != null) {
+		if (ammunition != null && ammunition > 0) {
 			if (this.targetShip.shd > 200 && (ammunition == 11 || ammunition == 21 || ammunition == 31 || ammunition == 41)) {
 				this.changeAmmunition(6);
 			} else if (this.targetShip.shd < 200 && (ammunition == 11 || ammunition == 21 || ammunition == 31 || ammunition == 41)) {
@@ -953,16 +977,16 @@ class Api {
 		}
 	}
 
-	moveFor52(finX, finY) {
-		if (this.map52 == null || this.map52.length <= 0) {
-			this.completeMap52();
+	moveFor53(finX, finY) {
+		if (this.map53 == null || this.map53.length <= 0) {
+			this.completeMap53();
 		} else { 
-			let startZone = this.get52IDZone(window.hero.position.x, window.hero.position.y);
+			let startZone = this.getMapIDZone(window.hero.position.x, window.hero.position.y, this.map53);
 			if (startZone != null && startZone != 0) {
-				let endZone = this.get52IDZone(finX, finY);
+				let endZone = this.getMapIDZone(finX, finY, this.map53);
 				if (endZone !=0 && startZone != endZone) {
 					if (this.rutePirateMaps != null) {
-						let nextZone = api.get52Zone(this.rutePirateMaps[0]);
+						let nextZone = api.getMapZone(this.rutePirateMaps[0],this.map53);
 						if (nextZone != null) {
 							if (window.hero.position.x == nextZone.conectorX && window.hero.position.y == nextZone.conectorY) {
 								this.rutePirateMaps.shift();
@@ -973,7 +997,45 @@ class Api {
 							this.rutePirateMaps = null;
 						}
 					} else {
-						let rute52 = {1:{2:1},2:{1:1,3:1},3:{2:1,4:1},4:{3:1,5:1},5:{4:1,6:1},6:{5:1},7:{6:1},8:{7:1},9:{8:1}},
+						let rute53 = {1:{2:1},2:{1:1,3:1},3:{2:1,4:1},4:{3:1,5:1},5:{4:1,6:1},6:{5:1},7:{6:1},8:{7:1},9:{8:1}},
+						graph = new Graph(rute53);
+						this.rutePirateMaps = graph.findShortestPath(startZone, endZone);
+					}
+				} else {
+					this.rutePirateMaps = null;
+					this.move(finX, finY);
+					window.movementDone = false;
+				}
+			} else {
+				this.rutePirateMaps = null;
+				this.move(finX, finY);
+				window.movementDone = false;
+			}
+		}
+
+	}
+	
+	moveFor52(finX, finY) {
+		if (this.map52 == null || this.map52.length <= 0) {
+			this.completeMap52();
+		} else { 
+			let startZone = this.getMapIDZone(window.hero.position.x, window.hero.position.y, this.map52);
+			if (startZone != null && startZone != 0) {
+				let endZone = this.getMapIDZone(finX, finY, this.map52);
+				if (endZone !=0 && startZone != endZone) {
+					if (this.rutePirateMaps != null) {
+						let nextZone = api.getMapZone(this.rutePirateMaps[0],this.map52);
+						if (nextZone != null) {
+							if (window.hero.position.x == nextZone.conectorX && window.hero.position.y == nextZone.conectorY) {
+								this.rutePirateMaps.shift();
+							}
+							this.move(nextZone.conectorX, nextZone.conectorY);
+							window.movementDone = false;
+						} else {
+							this.rutePirateMaps = null;
+						}
+					} else {
+						let rute52 = {1:{2:1},2:{1:1,3:1},3:{2:1}},
 						graph = new Graph(rute52);
 						this.rutePirateMaps = graph.findShortestPath(startZone, endZone);
 					}
@@ -990,27 +1052,136 @@ class Api {
 		}
 
 	}
+	
+	moveFor51(finX, finY) {
+		if (this.map51 == null || this.map51.length <= 0) {
+			this.completeMap51();
+		} else { 
+			let map = this.map51;
+			let startZone = this.getMapIDZone(window.hero.position.x, window.hero.position.y, map);
+			if (startZone != null && startZone != 0) {
+				let endZone = this.getMapIDZone(finX, finY, map);
+				if (endZone !=0 && startZone != endZone) {
+					if (this.rutePirateMaps != null) {
+						let nextZone = api.getMapZone(this.rutePirateMaps[0],map);
+						if (nextZone != null) {
+							if (window.hero.position.x == nextZone.conectorX && window.hero.position.y == nextZone.conectorY) {
+								this.rutePirateMaps.shift();
+							}
+							this.move(nextZone.conectorX, nextZone.conectorY);
+							window.movementDone = false;
+						} else {
+							this.rutePirateMaps = null;
+						}
+					} else {
+						let rute51 = {1:{2:1},2:{1:1,3:1},3:{2:1}},
+						graph = new Graph(rute51);
+						this.rutePirateMaps = graph.findShortestPath(startZone, endZone);
+					}
+				} else {
+					this.rutePirateMaps = null;
+					this.move(finX, finY);
+					window.movementDone = false;
+				}
+			} else {
+				this.rutePirateMaps = null;
+				this.move(finX, finY);
+				window.movementDone = false;
+			}
+		}
 
-	get52Zone(id) {
-		for (let i = 0;i < this.map52.length; i++) {
-			if (this.map52[i].id == id) {
-				return this.map52[i];
+	}
+
+	getMapZone(id, map) {
+		for (let i = 0;i < map.length; i++) {
+			if (map[i].id == id) {
+				return map[i];
 			}
 		} 
 	}
 
-	get52IDZone(x, y) {
+	getMapIDZone(x, y, map) {
 		let id = 0;
-		for (let i = 0;i < this.map52.length; i++) {
-			if (this.map52[i].minX < x && this.map52[i].maxX > x && this.map52[i].minY < y && this.map52[i].maxY > y) {
-				id = this.map52[i].id;
+		for (let i = 0;i < map.length; i++) {
+			if (map[i].minX < x && map[i].maxX > x && map[i].minY < y && map[i].maxY > y) {
+				id = map[i].id;
 				return id;
 			}
 		}
 		return id;
 	}
 
+	completeMap51() {
+		var portals45 = {
+				id: 1,
+				minX: 29360,
+				minY: 480,
+				maxX: 41760,
+				maxY: 25920,
+				conectorX: 29370,
+				conectorY: 23920
+		};
+		
+		var hall1 = {
+				id: 2,
+				minX: 12880,
+				minY: 21760,
+				maxX: 29040,
+				maxY: 25920,
+				conectorX: 13600,
+				conectorY: 23360
+		};
+		
+		var portals52 = {
+				id: 3,
+				minX: 240,
+				minY: 320,
+				maxX: 12870,
+				maxY: 25760,
+				conectorX: 11760,
+				conectorY: 23760
+		};
+		this.map51.push(portals45);
+		this.map51.push(hall1);
+		this.map51.push(portals52);
+	}
+	
 	completeMap52() {
+		var portals51 = {
+				id: 1,
+				minX: 15240,
+				minY: 160,
+				maxX: 20760,
+				maxY: 12880,
+				conectorX: 15360,
+				conectorY: 11960
+		};
+		
+		var hall1 = {
+				id: 2,
+				minX: 5400,
+				minY: 10640,
+				maxX: 15120,
+				maxY: 12920,
+				conectorX: 5520,
+				conectorY: 11840
+		};
+		
+		var portals53 = {
+				id: 3,
+				minX: 240,
+				minY: 120,
+				maxX: 5000,
+				maxY: 12960,
+				conectorX: 4640,
+				conectorY: 12040
+		};
+		this.map52.push(portals51);
+		this.map52.push(hall1);
+		this.map52.push(portals53);
+	}
+	
+	completeMap53() {
 		var zone1 = {
 				id: 1,
 				minX: 33205,
@@ -1093,15 +1264,15 @@ class Api {
 				conectorY: 15271
 		};
 
-		this.map52.push(zone1);
-		this.map52.push(hall1);
-		this.map52.push(hall2);
-		this.map52.push(hall3);
-		this.map52.push(prePalla);
-		this.map52.push(palla);
-		this.map52.push(mineZone);
-		this.map52.push(hall4);
-		this.map52.push(zone2);
+		this.map53.push(zone1);
+		this.map53.push(hall1);
+		this.map53.push(hall2);
+		this.map53.push(hall3);
+		this.map53.push(prePalla);
+		this.map53.push(palla);
+		this.map53.push(mineZone);
+		this.map53.push(hall4);
+		this.map53.push(zone2);
 
 	}
 }

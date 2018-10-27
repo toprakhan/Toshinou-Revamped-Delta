@@ -124,7 +124,7 @@ class Settings {
 		if (this._npcs.hasOwnProperty(name)){
 			return this._npcs[name];
 		} else {
-			var npcdata = {"name": name, "range": window.settings.npcCircleRadius, "ammo": "1", "priority": "1"};
+			var npcdata = {"name": name, "range": window.settings.npcCircleRadius, "ammo": "0", "priority": "1"};
 			return npcdata;
 		}
 	}

@@ -1,13 +1,12 @@
 class Settings {
 	constructor(pause, 
-			refresh, repairWhenHpIsLowerThanPercent, gatestonpc,
+			refresh, gatestonpc,
 			lockNpcs, lockPlayers, autoAttack, autoAttackNpcs,
 			ggbot, palladium, piratebot, cubibot) 
 			{
 		this._pause = pause === true;
 		this._refresh = refresh === true;
 		this.npcCircleRadius = 600;
-		this._repairWhenHpIsLowerThanPercent = repairWhenHpIsLowerThanPercent;
 		this._gatestonpc = gatestonpc === true;
 		this._lockNpcs = lockNpcs === true;
 		this._lockPlayers = lockPlayers === true;
@@ -42,14 +41,6 @@ class Settings {
 
 	set refresh(value) {
 		this._refresh = value === true;
-	}
-
-	get repairWhenHpIsLowerThanPercent() {
-		return this._repairWhenHpIsLowerThanPercent;
-	}
-
-	set repairWhenHpIsLowerThanPercent(value) {
-		this._repairWhenHpIsLowerThanPercent = value;
 	}
 
 	get gatestonpc() {

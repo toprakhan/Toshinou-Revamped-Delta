@@ -104,6 +104,7 @@ function saveOptions(e) {
 			playerAmmo:         $("#playerAmmo").val(),
 			useCBSZoneSegure:   $("#useCBSZoneSegure").prop('checked'),
 			randomBreaks:		$("#randomBreaks").prop('checked'),
+			repairWhenHpIsLowerThanPercent:  $("#repairWhenHpIsLowerThanPercent").val(),
 			sentinelid:         $("#sentinelid").val(),
 			defendSentinel:     $("#defendSentinel").prop('checked'),
 			alpha:              $("#alpha").prop('checked'),
@@ -225,6 +226,7 @@ function downloadProfile(e) {
 			playerAmmo:         $("#playerAmmo").val(),
 			useCBSZoneSegure:   $("#useCBSZoneSegure").prop('checked'),
 			randomBreaks:		$("#randomBreaks").prop('checked'),
+			repairWhenHpIsLowerThanPercent:  $("#repairWhenHpIsLowerThanPercent").val(),
 			defendSentinel:     $("#defendSentinel").prop('checked'),
 			alpha:              $("#alpha").prop('checked'),
 			beta:               $("#beta").prop('checked'),
@@ -271,7 +273,8 @@ function restore() {
 		"redBooty", "blueBooty", "masqueBooty", "collectBoxWhenCircle", 
 		"workmap", "npcList", "changeAmmunition", "x1Slot", "x2Slot", "x3Slot", "x4Slot", "sabSlot", "rsbSlot",
 		"stopafterxminutes", "waitafterRepair", "waitBeforeRepair","fleeFromEnemy", "jumpFromEnemy", "onlyEscapeWhenEnemyAttack", "autoPlay",
-		"dodgeTheCbs", "moveRandomly", "killNpcs", "avoidAttackedNpcs", "circleNpc", "dontCircleWhenHpBelow25Percent", "respondPlayerAttacks", "playerAmmo", "useCBSZoneSegure", "randomBreaks",
+		"dodgeTheCbs", "moveRandomly", "killNpcs", "avoidAttackedNpcs", "circleNpc", "dontCircleWhenHpBelow25Percent", "respondPlayerAttacks", "playerAmmo", "useCBSZoneSegure", "randomBreaks", 
+		"repairWhenHpIsLowerThanPercent",
 		"sentinelid", "defendSentinel",
 		"alpha", "beta", "gamma", "delta", "epsilon", "zeta", "kappa", "lambda", "kronos", "hades", "kuiper"];
 
@@ -448,6 +451,9 @@ function restore() {
 		}
 		if (items.randomBreaks) {
 			$("#randomBreaks").prop('checked', true);
+		}
+		if (items.repairWhenHpIsLowerThanPercent) {
+			$("#repairWhenHpIsLowerThanPercent").val(items.repairWhenHpIsLowerThanPercent);
 		}
 		if (items.sentinelid) {
 			$("#sentinelid").val(items.sentinelid);

@@ -311,19 +311,19 @@
 					<input type="checkbox" id="circleNpc"> <label for="circleNpc"><span data-resource=circle>Collect Box When Circle</span></label>
 				</td>
 				<td colspan="2">
-					<input type="checkbox" id="dontCircleWhenHpBelow25Percent"> <label for="dontCircleWhenHpBelow25Percent"><span data-resource="dontcirclewhenhp">Don't circle when HP < 25%</span></label>
+					<input type="checkbox" id="dontCircleWhenHpBelow25Percent"> <label for="dontCircleWhenHpBelow25Percent"><span data-resource="dontcirclewhenhp">Don't circle when HP &#60; 25%</span></label>
 				</td>
 				<td>
 					<label for="autoPlay"><span data-resource=autoPlay>Auto Play Mode</span></label>
 					<select id="autoPlay">
 						<option value="0">Disabled</option>
 						<option value="1">Only AutoPlay</option>
-						<option value="2"><span data-resource=palladiumbot>Palladium bot</span></option>
-						<option value="3"><span data-resource=piratebot>5-2 Pirate bot - Gate Left</span></option>
-						<option value="4"><span data-resource=piratebotsag>Pirate Bottle Right</span></option>
-						<option value="5"><span data-resource=cubibot>Protegit Bot</span></option>
-						<option value="6"><span data-resource=ggbot>GG Bot (Testing)</span></option>
-						<option value="7"><span data-resource=sentinelmode>Sentinel Mode</span></option>
+						<option value="2">Palladium bot</option>
+						<option value="3">5-2 Pirate bot - Gate Left</option>
+						<option value="4">Pirate Bottle Right</option>
+						<option value="5">Protegit Bot</option>
+						<option value="6">GG Bot</option>
+						<option value="7">Sentinel Mode</option>
 					</select>
 				</td>
 			</tr>
@@ -347,6 +347,12 @@
 				</td>
 				<td colspan="2">
 					<input type="checkbox" id="useCBSZoneSegure"> <label for="useCBSZoneSegure"><span data-resource="useCBSZoneSegure">Use Ally CBS as a safe zone to repair</span></label>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<label for="repairWhenHpIsLowerThanPercent"><span data-resource=repairWhenHpIsLowerThanPercent>Repair when HP &#60; </span> 
+					<input type="number" id="repairWhenHpIsLowerThanPercent" min="0" max="100" value="10">%</label>
 				</td>
 			</tr>
 			<tr>
@@ -407,7 +413,7 @@
 							refresh function</span></label></td>
 				<td><label for="refreshTime"><span
 						data-resource="refreshtime">Refresh interval (min)</span></label> <input
-					type="number" id="refreshTime" min="30" max="300" value="60">
+					type="number" id="refreshTime" min="10" max="300" value="60">
 				</td>
 				<td><input type="checkbox" id="refreshToReconnect"> <label
 					for="refreshToReconnect"><span
@@ -510,6 +516,7 @@
 				<script src="npclist.js"></script>
 			</form>
 		</table>
+		<p>You can donate from here: <a href="https://streamlabs.com/dm94dani">https://streamlabs.com/dm94dani</a></p>
 	</form>
 	<script src="/js/libs/jquery-3.2.1.min.js"></script>
 	<script src="settings.js"></script>

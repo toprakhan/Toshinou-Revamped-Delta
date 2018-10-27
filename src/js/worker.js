@@ -545,7 +545,7 @@ function logic() {
 		}
 	}
 
-	if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.repairWhenHpIsLowerThanPercent || api.isRepairing) {
+	if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.globalSettings.repairWhenHpIsLowerThanPercent || api.isRepairing) {
 		if (window.settings.ggbot) {
 			api.resetTarget("all");
 			let npcCount = api.countNpcAround(1000);

@@ -62,6 +62,7 @@ class GlobalSettings {
 			playerAmmo: 0,
 			useCBSZoneSegure: false,
 			randomBreaks: false,
+			repairWhenHpIsLowerThanPercent: 10,
 			sentinelid: 0,
 			defendSentinel: false,
 			alpha: false,
@@ -238,6 +239,10 @@ class GlobalSettings {
 
 	get randomBreaks() {
 		return this._settings.randomBreaks;
+	}
+	
+	get repairWhenHpIsLowerThanPercent() {
+		return this._settings.repairWhenHpIsLowerThanPercent;
 	}
 	
 	get bonusBox() {

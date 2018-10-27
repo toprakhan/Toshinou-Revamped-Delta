@@ -78,23 +78,6 @@ class GeneralSettingsWindow {
 					window.settings.npcCircleRadius = this.value;
 					$('span:last-child', this.label).text(' (' + this.value + 'px)');
 				}
-			},
-			{
-				name: 'repairWhenHpIsLowerThanPercent',
-				labelText: chrome.i18n.getMessage("repairwhenhp"),
-				type: 'range',
-				appendTo: this.botSettingsWindow,
-				labelBefore: true,
-				attrs: {
-					min: 0,
-					max: 100,
-					step: 1,
-					value: 10,
-				},
-				event: function (ev) {
-					window.settings.repairWhenHpIsLowerThanPercent = this.value;
-					$('span:last-child', this.label).text(' (' + this.value + '%)');
-				}
 			}
 			];
 

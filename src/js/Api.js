@@ -35,6 +35,23 @@ class Api {
 		this.map52 = [];
 		this.map51 = [];
 		this.rutePirateMaps = null;
+		this.pet = null;
+	}
+	
+	changePetModule(module_id){
+		if(this.pet.currentModule != module_id){
+			Injector.injectScript('document.getElementById("preloader").petModule(parseInt('+module_id+'), "");');
+			this.pet.currentModule = module_id;
+		}
+	}
+
+	callPet(n){
+		// 0 = activate
+		// 1 = deactivate
+		// 4 = repair
+		api.pet.activateTimer = $.now();
+		Injector.injectScript('document.getElementById("preloader").petCall('+parseInt(n)+');');
+		this.pet.currentModule = -1;
 	}
 
 	useHability() {

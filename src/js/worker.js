@@ -52,6 +52,7 @@ $(document).ready(function () {
 	window.newSettings = new Settings();
 	window.initialized = false;
 	window.reviveCount = 0;
+	window.petReviveCount = 0;
 	window.count = 0;
 	window.movementDone = true;
 	window.statusPlayBot = false;
@@ -84,10 +85,12 @@ $(document).ready(function () {
 	hm.registerCommand(HeroUpdateHitpointsHandler.ID, new HeroUpdateHitpointsHandler());
 	hm.registerCommand(HeroUpdateShieldHandler.ID, new HeroUpdateShieldHandler());
 	hm.registerCommand(AssetCreatedHandler.ID, new AssetCreatedHandler());
-	hm.registerCommand(ShipConditionHandler.ID, new ShipConditionHandler());
+	hm.registerCommand(HeroAffectedHandler.ID, new HeroAffectedHandler());
 	hm.registerCommand(GroupCreateHandler.ID, new GroupCreateHandler());
 	hm.registerCommand(GroupShipUpdatePosHandler.ID, new GroupShipUpdatePosHandler());
 	hm.registerCommand(AttackHandler.ID, new AttackHandler());
+	hm.registerCommand(HeroPetUpdateHandler.ID, new HeroPetUpdateHandler());
+	hm.registerCommand(PetUpdateFuel.ID, new PetUpdateFuel());
 
 	hm.registerEvent("updateHeroPos", new HeroPositionUpdateEventHandler());
 	hm.registerEvent("movementDone", new MovementDoneEventHandler());
@@ -817,7 +820,10 @@ function logic() {
 	if (api.targetShip && window.settings.killNpcs && api.targetBoxHash == null) {
 		api.targetShip.update();
 		let dist = api.targetShip.distanceTo(window.hero.position);
-		let radius = window.settings.getNpc(api.lockedShip.name)["range"];
+		let radius = 500;
+		if (api.lockedShip && api.lockedShip.id == api.targetShip.id) {
+			radius = window.settings.getNpc(api.lockedShip.name)["range"];
+		}
 		if(radius == null || radius < 400){
 			radius = window.settings.npcCircleRadius;
 		}

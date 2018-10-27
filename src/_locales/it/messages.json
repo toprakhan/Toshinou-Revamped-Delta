@@ -367,5 +367,17 @@
   },
         "donwloadprofile": {
     "message": "Scarica Impostazioni"
+  },
+          "onlyEscapeWhenEnemyAttack": {
+    "message": "Scappa solo quando attaccato da nemici"
+  },
+          "randomBreaks": {
+    "message": "Pause Randomiche"
+  },
+            "waitBeforeRepair": {
+    "message": "Aspetta x secondi prima di riparare"
+  },
+              "repairWhenHpIsLowerThanPercent": {
+    "message": "Ripara quando HP < "
   }
 }

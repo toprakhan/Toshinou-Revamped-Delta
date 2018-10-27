@@ -38,7 +38,28 @@ class MessagesHandler {
 				if(message.length == 5) {
 					this.palladium(message);
 				}
+				this.connection({
+					connected: true,
+					status: 'on'
+				});
 			}
+			
+			if ("A" == message[1]) {
+				if(message[2] == "STM"){
+					if(message[3] == "msg_pet_out_of_fuel"){
+						if (a.pet != null) {
+							a.pet.hasFuel = false;
+							a.pet.activated = false;
+							a.pet.currentModule = -1;
+						}
+					}
+				}
+				this.connection({
+					connected: true,
+					status: 'on'
+				});
+			}
+			
 			if (_events.hasOwnProperty(message[3])) {
 				this[_events[message[3]]](message);
 			}

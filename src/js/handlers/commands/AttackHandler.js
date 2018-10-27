@@ -25,6 +25,7 @@ class AttackHandler {
 						a.ships[attackerID].attacksUs = false;	
 					}
 				}
+				
 			} catch (exception) {
 				console.error(exception);
 				console.log(shipAttackCmd);  

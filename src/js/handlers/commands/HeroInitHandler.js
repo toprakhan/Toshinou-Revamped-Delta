@@ -12,6 +12,7 @@ class HeroInitHandler {
 			a.heroDied = false;
 			a.resetTarget("all");
 			a.battlestation = null;
+			a.pet = null;
 			Injector.injectScript("window.heroDied = false;");
 
 			let heroJson = JSON.parse(e.detail);

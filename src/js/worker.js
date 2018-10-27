@@ -817,7 +817,10 @@ function logic() {
 	if (api.targetShip && window.settings.killNpcs && api.targetBoxHash == null) {
 		api.targetShip.update();
 		let dist = api.targetShip.distanceTo(window.hero.position);
-		let radius = window.settings.getNpc(api.lockedShip.name)["range"];
+		let radius = 0;
+		try {
+			radius = window.settings.getNpc(api.lockedShip.name)["range"];
+		} catch (Exception e){}
 		if(radius == null || radius < 400){
 			radius = window.settings.npcCircleRadius;
 		}

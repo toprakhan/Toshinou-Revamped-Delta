@@ -111,7 +111,7 @@ class Settings {
 		if (this._npcs.hasOwnProperty(name)){
 			this._npcs[name]["priority"] = val;
 		} else {
-			var npcdata = {"name": name, "range": window.settings.npcCircleRadius, "ammo": "1", "priority": val};
+			var npcdata = {"name": name, "range": this.npcCircleRadius, "ammo": "1", "priority": val};
 			this._npcs[name] = npcdata;
 		}
 	}
@@ -124,7 +124,7 @@ class Settings {
 		if (this._npcs.hasOwnProperty(name)){
 			return this._npcs[name];
 		} else {
-			var npcdata = {"name": name, "range": window.settings.npcCircleRadius, "ammo": "0", "priority": "1"};
+			var npcdata = {"name": name, "range": this.npcCircleRadius, "ammo": "0", "priority": "1"};
 			return npcdata;
 		}
 	}

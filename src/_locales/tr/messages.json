@@ -1,6 +1,6 @@
 ﻿{
   "toshidescription": {
-    "message": "DarkOrbit adlı bir tarayıcı flash oyunu için bir hile / araç / bot / ne olursa olsun. Bazı oldukça düzgün şeyler yapar ve hala ağır gelişme altındadır",
+    "message": "Şu ana kadar Darkorbit için yapılmış en iyi botlardan bir tanesidir.",
     "description": "Toshinou Bot Açıklaması"
   },
   "desextension": {
@@ -141,7 +141,7 @@
     "message": "Apocalypse Ganimet Kutusu"
   },
   "collectboxwhencircle": {
-    "message": "Daire Çizerken Kutuları Topla"
+    "message": "Daire Çizerken Materyal ve Kutu Topla"
   },
   "target": {
     "message": "Hedef: "
@@ -201,7 +201,7 @@
     "message": "Genel Ayarlar"
   },
   "gghelper": {
-    "message": "GG Yardimcisi"
+    "message": "GG Yardımcısı"
   },
   "ggbot": {
     "message": "GG Bot"
@@ -361,5 +361,11 @@
     },
     "defendSentinel": {
         "message": "Sentinel Gemi Savunması"
+    },
+    "useCBSZoneSegure": {
+        "message": "Müttefik Savaş İstasyonunda Tamir Ol"
+    },
+    "groupNecesary": {
+        "message": "Aynı Grupta Olmanız Lazım"
     }
 }

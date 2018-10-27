@@ -270,7 +270,17 @@
 				<td colspan="2"><label for="waitafterRepair"><span
 						data-resource=waitafterRepair>Wait after repair x minutes
 							(0 = No Stop)</span> <input type="number" id="waitafterRepair" min="0"
-						max="20" value="0"></label></td>
+						max="20" value="0"></label>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<label for="waitBeforeRepair"><span data-resource=waitBeforeRepair>Wait before repair x seconds</span> 
+					<input type="number" id="waitBeforeRepair" min="8" max="240" value="8"></label>
+				</td>
+				<td colspan="2">
+					<input type="checkbox" id="randomBreaks"> <label for="randomBreaks"><span data-resource="randomBreaks">Random Breaks</span></label>
+				</td>
 			</tr>
 			<tr>
 				<td>
@@ -279,7 +289,10 @@
 				<td>
 					<input type="checkbox" id="jumpFromEnemy"> <label for="jumpFromEnemy"><span data-resource="jumpandreturn">Jump and Return</span></label>
 				</td>
-				<td colspan="2">
+				<td>
+					<input type="checkbox" id="onlyEscapeWhenEnemyAttack"> <label for="onlyEscapeWhenEnemyAttack"><span data-resource="onlyEscapeWhenEnemyAttack">Only escape when enemy attack</span></label>
+				</td>
+				<td>
 					<input type="checkbox" id="dodgeTheCbs"> <label for="dodgeTheCbs"><span data-resource="dodgethecbs">Dodge CBS</span></label>
 				</td>
 			</tr>
@@ -296,6 +309,27 @@
 			</tr>
 			<tr>
 				<td>
+					<input type="checkbox" id="circleNpc"> <label for="circleNpc"><span data-resource=circle>Collect Box When Circle</span></label>
+				</td>
+				<td colspan="2">
+					<input type="checkbox" id="dontCircleWhenHpBelow25Percent"> <label for="dontCircleWhenHpBelow25Percent"><span data-resource="dontcirclewhenhp">Don't circle when HP < 25%</span></label>
+				</td>
+				<td>
+					<label for="autoPlay"><span data-resource=autoPlay>Auto Play Mode</span></label>
+					<select id="autoPlay">
+						<option value="0">Disabled</option>
+						<option value="1">Only AutoPlay</option>
+						<option value="2"><span data-resource=palladiumbot>Palladium bot</span></option>
+						<option value="3"><span data-resource=piratebot>5-2 Pirate bot - Gate Left</span></option>
+						<option value="4"><span data-resource=piratebotsag>Pirate Bottle Right</span></option>
+						<option value="5"><span data-resource=cubibot>Protegit Bot</span></option>
+						<option value="6"><span data-resource=ggbot>GG Bot (Testing)</span></option>
+						<option value="7"><span data-resource=sentinelmode>Sentinel Mode</span></option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
 					<input type="checkbox" id="respondPlayerAttacks"> <label for="respondPlayerAttacks"><span data-resource="respondPlayerAttacks">Respond player attacks</span></label>
 				</td>
 				<td>
@@ -308,6 +342,7 @@
 						<option value="11">X1 + SAB</option>
 						<option value="21">X2 + SAB</option>
 						<option value="31">X3 + SAB</option>
+						<option value="41">X4 + SAB</option>
 						<option value="45">X4 + RSB</option>
 					</select>
 				</td>

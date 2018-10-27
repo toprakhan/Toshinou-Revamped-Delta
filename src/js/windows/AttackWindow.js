@@ -1,39 +1,48 @@
 class AttackWindow {
-  createWindow() {
-    this.attackWindow = WindowFactory.createWindow({
-      width: 320,
-      text: chrome.i18n.getMessage("attackdetails")
-    });
+	createWindow() {
+		this.attackWindow = WindowFactory.createWindow({
+			width: 320,
+			text: chrome.i18n.getMessage("attackdetails")
+		});
 
-    this.targetNameTxt = jQuery("<h4>");
-    this.targetNameTxt.text(chrome.i18n.getMessage("target")+" - ");
+		this.idTxt = jQuery("<h4>");
+		this.idTxt.text("ID - ");
 
-    this.hpTxt = jQuery("<h4>");
-    this.hpTxt.text(chrome.i18n.getMessage("hp")+" - ");
+		this.targetNameTxt = jQuery("<h4>");
+		this.targetNameTxt.text(chrome.i18n.getMessage("target")+" - ");
 
-    this.shdTxt = jQuery("<h4>");
-    this.shdTxt.text(chrome.i18n.getMessage("shd")+" - ");
+		this.hpTxt = jQuery("<h4>");
+		this.hpTxt.text(chrome.i18n.getMessage("hp")+" - ");
 
-    this.targetNameTxt.appendTo(this.attackWindow);
-    this.hpTxt.appendTo(this.attackWindow);
-    this.shdTxt.appendTo(this.attackWindow);
-  }
+		this.shdTxt = jQuery("<h4>");
+		this.shdTxt.text(chrome.i18n.getMessage("shd")+" - ");
 
-  removeTarget() {
-    this.targetName.text(chrome.i18n.getMessage("target"));
-    this.hpTxt.text(chrome.i18n.getMessage("hp"));
-    this.shdTxt.text(chrome.i18n.getMessage("shd"));
-  }
+		this.idTxt.appendTo(this.attackWindow);
+		this.targetNameTxt.appendTo(this.attackWindow);
+		this.hpTxt.appendTo(this.attackWindow);
+		this.shdTxt.appendTo(this.attackWindow);
+	}
 
-  targetName(value) {
-    this.targetNameTxt.text(chrome.i18n.getMessage("target") + value);
-  }
+	removeTarget() {
+		this.idTxt.text("ID");
+		this.targetName.text(chrome.i18n.getMessage("target"));
+		this.hpTxt.text(chrome.i18n.getMessage("hp"));
+		this.shdTxt.text(chrome.i18n.getMessage("shd"));
+	}
 
-  hp(value) {
-    this.hpTxt.text(chrome.i18n.getMessage("hp") + value);
-  }
+	targetName(value) {
+		this.targetNameTxt.text(chrome.i18n.getMessage("target") + value);
+	}
 
-  shd(value) {
-    this.shdTxt.text(chrome.i18n.getMessage("shd") + value);
-  }
+	hp(value) {
+		this.hpTxt.text(chrome.i18n.getMessage("hp") + value);
+	}
+
+	shd(value) {
+		this.shdTxt.text(chrome.i18n.getMessage("shd") + value);
+	}
+
+	id(value) {
+		this.idTxt.text("ID: " + value);
+	}
 }

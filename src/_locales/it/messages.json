@@ -272,8 +272,8 @@
   "usehability": {
     "message": "Usa abilità"
   },
-  "habilityslot": {
-    "message": "Slot abilità 1 "
+  "habilitySlot": {
+    "message": "Slot Abilità "
   },
   "refreshsettings": {
     "message": "Impostazioni ricarica pagina"
@@ -339,13 +339,13 @@
     "message": "Sentinel Mode"
   },
   "habilitySlotTwo": {
-    "message": "Abilità slot 2 (Aegis: Riparazione scudo, SpearHead: JAMX, Citadel: Travel, Mimesis: Translazione , Hammerclaw: Riparazione scudo, Tartarus: Speed Boost"
+    "message": "Slot Abilità 2 (Aegis: Riparazione scudo, SpearHead: JAMX, Citadel: Travel, Mimesis: Translazione , Hammerclaw: Riparazione scudo, Tartarus: Speed Boost"
   },
   "habilitySlotThree": {
-    "message": "Abilità slot 3 (Aegis: Unità Riparatrice, SpearHead: Puntamento, Citadel: Protection Hammerclaw: Rigenerazione HP"
+    "message": "Slot Abilità 3 (Aegis: Unità Riparatrice, SpearHead: Puntamento, Citadel: Protection Hammerclaw: Rigenerazione HP"
   },
   "habilitySlotFour": {
-    "message": "Abilità slot 4 (Citadel: Fortify, SpearHead: Ricognizione)"
+    "message": "Slot Abilità 4 (Citadel: Fortify, SpearHead: Ricognizione)"
   },
 	"escapeFormation": {
     "message": "Formazione per scappare (slot)"
@@ -358,5 +358,14 @@
   },
     "playerAmmo": {
     "message": "Munizioni per difesa"
+  },
+      "useCBSZoneSegure": {
+    "message": "Usa Asteroidi alleati come zona sicura per riparare"
+  },
+      "groupNecesary": {
+    "message": "E' necessario che le navi siano nello stesso gruppo"
+  },
+        "donwloadprofile": {
+    "message": "Scarica Impostazioni"
   }
 }

@@ -1,25 +1,25 @@
 class ResourceInitHandler {
-  static get ID() {
-    return 31886;//28548 up
-  }
+	static get ID() {
+		return 31886;//28548 up
+	}
 
-  constructor() {
-    this._handler = function (e, a) {
-      let box = JSON.parse(e.detail);
-      if (box.hash.length == 6) {
-        return;
-      }
+	constructor() {
+		this._handler = function (e, a) {
+			let box = JSON.parse(e.detail);
+			if (box.hash.length == 6) {
+				return;
+			}
 
-      if (a.isOnBlacklist(box.hash)) {
-        return;
-      }
+			if (a.isOnBlacklist(box.hash)) {
+				return;
+			}
 
-      let pBox = new Box(box.x, box.y, box.hash, box[Variables.resource][Variables.resourceType]);
-      a.boxes[box.hash] = pBox;
-    };
-  }
+			let pBox = new Box(box.x, box.y, box.hash, box[Variables.resource][Variables.resourceType]);
+			a.boxes[box.hash] = pBox;
+		};
+	}
 
-  get handler() {
-    return this._handler;
-  }
+	get handler() {
+		return this._handler;
+	}
 }

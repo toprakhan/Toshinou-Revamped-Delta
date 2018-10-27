@@ -16,7 +16,14 @@ let blacklist = [
 	"content",
 	"cnt_minimize_window",
 	"ui-draggable",
-	"ui-draggable-handle"
+	"ui-draggable-handle",
+	"saveButton",
+	"reloadSettings",
+	"btn_save",
+	"save",
+	"btn",
+	"btn_reload",
+	"reload"
 	]
 
 chrome.webRequest.onBeforeRequest.addListener(
@@ -30,6 +37,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 				cancel: result
 			};
 		}, {
-			urls: ["https://*.bigpoint.net/*"]
+			urls: ["https://*.bigpoint.net/*",
+				"https://eventstream*"]
 		}, ["blocking"]
 );

@@ -356,9 +356,8 @@ class Api {
 			if (ship && (ship.name == "-=[ StreuneR ]=- δ4" || 
 					ship.name == "-=[ Lordakium ]=- δ9" || 
 					ship.name == "-=[ Sibelon ]=- δ14" || 
-					ship.name == "-=[ Kristallon ]=- δ19" ||
-					ship.name == "..::{ Boss Lordakium }::... δ23")) {
-				this.resetTargetWhenHpBelow25Percent=false;
+					ship.name == "-=[ Kristallon ]=- δ19")) {
+				this.resetTargetWhenHpBelow25Percent = false;
 				if (shipsCount > 1) {
 					window.settings.setNpc(ship.name, "0");
 					if (this.targetShip == ship) {
@@ -370,8 +369,9 @@ class Api {
 				}
 			}
 			if (ship && (ship.name == "..::{ Boss Lordakium }::... δ25" ||
-					ship.name == "..::{ Boss Lordakium }::... δ21")) {
-				this.resetTargetWhenHpBelow25Percent=false;
+					ship.name == "..::{ Boss Lordakium }::... δ21" ||
+					ship.name == "..::{ Boss Lordakium }::... δ23")) {
+				this.resetTargetWhenHpBelow25Percent = false;
 				if (shipsCount > 3) {
 					window.settings.setNpc(ship.name, "0");
 					if (this.targetShip == ship) {

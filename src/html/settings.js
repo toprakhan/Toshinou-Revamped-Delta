@@ -50,6 +50,7 @@ function saveOptions(e) {
 			windowColor:        $("#windowColor").val(),
 			windowOpacity:      $("#windowOpacity").val(),
 			timerTick:          $("#timerTick").val(),
+			debug:				$("#debug").prop('checked'),
 			enableRefresh:      $("#enableRefresh").prop('checked'),
 			refreshToReconnect: $("#refreshToReconnect").prop('checked'),
 			refreshTime:        $("#refreshTime").val(),
@@ -170,6 +171,7 @@ function downloadProfile(e) {
 			windowColor:        $("#windowColor").val(),
 			windowOpacity:      $("#windowOpacity").val(),
 			timerTick:          $("#timerTick").val(),
+			debug:				$("#debug").prop('checked'),
 			enableRefresh:      $("#enableRefresh").prop('checked'),
 			refreshToReconnect: $("#refreshToReconnect").prop('checked'),
 			refreshTime:        $("#refreshTime").val(),
@@ -260,7 +262,7 @@ function restore() {
 		}
 	});
 
-	var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "windowsToTabs",
+	var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "windowsToTabs", "debug",
 		"enableRefresh","refreshToReconnect", "refreshTime", 
 		"speedFormat", "autoChangeConfig", "attackConfig", "flyingConfig", "escapeConfig",
 		"useHability","habilitySlot", "habilitySlotTwo", "habilitySlotThree", "habilitySlotFour", "changeFormation","flyingFormation", "escapeFormation",
@@ -290,6 +292,9 @@ function restore() {
 			$("#refreshToReconnect").prop('checked', true);
 		if (items.refreshTime)
 			$("#refreshTime").val(items.refreshTime);
+		if (items.debug) {
+			$("#debug").prop('checked', true);
+		}
 		if (items.speedFormat) {
 			let sel = `#speedFormat_${items.speedFormat}`;
 			$(sel).prop('checked', true);

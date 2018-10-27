@@ -7,6 +7,7 @@ class GlobalSettings {
 			windowColor: "#191919",
 			windowOpacity: "0.8",
 			timerTick: 300,
+			debug: false,
 			enableRefresh: false,
 			refreshToReconnect: false,
 			refreshTime: 60,
@@ -133,6 +134,10 @@ class GlobalSettings {
 
 	get timerTick() {
 		return this._settings.timerTick;
+	}
+
+	get debug() {
+		return this._settings.debug;
 	}
 
 	get speedFormat() {

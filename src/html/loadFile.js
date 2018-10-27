@@ -18,6 +18,9 @@ function loadArchive() {
 				$("#windowOpacity").val(items.windowOpacity);
 			if (items.timerTick)
 				$("#timerTick").val(items.timerTick);
+			if (items.debug != null) {
+				$("#debug").prop('checked', items.debug);
+			}
 			if (items.enableRefresh != null)
 				$("#enableRefresh").prop('checked', items.enableRefresh);
 			if (items.refreshToReconnect != null)

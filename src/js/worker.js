@@ -115,6 +115,11 @@ function init() {
 
 	window.autolockWindow = new AutolockWindow();
 	window.autolockWindow.createWindow();
+	
+	if (window.globalSettings.debug) {
+		window.debugWindow = new DebugWindow();
+		window.debugWindow.createWindow();
+	}
 
 	Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
@@ -271,8 +276,23 @@ function init() {
 }
 
 function logic() {
-
 	let circleBox = null;
+	
+	if (window.globalSettings.debug) {
+		if (window.settings.showCoordinates) {
+			console.log("X: " + window.hero.position.x + " | Y: " + window.hero.position.y);
+		}
+		if (window.settings.showMapID) {
+			console.log(window.hero.mapId);
+		}
+		if (window.settings.showNearestPortal) {
+			let gate = api.findNearestGate();
+			if (gate.gate) {
+				console.log(gate.gate);
+			}
+		}
+	}
+	
 	if (api.isDisconnected) {
 		api.resetTarget("all");
 		if (window.fleeingFromEnemy) {

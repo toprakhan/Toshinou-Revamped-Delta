@@ -214,12 +214,12 @@ class Api {
 	moveWithFilter(x, y) {
 		if (window.hero.mapId == 93) {
 			this.moveFor52(x, y);
-		} else if (!window.bigMap && ((x < 200 || x > 20800) || (y < 200 || y > 12900))) {
+		} else if (!window.bigMap && !window.settings.ggbot && ((x < 200 || x > 20800) || (y < 200 || y > 12900))) {
 			x = MathUtils.random(200, 20800);
 			y = MathUtils.random(200, 12900);
 			this.move(x, y);
 			window.movementDone = false;
-		}  else if (window.bigMap && ((x < 500 || x > 41500) || (y < 500 || y > 25700))) {
+		}  else if (window.bigMap && !window.settings.ggbot && ((x < 500 || x > 41500) || (y < 500 || y > 25700))) {
 			x = MathUtils.random(500, 41500);
 			y = MathUtils.random(500, 25700);
 			this.move(x, y);

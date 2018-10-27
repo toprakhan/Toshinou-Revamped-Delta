@@ -356,6 +356,7 @@ class Api {
 	}
 
 	ggDeltaFix() {
+		let changeTarget = true;
 		let shipsCount = Object.keys(this.ships).length;
 		for (let property in this.ships) {
 			let ship = this.ships[property];
@@ -365,27 +366,28 @@ class Api {
 					ship.name == "-=[ Kristallon ]=- δ19")) {
 				this.resetTargetWhenHpBelow25Percent = false;
 				if (shipsCount > 1) {
-					window.settings.setNpc(ship.name, "0");
-					if (this.targetShip == ship) {
-						this.resetTarget("enemy");
-					}
+					changeTarget = true;
 				} else {
-					window.settings.setNpc(ship.name, "9");
-					this.targetShip = ship;
+					changeTarget = false;
 				}
-			}
-			if (ship && (ship.name == "..::{ Boss Lordakium }::... δ25" ||
+			} else if (ship && (ship.name == "..::{ Boss Lordakium }::... δ25" ||
 					ship.name == "..::{ Boss Lordakium }::... δ21" ||
 					ship.name == "..::{ Boss Lordakium }::... δ23")) {
 				this.resetTargetWhenHpBelow25Percent = false;
 				if (shipsCount > 3) {
-					window.settings.setNpc(ship.name, "0");
-					if (this.targetShip == ship) {
-						this.resetTarget("enemy");
-					}
+					changeTarget = true;
 				} else {
-					window.settings.setNpc(ship.name, "9");
-					this.targetShip = ship;
+					changeTarget = false;
+				}
+			}
+			
+			if (!changeTarget) {
+				window.settings.setNpc(ship.name, "9");
+				this.targetShip = ship;
+			} else {
+				window.settings.setNpc(ship.name, "0");
+				if (this.targetShip == ship) {
+					this.resetTarget("enemy");
 				}
 			}
 		}

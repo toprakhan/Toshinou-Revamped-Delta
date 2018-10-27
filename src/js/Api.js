@@ -357,11 +357,22 @@ class Api {
 					ship.name == "-=[ Lordakium ]=- δ9" || 
 					ship.name == "-=[ Sibelon ]=- δ14" || 
 					ship.name == "-=[ Kristallon ]=- δ19" ||
-					ship.name == "..::{ Boss Lordakium }::... δ23" ||
-					ship.name == "..::{ Boss Lordakium }::... δ25" ||
-					ship.name == "..::{ Boss Lordakium }::... δ21")) {
+					ship.name == "..::{ Boss Lordakium }::... δ23")) {
 				this.resetTargetWhenHpBelow25Percent=false;
 				if (shipsCount > 1) {
+					window.settings.setNpc(ship.name, "0");
+					if (this.targetShip == ship) {
+						this.resetTarget("enemy");
+					}
+				} else {
+					window.settings.setNpc(ship.name, "9");
+					this.targetShip = ship;
+				}
+			}
+			if (ship && (ship.name == "..::{ Boss Lordakium }::... δ25" ||
+					ship.name == "..::{ Boss Lordakium }::... δ21")) {
+				this.resetTargetWhenHpBelow25Percent=false;
+				if (shipsCount > 3) {
 					window.settings.setNpc(ship.name, "0");
 					if (this.targetShip == ship) {
 						this.resetTarget("enemy");
@@ -912,31 +923,33 @@ class Api {
 	}
 
 	chooseAmmunition() {
-		let ammunition = 1;
+		let ammunition;
 		if (this.targetShip.isNpc) {
 			ammunition = parseInt(window.settings.getNpc(this.targetShip.name)["ammo"]);
 		} else {
 			ammunition = parseInt(window.globalSettings.playerAmmo);
 		}
-		if (this.targetShip.shd > 200 && (ammunition == 11 || ammunition == 21 || ammunition == 31 || ammunition == 41)) {
-			this.changeAmmunition(6);
-		} else if (this.targetShip.shd < 200 && (ammunition == 11 || ammunition == 21 || ammunition == 31 || ammunition == 41)) {
-			switch(ammunition) {
-				case 11:
-					this.changeAmmunition(1);
-			        break;
-				case 21:
-					this.changeAmmunition(2);
-			        break;
-				case 31:
-					this.changeAmmunition(3);
-			        break;
-				case 41:
-					this.changeAmmunition(4);
-			        break;
+		if (ammunition != null) {
+			if (this.targetShip.shd > 200 && (ammunition == 11 || ammunition == 21 || ammunition == 31 || ammunition == 41)) {
+				this.changeAmmunition(6);
+			} else if (this.targetShip.shd < 200 && (ammunition == 11 || ammunition == 21 || ammunition == 31 || ammunition == 41)) {
+				switch(ammunition) {
+					case 11:
+						this.changeAmmunition(1);
+				        break;
+					case 21:
+						this.changeAmmunition(2);
+				        break;
+					case 31:
+						this.changeAmmunition(3);
+				        break;
+					case 41:
+						this.changeAmmunition(4);
+				        break;
+				}
+			} else {
+				this.changeAmmunition(ammunition);
 			}
-		} else {
-			this.changeAmmunition(ammunition);
 		}
 	}
 

@@ -34,6 +34,7 @@ class Api {
 		this.map51 = [];
 		this.rutePirateMaps = null;
 		this.pet = null;
+		this.jumped = false;
 	}
 	
 	changePetModule(module_id){
@@ -308,17 +309,20 @@ class Api {
 
 	jumpInGateByType(gateType, settings) {
 		if (settings) {
-			let gate = this.findNearestGatebyGateType(gateType);
-			if (gate.gate) {
-				let x = gate.gate.position.x;
-				let y = gate.gate.position.y;
-				if (window.hero.position.distanceTo(gate.gate.position) < 200 && this.jumpTime && $.now() - this.jumpTime > 3000) {
-					this.jumpGate();
-					this.jumpTime = $.now();
+			let box = this.findNearestBox;
+			if (!box.box || window.X1Map) {
+				let gate = this.findNearestGatebyGateType(gateType);
+				if (gate.gate) {
+					let x = gate.gate.position.x;
+					let y = gate.gate.position.y;
+					if (!this.jumped && window.hero.position.distanceTo(gate.gate.position) < 200 && this.jumpTime && $.now() - this.jumpTime > 3000) {
+						this.jumpGate();
+						this.jumpTime = $.now();
+					}
+					this.resetTarget("all");
+					this.moveWithFilter(x, y);
+					window.movementDone = false;
 				}
-				this.resetTarget("all");
-				this.moveWithFilter(x, y);
-				window.movementDone = false;
 			}
 		}
 	}
@@ -329,7 +333,7 @@ class Api {
 		if (gate.gate) {
 			let x = gate.gate.position.x + MathUtils.random(-100, 100);
 			let y = gate.gate.position.y + MathUtils.random(-100, 100);
-			if (window.hero.position.distanceTo(gate.gate.position) < 200 && this.jumpTime && $.now() - this.jumpTime > 3000) {
+			if (!this.jumped && window.hero.position.distanceTo(gate.gate.position) < 200 && this.jumpTime && $.now() - this.jumpTime > 3000) {
 				this.jumpGate();
 				this.jumpTime = $.now();
 				hasJumped = true;
@@ -348,7 +352,6 @@ class Api {
 			this.workmap = window.hero.mapId;
 		}
 		let hasJumped = this.jumpInGateByID(gateId);
-
 		return hasJumped;
 	}
 
@@ -1112,33 +1115,33 @@ class Api {
 
 	completeMap51() {
 		var portals45 = {
-				id: 1,
-				minX: 29360,
-				minY: 480,
-				maxX: 41760,
-				maxY: 25920,
-				conectorX: 29370,
-				conectorY: 23920
+			id: 1,
+			minX: 29360,
+			minY: 480,
+			maxX: 41760,
+			maxY: 25920,
+			conectorX: 29370,
+			conectorY: 23920
 		};
 		
 		var hall1 = {
-				id: 2,
-				minX: 12880,
-				minY: 21760,
-				maxX: 29040,
-				maxY: 25920,
-				conectorX: 13600,
-				conectorY: 23360
+			id: 2,
+			minX: 12880,
+			minY: 21760,
+			maxX: 29040,
+			maxY: 25920,
+			conectorX: 13600,
+			conectorY: 23360
 		};
 		
 		var portals52 = {
-				id: 3,
-				minX: 240,
-				minY: 320,
-				maxX: 12870,
-				maxY: 25760,
-				conectorX: 11760,
-				conectorY: 23760
+			id: 3,
+			minX: 240,
+			minY: 320,
+			maxX: 12870,
+			maxY: 25760,
+			conectorX: 11760,
+			conectorY: 23760
 		};
 		this.map51.push(portals45);
 		this.map51.push(hall1);
@@ -1147,120 +1150,132 @@ class Api {
 	
 	completeMap52() {
 		var portals51 = {
-				id: 1,
-				minX: 15240,
-				minY: 160,
-				maxX: 20760,
-				maxY: 12880,
-				conectorX: 15360,
-				conectorY: 11960
+			id: 1,
+			minX: 15240,
+			minY: 160,
+			maxX: 20760,
+			maxY: 12880,
+			conectorX: 15360,
+			conectorY: 11960
 		};
 		
 		var hall1 = {
-				id: 2,
-				minX: 5400,
-				minY: 10640,
-				maxX: 15120,
-				maxY: 12920,
-				conectorX: 5520,
-				conectorY: 11840
+			id: 2,
+			minX: 5400,
+			minY: 10640,
+			maxX: 15120,
+			maxY: 12920,
+			conectorX: 5520,
+			conectorY: 11840
 		};
 		
 		var portals53 = {
-				id: 3,
-				minX: 240,
-				minY: 120,
-				maxX: 5000,
-				maxY: 12960,
-				conectorX: 4640,
-				conectorY: 12040
+			id: 3,
+			minX: 240,
+			minY: 120,
+			maxX: 5000,
+			maxY: 12960,
+			conectorX: 4640,
+			conectorY: 12040
 		};
+		
+		var base = {
+			id: 4,
+			minX: 9757,
+			minY: 6390,
+			maxX: 11212,
+			maxY: 7008,
+			conectorX: 11142,
+			conectorY: 6810
+		};
+		
 		this.map52.push(portals51);
 		this.map52.push(hall1);
 		this.map52.push(portals53);
+		this.map52.push(base);
 	}
 	
 	completeMap53() {
 		var zone1 = {
-				id: 1,
-				minX: 33205,
-				minY: 204,
-				maxX: 41640,
-				maxY: 14160,
-				conectorX: 32715,
-				conectorY: 13998
+			id: 1,
+			minX: 33205,
+			minY: 204,
+			maxX: 41640,
+			maxY: 14160,
+			conectorX: 32715,
+			conectorY: 13998
 		};
 		var hall1 = {
-				id: 2,
-				minX: 28747,
-				minY: 13642,
-				maxX: 32716,
-				maxY: 14261,
-				conectorX: 28932,
-				conectorY: 14266
+			id: 2,
+			minX: 28747,
+			minY: 13642,
+			maxX: 32716,
+			maxY: 14261,
+			conectorX: 28932,
+			conectorY: 14266
 		};
 		var hall2 = {
-				id: 3,
-				minX: 28747,
-				minY: 14264,
-				maxX: 29087,
-				maxY: 16821,
-				conectorX: 28933,
-				conectorY: 16449
+			id: 3,
+			minX: 28747,
+			minY: 14264,
+			maxX: 29087,
+			maxY: 16821,
+			conectorX: 28933,
+			conectorY: 16449
 		};
 		var hall3 = {
-				id: 4,
-				minX: 29304,
-				minY: 16203,
-				maxX: 29950,
-				maxY: 16859,
-				conectorX: 29915,
-				conectorY: 16401
+			id: 4,
+			minX: 29304,
+			minY: 16203,
+			maxX: 29950,
+			maxY: 16859,
+			conectorX: 29915,
+			conectorY: 16401
 		};
 		var prePalla = {
-				id: 5,
-				minX: 30114,
-				minY: 16203,
-				maxX: 32180,
-				maxY: 17851,
-				conectorX: 31547,
-				conectorY: 17830
+			id: 5,
+			minX: 30114,
+			minY: 16203,
+			maxX: 32180,
+			maxY: 17851,
+			conectorX: 31547,
+			conectorY: 17830
 		};
 		var palla = {
-				id: 6,
-				minX: 11934,
-				minY: 18105,
-				maxX: 32294,
-				maxY: 25514,
-				conectorX: 30300,
-				conectorY: 18200
+			id: 6,
+			minX: 11934,
+			minY: 18105,
+			maxX: 32294,
+			maxY: 25514,
+			conectorX: 30300,
+			conectorY: 18200
 		};
 		var mineZone = {
-				id: 7,
-				minX: 5214,
-				minY: 210,
-				maxX: 11744,
-				maxY: 26346,
-				conectorX: 11569,
-				conectorY: 17966
+			id: 7,
+			minX: 5214,
+			minY: 210,
+			maxX: 11744,
+			maxY: 26346,
+			conectorX: 11569,
+			conectorY: 17966
 		};
 		var hall4 = {
-				id: 8,
-				minX: 3181,
-				minY: 15083,
-				maxX: 5156,
-				maxY: 15547,
-				conectorX: 5150,
-				conectorY: 15379
+			id: 8,
+			minX: 3181,
+			minY: 15083,
+			maxX: 5156,
+			maxY: 15547,
+			conectorX: 5150,
+			conectorY: 15379
 		};
 		var zone2 = {
-				id: 9,
-				minX: 360,
-				minY: 7801,
-				maxX: 2887,
-				maxY: 19200,
-				conectorX: 2880,
-				conectorY: 15271
+			id: 9,
+			minX: 360,
+			minY: 7801,
+			maxX: 2887,
+			maxY: 19200,
+			conectorX: 2880,
+			conectorY: 15271
 		};
 
 		this.map53.push(zone1);

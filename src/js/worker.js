@@ -91,6 +91,7 @@ $(document).ready(function () {
 	hm.registerCommand(AttackHandler.ID, new AttackHandler());
 	hm.registerCommand(HeroPetUpdateHandler.ID, new HeroPetUpdateHandler());
 	hm.registerCommand(PetUpdateFuel.ID, new PetUpdateFuel());
+	hm.registerCommand(HeroJumpedHandler.ID, new HeroJumpedHandler());
 
 	hm.registerEvent("updateHeroPos", new HeroPositionUpdateEventHandler());
 	hm.registerEvent("movementDone", new MovementDoneEventHandler());

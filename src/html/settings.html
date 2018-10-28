@@ -14,6 +14,12 @@
 .settingsTitle {
 	background-color: #dfd3d3;
 }
+.table-wrapper-scroll-y {
+  display: block;
+  max-height: 400px;
+  overflow-y: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
 </style>
 </head>
 <body class="container">
@@ -497,23 +503,25 @@
 		          	<input type="checkbox" id="defendSentinel"></input>
 		      	</td>
 		    </tr>
-		</table>
-		<table class="table table-bordered">
-			<tr>
+		    <tr>
 				<th class="settingsTitle" colspan="4"><center>
 						<span data-resource="npclist">NPC List</span>
 					</center></th>
 			</tr>
-			<tr>
-				<td><span data-resource="npcname">NPC Name</span></td>
-				<td><span data-resource="npcrange">Range</span></td>
-				<td><span data-resource="npcammo">Ammo</span></td>
-				<td><span data-resource="npcpriority">Priority (9 > 1)</span></td>
-			</tr>
-			<form id="npclist">
-				<script src="npclist.js"></script>
-			</form>
 		</table>
+		<div class="table-wrapper-scroll-y">
+			<table class="table table-bordered table-striped">
+				<tr>
+					<td><span data-resource="npcname">NPC Name</span></td>
+					<td><span data-resource="npcrange">Range</span></td>
+					<td><span data-resource="npcammo">Ammo</span></td>
+					<td><span data-resource="npcpriority">Priority (9 > 1)</span></td>
+				</tr>
+				<form id="npclist">
+					<script src="npclist.js"></script>
+				</form>
+			</table>
+		</div>
 		<p>You can donate from here: <a href="https://streamlabs.com/dm94dani">https://streamlabs.com/dm94dani</a></p>
 	</form>
 	<script src="/js/libs/jquery-3.2.1.min.js"></script>

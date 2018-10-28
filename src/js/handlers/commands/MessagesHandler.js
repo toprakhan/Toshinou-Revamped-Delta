@@ -27,13 +27,6 @@ class MessagesHandler {
 				});
 			}
 
-			if ("A" == message[1]) {
-				this.connection({
-					connected: true,
-					status: 'on'
-				});
-			}
-
 			if("SLA" == message[2]){
 				if(message.length == 5) {
 					this.palladium(message);
@@ -58,6 +51,10 @@ class MessagesHandler {
 					connected: true,
 					status: 'on'
 				});
+			}
+			
+			if ("f" == message[1]) {
+				window.hero.cargoIsFull = true;
 			}
 			
 			if (_events.hasOwnProperty(message[3])) {

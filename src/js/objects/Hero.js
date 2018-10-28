@@ -5,6 +5,7 @@ class Hero extends Movable {
 		this.targetShip = null;
 		this.id = id;
 		this.mapId = mapId;
+		this.cargoIsFull = false;
 	}
 
 	move(pos) {

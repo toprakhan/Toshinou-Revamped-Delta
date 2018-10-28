@@ -181,6 +181,9 @@ function loadArchive() {
 			if (items.randomBreaks != null) {
 				$("#randomBreaks").prop('checked', items.randomBreaks);
 			}
+			if (items.stopWhenCargoIsFull != null) {
+				$("#stopWhenCargoIsFull").prop('checked', items.stopWhenCargoIsFull);
+			}
 			if (items.repairWhenHpIsLowerThanPercent) {
 				$("#repairWhenHpIsLowerThanPercent").val(items.repairWhenHpIsLowerThanPercent);
 			}

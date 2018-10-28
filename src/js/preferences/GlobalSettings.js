@@ -62,6 +62,7 @@ class GlobalSettings {
 			playerAmmo: 0,
 			useCBSZoneSegure: false,
 			randomBreaks: false,
+			stopWhenCargoIsFull: false,
 			repairWhenHpIsLowerThanPercent: 10,
 			sentinelid: 0,
 			defendSentinel: false,
@@ -239,6 +240,10 @@ class GlobalSettings {
 
 	get randomBreaks() {
 		return this._settings.randomBreaks;
+	}
+	
+	get stopWhenCargoIsFull() {
+		return this._settings.stopWhenCargoIsFull;
 	}
 	
 	get repairWhenHpIsLowerThanPercent() {

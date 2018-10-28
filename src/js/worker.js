@@ -259,21 +259,6 @@ function init() {
 function logic() {
 	let circleBox = null;
 	
-	if (window.globalSettings.debug) {
-		if (window.settings.showCoordinates) {
-			console.log("X: " + window.hero.position.x + " | Y: " + window.hero.position.y);
-		}
-		if (window.settings.showMapID) {
-			console.log(window.hero.mapId);
-		}
-		if (window.settings.showNearestPortal) {
-			let gate = api.findNearestGate();
-			if (gate.gate) {
-				console.log(gate.gate);
-			}
-		}
-	}
-	
 	if (api.isDisconnected) {
 		api.resetTarget("all");
 		if (window.fleeingFromEnemy) {
@@ -290,54 +275,6 @@ function logic() {
 		return;
 	}
 	
-	window.minimap.draw();
-
-	if (api.targetShip && api.attacking) {
-		if(window.globalSettings.changeAmmunition) {
-			api.chooseAmmunition();
-		}
-	}
-
-	if (api.heroDied || window.settings.pause || (window.globalSettings.fleeFromEnemy && window.fleeingFromEnemy) || window.settings.waitingAfterDead) {
-		return;
-	}
-	
-	if (window.globalSettings.randomBreaks && !randomBreakCreated) {
-		setTimeout(function(){
-			let gate = api.findNearestGate();
-			if (gate.gate) {
-				let x = gate.gate.position.x + MathUtils.random(-100, 100);
-				let y = gate.gate.position.y + MathUtils.random(-100, 100);
-				api.resetTarget("all");
-				api.moveWithFilter(x, y);
-				window.settings.pause = true;
-				setTimeout(function(){
-					window.settings.pause = false;
-					randomBreakCreated = false;
-				}, MathUtils.random(1, 10)*60000);
-				return;
-			}
-		}, MathUtils.random(45, 90)*60000);
-		randomBreakCreated = true;
-	}
-
-	if (window.globalSettings.stopafterxminutes != 0 && window.settings.runtime >= window.globalSettings.stopafterxminutes && !window.settings.ggbot) {
-		let gate = api.findNearestGate();
-		if (gate.gate) {
-			let x = gate.gate.position.x + MathUtils.random(-100, 100);
-			let y = gate.gate.position.y + MathUtils.random(-100, 100);
-			if (window.hero.position.distanceTo(gate.gate.position) < 200 && !state) {
-				window.settings.pause = true;
-				setTimeout(() => {
-					api.pressKey(76);
-				}, 7000);
-			}
-			api.resetTarget("all");
-			api.moveWithFilter(x, y);
-			return;
-		} 
-	}
-
 	if (window.globalSettings.enableRefresh && !window.settings.ggbot && (window.settings.runtime > (window.globalSettings.refreshTime * 60000))) {
 		if ((api.Disconected && !state) || window.settings.palladium) {
 			window.location.reload();
@@ -356,6 +293,76 @@ function logic() {
 				return;
 			}
 		}   
+	}
+	
+	window.minimap.draw();
+
+	if (api.targetShip && api.attacking) {
+		if(window.globalSettings.changeAmmunition) {
+			api.chooseAmmunition();
+		}
+	}
+	
+	if (window.globalSettings.debug) {
+		if (window.settings.showCoordinates) {
+			console.log("X: " + window.hero.position.x + " | Y: " + window.hero.position.y);
+		}
+		if (window.settings.showMapID) {
+			console.log(window.hero.mapId);
+		}
+		if (window.settings.showNearestPortal) {
+			let gate = api.findNearestGate();
+			if (gate.gate) {
+				console.log(gate.gate);
+			}
+		}
+	}
+
+	if (api.heroDied || window.settings.pause || (window.globalSettings.fleeFromEnemy && window.fleeingFromEnemy) || window.settings.waitingAfterDead) {
+		return;
+	}
+	
+	if (window.globalSettings.randomBreaks && !randomBreakCreated && !window.settings.ggbot && !window.settings.palladium) {
+		setTimeout(function(){
+			let gate = api.findNearestGate();
+			if (gate.gate) {
+				let x = gate.gate.position.x + MathUtils.random(-100, 100);
+				let y = gate.gate.position.y + MathUtils.random(-100, 100);
+				api.resetTarget("all");
+				api.moveWithFilter(x, y);
+				window.settings.pause = true;
+				setTimeout(function(){
+					window.settings.pause = false;
+					randomBreakCreated = false;
+				}, MathUtils.random(1, 10)*60000);
+				return;
+			}
+		}, MathUtils.random(45, 90)*60000);
+		randomBreakCreated = true;
+	}
+
+	if ((window.globalSettings.stopafterxminutes != 0 && window.settings.runtime >= window.globalSettings.stopafterxminutes && !window.settings.ggbot) || (window.globalSettings.stopWhenCargoIsFull && window.hero.cargoIsFull)) {
+		if (window.settings.palladium && window.hero.hp == window.hero.maxHp) {
+			window.settings.pause = true;
+			setTimeout(() => {
+				api.pressKey(76);
+			}, 7000);
+		} else {
+			let gate = api.findNearestGate();
+			if (gate.gate) {
+				let x = gate.gate.position.x + MathUtils.random(-100, 100);
+				let y = gate.gate.position.y + MathUtils.random(-100, 100);
+				if (window.hero.position.distanceTo(gate.gate.position) < 200 && !state) {
+					window.settings.pause = true;
+					setTimeout(() => {
+						api.pressKey(76);
+					}, 7000);
+				}
+				api.resetTarget("all");
+				api.moveWithFilter(x, y);
+				return;
+			}
+		}
 	}
 
 	if (window.globalSettings.useHability) {

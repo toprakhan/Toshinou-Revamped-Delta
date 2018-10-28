@@ -509,6 +509,5 @@ function restore() {
 }
 
 $('.donwloadprofile').on("click", downloadProfile);
-$('.clearSettings').on("click", chrome.storage.sync.clear());
 $("form").on("submit", saveOptions);
 $(document).ready(restore);

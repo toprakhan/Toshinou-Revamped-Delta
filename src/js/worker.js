@@ -253,29 +253,6 @@ function init() {
 			}
 		}, 7000);
 	});
-
-	if (window.globalSettings.enableRefresh) {
-		let saveBtn = $('.saveButton .btn_save');
-		saveBtn.on('click', (e) => {
-			if (window.saved) {
-				saveBtn.html("Save settings & Enable refresh");
-				saveBtn.removeClass('saved').addClass('save');
-				window.settings.refresh = false;
-				window.settings.pause = true;
-				api.setSettings();
-			} else {
-				saveBtn.html("Saved & Enabled");
-				saveBtn.removeClass('save').addClass('saved');
-				window.settings.refresh = true;
-				window.settings.pause = false;
-				api.setSettings();
-				let cntBtnPlay = $('.cnt_btn_play .btn_play');
-				cntBtnPlay.html("Stop");
-				cntBtnPlay.removeClass('in_play').addClass('in_stop');
-			}
-			window.saved = !window.saved;
-		});
-	}
 }
 
 function logic() {
@@ -302,9 +279,6 @@ function logic() {
 			window.fleeFromEnemy = false;
 		}
 		if (api.disconnectTime && $.now() - api.disconnectTime > 5000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.globalSettings.reviveLimit) {
-			api.reconnect();
-		}
-		if(api.reconnectTime && $.now() - api.reconnectTime > 60000 && window.settings.settings.enableRefresh){
 			if (window.globalSettings.refreshToReconnect) {
 				window.location.reload();
 				state = true;
@@ -313,20 +287,6 @@ function logic() {
 			}
 		}
 		return;
-	}
-
-	if (window.globalSettings.enableRefresh && !window.settings.ggbot) {
-		if ($.now() - api.getSettingsTime > 10000) {
-			api.getSettings();
-			if (window.newSettings.refresh)
-				api.updateSettings();
-		}
-		if(window.settings.npcs != null && (window.settings.npcs).length < 1){
-			let npcList = window.globalSettings.npcList;
-			for (i = 0; i < npcList.length; i++) {
-				window.settings.updateNpc(npcList[i]["name"], npcList[i]);
-			}
-		}
 	}
 	
 	window.minimap.draw();
@@ -377,7 +337,7 @@ function logic() {
 		} 
 	}
 
-	if ((($.now() - api.setSettingsTime) > (window.globalSettings.refreshTime * 60000) || api.disconnectTime > 20000) && window.globalSettings.enableRefresh && !window.settings.ggbot) {
+	if (window.globalSettings.enableRefresh && !window.settings.ggbot && (window.settings.runtime > (window.globalSettings.refreshTime * 60000))) {
 		if ((api.Disconected && !state) || window.settings.palladium) {
 			window.location.reload();
 			state = true;

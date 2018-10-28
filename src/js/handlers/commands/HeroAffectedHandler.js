@@ -12,7 +12,8 @@ class HeroAffectedHandler {
 			let obj = JSON.parse(e.detail);
 			
 			/**
-			 * modifier = 16 | Spectrum hability 
+			 * 16 | Spectrum Hability | Hero
+			 * 20 | Venom Hability | Target 
 			 * Count: 1 - Activated | activated: true
 			 * Count: 2 - Activated | activated: true
 			 * Count: 0 - finished | activated: false

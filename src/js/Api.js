@@ -12,8 +12,6 @@ class Api {
 		this.jumpTime = $.now();
 		this.resetBlackListTime = $.now();
 		this.blackListTimeOut = 150000
-		this.getSettingsTime = $.now();
-		this.setSettingsTime = $.now();
 		this.rute = null;
 		this.starSystem = [];
 		this.workmap = null;
@@ -287,24 +285,6 @@ class Api {
 		} else {
 			return false;
 		}
-	}
-
-	getSettings() {
-		for (let key in window.settings) {
-			chrome.storage.sync.get(key, function(set) {
-				window.newSettings[key] = set[key];
-			})
-		}
-		this.getSettingsTime = $.now();
-	}
-
-	setSettings() {
-		chrome.storage.sync.set(window.settings);
-		this.setSettingsTime = $.now();
-	}
-
-	updateSettings() {
-		window.settings = window.newSettings;
 	}
 
 	resetTarget(target) {

@@ -275,7 +275,7 @@ function logic() {
 		return;
 	}
 	
-	if (window.globalSettings.enableRefresh && !window.settings.ggbot && (window.settings.runtime > (window.globalSettings.refreshTime * 60000))) {
+	if (window.globalSettings.enableRefresh && !window.settings.ggbot && (window.settings.runtime >= window.globalSettings.refreshTime)) {
 		if ((api.Disconected && !state) || window.settings.palladium) {
 			window.location.reload();
 			state = true;
@@ -383,6 +383,7 @@ function logic() {
 			api.useHabilityFour();
 		} else if (window.hero.skillName == "citadel" && window.settings.palladium) {
 			api.useHabilityTwo();
+			api.useHabilityThree();
 		}
 	}
 

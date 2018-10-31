@@ -798,18 +798,8 @@ function logic() {
 		}
 		if(api.attacking){
 			api.attackMode();
-			if(window.globalSettings.useHability && window.hero.skillName && dist < 1000){
-				if ((window.hero.skillname == "cyborg" && api.targetShip.hp > 100000)||
-						(window.hero.skillName == "venom" && api.targetShip.hp > 60000))
-				{ 
-					api.useHability();
-				} else if (window.hero.skillName == "diminisher" && api.targetShip.shd > 60000){
-					api.useHability();
-				} else if (window.hero.skillname == "sentinel" || window.hero.skillname == "tartarus"){
-					api.useHability();
-				} else if (window.hero.skillname == "spearhead") {
-					api.useHabilityThree();   
-				}
+			if(window.globalSettings.useHability && dist < 1000){
+				api.attackSkills();
 			}
 		}
 		if (window.settings.ggbot && api.targetShip.position.x == 20999 && api.targetShip.position.y == 13499) {
@@ -1022,18 +1012,8 @@ function sentinelLogic() {
 		}
 		if(api.attacking){
 			api.attackMode();
-			if(window.globalSettings.useHability && window.hero.skillName && dist < 1000){
-				if ((window.hero.skillname == "cyborg" && api.targetShip.hp > 100000)||
-						(window.hero.skillName == "venom" && api.targetShip.hp > 60000))
-				{ 
-					api.useHability();
-				} else if (window.hero.skillName == "diminisher" && api.targetShip.shd > 60000){
-					api.useHability();
-				} else if (window.hero.skillname == "sentinel" || window.hero.skillname == "tartarus"){
-					api.useHability();
-				} else if (window.hero.skillname == "spearhead") {
-					api.useHabilityThree();   
-				}
+			if(window.globalSettings.useHability && dist < 1000){
+				api.attackSkills();
 			}
 		}
 		if ((dist > radius && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id) && $.now() - api.lastMovement > 1000)) {

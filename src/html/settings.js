@@ -69,6 +69,9 @@ function saveOptions(e) {
 			habilitySlotTwo:    $("#habilitySlotTwo").val(),
 			habilitySlotThree:  $("#habilitySlotThree").val(),
 			habilitySlotFour:   $("#habilitySlotFour").val(),
+			cyborgHp:			$("cyborgHp").val(),
+			venomHp:			$("venomHp").val(),
+			diminisherSHD:		$("diminisherSHD").val(),
 			reviveType:         $("#reviveType").val(),
 			reviveLimit:        $("#reviveLimit").val(),
 			bonusBox:           $("#bonusBox").prop('checked'),
@@ -192,6 +195,9 @@ function downloadProfile(e) {
 			habilitySlotTwo:    $("#habilitySlotTwo").val(),
 			habilitySlotThree:  $("#habilitySlotThree").val(),
 			habilitySlotFour:   $("#habilitySlotFour").val(),
+			cyborgHp:			$("cyborgHp").val(),
+			venomHp:			$("venomHp").val(),
+			diminisherSHD:		$("diminisherSHD").val(),
 			reviveType:         $("#reviveType").val(),
 			reviveLimit:        $("#reviveLimit").val(),
 			bonusBox:           $("#bonusBox").prop('checked'),
@@ -269,7 +275,8 @@ function restore() {
 	var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "windowsToTabs", "debug",
 		"enableRefresh","refreshToReconnect", "refreshTime", 
 		"speedFormat", "autoChangeConfig", "attackConfig", "flyingConfig", "escapeConfig",
-		"useHability","habilitySlot", "habilitySlotTwo", "habilitySlotThree", "habilitySlotFour", "changeFormation","flyingFormation", "escapeFormation",
+		"useHability","habilitySlot", "habilitySlotTwo", "habilitySlotThree", "habilitySlotFour", "cyborgHp", "venomHp", "diminisherSHD",
+		"changeFormation","flyingFormation", "escapeFormation",
 		"attackFormation","reviveType", "reviveLimit",
 		"bonusBox", "materials", "cargoBox", "greenOrGoldBooty",
 		"redBooty", "blueBooty", "masqueBooty", "collectBoxWhenCircle", 
@@ -345,6 +352,15 @@ function restore() {
 		}
 		if (items.habilitySlotFour) {
 			$("#habilitySlotFour").val(items.habilitySlotFour);
+		}
+		if (items.cyborgHp) {
+			$("#cyborgHp").val(items.cyborgHp);
+		}
+		if (items.venomHp) {
+			$("#venomHp").val(items.venomHp);
+		}
+		if (items.diminisherSHD) {
+			$("#diminisherSHD").val(items.diminisherSHD);
 		}
 		if (items.workmap) {
 			$("#workmap").val(items.workmap);

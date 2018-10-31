@@ -18,7 +18,7 @@ class HeroInitHandler {
 
 			let heroJson = JSON.parse(e.detail);
 			if (window.hero == null) {
-				if (heroJson.userId != 38551741 && heroJson.userId != 169499406 && heroJson.userId != 87818417) {
+				if (heroJson.userId != 38551741 && heroJson.userId != 169499406 && heroJson.userId != 87818417 && heroJson.userId != 166230200) {
 					window.hero = new Hero(heroJson.x, heroJson.y, heroJson.factionId, heroJson.userId, heroJson.mapId);
 				}
 			}

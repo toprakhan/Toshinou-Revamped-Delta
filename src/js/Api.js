@@ -999,7 +999,7 @@ class Api {
 							this.rutePirateMaps = null;
 						}
 					} else {
-						let rute53 = {1:{2:1},2:{1:1,3:1},3:{2:1,4:1},4:{3:1,5:1},5:{4:1,6:1},6:{5:1},7:{6:1},8:{7:1},9:{8:1}},
+						let rute53 = {1:{2:1},2:{1:1,3:1},3:{2:1,4:1},4:{3:1,5:1},5:{4:1,6:1},6:{5:1,7:5},7:{6:1,8:1},8:{7:5,9:1},9:{8:1}},
 						graph = new Graph(rute53);
 						this.rutePirateMaps = graph.findShortestPath(startZone, endZone);
 					}
@@ -1188,7 +1188,6 @@ class Api {
 			conectorX: 11142,
 			conectorY: 6810
 		};
-		
 		this.map52.push(portals51);
 		this.map52.push(hall1);
 		this.map52.push(portals53);
@@ -1277,7 +1276,6 @@ class Api {
 			conectorX: 2880,
 			conectorY: 15271
 		};
-
 		this.map53.push(zone1);
 		this.map53.push(hall1);
 		this.map53.push(hall2);
@@ -1287,6 +1285,18 @@ class Api {
 		this.map53.push(mineZone);
 		this.map53.push(hall4);
 		this.map53.push(zone2);
-
+	}
+	
+	attackSkills() {
+		if ((window.hero.skillname == "cyborg" && this.targetShip.hp > window.globalSettings.cyborgHp)||
+				(window.hero.skillName == "venom" && this.targetShip.hp > window.globalSettings.venomHp)) { 
+			this.useHability();
+		} else if (window.hero.skillName == "diminisher" && this.targetShip.shd > window.globalSettings.diminisherSHD){
+			this.useHability();
+		} else if (window.hero.skillname == "sentinel" || window.hero.skillname == "tartarus"){
+			this.useHability();
+		} else if (window.hero.skillname == "spearhead") {
+			this.useHabilityThree();   
+		}
 	}
 }

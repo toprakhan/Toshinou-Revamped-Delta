@@ -157,39 +157,6 @@
 				</td>
 			</tr>
 			<tr>
-				<th colspan="2"><span data-resource="shiphability">Ship
-						Hability (BETA)</span></th>
-				<td colspan="2"><input type="checkbox" id="useHability"
-					name="changeFormation"> <label for="useHability"><span
-						data-resource="usehability">Use Hability</span></label></td>
-			</tr>
-			<tr>
-				<td colspan="2"><label for="habilitySlot"><span
-						data-resource="habilityslot">Hability slot</span> 1 (cyborg,
-						venom, solace, diminisher, spectrum, sentinel, lightning, Aegis:
-						HP Repair, SpearHead: Ultimate Cloak, Citadel: Draw Fire, Mimesis:
-						Scramble, Hammerclaw: Repair Pod, Tartarus: Rapid Fire): </label> <input
-					type="number" id="habilitySlot" min="0" max="9" value="0">
-				</td>
-				<td colspan="2"><label for="habilitySlotTwo"><span
-						data-resource="habilitySlotTwo">Hability slot 2 (Aegis:
-							Shield Repair, SpearHead: JAMX, Citadel: Travel, Mimesis: Phase
-							Out, Hammerclaw: Shield Repair, Tartarus: Speed Boost)</span>: </label> <input
-					type="number" id="habilitySlotTwo" min="0" max="9" value="0">
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2"><label for="habilitySlotThree"><span
-						data-resource="habilitySlotThree">Hability slot 3 (Aegis:
-							Repair Pod, SpearHead: Target Marker, Citadel: Protection,
-							Hammerclaw: HP Repair)</span>: </label> <input type="number"
-					id="habilitySlotThree" min="0" max="9" value="0"></td>
-				<td colspan="2"><label for="habilitySlotFour"><span
-						data-resource="habilitySlotFour">Hability slot 4 (Citadel:
-							Fortify, SpearHead: Recon)</span>: </label> <input type="number"
-					id="habilitySlotFour" min="0" max="9" value="0"></td>
-			</tr>
-			<tr>
 				<td><b><span data-resource="slotsAmmunition">Slots
 							of ammunition</span>:</b></td>
 				<td><input type="checkbox" id="changeAmmunition"
@@ -372,6 +339,67 @@
 				<td colspan="2">
 					<label for="repairWhenHpIsLowerThanPercent"><span data-resource=repairWhenHpIsLowerThanPercent>Repair when HP &#60; </span> 
 					<input type="number" id="repairWhenHpIsLowerThanPercent" min="0" max="100" value="10">%</label>
+				</td>
+			</tr>
+			<tr>
+				<th class="settingsTitle" colspan="4"><center>
+						<span data-resource="skillsSettings">Skills Settings</span>
+					</center>
+				</th>
+			</tr>
+						<tr>
+				<th colspan="2"><span data-resource="shiphability">Ship
+						Skills</span></th>
+				<td colspan="2"><input type="checkbox" id="useHability"
+					name="changeFormation"> <label for="useHability"><span
+						data-resource="usehability">Use Hability</span></label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label for="habilitySlot"><span
+						data-resource="habilityslot">Hability slot</span> 1 (cyborg,
+						venom, solace, diminisher, spectrum, sentinel, lightning, Aegis:
+						HP Repair, SpearHead: Ultimate Cloak, Citadel: Draw Fire, Mimesis:
+						Scramble, Hammerclaw: Repair Pod, Tartarus: Rapid Fire): </label> <input
+					type="number" id="habilitySlot" min="0" max="9" value="0">
+				</td>
+				<td colspan="2"><label for="habilitySlotTwo"><span
+						data-resource="habilitySlotTwo">Hability slot 2 (Aegis:
+							Shield Repair, SpearHead: JAMX, Citadel: Travel, Mimesis: Phase
+							Out, Hammerclaw: Shield Repair, Tartarus: Speed Boost)</span>: </label> <input
+					type="number" id="habilitySlotTwo" min="0" max="9" value="0">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><label for="habilitySlotThree"><span
+						data-resource="habilitySlotThree">Hability slot 3 (Aegis:
+							Repair Pod, SpearHead: Target Marker, Citadel: Protection,
+							Hammerclaw: HP Repair)</span>: </label> <input type="number"
+					id="habilitySlotThree" min="0" max="9" value="0"></td>
+				<td colspan="2"><label for="habilitySlotFour"><span
+						data-resource="habilitySlotFour">Hability slot 4 (Citadel:
+							Fortify, SpearHead: Recon)</span>: </label> <input type="number"
+					id="habilitySlotFour" min="0" max="9" value="0"></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<label for="cyborgHp">
+						<span data-resource="cyborgHp">Use the skill of the Cyborg when the life of the enemy is > of:</span>
+					</label> 
+					<input type="number" id="cyborgHp" min="0" step="10000" max="2000000" value="100000">
+				</td>
+				<td colspan="2">
+					<label for="venomHp">
+						<span data-resource="venomHp">Use the skill of the Venom when the life of the enemy is > of:</span>
+					</label> 
+					<input type="number" id="venomHp" min="0" step="10000" max="2000000" value="60000">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<label for="diminisherSHD">
+						<span data-resource="diminisherSHD">Use the skill of the Diminisher when the shield of the enemy is > of:</span>
+					</label> 
+					<input type="number" id="diminisherSHD" min="0" step="10000" max="5000000" value="60000">
 				</td>
 			</tr>
 			<tr>

@@ -73,6 +73,15 @@ function loadArchive() {
 			if (items.habilitySlotFour) {
 				$("#habilitySlotFour").val(items.habilitySlotFour);
 			}
+			if (items.cyborgHp) {
+				$("#cyborgHp").val(items.cyborgHp);
+			}
+			if (items.venomHp) {
+				$("#venomHp").val(items.venomHp);
+			}
+			if (items.diminisherSHD) {
+				$("#diminisherSHD").val(items.diminisherSHD);
+			}
 			if (items.workmap) {
 				$("#workmap").val(items.workmap);
 			}

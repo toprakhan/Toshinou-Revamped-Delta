@@ -231,12 +231,8 @@ class Api {
 	}
 
 	moveWithFilter(x, y) {
-		if (window.hero.mapId == 93) {
-			this.moveFor53(x, y);
-		} else if (window.hero.mapId == 92) {
-			this.moveFor52(x, y);
-		} else if (window.hero.mapId == 91) {
-			this.moveFor51(x, y);
+		if (window.hero.mapId == 93 || window.hero.mapId == 92 || window.hero.mapId == 91 || window.hero.mapId == 200) {
+			this.moveForSpecialMap(x, y, window.hero.mapId);
 		} else if (!window.bigMap && !window.settings.ggbot && ((x < 200 || x > 20800) || (y < 200 || y > 12900))) {
 			x = MathUtils.random(200, 20800);
 			y = MathUtils.random(200, 12900);
@@ -979,88 +975,46 @@ class Api {
 			}
 		}
 	}
-
-	moveFor53(finX, finY) {
-		if (this.map53 == null || this.map53.length <= 0) {
-			this.completeMap53();
-		} else { 
-			let startZone = this.getMapIDZone(window.hero.position.x, window.hero.position.y, this.map53);
-			if (startZone != null && startZone != 0) {
-				let endZone = this.getMapIDZone(finX, finY, this.map53);
-				if (endZone !=0 && startZone != endZone) {
-					if (this.rutePirateMaps != null) {
-						let nextZone = api.getMapZone(this.rutePirateMaps[0],this.map53);
-						if (nextZone != null) {
-							if (window.hero.position.x == nextZone.conectorX && window.hero.position.y == nextZone.conectorY) {
-								this.rutePirateMaps.shift();
-							}
-							this.move(nextZone.conectorX, nextZone.conectorY);
-							window.movementDone = false;
-						} else {
-							this.rutePirateMaps = null;
-						}
-					} else {
-						let rute53 = {1:{2:1},2:{1:1,3:1},3:{2:1,4:1},4:{3:1,5:1},5:{4:1,6:1},6:{5:1,7:5},7:{6:1,8:1},8:{7:5,9:1},9:{8:1}},
-						graph = new Graph(rute53);
-						this.rutePirateMaps = graph.findShortestPath(startZone, endZone);
-					}
-				} else {
-					this.rutePirateMaps = null;
-					this.move(finX, finY);
-					window.movementDone = false;
-				}
+	
+	moveForSpecialMap(finX, finY, idMap) {
+		let map = null;
+		let graph;
+		let connectors;
+		if (idMap == 91) {
+			connectors = {1:{2:1},2:{1:1,3:1},3:{2:1}};
+			if (this.map51 == null || this.map51.length <= 0) {
+				this.completeMap51();
+				return;
 			} else {
-				this.rutePirateMaps = null;
-				this.move(finX, finY);
-				window.movementDone = false;
+			  map = this.map51;
+			}
+		} else if (idMap == 92) {
+			connectors = {1:{2:1},2:{1:1,3:1},3:{2:1}};
+			if (this.map52 == null || this.map52.length <= 0) {
+				this.completeMap52();
+				return;
+			} else {
+			  map = this.map52;
+			}
+		} else if (idMap == 93) {
+			connectors = {1:{2:1},2:{1:1,3:1},3:{2:1,4:1},4:{3:1,5:1},5:{4:1,6:1},6:{5:1,7:5},7:{6:1,8:1},8:{7:5,9:1},9:{8:1}};
+			if (this.map53 == null || this.map53.length <= 0) {
+				this.completeMap53();
+				return;
+			} else {
+			  map = this.map53;
+			}
+		} else if (idMap == 200) {
+			connectors = {1:{2:1},2:{1:1,3:1},3:{2:1,4:1,6:1,8:1},4:{3:1,5:1},5:{4:1},6:{3:1,7:1},7:{6:1},8:{3:1,9:1},9:{8:1}};
+			if (this.lowMap == null || this.lowMap.length <= 0) {
+				this.completeLowMap();
+				return;
+			} else {
+			  map = this.lowMap;
 			}
 		}
-
-	}
-	
-	moveFor52(finX, finY) {
-		if (this.map52 == null || this.map52.length <= 0) {
-			this.completeMap52();
-		} else { 
-			let startZone = this.getMapIDZone(window.hero.position.x, window.hero.position.y, this.map52);
-			if (startZone != null && startZone != 0) {
-				let endZone = this.getMapIDZone(finX, finY, this.map52);
-				if (endZone !=0 && startZone != endZone) {
-					if (this.rutePirateMaps != null) {
-						let nextZone = api.getMapZone(this.rutePirateMaps[0],this.map52);
-						if (nextZone != null) {
-							if (window.hero.position.x == nextZone.conectorX && window.hero.position.y == nextZone.conectorY) {
-								this.rutePirateMaps.shift();
-							}
-							this.move(nextZone.conectorX, nextZone.conectorY);
-							window.movementDone = false;
-						} else {
-							this.rutePirateMaps = null;
-						}
-					} else {
-						let rute52 = {1:{2:1},2:{1:1,3:1},3:{2:1}},
-						graph = new Graph(rute52);
-						this.rutePirateMaps = graph.findShortestPath(startZone, endZone);
-					}
-				} else {
-					this.rutePirateMaps = null;
-					this.move(finX, finY);
-					window.movementDone = false;
-				}
-			} else {
-				this.rutePirateMaps = null;
-				this.move(finX, finY);
-				window.movementDone = false;
-			}
-		}
-
-	}
-	
-	moveFor51(finX, finY) {
-		if (this.map51 == null || this.map51.length <= 0) {
-			this.completeMap51();
-		} else { 
-			let map = this.map51;
+		
+		if (map != null || map.length > 0) {
 			let startZone = this.getMapIDZone(window.hero.position.x, window.hero.position.y, map);
 			if (startZone != null && startZone != 0) {
 				let endZone = this.getMapIDZone(finX, finY, map);
@@ -1077,8 +1031,7 @@ class Api {
 							this.rutePirateMaps = null;
 						}
 					} else {
-						let rute51 = {1:{2:1},2:{1:1,3:1},3:{2:1}},
-						graph = new Graph(rute51);
+						graph = new Graph(connectors);
 						this.rutePirateMaps = graph.findShortestPath(startZone, endZone);
 					}
 				} else {
@@ -1092,7 +1045,6 @@ class Api {
 				window.movementDone = false;
 			}
 		}
-
 	}
 
 	getMapZone(id, map) {
@@ -1291,8 +1243,6 @@ class Api {
 	completeLowMap() {
 		//Portal ID: 150000163
 		//Map ID: 200
-		
-		
 		var hall1 = { //2
 			id: 1,
 			minX: 137,
@@ -1302,8 +1252,6 @@ class Api {
 			conectorX: 2576,
 			conectorY: 2389
 		};
-		
-		
 		var hall2 = { //1 y 3
 			id: 2,
 			minX: 2939,
@@ -1313,7 +1261,6 @@ class Api {
 			conectorX: 3809,
 			conectorY: 2679
 		};
-		
 		var center = { //2 , 4, 6 , 8
 			id: 3,
 			minX: 4670,
@@ -1323,7 +1270,6 @@ class Api {
 			conectorX: 9900,
 			conectorY: 4230
 		};
-		
 		var hall3 = { //3 y 5
 			id: 4,
 			minX: 11083,
@@ -1333,7 +1279,6 @@ class Api {
 			conectorX: 11880,
 			conectorY: 9090
 		};
-		
 		var hall4 = { //4
 			id: 5,
 			minX: 4683,
@@ -1343,7 +1288,6 @@ class Api {
 			conectorX: 10710,
 			conectorY: 11880
 		};
-		
 		var hall5 = { //3 y 7
 			id: 6,
 			minX: 14609,

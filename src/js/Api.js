@@ -32,6 +32,7 @@ class Api {
 		this.map53 = [];
 		this.map52 = [];
 		this.map51 = [];
+		this.lowMap = [];
 		this.rutePirateMaps = null;
 		this.pet = null;
 		this.jumped = false;
@@ -1285,6 +1286,109 @@ class Api {
 		this.map53.push(mineZone);
 		this.map53.push(hall4);
 		this.map53.push(zone2);
+	}
+	
+	completeLowMap() {
+		//Portal ID: 150000163
+		//Map ID: 200
+		
+		
+		var hall1 = { //2
+			id: 1,
+			minX: 137,
+			minY: 119,
+			maxX: 2997,
+			maxY: 13237,
+			conectorX: 2576,
+			conectorY: 2389
+		};
+		
+		
+		var hall2 = { //1 y 3
+			id: 2,
+			minX: 2939,
+			minY: 117,
+			maxX: 5086,
+			maxY: 3904,
+			conectorX: 3809,
+			conectorY: 2679
+		};
+		
+		var center = { //2 , 4, 6 , 8
+			id: 3,
+			minX: 4670,
+			minY: 2796,
+			maxX: 14434,
+			maxY: 8188,
+			conectorX: 9900,
+			conectorY: 4230
+		};
+		
+		var hall3 = { //3 y 5
+			id: 4,
+			minX: 11083,
+			minY: 8502,
+			maxX: 12870,
+			maxY: 13050,
+			conectorX: 11880,
+			conectorY: 9090
+		};
+		
+		var hall4 = { //4
+			id: 5,
+			minX: 4683,
+			minY: 10045,
+			maxX: 11250,
+			maxY: 12870,
+			conectorX: 10710,
+			conectorY: 11880
+		};
+		
+		var hall5 = { //3 y 7
+			id: 6,
+			minX: 14609,
+			minY: 5963,
+			maxX: 16020,
+			maxY: 8820,
+			conectorX: 15210,
+			conectorY: 7560
+		};
+		var hall6 = { //6
+			id: 7,
+			minX: 16200,
+			minY: 7020,
+			maxX: 20896,
+			maxY: 13209,
+			conectorX: 16830,
+			conectorY: 9180
+		};
+		var hall7 = { //3 y 9
+			id: 8,
+			minX: 11179,
+			minY: 233,
+			maxX: 16124,
+			maxY: 2485,
+			conectorX: 13050,
+			conectorY: 1530
+		};
+		var hall8 = { //8
+			id: 9,
+			minX: 16470,
+			minY: 270,
+			maxX: 20861,
+			maxY: 5206,
+			conectorX: 17487,
+			conectorY: 1324
+		};
+		this.lowMap.push(hall1);
+		this.lowMap.push(hall2);
+		this.lowMap.push(center);
+		this.lowMap.push(hall3);
+		this.lowMap.push(hall4);
+		this.lowMap.push(hall5);
+		this.lowMap.push(hall6);
+		this.lowMap.push(hall7);
+		this.lowMap.push(hall8);
 	}
 	
 	attackSkills() {

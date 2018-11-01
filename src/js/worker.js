@@ -264,13 +264,12 @@ function logic() {
 		if (window.fleeingFromEnemy) {
 			window.fleeFromEnemy = false;
 		}
-		if ((api.disconnectTime && $.now() - api.disconnectTime > 60000 || (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000))) && window.reviveCount < window.globalSettings.reviveLimit) {
-			if (window.globalSettings.refreshToReconnect) {
-				window.location.reload();
-				state = true;
-			} else {
-				api.reconnect();
-			}
+		if (api.disconnectTime && $.now() - api.disconnectTime > 5000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.globalSettings.reviveLimit) {
+			api.reconnect();
+		}
+		if (api.disconnectTime && $.now() - api.disconnectTime > 120000 && window.globalSettings.refreshToReconnect) {
+			window.location.reload();
+			state = true;
 		}
 		return;
 	}

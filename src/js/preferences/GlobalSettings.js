@@ -80,8 +80,8 @@ class GlobalSettings {
 			kronos: false,
 			hades: false,
 			kuiper: false,
-			whiteList: null,
-			blackList: null,
+			whiteList: [],
+			blackList: [],
 		}, items => {
 			self._settings = items;
 		});

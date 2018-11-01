@@ -894,7 +894,7 @@ function sentinelLogic() {
 
 	if (shipAround) {
 		api.rute = null;
-		if (shipAround.distanceTo(window.hero.position) > 500 && !api.targetShip) {
+		if (shipAround.distanceTo(window.hero.position) > 1000 && !api.targetShip) {
 			x = shipAround.position.x + MathUtils.random(-100, 100);
 			y = shipAround.position.y + MathUtils.random(-100, 100);
 			api.moveWithFilter(x, y);

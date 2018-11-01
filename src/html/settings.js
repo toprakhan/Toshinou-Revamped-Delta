@@ -4,6 +4,27 @@ Created by Freshek on 31.10.2017
 
 function saveOptions(e) {
 	e.preventDefault();
+	var elements = getElements();
+	chrome.storage.local.set(elements);
+}
+
+function downloadProfile(e) {
+	e.preventDefault();
+	var elements = getElements();
+	download("profile.json", JSON.stringify(elements));
+}
+
+function download(filename, text) {
+	var element = document.createElement('a');
+	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+	element.setAttribute('download', filename);
+	element.style.display = 'none';
+	document.body.appendChild(element);
+	element.click();
+	document.body.removeChild(element);
+}
+
+function getElements() {
 	let knownNpcList = [ "-=[ Streuner ]=-", "-=[ Aider Streuner ]=-",
 		"-=[ Recruit Streuner ]=-", "-=[ Lordakia ]=-", "-=[ Devolarium ]=-",
 		"-=[ Mordon ]=-", "-=[ Sibelon ]=-", "-=[ Saimon ]=-",
@@ -27,9 +48,7 @@ function saveOptions(e) {
 		"-=[ Skoll ]=-", "<=< Skoll's Icy >=>", "-=[ Santa -1100101 ]=-",
 		"<=< Gygerthrall >=>", "<=< Blighted Gygerthrall >=>",
 		"-=[ Blighted Kristallon ]=-", "<=< Plagued Gygerthrall >=>",
-		"-=[ Plagued Kristallin ]=-", "-=[ Plague Rocket ]=-",
-		"..::{ Boss Lordakium }::... δ21", "..::{ Boss Lordakium }::... δ23",
-		"..::{ Boss Lordakium }::... δ25", "-={ demaNeR Escort }=-",
+		"-=[ Plagued Kristallin ]=-", "-=[ Plague Rocket ]=-", "-={ demaNeR Escort }=-",
 		"-={ Demaner Corsair }=-", "-={ demaNeR Freighter }=-",
 		"-=[ Hitac 2.0 ]=-", "-=[ Hitac-Minion ]=-", "* Lordakium Spore *" ];
 
@@ -43,6 +62,17 @@ function saveOptions(e) {
 		}
 		npcList.push(npcdata);
 	}
+	
+    var blackList = [];
+    $('.blackList li').each(function(){
+    	blackList.push($(this).text());
+    });
+    console.log(blackList);
+    
+    var whiteList = [];
+    $('.whiteList li').each(function(){
+    	whiteList.push($(this).text());
+    });
 
 	var elements = {
 			headerColor:        $("#headerColor").val(),
@@ -122,144 +152,12 @@ function saveOptions(e) {
 			kronos:             $("#kronos").prop('checked'),
 			hades:              $("#hades").prop('checked'),
 			kuiper:             $("#kuiper").prop('checked'),
-			npcList:            npcList
+			npcList:            npcList,
+			whiteList:			whiteList,
+			blackList:			blackList
 	};
-
-	chrome.storage.local.set(elements);
-}
-
-function downloadProfile(e) {
-	e.preventDefault();
-	let knownNpcList = [ "-=[ Streuner ]=-", "-=[ Aider Streuner ]=-",
-		"-=[ Recruit Streuner ]=-", "-=[ Lordakia ]=-", "-=[ Devolarium ]=-",
-		"-=[ Mordon ]=-", "-=[ Sibelon ]=-", "-=[ Saimon ]=-",
-		"-=[ Lordakium ]=-", "-=[ Sibelonit ]=-", "-=[ Kristallin ]=-",
-		"-=[ Kristallon ]=-", "-=[ StreuneR ]=-", "-=[ Protegit ]=-",
-		"-=[ Cubikon ]=-", "-=[ Interceptor ]=-", "-=[ Barracuda ]=-",
-		"-=[ Saboteur ]=-", "-=[ Annihilator ]=-", "-=[ Battleray ]=-",
-		"-=[ Deadly Battleray ]=-", "..::{ Boss Streuner }::..",
-		"..::{ Boss Lordakia }::..", "..::{ Boss Mordon }::..",
-		"..::{ Boss Saimon }::..", "..::{ Boss Devolarium }::..",
-		"..::{ Boss Sibelonit }::..", "..::{ Boss Sibelon }::..",
-		"..::{ Boss Lordakium }::...", "..::{ Boss Kristallin }::..",
-		"..::{ Boss Kristallon }::..", "..::{ Boss StreuneR }::..",
-		"( UberStreuner )", "( UberLordakia )", "( UberMordon )",
-		"( UberSaimon )", "( UberDevolarium )", "( UberSibelonit )",
-		"( UberSibelon )", "( UberLordakium )", "( UberKristallin )",
-		"( UberKristallon )", "( UberStreuneR )", "( Uber Interceptor )",
-		"( Uber Barracuda )", "( Uber Saboteur )", "( Uber Annihilator )",
-		"( Uber Battleray )", "-=[ Referee-Bot ]=-", "<=< Icy >=>",
-		"<=< Ice Meteoroid >=>", "<=< Super Ice Meteoroid >=>",
-		"-=[ Skoll ]=-", "<=< Skoll's Icy >=>", "-=[ Santa -1100101 ]=-",
-		"<=< Gygerthrall >=>", "<=< Blighted Gygerthrall >=>",
-		"-=[ Blighted Kristallon ]=-", "<=< Plagued Gygerthrall >=>",
-		"-=[ Plagued Kristallin ]=-", "-=[ Plague Rocket ]=-",
-		"..::{ Boss Lordakium }::... δ21", "..::{ Boss Lordakium }::... δ23",
-		"..::{ Boss Lordakium }::... δ25", "-={ demaNeR Escort }=-",
-		"-={ Demaner Corsair }=-", "-={ demaNeR Freighter }=-",
-		"-=[ Hitac 2.0 ]=-", "-=[ Hitac-Minion ]=-", "* Lordakium Spore *" ];
-
-	var npcList = []; 
-	for (i = 0; i < knownNpcList.length; i++) { 
-		var npcdata = {
-				name:        $("#name"+i).val(),
-				range:        $("#range"+i).val(),
-				ammo:        $("#ammo"+i).val(),
-				priority:        $("#priority"+i).val() 
-		}
-		npcList.push(npcdata);
-	}
-
-	var elements = {
-			headerColor:        $("#headerColor").val(),
-			headerOpacity:      $("#headerOpacity").val(),
-			windowColor:        $("#windowColor").val(),
-			windowOpacity:      $("#windowOpacity").val(),
-			timerTick:          $("#timerTick").val(),
-			debug:				$("#debug").prop('checked'),
-			enableRefresh:      $("#enableRefresh").prop('checked'),
-			refreshToReconnect: $("#refreshToReconnect").prop('checked'),
-			refreshTime:        $("#refreshTime").val(),
-			speedFormat:        $('input[name="speedFormat"]:checked').val(),
-			windowsToTabs:      $("#windowsToTabs").prop('checked'),
-			autoChangeConfig:   $("#autoChangeConfig").prop('checked'),
-			attackConfig:       $("#attackConfig").val(),
-			escapeConfig:       $("#escapeConfig").val(),
-			changeFormation:    $("#changeFormation").prop('checked'),
-			flyingFormation:    $("#flyingFormation").val(),
-			attackFormation:    $("#attackFormation").val(),
-			escapeFormation:    $("#escapeFormation").val(),
-			flyingConfig:       $("#flyingConfig").val(),
-			useHability:        $("#useHability").prop('checked'),
-			habilitySlot:       $("#habilitySlot").val(),
-			habilitySlotTwo:    $("#habilitySlotTwo").val(),
-			habilitySlotThree:  $("#habilitySlotThree").val(),
-			habilitySlotFour:   $("#habilitySlotFour").val(),
-			cyborgHp:			$("cyborgHp").val(),
-			venomHp:			$("venomHp").val(),
-			diminisherSHD:		$("diminisherSHD").val(),
-			reviveType:         $("#reviveType").val(),
-			reviveLimit:        $("#reviveLimit").val(),
-			bonusBox:           $("#bonusBox").prop('checked'),
-			materials:          $("#materials").prop('checked'),
-			cargoBox:           $("#cargoBox").prop('checked'),
-			greenOrGoldBooty:   $("#greenOrGoldBooty").prop('checked'),
-			redBooty:           $("#redBooty").prop('checked'),
-			blueBooty:          $("#blueBooty").prop('checked'),
-			masqueBooty:        $("#masqueBooty").prop('checked'),
-			collectBoxWhenCircle: $("#collectBoxWhenCircle").prop('checked'),
-			workmap:            $("#workmap").val(),
-			changeAmmunition:   $("#changeAmmunition").prop('checked'),
-			x1Slot:             $("#x1Slot").val(),
-			x2Slot:             $("#x2Slot").val(),
-			x3Slot:             $("#x3Slot").val(),
-			x4Slot:             $("#x4Slot").val(),
-			sabSlot:            $("#sabSlot").val(),
-			rsbSlot:            $("#rsbSlot").val(),
-			stopafterxminutes:  $("#stopafterxminutes").val(),
-			waitafterRepair:    $("#waitafterRepair").val(),
-			waitBeforeRepair:	$("#waitBeforeRepair").val(),
-			fleeFromEnemy:      $("#fleeFromEnemy").prop('checked'),
-			jumpFromEnemy:      $("#jumpFromEnemy").prop('checked'),
-			onlyEscapeWhenEnemyAttack:  $("#onlyEscapeWhenEnemyAttack").prop('checked'),
-			dodgeTheCbs:        $("#dodgeTheCbs").prop('checked'),
-			moveRandomly:       $("#moveRandomly").prop('checked'),
-			killNpcs:           $("#killNpcs").prop('checked'),
-			avoidAttackedNpcs:  $("#avoidAttackedNpcs").prop('checked'),
-			circleNpc:          $("#circleNpc").prop('checked'),
-			dontCircleWhenHpBelow25Percent:  $("#dontCircleWhenHpBelow25Percent").prop('checked'),
-			autoPlay:           $("#autoPlay").val(),
-			respondPlayerAttacks:  $("#respondPlayerAttacks").prop('checked'),
-			playerAmmo:         $("#playerAmmo").val(),
-			useCBSZoneSegure:   $("#useCBSZoneSegure").prop('checked'),
-			randomBreaks:		$("#randomBreaks").prop('checked'),
-			stopWhenCargoIsFull:	$("#stopWhenCargoIsFull").prop('checked'),
-			repairWhenHpIsLowerThanPercent:  $("#repairWhenHpIsLowerThanPercent").val(),
-			defendSentinel:     $("#defendSentinel").prop('checked'),
-			alpha:              $("#alpha").prop('checked'),
-			beta:               $("#beta").prop('checked'),
-			gamma:              $("#gamma").prop('checked'),
-			delta:              $("#delta").prop('checked'),
-			epsilon:            $("#epsilon").prop('checked'),
-			zeta:               $("#zeta").prop('checked'),
-			kappa:              $("#kappa").prop('checked'),
-			lambda:             $("#lambda").prop('checked'),
-			kronos:             $("#kronos").prop('checked'),
-			hades:              $("#hades").prop('checked'),
-			kuiper:             $("#kuiper").prop('checked'),
-			npcList:            npcList
-	};
-	download("profile.json", JSON.stringify(elements));
-}
-
-function download(filename, text) {
-	var element = document.createElement('a');
-	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-	element.setAttribute('download', filename);
-	element.style.display = 'none';
-	document.body.appendChild(element);
-	element.click();
-	document.body.removeChild(element);
+	
+	return elements;
 }
 
 function restore() {
@@ -280,12 +178,13 @@ function restore() {
 		"attackFormation","reviveType", "reviveLimit",
 		"bonusBox", "materials", "cargoBox", "greenOrGoldBooty",
 		"redBooty", "blueBooty", "masqueBooty", "collectBoxWhenCircle", 
-		"workmap", "npcList", "changeAmmunition", "x1Slot", "x2Slot", "x3Slot", "x4Slot", "sabSlot", "rsbSlot",
+		"workmap", "changeAmmunition", "x1Slot", "x2Slot", "x3Slot", "x4Slot", "sabSlot", "rsbSlot",
 		"stopafterxminutes", "waitafterRepair", "waitBeforeRepair","fleeFromEnemy", "jumpFromEnemy", "onlyEscapeWhenEnemyAttack", "autoPlay",
 		"dodgeTheCbs", "moveRandomly", "killNpcs", "avoidAttackedNpcs", "circleNpc", "dontCircleWhenHpBelow25Percent", "respondPlayerAttacks", "playerAmmo", "useCBSZoneSegure", "randomBreaks", 
 		"stopWhenCargoIsFull", "repairWhenHpIsLowerThanPercent",
 		"sentinelid", "defendSentinel",
-		"alpha", "beta", "gamma", "delta", "epsilon", "zeta", "kappa", "lambda", "kronos", "hades", "kuiper"];
+		"alpha", "beta", "gamma", "delta", "epsilon", "zeta", "kappa", "lambda", "kronos", "hades", "kuiper",
+		"whiteList", "blackList", "npcList"];
 
 	var onGet = items => {
 		if (items.headerColor)
@@ -515,6 +414,18 @@ function restore() {
 		if (items.kuiper) {
 			$("#kuiper").prop('checked', true);
 		}
+		if (items.whiteList) {
+			var listWhite = items.whiteList;
+			for (i = 0; i < listWhite.length; i++) {
+				$("#whiteList").append("<li id="+listWhite[i]+" value="+listWhite[i]+">"+listWhite[i]+"</li>");
+			}
+		}
+		if (items.blackList) {
+			var listBlack = items.blackList;
+			for (i = 0; i < listBlack.length; i++) {
+				$("#blackList").append("<li id="+listBlack[i]+" value="+listBlack[i]+">"+listBlack[i]+"</li>");
+			}
+		}
 		if (items.npcList) {
 			var knownNpcList = items.npcList;
 			for (i = 0; i < knownNpcList.length; i++) {
@@ -532,3 +443,17 @@ function restore() {
 $('.donwloadprofile').on("click", downloadProfile);
 $("form").on("submit", saveOptions);
 $(document).ready(restore);
+
+$(document).ready(function(){
+	$('#addWhite').click(function(){
+	    $("#whiteList").append("<li id="+$('#candidate').val()+" value="+$('#candidate').val()+">"+$('#candidate').val()+"</li>");
+	    $("#candidate").val("");
+	});
+	$('#addBlack').click(function(){
+	    $("#blackList").append("<li id="+$('#candidate').val()+" value="+$('#candidate').val()+">"+$('#candidate').val()+"</li>");
+	    $("#candidate").val("");
+	});
+	$(document).on('click', 'li', function (e) {
+	    $(this).remove();
+	});
+});

@@ -264,7 +264,7 @@ function logic() {
 		if (window.fleeingFromEnemy) {
 			window.fleeFromEnemy = false;
 		}
-		if (api.disconnectTime && $.now() - api.disconnectTime > 5000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.globalSettings.reviveLimit) {
+		if ((api.disconnectTime && $.now() - api.disconnectTime > 5000 || (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000))) && window.reviveCount < window.globalSettings.reviveLimit) {
 			if (window.globalSettings.refreshToReconnect) {
 				window.location.reload();
 				state = true;
@@ -426,7 +426,6 @@ function logic() {
 			api.jumpInGateByType(72, window.globalSettings.kronos);
 			api.jumpInGateByType(74, window.globalSettings.hades);
 			api.jumpInGateByType(82, window.globalSettings.kuiper);
-			api.jumpInGateByType(81, true);
 		}
 	}
 

@@ -232,6 +232,18 @@ function loadArchive() {
 			if (items.kuiper != null) {
 				$("#kuiper").prop('checked', items.kuiper);
 			}
+			if (items.whiteList) {
+				var listWhite = items.whiteList;
+				for (i = 0; i < listWhite.length; i++) {
+					$("#whiteList").append("<li id="+listWhite[i]+" value="+listWhite[i]+">"+listWhite[i]+"</li>");
+				}
+			}
+			if (items.blackList) {
+				var listBlack = items.blackList;
+				for (i = 0; i < listBlack.length; i++) {
+					$("#blackList").append("<li id="+listBlack[i]+" value="+listBlack[i]+">"+listBlack[i]+"</li>");
+				}
+			}
 			if (items.npcList) {
 				var knownNpcList = items.npcList;
 				for (i = 0; i < knownNpcList.length; i++) {

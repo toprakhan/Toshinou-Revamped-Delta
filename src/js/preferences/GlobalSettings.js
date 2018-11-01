@@ -80,6 +80,8 @@ class GlobalSettings {
 			kronos: false,
 			hades: false,
 			kuiper: false,
+			whiteList: null,
+			blackList: null,
 		}, items => {
 			self._settings = items;
 		});
@@ -383,6 +385,14 @@ class GlobalSettings {
 
 	get kuiper() {
 		return this._settings.kuiper;
+	}
+	
+	get whiteList() {
+		return this._settings.whiteList;
+	}
+	
+	get blackList() {
+		return this._settings.blackList;
 	}
 
 }

@@ -264,7 +264,7 @@ function logic() {
 		if (window.fleeingFromEnemy) {
 			window.fleeFromEnemy = false;
 		}
-		if ((api.disconnectTime && $.now() - api.disconnectTime > 5000 || (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000))) && window.reviveCount < window.globalSettings.reviveLimit) {
+		if ((api.disconnectTime && $.now() - api.disconnectTime > 60000 || (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000))) && window.reviveCount < window.globalSettings.reviveLimit) {
 			if (window.globalSettings.refreshToReconnect) {
 				window.location.reload();
 				state = true;
@@ -894,7 +894,7 @@ function sentinelLogic() {
 
 	if (shipAround) {
 		api.rute = null;
-		if (shipAround.distanceTo(window.hero.position) > 1000 && !api.targetShip) {
+		if (shipAround.distanceTo(window.hero.position) > 500 && !api.targetShip) {
 			x = shipAround.position.x + MathUtils.random(-100, 100);
 			y = shipAround.position.y + MathUtils.random(-100, 100);
 			api.moveWithFilter(x, y);

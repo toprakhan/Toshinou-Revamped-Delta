@@ -37,7 +37,6 @@ chrome.webRequest.onBeforeRequest.addListener(
 				cancel: result
 			};
 		}, {
-			urls: ["https://*.bigpoint.net/*",
-				"https://eventstream*"]
+			urls: ["https://*.bigpoint.net/*"]
 		}, ["blocking"]
 );

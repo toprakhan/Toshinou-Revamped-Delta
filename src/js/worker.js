@@ -1019,9 +1019,17 @@ function sentinelLogic() {
 			y = api.targetShip.position.y - MathUtils.random(-50, 50);
 			api.lastMovement = $.now();
 		} else if (api.lockedShip && window.settings.dontCircleWhenHpBelow25Percent && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id ) {
-			if (dist > radius) {
+			if (dist > (radius+50)) {
 				x = api.targetShip.position.x + MathUtils.random(-30, 30);
 				y = api.targetShip.position.y + MathUtils.random(-30, 30);
+			} else if (dist < radius){
+				let enemy = api.targetShip.position;
+				let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
+				let s = Math.PI / 180;
+				let rot = MathUtils.random(-10, 10);
+				f += s;
+				x = enemy.x + radius * Math.sin(f);
+				y = enemy.y + radius * Math.cos(f);
 			}
 		} else if (window.settings.ggbot && api.resetTargetWhenHpBelow25Percent && api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id ) {
 			api.resetTarget("enemy");

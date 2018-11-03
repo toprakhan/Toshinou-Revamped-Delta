@@ -40,7 +40,7 @@ class ShipAttackHandler {
 					}
 				}
 			} catch (exception) {
-				console.error(exception);
+				console.log(exception.message);
 				console.log(shipAttackCmd);
 			};
 		}

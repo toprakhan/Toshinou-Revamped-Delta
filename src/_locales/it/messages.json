@@ -379,5 +379,23 @@
   },
               "repairWhenHpIsLowerThanPercent": {
     "message": "Ripara quando HP < "
+  },
+              "cyborgHp": {
+    "message": "Usa l'Abilità della Cyborg quando vita del nemico > di:"
+  },
+              "venomHp": {
+    "message": "Usa l'Abilità della Venom quando vita del nemico > di:"
+  },
+                "diminisherSHD": {
+    "message": "Usa l'Abilità della Diminisher quando vita del nemico > di:"
+  },
+                  "stopWhenCargoIsFull": {
+    "message": "Ferma quando la stiva è piena"
+  },
+                    "skillsSettings": {
+    "message": "Impostazioni Abilità"
+  },
+                      "useAutoPlay": {
+    "message": "Utilizza 'Auto Play Mode' per farlo funzionare bene"
   }
 }

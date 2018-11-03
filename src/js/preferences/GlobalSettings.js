@@ -394,5 +394,16 @@ class GlobalSettings {
 	get blackList() {
 		return this._settings.blackList;
 	}
-
+	
+	get venomHp() {
+		return this._settings.venomHp;
+	}
+	
+	get cyborgHp() {
+		return this._settings.cyborgHp;
+	}
+	
+	get diminisherSHD() {
+		return this._settings.diminisherSHD;
+	}
 }

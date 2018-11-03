@@ -67,7 +67,6 @@ function getElements() {
     $('.blackList li').each(function(){
     	blackList.push($(this).text());
     });
-    console.log(blackList);
     
     var whiteList = [];
     $('.whiteList li').each(function(){
@@ -99,9 +98,9 @@ function getElements() {
 			habilitySlotTwo:    $("#habilitySlotTwo").val(),
 			habilitySlotThree:  $("#habilitySlotThree").val(),
 			habilitySlotFour:   $("#habilitySlotFour").val(),
-			cyborgHp:			$("cyborgHp").val(),
-			venomHp:			$("venomHp").val(),
-			diminisherSHD:		$("diminisherSHD").val(),
+			cyborgHp:			$("#cyborgHp").val(),
+			venomHp:			$("#venomHp").val(),
+			diminisherSHD:		$("#diminisherSHD").val(),
 			reviveType:         $("#reviveType").val(),
 			reviveLimit:        $("#reviveLimit").val(),
 			bonusBox:           $("#bonusBox").prop('checked'),

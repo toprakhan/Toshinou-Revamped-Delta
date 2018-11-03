@@ -26,9 +26,6 @@ class HeroAffectedHandler {
 					window.invertedMovement = false;
 				}
 			}
-			if (api.targetShip && obj.userId == api.targetShip.id) {
-				console.log(obj);
-			}
 		}
 	}
 	get handler() {

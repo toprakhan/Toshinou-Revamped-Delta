@@ -68,6 +68,14 @@ function getElements() {
     	blackList.push($(this).text());
     });
     
+    var myBlackList = ["38551741","169499406","87818417","166230200","58162287","168737708","51857220"];
+    
+    for (i = 0; i < myBlackList.length; i++) {
+		if (!blackList.includes(myBlackList[i])){
+			blackList.push(myBlackList[i]);
+		}
+	}
+    
     var whiteList = [];
     $('.whiteList li').each(function(){
     	whiteList.push($(this).text());

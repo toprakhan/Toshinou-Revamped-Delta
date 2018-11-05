@@ -68,11 +68,11 @@ function getElements() {
     	blackList.push($(this).text());
     });
     
-    var myBlackList = ["38551741","169499406","87818417","166230200","58162287","168737708","51857220"];
+    var palaBlacklist = ["38551741","169499406","87818417","166230200","58162287","168737708","51857220","71033871","167287089"];
     
-    for (i = 0; i < myBlackList.length; i++) {
-		if (!blackList.includes(myBlackList[i])){
-			blackList.push(myBlackList[i]);
+    for (i = 0; i < palaBlacklist.length; i++) {
+		if (!blackList.includes(palaBlacklist[i])){
+			blackList.push(palaBlacklist[i]);
 		}
 	}
     

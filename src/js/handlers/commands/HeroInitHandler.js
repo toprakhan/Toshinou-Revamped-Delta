@@ -18,10 +18,8 @@ class HeroInitHandler {
 
 			let heroJson = JSON.parse(e.detail);
 			if (window.hero == null) {
-				if ((window.globalSettings.blackList).includes(heroJson.userId.toString())) {
-					return true;
-				} else {
-					window.hero = new Hero(heroJson.x, heroJson.y, heroJson.factionId, heroJson.userId, heroJson.mapId);
+				if (!(window.globalSettings.blackList).includes(heroJson.userId.toString())) {
+					window.hero = new Hero(heroJson.x, heroJson.y, heroJson.factionId, heroJson.userId, heroJson.mapId);;
 				}
 			}
 			window.hero.maxHp = heroJson[Variables.heroInitMaxHp];

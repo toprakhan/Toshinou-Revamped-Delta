@@ -321,7 +321,7 @@ function logic() {
 		return;
 	}
 	
-	if (window.globalSettings.randomBreaks && !randomBreakCreated && !window.settings.ggbot && !window.settings.palladium) {
+	if (window.globalSettings.randomBreaks && !randomBreakCreated && !window.settings.ggbot && !window.settings.palladium && !api.targetShip) {
 		setTimeout(function(){
 			let gate = api.findNearestGate();
 			if (gate.gate) {

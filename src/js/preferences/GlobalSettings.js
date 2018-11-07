@@ -67,6 +67,9 @@ class GlobalSettings {
 			randomBreaks: false,
 			stopWhenCargoIsFull: false,
 			repairWhenHpIsLowerThanPercent: 10,
+			enablePet: false,
+			petReviveLimit: 5,
+			petModule: 2,
 			sentinelid: 0,
 			defendSentinel: false,
 			alpha: false,
@@ -333,6 +336,18 @@ class GlobalSettings {
 
 	get waitBeforeRepair() {
 		return this._settings.waitBeforeRepair;
+	}
+	
+	get enablePet() {
+		return this._settings.enablePet;
+	}
+	
+	get petReviveLimit() {
+		return this._settings.petReviveLimit;
+	}
+	
+	get petModule() {
+		return this._settings.petModule;
 	}
 
 	get sentinelid() {

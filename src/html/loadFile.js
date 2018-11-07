@@ -196,6 +196,15 @@ function loadArchive() {
 			if (items.repairWhenHpIsLowerThanPercent) {
 				$("#repairWhenHpIsLowerThanPercent").val(items.repairWhenHpIsLowerThanPercent);
 			}
+			if (items.enablePet != null) {
+				$("#enablePet").prop('checked', items.enablePet);
+			}
+			if (items.petReviveLimit) {
+				$("#petReviveLimit").val(items.petReviveLimit);
+			}
+			if (items.petModule) {
+				$("#petModule").val(items.petModule);
+			}
 			if (items.defendSentinel != null) {
 				$("#defendSentinel").prop('checked', items.defendSentinel);
 			}

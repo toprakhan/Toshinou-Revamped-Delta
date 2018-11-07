@@ -427,6 +427,28 @@ function logic() {
 			api.jumpInGateByType(82, window.globalSettings.kuiper);
 		}
 	}
+	
+	if (window.globalSettings.enablePet && window.petReviveCount < window.globalSettings.petReviveLimit && api.pet.hasFuel) {
+		if (api.pet.destroyed) {
+			setTimeout(() => {
+				api.callPet(4);
+				api.pet.destroyed = false;
+			}, 1000);
+		} else if (api.pet == null) {
+			api.callPet(0);
+			return;
+		} else if (window.globalSettings.enablePet && window.globalSettings.petModule != 0 && $.now() - api.pet.activateTimer > 2000) {
+			if (window.globalSettings.petModule == 10) {
+				if ($.now() - api.pet.moduleCooldown > 35000) {
+					api.changePetModule(window.globalSettings.petModule);
+				} else {
+					api.changePetModule(2);
+				}
+			} else {
+				api.changePetModule(window.globalSettings.petModule);
+			}
+		}
+	}
 
 	if (window.globalSettings.fleeFromEnemy) {
 		let enemyResult = api.checkForEnemy();

@@ -14,7 +14,7 @@ class GateInitHandler {
 					a.gates.push(new Gate(parsedJson.x, parsedJson.y, parsedJson.factionId, id, typeId));
 				}
 			} catch (exception) {
-				console.error(exception);
+				console.error(exception.message);
 				console.log(parsedJson);  
 			};
 		}

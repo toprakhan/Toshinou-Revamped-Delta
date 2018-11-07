@@ -337,9 +337,26 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2">
+				<td>
 					<label for="repairWhenHpIsLowerThanPercent"><span data-resource=repairWhenHpIsLowerThanPercent>Repair when HP &#60; </span> 
 					<input type="number" id="repairWhenHpIsLowerThanPercent" min="0" max="100" value="10">%</label>
+				</td>
+				<td>
+					<input type="checkbox" id="enablePet"> <label for="enablePet"><span data-resource="enablePet">Enable Pet</span></label>
+				</td>
+				<td colspan="2">
+					<input type="number" id="petReviveLimit" min="0" max="99" value="5"> <label for="petReviveLimit"><span data-resource="petReviveLimit">Limit to revive the pet (0 = No revive)</span></label>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<label for="petModule"><span data-resource="petModule">Pet module: </span></label>
+					<select id="petModule">
+						<option value="2">Guard Mode</option>
+						<option value="4">Auto loot</option>
+						<option value="5">Collect Resource</option>
+						<option value="10">Kamikaze</option>
+					</select>
 				</td>
 			</tr>
 			<tr>

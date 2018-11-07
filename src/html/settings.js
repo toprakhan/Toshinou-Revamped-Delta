@@ -146,6 +146,9 @@ function getElements() {
 			randomBreaks:		$("#randomBreaks").prop('checked'),
 			stopWhenCargoIsFull:	$("#stopWhenCargoIsFull").prop('checked'),
 			repairWhenHpIsLowerThanPercent:	$("#repairWhenHpIsLowerThanPercent").val(),
+			enablePet:			$("#enablePet").prop('checked'),
+			petReviveLimit:		$("#petReviveLimit").val(),
+			petModule:			$("#petModule").val(),
 			sentinelid:         $("#sentinelid").val(),
 			defendSentinel:     $("#defendSentinel").prop('checked'),
 			alpha:              $("#alpha").prop('checked'),
@@ -188,7 +191,7 @@ function restore() {
 		"workmap", "changeAmmunition", "x1Slot", "x2Slot", "x3Slot", "x4Slot", "sabSlot", "rsbSlot",
 		"stopafterxminutes", "waitafterRepair", "waitBeforeRepair","fleeFromEnemy", "jumpFromEnemy", "onlyEscapeWhenEnemyAttack", "autoPlay",
 		"dodgeTheCbs", "moveRandomly", "killNpcs", "avoidAttackedNpcs", "circleNpc", "dontCircleWhenHpBelow25Percent", "respondPlayerAttacks", "playerAmmo", "useCBSZoneSegure", "randomBreaks", 
-		"stopWhenCargoIsFull", "repairWhenHpIsLowerThanPercent",
+		"stopWhenCargoIsFull", "repairWhenHpIsLowerThanPercent", "enablePet", "petReviveLimit", "petModule",
 		"sentinelid", "defendSentinel",
 		"alpha", "beta", "gamma", "delta", "epsilon", "zeta", "kappa", "lambda", "kronos", "hades", "kuiper",
 		"whiteList", "blackList", "npcList"];
@@ -381,6 +384,15 @@ function restore() {
 		}
 		if (items.repairWhenHpIsLowerThanPercent) {
 			$("#repairWhenHpIsLowerThanPercent").val(items.repairWhenHpIsLowerThanPercent);
+		}	
+		if (items.enablePet) {
+			$("#enablePet").prop('checked', true);
+		}
+		if (items.petReviveLimit) {
+			$("#petReviveLimit").val(items.petReviveLimit);
+		}
+		if (items.petModule) {
+			$("#petModule").val(items.petModule);
 		}
 		if (items.sentinelid) {
 			$("#sentinelid").val(items.sentinelid);

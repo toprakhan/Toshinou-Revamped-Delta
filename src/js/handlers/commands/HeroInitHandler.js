@@ -15,6 +15,10 @@ class HeroInitHandler {
 			a.pet = null;
 			a.jumped = false;
 			Injector.injectScript("window.heroDied = false;");
+			
+			if (window.globalSettings.enablePet) {
+				a.pet = new Pet(0);
+			}
 
 			let heroJson = JSON.parse(e.detail);
 			if (window.hero == null) {

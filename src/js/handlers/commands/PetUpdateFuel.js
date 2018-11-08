@@ -10,7 +10,7 @@ class PetUpdateFuel {
 		this._handler = (e, a) => {
             let command = e.wholeMessage.split("|");
             if (a.pet != null) {
-            	a.pet.hasFuel = true;
+            	a.petHasFuel = true;
             }
         }
     }

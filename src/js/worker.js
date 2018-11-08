@@ -428,8 +428,8 @@ function logic() {
 		}
 	}
 	
-	if (window.globalSettings.enablePet && window.petReviveCount < window.globalSettings.petReviveLimit && api.pet.hasFuel) {
-		if (api.pet.destroyed) {
+	if (window.globalSettings.enablePet && window.petReviveCount < window.globalSettings.petReviveLimit && api.petHasFuel) {
+		if (api.pet != null && api.pet.destroyed) {
 			setTimeout(() => {
 				api.callPet(4);
 				api.pet.destroyed = false;

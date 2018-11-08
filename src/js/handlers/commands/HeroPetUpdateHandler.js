@@ -16,7 +16,7 @@ class HeroPetUpdateHandler {
 				a.pet = new Pet(parsedJson[Variables.heroPetId]);
 			} else {
 				a.pet.activated = true;
-				a.pet.hasFuel = true;
+				a.petHasFuel = true;
 			}
 		}
 	}

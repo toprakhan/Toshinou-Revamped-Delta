@@ -41,7 +41,7 @@ class MessagesHandler {
 				if(message[2] == "STM"){
 					if(message[3] == "msg_pet_out_of_fuel"){
 						if (a.pet != null) {
-							a.pet.hasFuel = false;
+							a.petHasFuel = false;
 							a.pet.activated = false;
 							a.pet.currentModule = -1;
 						}

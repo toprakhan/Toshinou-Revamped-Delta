@@ -36,6 +36,7 @@ class Api {
 		this.rutePirateMaps = null;
 		this.pet = null;
 		this.jumped = false;
+		this.petHasFuel = true;
 	}
 	
 	changePetModule(module_id){
@@ -49,7 +50,6 @@ class Api {
 		// 0 = activate
 		// 1 = deactivate
 		// 4 = repair
-		api.pet.activateTimer = $.now();
 		Injector.injectScript('document.getElementById("preloader").petCall('+parseInt(n)+');');
 		this.pet.currentModule = -1;
 	}

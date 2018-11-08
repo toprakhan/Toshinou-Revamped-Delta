@@ -434,7 +434,7 @@ function logic() {
 				api.callPet(4);
 				api.pet.destroyed = false;
 			}, 1000);
-		} else if (api.pet == null) {
+		} else if (api.pet == null || api.pet.id == 0) {
 			api.callPet(0);
 			return;
 		} else if (window.globalSettings.enablePet && window.globalSettings.petModule != 0 && $.now() - api.pet.activateTimer > 2000) {

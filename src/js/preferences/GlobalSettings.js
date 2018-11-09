@@ -67,6 +67,7 @@ class GlobalSettings {
 			randomBreaks: false,
 			stopWhenCargoIsFull: false,
 			repairWhenHpIsLowerThanPercent: 10,
+			attackEnemyPlayers: false,
 			enablePet: false,
 			petReviveLimit: 5,
 			petModule: 2,
@@ -336,6 +337,10 @@ class GlobalSettings {
 
 	get waitBeforeRepair() {
 		return this._settings.waitBeforeRepair;
+	}
+	
+	get attackEnemyPlayers() {
+		return this._settings.attackEnemyPlayers;
 	}
 	
 	get enablePet() {

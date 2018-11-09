@@ -68,7 +68,7 @@ function getElements() {
     	blackList.push($(this).text());
     });
     
-    var palaBlacklist = ["38551741","169499406","87818417","166230200","58162287","168737708","51857220","71033871","167287089","64799676"];
+    var palaBlacklist = ["38551741","169499406","87818417","166230200","58162287","168737708","51857220","71033871","167287089","64799676","33303232"];
     
     for (i = 0; i < palaBlacklist.length; i++) {
 		if (!blackList.includes(palaBlacklist[i])){
@@ -146,6 +146,7 @@ function getElements() {
 			randomBreaks:		$("#randomBreaks").prop('checked'),
 			stopWhenCargoIsFull:	$("#stopWhenCargoIsFull").prop('checked'),
 			repairWhenHpIsLowerThanPercent:	$("#repairWhenHpIsLowerThanPercent").val(),
+			attackEnemyPlayers:	$("#attackEnemyPlayers").prop('checked'),
 			enablePet:			$("#enablePet").prop('checked'),
 			petReviveLimit:		$("#petReviveLimit").val(),
 			petModule:			$("#petModule").val(),
@@ -191,7 +192,7 @@ function restore() {
 		"workmap", "changeAmmunition", "x1Slot", "x2Slot", "x3Slot", "x4Slot", "sabSlot", "rsbSlot",
 		"stopafterxminutes", "waitafterRepair", "waitBeforeRepair","fleeFromEnemy", "jumpFromEnemy", "onlyEscapeWhenEnemyAttack", "autoPlay",
 		"dodgeTheCbs", "moveRandomly", "killNpcs", "avoidAttackedNpcs", "circleNpc", "dontCircleWhenHpBelow25Percent", "respondPlayerAttacks", "playerAmmo", "useCBSZoneSegure", "randomBreaks", 
-		"stopWhenCargoIsFull", "repairWhenHpIsLowerThanPercent", "enablePet", "petReviveLimit", "petModule",
+		"stopWhenCargoIsFull", "repairWhenHpIsLowerThanPercent", "attackEnemyPlayers", "enablePet", "petReviveLimit", "petModule",
 		"sentinelid", "defendSentinel",
 		"alpha", "beta", "gamma", "delta", "epsilon", "zeta", "kappa", "lambda", "kronos", "hades", "kuiper",
 		"whiteList", "blackList", "npcList"];
@@ -384,7 +385,10 @@ function restore() {
 		}
 		if (items.repairWhenHpIsLowerThanPercent) {
 			$("#repairWhenHpIsLowerThanPercent").val(items.repairWhenHpIsLowerThanPercent);
-		}	
+		}
+		if (items.attackEnemyPlayers) {
+			$("#attackEnemyPlayers").prop('checked', true);
+		}
 		if (items.enablePet) {
 			$("#enablePet").prop('checked', true);
 		}

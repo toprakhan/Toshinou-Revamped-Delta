@@ -1,59 +1,59 @@
 class Variables {
 
   static get boxType() {
-    return "_-14m";//up
+    return "_-21Q";//up
   }
 
   static get attackerId() {
-    return "_-Z6";//up
+    return "_-SY";//up
   }
 
   static get attackHp() {
-    return "_-G4h";//up
+    return "_-m3d";//up
   }
 
   static get attackShd() {
-    return "_-f3y";//up
+    return "_-8M";//up
   }
 
   static get attackedId() {
-    return "_-Ek";//Up
+    return "_-y4P";//Up
   }
   
   static get heroAttackedId() {
-    return "_-V4J";//up
+    return "_-Wv";//up
   }
 
   static get moveDuration() {
-    return "_-c2i";//up
+    return "_-w2Z";//up
   }
 
   static get shipDestoyedId() {
-    return "_-c3H";//up
+    return "_-j21";//up
   }
 
   static get heroInitMaxHp() {
-    return "_-u1s";//up
+    return "_-81M";//up
   }
 
   static get heroInitMaxShd() {
-    return "_-7z";//up
+    return "_-I2c";//up
   }
 
   static get heroInitHp() {
-    return "_-uN";//up
+    return "_-f4R";//up
   }
   
   static get heroUpdateShd(){
-    return "_-I4l";//up
+    return "_-t3M";//up
   }
 
   static get hpUpdateMaxHp() {
-    return "_-h4C";//up
+    return "_-F4K";//up
   }
 
   static get hpUpdateHp() {
-    return "_-r3Y"; //up
+    return "_-s1B"; //up
   }
 
   static get selectMaxHp() {
@@ -61,47 +61,48 @@ class Variables {
   }
 
   static get selectMaxShd() {
-    return "_-7z";//up
+    return "_-I2c";//up
   }
 
   static get selectHp() {
-    return "_-r3Y";//up
+    return "_-s1B";//up
   }
 
   static get clanDiplomacy() {
-    return "_-91M"; //up
+    return "_-B4f"; //up
   }
 
   static get gateId() {
-    return "_-G23";//up
+    return "_-S1h";//up
   }
 
   static get gateType() {
-    return "_-q4I";//up
+    return "_-j2j";//up
   }
 
   static get resource() {
-    return "_-236";//up
+    return "_-q33";//up
   }
 
   static get resourceType() {
-    return "_-21n";//up
+    return "_-d1Q";//up
   }
 
   static get assetCreateX() {
-    return "_-mV";//up
+    return "_-EB";//up
   }
 
   static get assetCreateY() {
-    return "_-E4d"; //up
+    return "_-MD"; //up
   }
 
   static get battlestationClanDiplomacy() {
-    return "_-X4z";//up
+    return "_-L2e";//up
   }
   
   static get groupShipID() {
-	return "_-01s"; //up
+	return "_-W3B"; //up
   }
+
   
 }

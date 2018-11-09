@@ -510,7 +510,7 @@ class Api {
 			let ship = this.ships[property];
 			ship.update();
 			if ((ship.isNpc  && (!window.settings.onlyAnswerAttacks || (window.settings.onlyAnswerAttacks && ship.attacksUs))) || 
-					(!ship.isNpc && window.globalSettings.respondPlayerAttacks && ship.attacksUs && ship.isEnemy)) {
+					(!ship.isNpc && window.globalSettings.respondPlayerAttacks && ship.attacksUs && ship.isEnemy) || (!ship.isNpc && ship.isEnemy && window.globalSettings.attackEnemyPlayers)) {
 				if (!ship.isNpc) {
 					finalShip = ship;
 					let dist = ship.distanceTo(window.hero.position);

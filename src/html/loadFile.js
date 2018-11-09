@@ -196,6 +196,9 @@ function loadArchive() {
 			if (items.repairWhenHpIsLowerThanPercent) {
 				$("#repairWhenHpIsLowerThanPercent").val(items.repairWhenHpIsLowerThanPercent);
 			}
+			if (items.attackEnemyPlayers != null) {
+				$("#attackEnemyPlayers").prop('checked', items.attackEnemyPlayers);
+			}
 			if (items.enablePet != null) {
 				$("#enablePet").prop('checked', items.enablePet);
 			}

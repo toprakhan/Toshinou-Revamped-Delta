@@ -8,9 +8,9 @@ class ShipSelectedHandler {
 			let parsedJson = JSON.parse(e.detail);
 			try {
 				let ship = a.ships[parsedJson.userId];
-				ship.maxHp = parsedJson[Variables.selectMaxHp]; //
-				ship.maxShd = parsedJson[Variables.selectMaxShd]; // 
-				ship.hp = parsedJson[Variables.selectHp];//_-p2W 
+				ship.maxHp = parsedJson[Variables.selectMaxHp];
+				ship.maxShd = parsedJson[Variables.selectMaxShd]; 
+				ship.hp = parsedJson[Variables.selectHp];
 				ship.shd = parsedJson.shield;
 
 				if (ship != null){

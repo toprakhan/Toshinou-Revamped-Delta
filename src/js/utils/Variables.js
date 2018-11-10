@@ -57,7 +57,7 @@ class Variables {
   }
 
   static get selectMaxHp() {
-    return "_-h4C";//up
+    return "_-F4K";//up
   }
 
   static get selectMaxShd() {

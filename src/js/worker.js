@@ -274,6 +274,53 @@ function logic() {
 		return;
 	}
 	
+	window.minimap.draw();
+
+	if (api.targetShip && api.attacking) {
+		if(window.globalSettings.changeAmmunition) {
+			api.chooseAmmunition();
+		}
+	}
+	
+	if (window.globalSettings.debug) {
+		if (window.settings.showCoordinates) {
+			console.log("X: " + window.hero.position.x + " | Y: " + window.hero.position.y);
+		}
+		if (window.settings.showMapID) {
+			console.log(window.hero.mapId);
+		}
+		if (window.settings.showNearestPortal) {
+			let gate = api.findNearestGate();
+			if (gate.gate) {
+				console.log(gate.gate);
+			}
+		}
+	}
+	
+	if (window.globalSettings.enableRefresh && !window.settings.ggbot && (window.settings.runtime >= window.globalSettings.refreshTime)) {
+		if ((api.Disconected && !state) || window.settings.palladium) {
+			window.location.reload();
+			state = true;
+		} else {
+			let gate = api.findNearestGate();
+			if (gate.gate) {
+				let x = gate.gate.position.x + MathUtils.random(-100, 100);
+				let y = gate.gate.position.y + MathUtils.random(-100, 100);
+				if (window.hero.position.distanceTo(gate.gate.position) < 200 && !state) {
+					window.location.reload();
+					state = true;
+				}
+				api.resetTarget("all");
+				api.moveWithFilter(x, y);
+				return;
+			}
+		}   
+	}
+	
+	if (api.heroDied || window.settings.pause || (window.globalSettings.fleeFromEnemy && window.fleeingFromEnemy) || window.settings.waitingAfterDead) {
+		return;
+	}
+	
 	let x;
 	let y;
 	
@@ -300,53 +347,6 @@ function logic() {
 				return;
 			}
 		}
-	}
-	
-	if (window.globalSettings.enableRefresh && !window.settings.ggbot && (window.settings.runtime >= window.globalSettings.refreshTime)) {
-		if ((api.Disconected && !state) || window.settings.palladium) {
-			window.location.reload();
-			state = true;
-		} else {
-			let gate = api.findNearestGate();
-			if (gate.gate) {
-				let x = gate.gate.position.x + MathUtils.random(-100, 100);
-				let y = gate.gate.position.y + MathUtils.random(-100, 100);
-				if (window.hero.position.distanceTo(gate.gate.position) < 200 && !state) {
-					window.location.reload();
-					state = true;
-				}
-				api.resetTarget("all");
-				api.moveWithFilter(x, y);
-				return;
-			}
-		}   
-	}
-	
-	window.minimap.draw();
-
-	if (api.targetShip && api.attacking) {
-		if(window.globalSettings.changeAmmunition) {
-			api.chooseAmmunition();
-		}
-	}
-	
-	if (window.globalSettings.debug) {
-		if (window.settings.showCoordinates) {
-			console.log("X: " + window.hero.position.x + " | Y: " + window.hero.position.y);
-		}
-		if (window.settings.showMapID) {
-			console.log(window.hero.mapId);
-		}
-		if (window.settings.showNearestPortal) {
-			let gate = api.findNearestGate();
-			if (gate.gate) {
-				console.log(gate.gate);
-			}
-		}
-	}
-
-	if (api.heroDied || window.settings.pause || (window.globalSettings.fleeFromEnemy && window.fleeingFromEnemy) || window.settings.waitingAfterDead) {
-		return;
 	}
 	
 	if (window.globalSettings.randomBreaks && !randomBreakCreated && !window.settings.ggbot && !window.settings.palladium && !api.targetShip) {

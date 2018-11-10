@@ -274,6 +274,34 @@ function logic() {
 		return;
 	}
 	
+	let x;
+	let y;
+	
+	/* Dodge the CBS */
+	if (window.globalSettings.dodgeTheCbs && api.battlestation != null) {
+		if (api.battlestation.isEnemy && Object.keys(api.battlestation.modules).length > 0) {
+			let result = api.checkForCBS();
+			if (result.walkAway) {
+				if (api.targetBoxHash) {
+					let box = api.boxes[api.targetBoxHash];
+					if (box && box.distanceTo(result.cbsPos) < 1800) {
+						delete api.boxes[api.targetBoxHash];
+						api.blackListHash(api.targetBoxHash);
+						api.resetTarget("box");
+					}
+				}
+
+				let f = Math.atan2(window.hero.position.x - result.cbsPos.x, window.hero.position.y - result.cbsPos.y) + 0.5;
+				let s = Math.PI / 180;
+				f += s;
+				x = result.cbsPos.x + 1800 * Math.sin(f);
+				y = result.cbsPos.y + 1800 * Math.cos(f);
+				api.moveWithFilter(x, y);
+				return;
+			}
+		}
+	}
+	
 	if (window.globalSettings.enableRefresh && !window.settings.ggbot && (window.settings.runtime >= window.globalSettings.refreshTime)) {
 		if ((api.Disconected && !state) || window.settings.palladium) {
 			window.location.reload();
@@ -591,34 +619,6 @@ function logic() {
 					api.isRepairing = true;
 					return;
 				}
-			}
-		}
-	}
-
-	let x;
-	let y;
-
-	/* Dodge the CBS */
-	if (window.globalSettings.dodgeTheCbs && api.battlestation != null) {
-		if (api.battlestation.isEnemy && Object.keys(api.battlestation.modules).length > 0) {
-			let result = api.checkForCBS();
-			if (result.walkAway) {
-				if (api.targetBoxHash) {
-					let box = api.boxes[api.targetBoxHash];
-					if (box && box.distanceTo(result.cbsPos) < 1800) {
-						delete api.boxes[api.targetBoxHash];
-						api.blackListHash(api.targetBoxHash);
-						api.resetTarget("box");
-					}
-				}
-
-				let f = Math.atan2(window.hero.position.x - result.cbsPos.x, window.hero.position.y - result.cbsPos.y) + 0.5;
-				let s = Math.PI / 180;
-				f += s;
-				x = result.cbsPos.x + 1800 * Math.sin(f);
-				y = result.cbsPos.y + 1800 * Math.cos(f);
-				api.moveWithFilter(x, y);
-				return;
 			}
 		}
 	}

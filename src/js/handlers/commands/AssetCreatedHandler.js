@@ -31,7 +31,7 @@ class AssetCreatedHandler {
 					api.battlestation.modules[parsedCmd.assetId] = new BattlestationModule(x, y, parsedCmd.userName, parsedCmd.factionId);
 				}
 			} catch (exception) {
-				console.error(exception);
+				console.log(exception.message);
 				console.log(parsedCmd);
 			};
 		}

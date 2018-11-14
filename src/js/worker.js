@@ -829,24 +829,24 @@ function logic() {
 			x = 450;
 			y = 302;
 		} else if (api.resetTargetWhenHpBelow25Percent && api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id) {
-			console.log("1");
 			api.resetTarget("enemy");
 		} else if ((dist > radius && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id) && $.now() - api.lastMovement > 1000)) {
 			x = api.targetShip.position.x - MathUtils.random(-50, 50);
 			y = api.targetShip.position.y - MathUtils.random(-50, 50);
 			api.lastMovement = $.now();
+		} else if (window.settings.ggbot && (dist < radius && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id) && $.now() - api.lastMovement > 1000)) {
+			let enemy = api.targetShip.position;
+			let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
+			let s = Math.PI / 180;
+			let rot = MathUtils.random(-10, 10);
+			f += s;
+			x = enemy.x + radius * Math.sin(f);
+			y = enemy.y + radius * Math.cos(f);
+			api.lastMovement = $.now();
 		} else if (api.lockedShip && window.settings.dontCircleWhenHpBelow25Percent && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id ) {
-			if (dist > (radius+50)) {
+			if (dist > radius) {
 				x = api.targetShip.position.x + MathUtils.random(-30, 30);
 				y = api.targetShip.position.y + MathUtils.random(-30, 30);
-			} else if (dist < radius){
-				let enemy = api.targetShip.position;
-				let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
-				let s = Math.PI / 180;
-				let rot = MathUtils.random(-10, 10);
-				f += s;
-				x = enemy.x + radius * Math.sin(f);
-				y = enemy.y + radius * Math.cos(f);
 			}
 		} else if (dist > radius && api.lockedShip && api.lockedShip.id == api.targetShip.id & !window.settings.circleNpc && !window.settings.gatestonpc) {
 			x = api.targetShip.position.x + MathUtils.random(-200, 200);
@@ -867,9 +867,17 @@ function logic() {
 						circleBox = nearestBox;
 					}
 				}
-			} else if (dist < radius) {
-				x = api.targetShip.position.x + MathUtils.random(radius-50, radius+50);
-				y = api.targetShip.position.y + MathUtils.random(radius-50, radius+50);
+			} else if (dist > (radius+50)) {
+				x = api.targetShip.position.x + MathUtils.random(-30, 30);
+				y = api.targetShip.position.y + MathUtils.random(-30, 30);
+			} else if (dist < radius){
+				let enemy = api.targetShip.position;
+				let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
+				let s = Math.PI / 180;
+				let rot = MathUtils.random(-10, 10);
+				f += s;
+				x = enemy.x + radius * Math.sin(f);
+				y = enemy.y + radius * Math.cos(f);
 			}
 			if (window.settings.gatestonpc && api.lockedShip.percentOfHp > 25) {
 				let enemy = api.targetShip.position; 

@@ -115,7 +115,7 @@ class Api {
 	}
 
 	changeFormation(n) {
-		if (this.changeFormationTime && $.now() - this.changeFormationTime > 3000) {
+		if (this.changeFormationTime && $.now() - this.changeFormationTime > 3000 && this.changeConfigTime && $.now() - this.changeConfigTime > 3000) {
 			this.changeFormationTime = $.now();
 			this.formation = n;
 			this.quickSlot(n);

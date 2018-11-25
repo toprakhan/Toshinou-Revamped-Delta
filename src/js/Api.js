@@ -903,7 +903,7 @@ class Api {
 		if (window.globalSettings.autoChangeConfig && window.globalSettings.attackConfig != window.hero.shipconfig) {
 			this.changeConfig();
 		}
-		if (window.globalSettings.changeFormation && window.globalSettings.attackFormation != api.formation) {
+		if (window.globalSettings.changeFormation && window.globalSettings.attackFormation != this.formation) {
 			this.changeFormation(window.globalSettings.attackFormation);
 		}
 	}
@@ -917,7 +917,7 @@ class Api {
 				}
 			}
 		}
-		if (window.globalSettings.changeFormation && api.formation != window.globalSettings.flyingFormation) {
+		if (window.globalSettings.changeFormation && this.formation != window.globalSettings.flyingFormation) {
 			if (this.changeFormation(window.globalSettings.flyingFormation)) {
 				changeVelo = true;
 			}
@@ -934,7 +934,7 @@ class Api {
 				}
 			}
 		}
-		if (window.globalSettings.changeFormation && api.formation != window.globalSettings.escapeFormation) {
+		if (window.globalSettings.changeFormation && this.formation != window.globalSettings.escapeFormation) {
 			if (this.changeFormation(window.globalSettings.escapeFormation)) {
 				changeVelo = true;
 			}

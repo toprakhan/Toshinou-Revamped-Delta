@@ -146,6 +146,7 @@ function getElements() {
 			petModule:			$("#petModule").val(),
 			sentinelid:         $("#sentinelid").val(),
 			defendSentinel:     $("#defendSentinel").prop('checked'),
+			changeToHonorFormation:	$("#changeToHonorFormation").prop('checked'),
 			alpha:              $("#alpha").prop('checked'),
 			beta:               $("#beta").prop('checked'),
 			gamma:              $("#gamma").prop('checked'),
@@ -188,7 +189,7 @@ function restore() {
 		"dodgeTheCbs", "moveRandomly", "killNpcs", "avoidAttackedNpcs", "circleNpc", "dontCircleWhenHpBelow25Percent", "respondPlayerAttacks", "playerAmmo", "useCBSZoneSegure", "randomBreaks", 
 		"stopWhenCargoIsFull", "repairWhenHpIsLowerThanPercent", "attackEnemyPlayers", "enablePet", "petReviveLimit", "petModule",
 		"sentinelid", "defendSentinel",
-		"alpha", "beta", "gamma", "delta", "epsilon", "zeta", "kappa", "lambda", "kronos", "hades", "kuiper",
+		"changeToHonorFormation", "alpha", "beta", "gamma", "delta", "epsilon", "zeta", "kappa", "lambda", "kronos", "hades", "kuiper",
 		"whiteList", "blackList", "npcList"];
 
 	var onGet = items => {
@@ -403,6 +404,9 @@ function restore() {
 		}
 		if (items.defendSentinel) {
 			$("#defendSentinel").prop('checked', true);
+		}
+		if (items.changeToHonorFormation) {
+			$("#changeToHonorFormation").prop('checked', true);
 		}
 		if (items.alpha) {
 			$("#alpha").prop('checked', true);

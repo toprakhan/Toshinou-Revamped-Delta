@@ -217,6 +217,9 @@ function loadArchive() {
 			if (items.defendSentinel != null) {
 				$("#defendSentinel").prop('checked', items.defendSentinel);
 			}
+			if (items.changeToHonorFormation != null) {
+				$("#changeToHonorFormation").prop('checked', items.changeToHonorFormation);
+			}
 			if (items.alpha != null) {
 				$("#alpha").prop('checked', items.alpha);
 			}

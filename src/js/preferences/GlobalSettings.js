@@ -75,6 +75,7 @@ class GlobalSettings {
 			petModule: 2,
 			sentinelid: 0,
 			defendSentinel: false,
+			changeToHonorFormation: false,
 			alpha: false,
 			beta: false,
 			gamma: false,
@@ -363,6 +364,10 @@ class GlobalSettings {
 
 	get defendSentinel() {
 		return this._settings.defendSentinel;
+	}
+	
+	get changeToHonorFormation() {
+		return this._settings.changeToHonorFormation;
 	}
 
 	get alpha() {

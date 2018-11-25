@@ -780,6 +780,12 @@ function logic() {
 		api.resetTarget("enemy");
 	}
 
+	if (window.settings.ggbot && window.globalSettings.changeToHonorFormation && api.targetBoxHash == null && api.targetShip == null && window.movementDone){
+		if(api.formation != window.globalSettings.flyingFormation) {
+			this.changeFormation(window.globalSettings.flyingFormation);
+		}
+	}
+	
 	if (!window.bigMap && !window.settings.palladium && api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly) {
 		api.speedMode();
 		x = MathUtils.random(200, 20800);

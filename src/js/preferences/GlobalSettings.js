@@ -40,6 +40,8 @@ class GlobalSettings {
 			cyborgHp: 100000,
 			venomHp: 60000,
 			diminisherSHD: 60000,
+			habilityHpRepair: 150000,
+			habilityShieldRepair: 100000,
 			npcList: null,
 			changeAmmunition: false,
 			x1Slot: -1,
@@ -425,5 +427,13 @@ class GlobalSettings {
 	
 	get diminisherSHD() {
 		return this._settings.diminisherSHD;
+	}
+	
+	get habilityHpRepair() {
+		return this._settings.habilityHpRepair;
+	}
+	
+	get habilityShieldRepair() {
+		return this._settings.habilityShieldRepair;
 	}
 }

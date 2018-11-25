@@ -400,10 +400,10 @@ function logic() {
 				}
 			}
 		} else if (window.hero.skillName == "aegis" || window.hero.skillName == "hammerclaw"){
-			if ((window.hero.maxHp - window.hero.hp) >= 150000) {
+			if ((window.hero.maxHp - window.hero.hp) >= window.globalSettings.habilityHpRepair) {
 				api.useHability();
 			}
-			if ((window.hero.maxShd - window.hero.shd) >= 100000) {
+			if ((window.hero.maxShd - window.hero.shd) >= window.globalSettings.habilityShieldRepair) {
 				api.useHabilityTwo();
 			}
 		} else if (window.hero.skillName == "spearhead") {
@@ -932,7 +932,7 @@ function sentinelLogic() {
 
 	if (shipAround) {
 		api.rute = null;
-		if (shipAround.distanceTo(window.hero.position) > 500 && !api.targetShip) {
+		if (shipAround.distanceTo(window.hero.position) > 800 && !api.targetShip) {
 			x = shipAround.position.x + MathUtils.random(-100, 100);
 			y = shipAround.position.y + MathUtils.random(-100, 100);
 			api.moveWithFilter(x, y);

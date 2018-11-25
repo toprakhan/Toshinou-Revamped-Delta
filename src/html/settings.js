@@ -101,6 +101,8 @@ function getElements() {
 			cyborgHp:			$("#cyborgHp").val(),
 			venomHp:			$("#venomHp").val(),
 			diminisherSHD:		$("#diminisherSHD").val(),
+			habilityHpRepair:	$("#habilityHpRepair").val(),
+			habilityShieldRepair:	$("#habilityShieldRepair").val(),
 			reviveType:         $("#reviveType").val(),
 			reviveLimit:        $("#reviveLimit").val(),
 			bonusBox:           $("#bonusBox").prop('checked'),
@@ -176,7 +178,7 @@ function restore() {
 	var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "windowsToTabs", "debug",
 		"enableRefresh","refreshToReconnect", "refreshTime", 
 		"speedFormat", "autoChangeConfig", "attackConfig", "flyingConfig", "escapeConfig",
-		"useHability","habilitySlot", "habilitySlotTwo", "habilitySlotThree", "habilitySlotFour", "cyborgHp", "venomHp", "diminisherSHD",
+		"useHability","habilitySlot", "habilitySlotTwo", "habilitySlotThree", "habilitySlotFour", "cyborgHp", "venomHp", "diminisherSHD", "habilityHpRepair", "habilityShieldRepair",
 		"changeFormation","flyingFormation", "escapeFormation",
 		"attackFormation","reviveType", "reviveLimit",
 		"bonusBox", "materials", "cargoBox", "greenOrGoldBooty",
@@ -263,6 +265,12 @@ function restore() {
 		}
 		if (items.diminisherSHD) {
 			$("#diminisherSHD").val(items.diminisherSHD);
+		}
+		if (items.habilityHpRepair) {
+			$("#habilityHpRepair").val(items.habilityHpRepair);
+		}
+		if (items.habilityShieldRepair) {
+			$("#habilityShieldRepair").val(items.habilityShieldRepair);
 		}
 		if (items.workmap) {
 			$("#workmap").val(items.workmap);

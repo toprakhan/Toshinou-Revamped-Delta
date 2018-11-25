@@ -380,7 +380,7 @@
 						data-resource="habilityslot">Hability slot</span> 1 (cyborg,
 						venom, solace, diminisher, spectrum, sentinel, lightning, Aegis:
 						HP Repair, SpearHead: Ultimate Cloak, Citadel: Draw Fire, Mimesis:
-						Scramble, Hammerclaw: Repair Pod, Tartarus: Rapid Fire): </label> <input
+						Scramble, Hammerclaw: HP Repair, Tartarus: Rapid Fire): </label> <input
 					type="number" id="habilitySlot" min="0" max="9" value="0">
 				</td>
 				<td colspan="2"><label for="habilitySlotTwo"><span
@@ -394,7 +394,7 @@
 				<td colspan="2"><label for="habilitySlotThree"><span
 						data-resource="habilitySlotThree">Hability slot 3 (Aegis:
 							Repair Pod, SpearHead: Target Marker, Citadel: Protection,
-							Hammerclaw: HP Repair)</span>: </label> <input type="number"
+							Hammerclaw: Repair Pod)</span>: </label> <input type="number"
 					id="habilitySlotThree" min="0" max="9" value="0"></td>
 				<td colspan="2"><label for="habilitySlotFour"><span
 						data-resource="habilitySlotFour">Hability slot 4 (Citadel:
@@ -421,6 +421,20 @@
 						<span data-resource="diminisherSHD">Use the skill of the Diminisher when the shield of the enemy is > of:</span>
 					</label> 
 					<input type="number" id="diminisherSHD" min="0" step="10000" max="5000000" value="60000">
+				</td>
+				<td colspan="2">
+					<label for="habilityHpRepair">
+						<span data-resource="habilityHpRepair">Use Aegis|Hammerclaw: HP Repair when the ship's life is &#60; of:</span>
+					</label> 
+					<input type="number" id="habilityHpRepair" min="0" step="10000" max="5000000" value="150000">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<label for="habilityShieldRepair">
+						<span data-resource="habilityShieldRepair">Use Aegis|Hammerclaw: shield Repair when the ship's shield is &#60; of:</span>
+					</label> 
+					<input type="number" id="habilityShieldRepair" min="0" step="10000" max="5000000" value="100000">
 				</td>
 			</tr>
 			<tr>

@@ -82,6 +82,12 @@ function loadArchive() {
 			if (items.diminisherSHD) {
 				$("#diminisherSHD").val(items.diminisherSHD);
 			}
+			if (items.habilityHpRepair) {
+				$("#habilityHpRepair").val(items.habilityHpRepair);
+			}
+			if (items.habilityShieldRepair) {
+				$("#habilityShieldRepair").val(items.habilityShieldRepair);
+			}
 			if (items.workmap) {
 				$("#workmap").val(items.workmap);
 			}

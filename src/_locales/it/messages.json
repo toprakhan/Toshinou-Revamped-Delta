@@ -347,55 +347,67 @@
   "habilitySlotFour": {
     "message": "Slot Abilità 4 (Citadel: Fortify, SpearHead: Ricognizione)"
   },
-	"escapeFormation": {
+  "escapeFormation": {
     "message": "Formazione per scappare (slot)"
   },
   "escapeConfig": {
     "message": "Configurazione per scappare"
   },
-    "respondPlayerAttacks": {
+  "respondPlayerAttacks": {
     "message": "Rispondi agli attacchi"
   },
-    "playerAmmo": {
+  "playerAmmo": {
     "message": "Munizioni per difesa"
   },
-      "useCBSZoneSegure": {
+  "useCBSZoneSegure": {
     "message": "Usa Asteroidi alleati come zona sicura per riparare"
   },
-      "groupNecesary": {
+  "groupNecesary": {
     "message": "E' necessario che le navi siano nello stesso gruppo"
   },
-        "donwloadprofile": {
+  "donwloadprofile": {
     "message": "Scarica Impostazioni"
   },
-          "onlyEscapeWhenEnemyAttack": {
+  "onlyEscapeWhenEnemyAttack": {
     "message": "Scappa solo quando attaccato da nemici"
   },
-          "randomBreaks": {
+  "randomBreaks": {
     "message": "Pause Randomiche"
   },
-            "waitBeforeRepair": {
+  "waitBeforeRepair": {
     "message": "Aspetta x secondi prima di riparare"
   },
-              "repairWhenHpIsLowerThanPercent": {
+  "repairWhenHpIsLowerThanPercent": {
     "message": "Ripara quando HP < "
   },
-              "cyborgHp": {
+  "cyborgHp": {
     "message": "Usa l'Abilità della Cyborg quando vita del nemico > di:"
   },
-              "venomHp": {
+  "venomHp": {
     "message": "Usa l'Abilità della Venom quando vita del nemico > di:"
   },
-                "diminisherSHD": {
+  "diminisherSHD": {
     "message": "Usa l'Abilità della Diminisher quando vita del nemico > di:"
   },
-                  "stopWhenCargoIsFull": {
+  "stopWhenCargoIsFull": {
     "message": "Ferma quando la stiva è piena"
   },
-                    "skillsSettings": {
+  "skillsSettings": {
     "message": "Impostazioni Abilità"
   },
-                      "useAutoPlay": {
+  "useAutoPlay": {
     "message": "Utilizza 'Auto Play Mode' per farlo funzionare bene"
+  },
+  "habilityHpRepair": {
+    "message": "Usa l'Abilità HP della Aegis|Hammerclaw quando vita nave > di:"
+  },
+  "habilityShieldRepair": {
+    "message": "Usa l'Abilità  Scudo della Aegis|Hammerclaw quando vita nave > di:"
+  },
+  "changeToHonorFormation": {
+    "message": "Alla fine dell'ondata, la nave cambia in configurazione veloce."
+  },
+  "attackEnemyPlayers": {
+    "message": "Attacca nemici"
   }
 }

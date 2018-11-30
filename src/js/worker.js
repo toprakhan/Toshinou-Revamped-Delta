@@ -756,7 +756,7 @@ function logic() {
 			return;
 		}
 
-		if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 == api.lockedShip.maxShd && window.globalSettings.avoidAttackedNpcs || !api.attacking && api.lockedShip && !window.globalSettings.avoidAttackedNpcs) {
+		if ((!api.attacking && api.lockedShip && api.lockedShip.shd + 1 == api.lockedShip.maxShd && window.globalSettings.avoidAttackedNpcs) || (!api.attacking && api.lockedShip && !window.globalSettings.avoidAttackedNpcs) || (!api.attacking && api.lockedShip && window.settings.ggbot)) {
 			api.startLaserAttack();
 			api.lastAttack = $.now();
 			api.attacking = true;

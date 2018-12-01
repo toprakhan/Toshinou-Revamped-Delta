@@ -48,7 +48,7 @@
     "message": "в минуту"
   },
   "deltaoptions": {
-    "message": "Дельта функции. Возможно ошибки"
+    "message": "Дельта функции. Возможны ошибки"
   },
   "palladiumlogic": {
     "message": "Логика палладиума. Работает при активной ДЕЛЬТЕ"
@@ -114,7 +114,7 @@
     "message": "Работает если ДЕЛЬТА активна"
   },
   "boxsettings": {
-    "message": "Настройка сбора"
+    "message": "Настройки сбора"
   },
   "bonusbox": {
     "message": "Бонусные коробки"
@@ -132,7 +132,7 @@
     "message": "Красные сундуки"
   },
   "bluebooty": {
-    "message": "Синии сундуки"
+    "message": "Синие сундуки"
   },
   "masquebooty": {
     "message": "Апокалиптические сундуки"
@@ -162,7 +162,7 @@
     "message": "Убегать от врага"
   },
   "avoidattackednpc": {
-    "message": "Избегать атаки NPC(Не использовать с PET)"
+    "message": "Избегать атакованных NPC (Не использовать с PET)"
   },
   "circle": {
     "message": "Крутить"
@@ -306,7 +306,7 @@
     "message": "Радиус для каждого:"
   },
     "npcammo": {
-    "message": "Патрон под каждого:"
+    "message": "Патроны под каждого:"
   },
      "npcpriority": {
     "message": "Приоритет:"
@@ -327,18 +327,18 @@
     "message": "Автоматическая смена амуниции"
   },
   "generalsettings": {
-    "message": "General settings"
+    "message": "Общие настройки"
   },
   "stopafterxminutes": {
-    "message": "Stop after x minutes (0 = No Stop)"
+    "message": "Остановиться после x минут (0 = не останавливаться)"
   },
   "waitafterRepair" : {
-    "message": "Stop x minutes after revive (0 = No Stop)"
+    "message": "Подождать x минут после возрождения (0 = не останавливаться)"
   },
   "loadSettings": {
-    "message": "Load Settings"
+    "message": "Загрузить настройки"
   },
   "sentinelmode": {
-	"message": "Sentinel Mode"
+	"message": "Режим защиты корабля"
   }
 }

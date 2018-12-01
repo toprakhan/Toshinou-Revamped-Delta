@@ -17,9 +17,6 @@
     "message": "",
     "description": "Toshinou Bot Eklenti Açıklaması"
   },
-  "discordserver": {
-    "message": "Discord Sunucu Adresi"
-  },
   "saveall": {
     "message": "KAYDET"
   },
@@ -30,7 +27,7 @@
     "message": "Saydamlık"
   },
   "windowbackgroundcolor": {
-    "message": "Pencere Arkaplan Rengi"
+    "message": "Arkaplan Rengi"
   },
   "statisticwindow": {
     "message": "İstatistik Penceresi"
@@ -69,7 +66,7 @@
     "message": "Gelişmiş Ayar(Kesinlikle Dokunmayın!)"
   },
   "logictick": {
-    "message": "Zamanlayıcı(ms)"
+    "message": "Tepki Süresi"
   },
   "refreshsettings": {
     "message": "Sayfa Yenile Özellikleri"
@@ -81,13 +78,13 @@
     "message": "Yenileme Aralığı (Dakika)"
   },
   "enablenpcblocklist": {
-    "message": "Kestirmeyeceğin NPC's Tekrar Ayarla"
+    "message": "Kestirmeyeceğin Yaratıkları Tekrar Ayarla"
   },
   "refreshtoreconnect": {
-    "message": "Bağlantı Sorunu Olduğu Zaman Sayfayı Yenile"
+    "message": "Yeniden Bağlan"
   },
   "clearsettings": {
-    "message": "Uygulanmış Ayarları Temizle (Özelliği Yenile)"
+    "message": "Ayarları Sıfırla (Yenileme Özelliği)"
   },
   "reviveat": {
     "message": "Doğuş Yeri"
@@ -109,9 +106,6 @@
   },
   "workmap": {
     "message": "Harita Seç"
-  },
-  "any": {
-    "message": "Herhangi"
   },
   "onlyworkdelta": {
     "message": "(Sadece Delta  Açıksa Çalışır)"
@@ -141,7 +135,7 @@
     "message": "Apocalypse Ganimet Kutusu"
   },
   "collectboxwhencircle": {
-    "message": "Daire Çizerken Materyal ve Kutu Topla"
+    "message": "Daire Çizerken Topla"
   },
   "target": {
     "message": "Hedef: "
@@ -159,16 +153,16 @@
     "message": "Rastgele Hareket Et"
   },
   "killnpcs": {
-    "message": "NPC Kes"
+    "message": "Yaratık Kes"
   },
   "fleefromenemy": {
     "message": "Düşmandan Kaç"
   },
   "avoidattackednpc": {
-    "message": "Hasar Almamış NPC's Saldır (PET Kullanmayın)"
+    "message": "Hasar Almamış Yaratıklara Saldır"
   },
   "circle": {
-    "message": "Daire"
+    "message": "Daire Çiz"
   },
   "circleradius": {
     "message": "Mesafe<span> (500)</span>"
@@ -213,16 +207,16 @@
     "message": "Mini Harita"
   },
   "excludenpcto": {
-    "message": "Hariç Tutulacak NPC Listesi"
+    "message": "Hariç Tutulacak Yaratık Listesi"
   },
   "statistic": {
     "message": "İstatistikler"
   },
   "startat": {
-    "message": "Başlama: "
+    "message": "Başlangıç Saati: "
   },
   "credits": {
-    "message": "Krediler: "
+    "message": "Kredi: "
   },
   "uridium": {
     "message": "Uridium: "
@@ -240,7 +234,7 @@
     "message": "Şeref Puanı: "
   },
   "rank": {
-    "message": "RÜtbe Puanı: "
+    "message": "Rütbe Puanı: "
   },
   "death": {
     "message": "Toplam Patlama: "
@@ -279,13 +273,13 @@
     "message": "Hability Slot"
   },
   "refreshsettings": {
-    "message": "Ayarları Sıfırla"
+    "message": "Yenileme Ayarları"
   },
   "slotsAmmunition": {
-    "message": "Saldırı Konfi Ayarları"
+    "message": "Saldırı Ayarları"
   },
   "autochangeammunition": {
-    "message": "Otomatik Lazer Değişimi"
+    "message": "Oto Lazer Değişimi"
   },
   "piratebot": {
     "message": "5-2 Korsan Bot Sol Kapı"
@@ -294,7 +288,7 @@
     "message": "Protegit Bot"
   },
   "gatestonpc": {
-    "message": "NPC's Kapıya Çekip Kes"
+    "message": "Yaratıkları Kapıya Çekip Kes"
   },
     "x1Slot": {
         "message": "Slot x1"
@@ -312,7 +306,7 @@
         "message": "Slot SAB"
     },
     "npcname": {
-        "message": "NPC İsimleri"
+        "message": "Yaratık İsimleri"
     },
     "npcrange": {
         "message": "Masafe"
@@ -327,7 +321,7 @@
         "message": "5-2 Korsan Bot Sağ Kapı"
     },
     "npclist": {
-        "message": "NPC Listesi"
+        "message": "Yaratık Listesi"
     },
     "generalsettings": {
         "message": "Genel Ayarlar"
@@ -357,7 +351,7 @@
         "message": "Lazer Seç"
     },
     "sentinelexp": {
-        "message": "Sentinel ID - Ana Gemi"
+        "message": "Ana Gemi - Sentinel İD"
     },
     "defendSentinel": {
         "message": "Sentinel Gemi Savunması"
@@ -367,5 +361,59 @@
     },
     "groupNecesary": {
         "message": "Aynı Grupta Olmanız Lazım"
+    },
+    "waitBeforeRepair": {
+        "message": "Tamir Olmadan X Saniye Bekle"
+    },
+    "randomBreaks": {
+        "message": "Rastgele Mola Ver"
+    },
+    "onlyEscapeWhenEnemyAttack": {
+        "message": "Saldırı Anında Kaç"
+    },
+    "autoPlay": {
+        "message": "Otomatik Olarak Başla"
+    },
+    "debug": {
+        "message": "Onarım"
+    },
+    "repairWhenHpIsLowerThanPercent": {
+        "message": "Altında Tamir Ol"
+    },
+    "stopWhenCargoIsFull": {
+        "message": "Kargo Dolduğunda Durdur"
+    },
+    "useAutoPlay": {
+        "message": "Sorunsuz Çalışması için Oto Başlat Kullan"
+    },
+    "playerList": {
+        "message": "Beyaz ve Kara Liste"
+    },
+    "playerId": {
+        "message": "Oyuncu İD"
+    },
+    "whiteList": {
+        "message": "Beyaz Liste"
+    },
+    "blackList": {
+        "message": "Kara Liste"
+    },
+    "skillsSettings": {
+        "message": "Gemi Yetenek Ayarları"
+    },
+    "enablePet": {
+        "message": "Pet Etkinleştir"
+    },
+    "petModule": {
+        "message": "Pet Modül"
+    },
+    "petReviveLimit": {
+        "message": "Pet Tamir Sayısı"
+    },
+    "attackEnemyPlayers": {
+        "message": "Düşman Oyunculara Saldır"
+    },
+    "changeToHonorFormation": {
+        "message": "Dalga sonunda gemi hız oluşumuna geçer"
     }
 }

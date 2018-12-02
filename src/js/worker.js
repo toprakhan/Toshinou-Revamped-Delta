@@ -782,7 +782,7 @@ function logic() {
 
 	if (window.settings.ggbot && window.globalSettings.changeToHonorFormation && api.targetBoxHash == null && api.targetShip == null && window.movementDone){
 		if(api.formation != window.globalSettings.flyingFormation) {
-			this.changeFormation(window.globalSettings.flyingFormation);
+			api.changeFormation(window.globalSettings.flyingFormation);
 		}
 	}
 	

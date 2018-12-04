@@ -268,17 +268,29 @@ class Api {
 	}
 
 	startLaserAttack() {
-		this.pressKey(17);
+		if (window.globalSettings.actionsMode == 2) {
+			Injector.injectScript('document.getElementById("preloader").laserAttack()');
+		} else {
+			this.pressKey(17);
+		}
 	}
 
 	jumpGate() {
-		this.pressKey(74);
+		if (window.globalSettings.actionsMode == 2) {
+			Injector.injectScript('document.getElementById("preloader").jumpGate();');
+		} else {
+			this.pressKey(74);
+		}
 	}
 
 	changeConfig() {
 		if (this.changeConfigTime && $.now() - this.changeConfigTime > 5000) {
 			this.changeConfigTime = $.now();
-			this.pressKey(67);
+			if (window.globalSettings.actionsMode == 2) {
+				Injector.injectScript('document.getElementById("preloader").changeConfig();');
+			} else {
+				this.pressKey(67);
+			}
 			return true;
 		} else {
 			return false;
@@ -909,37 +921,25 @@ class Api {
 	}
 
 	speedMode() {
-		let changeVelo = false;
 		if (window.globalSettings.autoChangeConfig) {
 			if(window.globalSettings.flyingConfig != window.hero.shipconfig) {
-				if (this.changeConfig()) {
-					changeVelo = true;
-				}
+				this.changeConfig();
 			}
 		}
 		if (window.globalSettings.changeFormation && this.formation != window.globalSettings.flyingFormation) {
-			if (this.changeFormation(window.globalSettings.flyingFormation)) {
-				changeVelo = true;
-			}
+			this.changeFormation(window.globalSettings.flyingFormation);
 		}
-		return changeVelo;
 	}
 
 	escapeMode() {
-		let changeVelo = false;
 		if (window.globalSettings.autoChangeConfig) {
 			if (window.globalSettings.escapeConfig != window.hero.shipconfig) {
-				if (this.changeConfig()) {
-					changeVelo = true;
-				}
+				this.changeConfig();
 			}
 		}
 		if (window.globalSettings.changeFormation && this.formation != window.globalSettings.escapeFormation) {
-			if (this.changeFormation(window.globalSettings.escapeFormation)) {
-				changeVelo = true;
-			}
+			this.changeFormation(window.globalSettings.escapeFormation);
 		}
-		return changeVelo;
 	}
 
 	chooseAmmunition() {

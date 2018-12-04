@@ -8,6 +8,7 @@ class GlobalSettings {
 			windowOpacity: "0.8",
 			timerTick: 300,
 			debug: false,
+			actionsMode: 1,
 			enableRefresh: false,
 			refreshToReconnect: false,
 			refreshTime: 60,
@@ -152,6 +153,10 @@ class GlobalSettings {
 
 	get debug() {
 		return this._settings.debug;
+	}
+	
+	get actionsMode() {
+		return this._settings.actionsMode;
 	}
 
 	get speedFormat() {

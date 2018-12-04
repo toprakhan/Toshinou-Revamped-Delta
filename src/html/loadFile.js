@@ -21,6 +21,9 @@ function loadArchive() {
 			if (items.debug != null) {
 				$("#debug").prop('checked', items.debug);
 			}
+			if (items.actionsMode) {
+				$("#actionsMode").val(items.actionsMode);
+			}
 			if (items.enableRefresh != null)
 				$("#enableRefresh").prop('checked', items.enableRefresh);
 			if (items.refreshToReconnect != null)

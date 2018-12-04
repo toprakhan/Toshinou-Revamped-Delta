@@ -456,7 +456,8 @@ function logic() {
 		}
 	}
 	
-	if (window.globalSettings.enablePet && window.petReviveCount < window.globalSettings.petReviveLimit && api.petHasFuel && window.settings.runtime >= 1) {
+	if (window.globalSettings.enablePet && (window.petReviveCount < window.globalSettings.petReviveLimit || window.globalSettings.petModule == 10) && api.petHasFuel) {
+		console.log(api.pet)
 		if (api.pet != null && api.pet.destroyed && api.pet.id != 0) {
 			setTimeout(() => {
 				api.callPet(4);
@@ -468,8 +469,6 @@ function logic() {
 			if (window.globalSettings.petModule == 10) {
 				if ($.now() - api.pet.moduleCooldown > 35000) {
 					api.changePetModule(window.globalSettings.petModule);
-				} else {
-					api.changePetModule(2);
 				}
 			} else {
 				api.changePetModule(window.globalSettings.petModule);

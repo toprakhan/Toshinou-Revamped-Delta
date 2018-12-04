@@ -9,10 +9,11 @@ class ShipDestroyedHandler {
 			let id = parsed[Variables.shipDestoyedId];
 
 			if (a.pet) {
-				if(id == a.pet.id && window.petReviveCount < window.globalSettings.petReviveLimit){
+				if(id == a.pet.id){
 					if(a.pet.currentModule == 10){
 						a.pet.moduleCooldown = $.now();
 					}
+					api.pet.id = 0;
 					a.pet.destroyed = true;
 					window.petReviveCount++;
 					a.pet.currentModule = -1;

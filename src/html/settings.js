@@ -80,6 +80,7 @@ function getElements() {
 			windowOpacity:      $("#windowOpacity").val(),
 			timerTick:          $("#timerTick").val(),
 			debug:				$("#debug").prop('checked'),
+			actionsMode:		$("#actionsMode").val(),
 			enableRefresh:      $("#enableRefresh").prop('checked'),
 			refreshToReconnect: $("#refreshToReconnect").prop('checked'),
 			refreshTime:        $("#refreshTime").val(),
@@ -176,8 +177,8 @@ function restore() {
 		}
 	});
 
-	var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "windowsToTabs", "debug",
-		"enableRefresh","refreshToReconnect", "refreshTime", 
+	var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "windowsToTabs", "debug", "actionsMode",
+		"enableRefresh","refreshToReconnect", "refreshTime",
 		"speedFormat", "autoChangeConfig", "attackConfig", "flyingConfig", "escapeConfig",
 		"useHability","habilitySlot", "habilitySlotTwo", "habilitySlotThree", "habilitySlotFour", "cyborgHp", "venomHp", "diminisherSHD", "habilityHpRepair", "habilityShieldRepair",
 		"changeFormation","flyingFormation", "escapeFormation",
@@ -211,6 +212,9 @@ function restore() {
 			$("#refreshTime").val(items.refreshTime);
 		if (items.debug) {
 			$("#debug").prop('checked', true);
+		}
+		if (items.actionsMode) {
+			$("#actionsMode").val(items.actionsMode);
 		}
 		if (items.speedFormat) {
 			let sel = `#speedFormat_${items.speedFormat}`;

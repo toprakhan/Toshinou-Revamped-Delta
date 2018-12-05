@@ -29,6 +29,7 @@
 	<p class="text-center" data-resource="toshidescription">A
 		cheat/tool/bot/whatever for a browser flash game named DarkOrbit. It
 		does some pretty neat stuff and is still under heavy development.</p>
+	<p class="text-center" data-resource="toshidescription2"><b>No bot/tool is safe and less toshinou.</b> If you want some function do it yourself and share it</p>
 	<p class="text-center"> If you can help use this link: <a href="http://combostruct.com/3Xi8">https://github.com/dm94/Toshinou-Revamped-Delta</a></p>
 	<p class="text-center"> Github: <a href="https://github.com/dm94/Toshinou-Revamped-Delta">https://github.com/dm94/Toshinou-Revamped-Delta</a></p>
 	<p class="text-center"> Discord ES: <a href="https://discord.gg/7sndXDR">https://discord.gg/7sndXDR</a></p>
@@ -369,12 +370,15 @@
 					</center>
 				</th>
 			</tr>
-						<tr>
+			<tr>
 				<th colspan="2"><span data-resource="shiphability">Ship
-						Skills</span></th>
-				<td colspan="2"><input type="checkbox" id="useHability"
+						Skills</span>
+				</th>
+				<td colspan="2">
+					<input type="checkbox" id="useHability"
 					name="changeFormation"> <label for="useHability"><span
-						data-resource="usehability">Use Hability</span></label></td>
+						data-resource="usehability">Use Hability</span></label>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2"><label for="habilitySlot"><span
@@ -436,6 +440,21 @@
 						<span data-resource="habilityShieldRepair">Use Aegis|Hammerclaw: shield Repair when the ship's shield is &#60; of:</span>
 					</label> 
 					<input type="number" id="habilityShieldRepair" min="0" step="10000" max="5000000" value="100000">
+				</td>
+			</tr>
+			<tr>
+				<th class="settingsTitle" colspan="4">
+					<center>
+						<span data-resource="palladiumSettings">Palladium Settings</span>
+					</center>
+				</th>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" id="attackBattleray"> <label for="attackBattleray"><span data-resource="attackBattleray">Attacking the Battleray</span></label>
+				</td>
+				<td>
+					<input type="checkbox" id="onlyAnswerAttacks"> <label for="onlyAnswerAttacks"><span data-resource="onlyAnswerAttacks">Only respond to attacks</span></label>
 				</td>
 			</tr>
 			<tr>
@@ -570,10 +589,9 @@
 				</td>
 			</tr>
 			<tr>
-				<th class="settingsTitle" colspan="4"><center>
-						<span data-resource="sentinelmode">Sentinel Mode</span>
-					
-					<p><span data-resource="groupNecesary">It is necessary that the ships are in a group</span></p>
+				<th class="settingsTitle" colspan="4">
+					<center>
+						<span data-resource="sentinelmode">Sentinel Mode </span> - <span data-resource="groupNecesary">It is necessary that the ships are in a group</span>
 					</center>
 				</th>
 			</tr>
@@ -604,11 +622,11 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<p class="text-center" data-resource="whiteList">WhiteList:</p>
+					<p class="text-center" data-resource="whiteList">WhiteList (They're always allies):</p>
                     <ul id="whiteList" class="whiteList"></ul>
 				</td>
 				<td colspan="2">
-					<p class="text-center" data-resource="blackList">BlakList:</p>
+					<p class="text-center" data-resource="blackList">BlakList (They're always enemies):</p>
                     <ul id="blackList" class="blackList">
                     </ul>
 				</td>

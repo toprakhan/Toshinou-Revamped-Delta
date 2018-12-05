@@ -256,6 +256,12 @@ function loadArchive() {
 			if (items.kuiper != null) {
 				$("#kuiper").prop('checked', items.kuiper);
 			}
+			if (items.attackBattleray != null) {
+				$("#attackBattleray").prop('checked', items.attackBattleray);
+			}
+			if (items.onlyAnswerAttacks != null) {
+				$("#onlyAnswerAttacks").prop('checked', items.onlyAnswerAttacks);
+			}
 			if (items.whiteList) {
 				var listWhite = items.whiteList;
 				for (i = 0; i < listWhite.length; i++) {

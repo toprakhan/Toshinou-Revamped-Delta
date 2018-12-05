@@ -159,6 +159,8 @@ function getElements() {
 			kronos:             $("#kronos").prop('checked'),
 			hades:              $("#hades").prop('checked'),
 			kuiper:             $("#kuiper").prop('checked'),
+			attackBattleray:	$("#attackBattleray").prop('checked'),
+			onlyAnswerAttacks:	$("#onlyAnswerAttacks").prop('checked'),
 			npcList:            npcList,
 			whiteList:			whiteList,
 			blackList:			blackList
@@ -191,6 +193,7 @@ function restore() {
 		"stopWhenCargoIsFull", "repairWhenHpIsLowerThanPercent", "attackEnemyPlayers", "enablePet", "petReviveLimit", "petModule",
 		"sentinelid", "defendSentinel",
 		"changeToHonorFormation", "alpha", "beta", "gamma", "delta", "epsilon", "zeta", "kappa", "lambda", "kronos", "hades", "kuiper",
+		"attackBattleray", "onlyAnswerAttacks",
 		"whiteList", "blackList", "npcList"];
 
 	var onGet = items => {
@@ -444,6 +447,12 @@ function restore() {
 		}
 		if (items.kuiper) {
 			$("#kuiper").prop('checked', true);
+		}
+		if (items.attackBattleray) {
+			$("#attackBattleray").prop('checked', true);
+		}
+		if (items.onlyAnswerAttacks) {
+			$("#onlyAnswerAttacks").prop('checked', true);
 		}
 		if (items.whiteList) {
 			var listWhite = items.whiteList;

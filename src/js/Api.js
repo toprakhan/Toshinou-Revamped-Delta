@@ -518,7 +518,7 @@ class Api {
 		for (let property in this.ships) {
 			let ship = this.ships[property];
 			ship.update();
-			if ((ship.isNpc  && (!window.settings.onlyAnswerAttacks || (window.settings.onlyAnswerAttacks && ship.attacksUs))) || 
+			if ((ship.isNpc  && (!window.globalSettings.onlyAnswerAttacks || (window.globalSettings.onlyAnswerAttacks && ship.attacksUs))) || 
 					(!ship.isNpc && window.globalSettings.respondPlayerAttacks && ship.attacksUs && ship.isEnemy) || (!ship.isNpc && ship.isEnemy && window.globalSettings.attackEnemyPlayers)) {
 				if (!ship.isNpc) {
 					finalShip = ship;
@@ -542,7 +542,7 @@ class Api {
 		for (let property in this.ships) {
 			let ship = this.ships[property];
 			ship.update();
-			if ((ship.isNpc  && (!window.settings.onlyAnswerAttacks || (window.settings.onlyAnswerAttacks && ship.attacksUs))) || 
+			if ((ship.isNpc  && (!window.globalSettings.onlyAnswerAttacks || (window.globalSettings.onlyAnswerAttacks && ship.attacksUs))) || 
 					(!ship.isNpc && window.globalSettings.respondPlayerAttacks && ship.attacksUs && ship.isEnemy)) {
 				let npcdata =  window.settings.getNpc(ship.name);
 				let priority = npcdata["priority"];

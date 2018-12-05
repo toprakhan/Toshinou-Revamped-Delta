@@ -65,7 +65,6 @@ $(document).ready(function () {
 	window.tickTime = window.globalSettings.timerTick;
 	window.settings.moveRandomly = true;
 	window.settings.killNpcs = false;
-	window.settings.onlyAnswerAttacks = false;
 	window.invertedMovement = false;
 	let hm = new HandlersManager(api);
 
@@ -337,7 +336,6 @@ function logic() {
 						api.resetTarget("box");
 					}
 				}
-
 				let f = Math.atan2(window.hero.position.x - result.cbsPos.x, window.hero.position.y - result.cbsPos.y) + 0.5;
 				let s = Math.PI / 180;
 				f += s;
@@ -640,16 +638,16 @@ function logic() {
 			"( Uber Annihilator )", 
 			"( Uber Saboteur )", 
 			"( Uber Barracuda )",
-			];
+		];
 		palladiumBlackList.forEach(npc => {
 			window.settings.setNpc(npc, "0");
 		});
-		window.settings.setNpc("-=[ Battleray ]=-", "1");
-		window.settings.setNpc("-=[ Interceptor ]=-", "4");
-
+		if (window.globalSettings.attackBattleray) {
+			window.settings.setNpc("-=[ Battleray ]=-", "1");
+			window.settings.setNpc("-=[ Interceptor ]=-", "4");
+		}
 		window.settings.moveRandomly = true;
 		window.settings.circleNpc = true;
-		window.settings.onlyAnswerAttacks = true;
 		window.settings.dontCircleWhenHpBelow25Percent = false;
 		window.settings.killNpcs = true;
 		if (11934 < window.hero.position.x && 32318 > window.hero.position.x && 18105 < window.hero.position.y && 25552 > window.hero.position.y) {	
@@ -692,15 +690,12 @@ function logic() {
 		cubibotblacklist.forEach(npc => {
 			window.settings.setNpc(npc, "0");
 		});
-
 		window.settings.killNpcs = true;
 		window.settings.moveRandomly = true;
 		window.settings.circleNpc = true;
-
 		if (api.lockedShip && api.lockedShip.percentOfHp > 5 && api.lockedShip.name == "-=[ Cubikon ]=-"){
 			api.resetTarget("enemy");
 		}
-
 		let percenlife = MathUtils.percentFrom(window.hero.hp, window.hero.maxHp);
 		if (percenlife < 99) {
 			api.protegitmode;     
@@ -1062,22 +1057,6 @@ function sentinelLogic() {
 			x = api.targetShip.position.x - MathUtils.random(-50, 50);
 			y = api.targetShip.position.y - MathUtils.random(-50, 50);
 			api.lastMovement = $.now();
-		} else if (api.lockedShip && window.settings.dontCircleWhenHpBelow25Percent && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id ) {
-			if (dist > (radius+50)) {
-				x = api.targetShip.position.x + MathUtils.random(-30, 30);
-				y = api.targetShip.position.y + MathUtils.random(-30, 30);
-			} else if (dist < radius){
-				let enemy = api.targetShip.position;
-				let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
-				let s = Math.PI / 180;
-				let rot = MathUtils.random(-10, 10);
-				f += s;
-				x = enemy.x + radius * Math.sin(f);
-				y = enemy.y + radius * Math.cos(f);
-			}
-		} else if (dist > radius && api.lockedShip && api.lockedShip.id == api.targetShip.id & !window.settings.circleNpc && !window.settings.gatestonpc) {
-			x = api.targetShip.position.x + MathUtils.random(-200, 200);
-			y = api.targetShip.position.y + MathUtils.random(-200, 200);
 		} else if (api.lockedShip && api.lockedShip.id == api.targetShip.id) {
 			if (window.settings.circleNpc) {
 				let enemy = api.targetShip.position;

@@ -88,6 +88,8 @@ class GlobalSettings {
 			kronos: false,
 			hades: false,
 			kuiper: false,
+			attackBattleray: false,
+			onlyAnswerAttacks: false,
 			whiteList: [],
 			blackList: [],
 		}, items => {
@@ -417,6 +419,14 @@ class GlobalSettings {
 
 	get kuiper() {
 		return this._settings.kuiper;
+	}
+	
+	get attackBattleray() {
+		return this._settings.attackBattleray;
+	}
+	
+	get onlyAnswerAttacks() {
+		return this._settings.onlyAnswerAttacks;
 	}
 	
 	get whiteList() {

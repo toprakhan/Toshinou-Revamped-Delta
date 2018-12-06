@@ -455,7 +455,6 @@ function logic() {
 	}
 	
 	if (window.globalSettings.enablePet && (window.petReviveCount < window.globalSettings.petReviveLimit || window.globalSettings.petModule == 10) && api.petHasFuel) {
-		console.log(api.pet)
 		if (api.pet != null && api.pet.destroyed && api.pet.id != 0) {
 			setTimeout(() => {
 				api.callPet(4);
@@ -464,12 +463,14 @@ function logic() {
 		} else if (api.pet == null || api.pet.id == 0) {
 			api.callPet(0);
 		} else if (window.globalSettings.petModule != 0 && ($.now() - api.pet.activateTimer) > 10000) {
-			if (window.globalSettings.petModule == 10) {
-				if ($.now() - api.pet.moduleCooldown > 35000) {
+			if (window.globalSettings.petModule != window.globalSettings.currentModule) {
+				if (window.globalSettings.petModule == 10) {
+					if ($.now() - api.pet.moduleCooldown > 35000) {
+						api.changePetModule(window.globalSettings.petModule);
+					}
+				} else {
 					api.changePetModule(window.globalSettings.petModule);
 				}
-			} else {
-				api.changePetModule(window.globalSettings.petModule);
 			}
 		}
 	}

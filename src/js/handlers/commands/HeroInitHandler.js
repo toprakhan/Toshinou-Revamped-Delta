@@ -1,6 +1,6 @@
 class HeroInitHandler {
 	static get ID() {
-		return 15205;
+		return 10810;
 	}
 
 	constructor(f) {
@@ -14,6 +14,7 @@ class HeroInitHandler {
 			a.battlestation = null;
 			a.pet = null;
 			a.jumped = false;
+			a.jumpTime = $.now();
 			Injector.injectScript("window.heroDied = false;");
 			
 			if (window.globalSettings.enablePet) {

@@ -20,7 +20,7 @@ class HandlersManager {
 			let cmd = s[1];
 			let h = self.handlers[id];
 
-			/*var l = e.detail.indexOf("shield");
+			/*var l = e.detail.indexOf("as");
 			if(l != null && l>0){
 				console.log(e.detail);
 			}*/

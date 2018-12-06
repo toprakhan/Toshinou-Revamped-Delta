@@ -1,6 +1,6 @@
 class GateInitHandler {
 	static get ID() {
-		return 19529;
+		return 32316;
 	}
 
 	constructor() {

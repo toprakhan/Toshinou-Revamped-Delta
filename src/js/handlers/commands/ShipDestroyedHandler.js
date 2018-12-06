@@ -1,6 +1,6 @@
 class ShipDestroyedHandler {
 	static get ID() {
-		return 17096;
+		return 18893;
 	}
 
 	constructor() {
@@ -9,7 +9,7 @@ class ShipDestroyedHandler {
 			let id = parsed[Variables.shipDestoyedId];
 
 			if (a.pet) {
-				if(id == a.pet.id){
+				if(id == a.pet.id && window.globalSettings.enablePet){
 					if(a.pet.currentModule == 10){
 						a.pet.moduleCooldown = $.now();
 					}

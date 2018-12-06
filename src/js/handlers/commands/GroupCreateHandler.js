@@ -1,6 +1,6 @@
 class GroupCreateHandler {
 	static get ID() {
-		return 15704; 
+		return 27620;
 	}
 
 	constructor(f) {

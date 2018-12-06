@@ -1,6 +1,6 @@
 class GroupShipUpdatePosHandler {
 	static get ID() {
-		return 26710; 
+		return 12989;
 	}
 
 	constructor(f) {

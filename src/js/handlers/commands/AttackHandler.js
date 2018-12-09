@@ -19,6 +19,9 @@ class AttackHandler {
 				}
 				let ship = a.ships[attackerID];
 				if (ship != null){
+					if (a.pet !=null && shipAttackedID == a.pet.id){
+						console.log(a.ships[attackerID].name+" is attacking your pet.");
+					}
 					if (shipAttackedID == window.hero.id) {
 						a.ships[attackerID].attacksUs = true;
 					} else {

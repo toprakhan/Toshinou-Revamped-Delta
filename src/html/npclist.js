@@ -23,7 +23,7 @@ let knownNpcList = [ "-=[ Streuner ]=-", "-=[ Aider Streuner ]=-",
 		"-=[ Blighted Kristallon ]=-", "<=< Plagued Gygerthrall >=>",
 		"-=[ Plagued Kristallin ]=-", "-=[ Plague Rocket ]=-", "-={ demaNeR Escort }=-",
 		"-={ Demaner Corsair }=-", "-={ demaNeR Freighter }=-",
-		"-=[ Hitac 2.0 ]=-", "-=[ Hitac-Minion ]=-", "* Lordakium Spore *" ];
+		"-=[ Hitac 2.0 ]=-", "-=[ Hitac-Minion ]=-", "* Lordakium Spore *", " \ Attend IX //", "\\ Purpose XXI //", " \ Impulse II //"];
 let knownCirceList = [ "450", "500", "500", "450", "536", "500", "530", "500",
 		"610", "575", "575", "600", "600", "525", "525", "500", "500", "500",
 		"500", "500", "500", "450", "450", "520", "500", "575", "575", "570",
@@ -31,7 +31,7 @@ let knownCirceList = [ "450", "500", "500", "450", "536", "500", "530", "500",
 		"600", "600", "580", "625", "580", "500", "500", "500", "500", "500",
 		"500", "500", "500", "500", "500", "500", "500", "500", "500", "500",
 		"500", "500", "500", "500", "500", "500", "500", "500", "500", "500",
-		"500", "500" ];
+		"500", "500", "500", "500" ];
 
 for (i = 0; i < knownNpcList.length; i++) { 
 	document.write('<tr><td><input style="width: 100%" type="text" id="name'+i+'" value="'+knownNpcList[i]+'" readonly></input></td>');

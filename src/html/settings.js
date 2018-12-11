@@ -50,7 +50,7 @@ function getElements() {
 		"-=[ Blighted Kristallon ]=-", "<=< Plagued Gygerthrall >=>",
 		"-=[ Plagued Kristallin ]=-", "-=[ Plague Rocket ]=-", "-={ demaNeR Escort }=-",
 		"-={ Demaner Corsair }=-", "-={ demaNeR Freighter }=-",
-		"-=[ Hitac 2.0 ]=-", "-=[ Hitac-Minion ]=-", "* Lordakium Spore *" ];
+		"-=[ Hitac 2.0 ]=-", "-=[ Hitac-Minion ]=-", "* Lordakium Spore *", " \ Attend IX //", "\\\\Purpose XXI //", " \ Impulse II //"];
 
 	var npcList = []; 
 	for (i = 0; i < knownNpcList.length; i++) { 
@@ -147,6 +147,7 @@ function getElements() {
 			petModule:			$("#petModule").val(),
 			sentinelid:         $("#sentinelid").val(),
 			defendSentinel:     $("#defendSentinel").prop('checked'),
+			followRange:		$("#followRange").val(),
 			changeToHonorFormation:	$("#changeToHonorFormation").prop('checked'),
 			alpha:              $("#alpha").prop('checked'),
 			beta:               $("#beta").prop('checked'),
@@ -191,7 +192,7 @@ function restore() {
 		"stopafterxminutes", "waitafterRepair", "waitBeforeRepair","fleeFromEnemy", "jumpFromEnemy", "onlyEscapeWhenEnemyAttack", "autoPlay",
 		"dodgeTheCbs", "moveRandomly", "killNpcs", "avoidAttackedNpcs", "circleNpc", "dontCircleWhenHpBelow25Percent", "respondPlayerAttacks", "playerAmmo", "useCBSZoneSegure", "randomBreaks", 
 		"stopWhenCargoIsFull", "repairWhenHpIsLowerThanPercent", "attackEnemyPlayers", "enablePet", "petReviveLimit", "petModule",
-		"sentinelid", "defendSentinel",
+		"sentinelid", "defendSentinel", "followRange",
 		"changeToHonorFormation", "alpha", "beta", "gamma", "delta", "epsilon", "zeta", "kappa", "lambda", "kronos", "hades", "kuiper",
 		"attackBattleray", "onlyAnswerAttacks",
 		"whiteList", "blackList", "npcList"];
@@ -411,6 +412,9 @@ function restore() {
 		}
 		if (items.defendSentinel) {
 			$("#defendSentinel").prop('checked', true);
+		}
+		if (items.followRange) {
+			$("#followRange").val(items.followRange);
 		}
 		if (items.changeToHonorFormation) {
 			$("#changeToHonorFormation").prop('checked', true);

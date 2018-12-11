@@ -31,6 +31,14 @@ class Ship extends Movable {
 			return false;
 		}
 	}
+	
+	get onTheBlackList() {
+		if ((window.globalSettings.blackList).includes(this.id.toString())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	get percentOfHp() {
 		return (this.hp && this.maxHp) ? MathUtils.percentFrom(this.hp, this.maxHp) : 100;

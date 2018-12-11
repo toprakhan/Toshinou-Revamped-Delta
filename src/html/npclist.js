@@ -23,7 +23,7 @@ let knownNpcList = [ "-=[ Streuner ]=-", "-=[ Aider Streuner ]=-",
 		"-=[ Blighted Kristallon ]=-", "<=< Plagued Gygerthrall >=>",
 		"-=[ Plagued Kristallin ]=-", "-=[ Plague Rocket ]=-", "-={ demaNeR Escort }=-",
 		"-={ Demaner Corsair }=-", "-={ demaNeR Freighter }=-",
-		"-=[ Hitac 2.0 ]=-", "-=[ Hitac-Minion ]=-", "* Lordakium Spore *", " \ Attend IX //", "\\ Purpose XXI //", " \ Impulse II //"];
+		"-=[ Hitac 2.0 ]=-", "-=[ Hitac-Minion ]=-", "* Lordakium Spore *", " \ Attend IX //", "\\\\Purpose XXI //", " \ Impulse II //"];
 let knownCirceList = [ "450", "500", "500", "450", "536", "500", "530", "500",
 		"610", "575", "575", "600", "600", "525", "525", "500", "500", "500",
 		"500", "500", "500", "450", "450", "520", "500", "575", "575", "570",

@@ -220,6 +220,9 @@ function loadArchive() {
 			if (items.defendSentinel != null) {
 				$("#defendSentinel").prop('checked', items.defendSentinel);
 			}
+			if (items.followRange) {
+				$("#followRange").val(items.followRange);
+			}
 			if (items.changeToHonorFormation != null) {
 				$("#changeToHonorFormation").prop('checked', items.changeToHonorFormation);
 			}

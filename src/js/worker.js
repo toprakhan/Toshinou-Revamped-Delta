@@ -275,8 +275,8 @@ function logic() {
 	
 	window.minimap.draw();
 
-	if (api.targetShip && api.attacking) {
-		if(window.globalSettings.changeAmmunition) {
+	if (api.targetShip) {
+		if (window.globalSettings.changeAmmunition) {
 			api.chooseAmmunition();
 		}
 	}
@@ -933,7 +933,7 @@ function sentinelLogic() {
 
 	if (shipAround) {
 		api.rute = null;
-		if (shipAround.distanceTo(window.hero.position) > 800 && !api.targetShip) {
+		if (shipAround.distanceTo(window.hero.position) > window.globalSettings.followRange && !api.targetShip) {
 			x = shipAround.position.x + MathUtils.random(-100, 100);
 			y = shipAround.position.y + MathUtils.random(-100, 100);
 			api.moveWithFilter(x, y);
@@ -984,15 +984,7 @@ function sentinelLogic() {
 			}
 		}
 
-		if (finalShip == null || finalShip.distance > 1000) {
-			let box = api.findNearestBox();
-			if (box.box) {
-				api.collectBox(box.box);
-				api.targetBoxHash = box.box.hash;
-				return;
-			}
-			api.sentinelship.targetId = null;
-		}
+
 		if (finalShip && finalShip.distance < 1000 && finalShip.id != notrightId) {
 			api.lockShip(finalShip);
 			api.triedToLock = true;
@@ -1021,18 +1013,6 @@ function sentinelLogic() {
 			api.startLaserAttack();
 			api.lastAttack = $.now();
 			api.attacking = true;
-			return;
-		}
-	}
-
-	if (api.targetBoxHash && $.now() - api.collectTime > 7000) {
-		let box = api.boxes[api.targetBoxHash];
-		if (box && box.distanceTo(window.hero.position) > 1000) {
-			api.collectTime = $.now();
-		} else {
-			delete api.boxes[api.targetBoxHash];
-			api.blackListHash(api.targetBoxHash);
-			api.resetTarget("box");
 			return;
 		}
 	}

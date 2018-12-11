@@ -9,7 +9,11 @@ class ShipCreateHandler {
 
 			let shipCreateCmd = JSON.parse(e.detail);
 			if (!a.ships.hasOwnProperty(shipCreateCmd.userId)){
-				a.ships[shipCreateCmd.userId] = new Ship(shipCreateCmd.x, shipCreateCmd.y, shipCreateCmd.userId, shipCreateCmd.npc, shipCreateCmd.userName, shipCreateCmd.factionId, shipCreateCmd.modifier, shipCreateCmd[Variables.clanDiplomacy].type, shipCreateCmd.cloaked);
+				let name = shipCreateCmd.userName;
+				if (name == null) {
+					name = "No-Name";
+				}
+				a.ships[shipCreateCmd.userId] = new Ship(shipCreateCmd.x, shipCreateCmd.y, shipCreateCmd.userId, shipCreateCmd.npc, name, shipCreateCmd.factionId, shipCreateCmd.modifier, shipCreateCmd[Variables.clanDiplomacy].type, shipCreateCmd.cloaked);
 			}
 		}
 	}

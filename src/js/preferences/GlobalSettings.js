@@ -77,6 +77,7 @@ class GlobalSettings {
 			sentinelid: 0,
 			defendSentinel: false,
 			changeToHonorFormation: false,
+			followRange: 500,
 			alpha: false,
 			beta: false,
 			gamma: false,
@@ -373,6 +374,10 @@ class GlobalSettings {
 		return this._settings.defendSentinel;
 	}
 	
+	get followRange() {
+		return this._settings.followRange;
+	}
+
 	get changeToHonorFormation() {
 		return this._settings.changeToHonorFormation;
 	}

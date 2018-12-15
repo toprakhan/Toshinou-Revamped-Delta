@@ -39,13 +39,14 @@ class Minimap {
 		ct.lineWidth = 1;
 		ct.rect(1, 1, this.canvas.width() - 2, this.canvas.height() - 2);
 		ct.stroke();
-		
+			
 		ct.fillStyle = "rgb(112, 112, 112)";
 		ct.font = "20px Arial";
 		ct.fillText(this._api.starSystem.getMapName(window.hero.mapId), this.canvas.width() / 2 - 6, this.canvas.height() / 2 + 10);
 		
 		if (window.globalSettings.debug) {
 			ct.font = "10px Arial";
+			ct.fillText(window.hero.lastAction, 4, this.canvas.height() - 15);
 			ct.fillText("X: " + window.hero.position.x + " | Y: " + window.hero.position.y, 4, this.canvas.height() - 5);
 			if (window.hero.xEnd != 0 && window.hero.yEnd != 0) {
 				ct.strokeStyle = "rgb(250, 250, 210)";

@@ -182,9 +182,11 @@ function init() {
 				api.resetTarget("all");
 				window.fleeingFromEnemy = false;
 				window.settings.pause = true;
+				window.hero.lastAction = "Bot paused";
 			} else {
 				$('.cnt_btn_play .btn_play').html("Stop").removeClass('in_play').addClass('in_stop');
 				window.settings.pause = false;
+				window.hero.lastAction = "Bot running";
 			}
 		} else if ((key == "x" || key == "z" || key == "ч" || key == "я") && (window.settings.lockNpcs || window.settings.lockPlayers)) {
 			let finDist = 600;
@@ -228,10 +230,12 @@ function init() {
 			api.resetTarget("all");
 			window.fleeingFromEnemy = false;
 			window.settings.pause = true;
+			window.hero.lastAction = "Bot paused";
 		} else {
 			cntBtnPlay.html("Stop");
 			cntBtnPlay.removeClass('in_play').addClass('in_stop');
 			window.settings.pause = false;
+			window.hero.lastAction = "Bot running";
 		}
 		window.statusPlayBot = !window.statusPlayBot;
 	});
@@ -245,7 +249,7 @@ function init() {
 			window.settings.killNpcs = window.globalSettings.killNpcs;
 			window.settings.circleNpc = window.globalSettings.circleNpc;
 			window.settings.dontCircleWhenHpBelow25Percent = window.globalSettings.dontCircleWhenHpBelow25Percent;
-			if(window.settings.npcs != null){
+			if (window.settings.npcs != null) {
 				let npcList = window.globalSettings.npcList;
 				for (i = 0; i < npcList.length; i++) {
 					window.settings.updateNpc(npcList[i]["name"], npcList[i]);

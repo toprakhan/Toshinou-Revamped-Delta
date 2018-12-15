@@ -8,6 +8,7 @@ class Hero extends Movable {
 		this.cargoIsFull = false;
 		this.xEnd = 0;
 		this.yEnd = 0;
+		this.lastAction = "Bot paused";
 	}
 
 	move(pos) {

@@ -42,6 +42,7 @@ class Api {
 	changePetModule(module_id){
 		if(this.pet.currentModule != module_id){
 			Injector.injectScript('document.getElementById("preloader").petModule(parseInt('+module_id+'), "");');
+			window.hero.lastAction = "Pet module " + module_id;
 			this.pet.currentModule = module_id;
 		}
 	}
@@ -51,6 +52,7 @@ class Api {
 		// 1 = deactivate
 		// 4 = repair
 		Injector.injectScript('document.getElementById("preloader").petCall('+parseInt(n)+');');
+		window.hero.lastAction = "Pet call " + parseInt(n);
 		this.pet.currentModule = -1;
 	}
 
@@ -58,6 +60,7 @@ class Api {
 		var cooldownlist = {"cyborg":311000,"solace":141000,"diminisher":162000,"venom":181000,"sentinel":236000,"spectrum":211000,"v-lightning":186000,"aegis":101000,"spearhead":401000,"citadel":46000,"mimesis":361000,"hammerclaw":171000,"tartarus":28000};
 		if (this.habilityCoolDown && $.now() - this.habilityCoolDown > cooldownlist[window.hero.skillName]) {
 			this.quickSlot(window.globalSettings.habilitySlot);
+			window.hero.lastAction = "Using Skill 1";
 			this.habilityCoolDown = $.now();
 			return true;
 		}
@@ -68,6 +71,7 @@ class Api {
 		var cooldownlist = {"aegis":36000,"spearhead":200000,"citadel":51000, "mimesis":301000,"hammerclaw":101000,"tartarus":71000};
 		if (this.habilityCoolDownTwo && $.now() - this.habilityCoolDownTwo > cooldownlist[window.hero.skillName]) {
 			this.quickSlot(window.globalSettings.habilitySlotTwo);
+			window.hero.lastAction = "Using Skill 2";
 			this.habilityCoolDownTwo = $.now();
 			return true;
 		}
@@ -78,6 +82,7 @@ class Api {
 		var cooldownlist = {"aegis":131000,"spearhead":56000,"citadel":71000, "hammerclaw":147000};
 		if (this.habilityCoolDownThree && $.now() - this.habilityCoolDownThree > cooldownlist[window.hero.skillName]) {
 			this.quickSlot(window.globalSettings.habilitySlotThree);
+			window.hero.lastAction = "Using Skill 3";
 			this.habilityCoolDownThree = $.now();
 			return true;
 		}
@@ -88,6 +93,7 @@ class Api {
 		var cooldownlist = {"citadel":370000,"spearhead":150000};
 		if (this.habilityCoolDownFour && $.now() - this.habilityCoolDownFour > cooldownlist[window.hero.skillName]) {
 			this.quickSlot(window.globalSettings.habilitySlotFour);
+			window.hero.lastAction = "Using Skill 4";
 			this.habilityCoolDownFour = $.now();
 			return true;
 		}
@@ -119,6 +125,7 @@ class Api {
 			this.changeFormationTime = $.now();
 			this.formation = n;
 			this.quickSlot(n);
+			window.hero.lastAction = "Changing formation";
 			return true;
 		} else {
 			return false;
@@ -148,35 +155,44 @@ class Api {
 			switch(ammo) {
 				case 1:
 					this.quickSlot(window.globalSettings.x1Slot);
+					window.hero.lastAction = "Changing ammunition to x1";
 					break;
 				case 2:
 					this.quickSlot(window.globalSettings.x2Slot);
+					window.hero.lastAction = "Changing ammunition to x2";
 					break;
 				case 3:
 					this.quickSlot(window.globalSettings.x3Slot);
+					window.hero.lastAction = "Changing ammunition to x3";
 					break;
 				case 4:
 					this.quickSlot(window.globalSettings.x4Slot);
+					window.hero.lastAction = "Changing ammunition to x4";
 					break;
 				case 6:
 					this.quickSlot(window.globalSettings.sabSlot);
+					window.hero.lastAction = "Changing ammunition to SAB";
 					break;
 				case 45:
 					if ($.now() - this.RSBTime > 3000) {
 						this.quickSlot(window.globalSettings.rsbSlot);
+						window.hero.lastAction = "Changing ammunition to RSB";
 						this.ammunition = ammo;
 						this.RSBTime = $.now();
 						setTimeout(() => {
 							this.quickSlot(window.globalSettings.x4Slot);
+							window.hero.lastAction = "Changing ammunition to x4";
 							this.ammunition = 4;
 						}, 500);
 					} else {
 						this.quickSlot(window.globalSettings.x4Slot);
+						window.hero.lastAction = "Changing ammunition to x4";
 						this.ammunition = 4;
 					}
 					break;
 				default:
 					this.quickSlot(window.globalSettings.x1Slot);
+					window.hero.lastAction = "Changing ammunition to x1";
 			}	
 			this.ammunition = ammo;
 		}
@@ -193,6 +209,7 @@ class Api {
 		let pos = ship.position;
 		let scr = 'document.getElementById("preloader").lockShip(' + ship.id + ',' + Math.round(pos.x) + ',' + Math.round(pos.y) + ',' + Math.round(window.hero.position.x) + ',' + Math.round(window.hero.position.y) + ');';
 		Injector.injectScript(scr);
+		window.hero.lastAction = "Lock Ship";
 
 		this.lockTime = $.now();
 	}
@@ -205,6 +222,7 @@ class Api {
 			return;
 
 		this.lockTime = $.now();
+		window.hero.lastAction = "Lock NPC";
 
 		this.lockShip(ship);
 	}
@@ -212,6 +230,7 @@ class Api {
 	reconnect() {
 		Injector.injectScript('document.getElementById("preloader").reconnect();');
 		this.reconnectTime = $.now();
+		window.hero.lastAction = "Reconnecting...";
 	}
 
 	collectBox(box) {
@@ -226,7 +245,7 @@ class Api {
 		}
 
 		Injector.injectScript('document.getElementById("preloader").collectBox' + box.hash + '()');
-
+		window.hero.lastAction = "Collecting box";	
 		this.collectTime = $.now();
 	}
 
@@ -273,6 +292,7 @@ class Api {
 		} else {
 			this.pressKey(17);
 		}
+		window.hero.lastAction = "Starting the attack";
 	}
 
 	jumpGate() {
@@ -281,6 +301,7 @@ class Api {
 		} else {
 			this.pressKey(74);
 		}
+		window.hero.lastAction = "Jumping....";
 	}
 
 	changeConfig() {
@@ -291,6 +312,7 @@ class Api {
 			} else {
 				this.pressKey(67);
 			}
+			window.hero.lastAction = "Changing the config";
 			return true;
 		} else {
 			return false;
@@ -630,6 +652,7 @@ class Api {
 	}
 
 	markHeroAsDead() {
+		window.hero.lastAction = "Ship destroyed";
 		this.heroDied = true;
 		Injector.injectScript("window.heroDied = true;");
 	}
@@ -700,7 +723,7 @@ class Api {
 		};
 	}
 
-	goToMap(idWorkMap){
+	goToMap(idWorkMap) {
 		if (this.rute == null) {
 			let mapSystem = {1:{2:1},2:{1:1,3:1,4:1},3:{2:1,7:1,4:1},4:{2:1,3:1,13:2,13:1},13:{4:1,14:2,15:2,16:2},5:{6:1},6:{5:1,7:1,8:1},7:{6:1,3:1,8:1},8:{6:1,7:1,14:2,11:1},14:{8:1,13:2,15:2,16:2},9:{10:1},10:{9:1,12:1,11:1},
 					11:{10:1,8:1,12:1},12:{10:1,11:1,15:2,4:1},15:{12:1,14:2,13:2,16:2},16:{13:2,14:2,15:2,17:1,21:1,25:1},29:{17:1,21:1,25:1,91:1},17:{16:2,29:3,19:1,18:1},18:{17:1,20:1},19:{17:1,20:1},20:{18:1,19:1},21:{16:2,29:3,22:1,23:1},22:{21:1,24:1},23:{21:1,24:1},24:{23:1,22:1},25:{29:3,16:2,27:1,26:1},27:{25:1,28:1},26:{25:1,28:1},28:{26:1,27:1},91:{92:1},92:{93:1},93:{16:1}},
@@ -717,9 +740,10 @@ class Api {
 			} else if (window.hero.mapId == portal.idLinkedMap) {
 				this.rute.shift(); 
 			} else if (window.hero.mapId != map.mapId && window.hero.mapId == portal.idLinkedMap) {
-			  this.rute = null;
+				this.rute = null;
 			}
 		}
+		window.hero.lastAction = "Travelling to the map " + this.starSystem.getMapName(idWorkMap);
 	}
 
 	attackMode() {

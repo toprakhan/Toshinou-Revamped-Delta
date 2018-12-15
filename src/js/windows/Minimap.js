@@ -42,7 +42,7 @@ class Minimap {
 		
 		ct.fillStyle = "rgb(112, 112, 112)";
 		ct.font = "20px Arial";
-		ct.fillText(window.hero.mapName(), this.canvas.width() / 2 - 6, this.canvas.height() / 2 + 10);
+		ct.fillText(this._api.starSystem.getMapName(window.hero.mapId), this.canvas.width() / 2 - 6, this.canvas.height() / 2 + 10);
 		
 		if (window.globalSettings.debug) {
 			ct.font = "10px Arial";

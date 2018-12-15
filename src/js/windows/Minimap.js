@@ -24,8 +24,7 @@ class Minimap {
 
 			var x = (e.clientX - pos.left) * window.b1 - window.b3;
 			var y = (e.clientY - pos.top) * window.b2 - window.b3;
-			// Injector.injectScript('document.getElementById("preloader").moveShip('
-			// + x + ',' + y + ');');
+			// Injector.injectScript('document.getElementById("preloader").moveShip(' + x + ',' + y + ');');
 		});
 	}
 
@@ -40,6 +39,19 @@ class Minimap {
 		ct.lineWidth = 1;
 		ct.rect(1, 1, this.canvas.width() - 2, this.canvas.height() - 2);
 		ct.stroke();
+		
+		ct.fillStyle = "rgb(112, 112, 112)";
+		ct.font = "20px Arial";
+		ct.fillText(window.hero.mapName(), this.canvas.width() / 2 - 6, this.canvas.height() / 2 + 10);
+		
+		if (window.globalSettings.debug) {
+			ct.font = "10px Arial";
+			ct.fillText("X: " + window.hero.position.x + " | Y: " + window.hero.position.y, 4, this.canvas.height() - 5);
+			if (window.hero.xEnd != 0 && window.hero.yEnd != 0) {
+				ct.strokeStyle = "rgb(250, 250, 210)";
+				this._drawLine(ct, window.hero.position.x / window.b1, window.hero.position.y / window.b2, window.hero.xEnd / window.b1, window.hero.yEnd / window.b2);
+			}
+		}
 
 		ct.fillStyle = 'green';
 		this._fillCircle(ct, window.hero.position.x / window.b1, window.hero.position.y / window.b2, 2);
@@ -112,6 +124,7 @@ class Minimap {
 			var pos = gate.position;
 			this._strokeCircle(ct, pos.x / window.b1, pos.y / window.b2, 4);
 		});
+		
 	}
 
 	_fillCircle(ctx, x, y, r) {
@@ -128,4 +141,12 @@ class Minimap {
 		ctx.beginPath();
 		ctx.arc(x, y, r, 0, 2 * Math.PI, false);
 	}
+	
+	_drawLine(ctx, x, y, xEnd, yEnd) {
+		ctx.beginPath();
+		ctx.moveTo(x, y);
+		ctx.lineTo(xEnd, yEnd);
+		ctx.stroke();
+	}
+	
 }

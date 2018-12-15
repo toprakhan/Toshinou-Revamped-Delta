@@ -317,6 +317,8 @@ function logic() {
 	}
 	
 	if (api.heroDied || window.settings.pause || (window.globalSettings.fleeFromEnemy && window.fleeingFromEnemy) || window.settings.waitingAfterDead) {
+		window.hero.xEnd = 0;
+		window.hero.yEnd = 0;
 		return;
 	}
 	

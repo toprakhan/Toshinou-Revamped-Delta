@@ -20,7 +20,7 @@ class HandlersManager {
 			let cmd = s[1];
 			let h = self.handlers[id];
 
-			/*var l = e.detail.indexOf("150000446");
+			/*var l = e.detail.indexOf("Skoll");
 			if(l != null && l>0){
 				console.log(e.detail);
 			}*/

@@ -171,10 +171,12 @@ class StarSystem {
 		portals53.push(new Portal(150000450,16)); // 5-3 | 4-4
 		this.starSystem.push(new Map(93, "5-3", portals53));
 		
+		//GGs
 		this.starSystem.push(new Map(51, "GG α", noPortals));
 		this.starSystem.push(new Map(55, "GG δ", noPortals));
 		this.starSystem.push(new Map(73, "GG ζ", noPortals));
 		this.starSystem.push(new Map(74, "GG κ", noPortals));
+		this.starSystem.push(new Map(203, "GG Hades", noPortals));
 	}
 	
 	completeRute(imcompleteRute){

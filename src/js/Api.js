@@ -245,7 +245,9 @@ class Api {
 		}
 
 		Injector.injectScript('document.getElementById("preloader").collectBox' + box.hash + '()');
-		window.hero.lastAction = "Collecting box";	
+		window.hero.lastAction = "Collecting box";
+		window.hero.xEnd = box.position.x;
+		window.hero.yEnd = box.position.y;
 		this.collectTime = $.now();
 	}
 

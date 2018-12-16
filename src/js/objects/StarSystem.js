@@ -136,7 +136,11 @@ class StarSystem {
 		let portals28 = [];
 		portals28.push(new Portal(150000315,22)); //2-8 | 2-6
 		portals28.push(new Portal(150000317,23)); //2-8 | 2-7
+		portals28.push(new Portal(150000205,307)); //2-8 | 2-Bl
 		this.starSystem.push(new Map(24, "2-8", portals28));
+		let portals2bl = [];
+		portals2bl.push(new Portal(150000206,24)); //2-BL | 2-8
+		this.starSystem.push(new Map(307, "2-BL", portals2bl));
 		let portals35 = [];
 		portals35.push(new Portal(150000319,16)); //3-5 | 4-4
 		portals35.push(new Portal(150000332,29)); //3-5 | 4-5
@@ -171,11 +175,11 @@ class StarSystem {
 		portals53.push(new Portal(150000450,16)); // 5-3 | 4-4
 		this.starSystem.push(new Map(93, "5-3", portals53));
 		
-		//GGs
 		this.starSystem.push(new Map(51, "GG α", noPortals));
 		this.starSystem.push(new Map(55, "GG δ", noPortals));
 		this.starSystem.push(new Map(73, "GG ζ", noPortals));
 		this.starSystem.push(new Map(74, "GG κ", noPortals));
+		this.starSystem.push(new Map(200, "LOW", noPortals));
 		this.starSystem.push(new Map(203, "GG Hades", noPortals));
 	}
 	

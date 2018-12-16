@@ -1,6 +1,7 @@
 class Api {
 	constructor() {
 		this._blackListedBoxes = [];
+		this._blackListedNpcs = [];
 		this.gates = [];
 		this.boxes = {};
 		this.ships = {};
@@ -11,7 +12,7 @@ class Api {
 		this.reconnectTime = null;
 		this.jumpTime = $.now();
 		this.resetBlackListTime = $.now();
-		this.blackListTimeOut = 150000
+		this.blackListTimeOut = 150000;
 		this.rute = null;
 		this.starSystem = new StarSystem();
 		this.workmap = null;
@@ -287,6 +288,17 @@ class Api {
 	isOnBlacklist(hash) {
 		return this._blackListedBoxes.includes(hash);
 	}
+	
+	isShipOnBlacklist(id) {
+		return this._blackListedNpcs.includes(id);
+	}
+
+	blackListId(id) {
+		this._blackListedNpcs.push(id);
+		setTimeout(() => {
+			this._blackListedNpcs.shift();
+		}, this.blackListTimeOut);
+	}
 
 	startLaserAttack() {
 		if (window.globalSettings.actionsMode == 2) {
@@ -531,6 +543,7 @@ class Api {
 		let minDist = 100000;
 		let finalShip;
 		let minPriority = 1;
+		let validShips = [];
 
 		if (!window.settings.killNpcs) {
 			return {
@@ -555,7 +568,8 @@ class Api {
 				let npcdata =  window.settings.getNpc(ship.name);
 				let priority = npcdata["priority"];
 				if (priority >= minPriority) {
-					if (!ship.isAttacked) {
+					if (!ship.isAttacked && !this.isShipOnBlacklist(ship.id)) {
+						validShips.push(ship);
 						finalShip = ship;
 						minPriority = priority;
 					}
@@ -563,21 +577,17 @@ class Api {
 			}
 		}
 
-		for (let property in this.ships) {
-			let ship = this.ships[property];
+		for (let property in validShips) {
+			let ship = validShips[property];
 			ship.update();
-			if ((ship.isNpc  && (!window.globalSettings.onlyAnswerAttacks || (window.globalSettings.onlyAnswerAttacks && ship.attacksUs)))) {
-				let npcdata =  window.settings.getNpc(ship.name);
-				let priority = npcdata["priority"];
-				if (priority >= minPriority) {
-					let dist = ship.distanceTo(window.hero.position);
-					if (dist < minDist) {
-						if (!ship.isAttacked) {
-							finalShip = ship;
-							minDist = dist;
-							minPriority = priority;
-						}
-					}
+			let npcdata =  window.settings.getNpc(ship.name);
+			let priority = npcdata["priority"];
+			if (priority >= minPriority) {
+				let dist = ship.distanceTo(window.hero.position);
+				if (dist < minDist) {
+					finalShip = ship;
+					minDist = dist;
+					minPriority = priority;
 				}
 			}
 		}
@@ -728,7 +738,8 @@ class Api {
 	goToMap(idWorkMap) {
 		if (this.rute == null) {
 			let mapSystem = {1:{2:1},2:{1:1,3:1,4:1},3:{2:1,7:1,4:1},4:{2:1,3:1,13:2,13:1},13:{4:1,14:2,15:2,16:2},5:{6:1},6:{5:1,7:1,8:1},7:{6:1,3:1,8:1},8:{6:1,7:1,14:2,11:1},14:{8:1,13:2,15:2,16:2},9:{10:1},10:{9:1,12:1,11:1},
-					11:{10:1,8:1,12:1},12:{10:1,11:1,15:2,4:1},15:{12:1,14:2,13:2,16:2},16:{13:2,14:2,15:2,17:1,21:1,25:1},29:{17:1,21:1,25:1,91:1},17:{16:2,29:3,19:1,18:1},18:{17:1,20:1},19:{17:1,20:1},20:{18:1,19:1},21:{16:2,29:3,22:1,23:1},22:{21:1,24:1},23:{21:1,24:1},24:{23:1,22:1},25:{29:3,16:2,27:1,26:1},27:{25:1,28:1},26:{25:1,28:1},28:{26:1,27:1},91:{92:1},92:{93:1},93:{16:1}},
+					11:{10:1,8:1,12:1},12:{10:1,11:1,15:2,4:1},15:{12:1,14:2,13:2,16:2},16:{13:2,14:2,15:2,17:1,21:1,25:1},29:{17:1,21:1,25:1,91:1},17:{16:2,29:3,19:1,18:1},18:{17:1,20:1},19:{17:1,20:1},20:{18:1,19:1,306:1},
+					21:{16:2,29:3,22:1,23:1},22:{21:1,24:1},23:{21:1,24:1},24:{23:1,22:1,307:1},25:{29:3,16:2,27:1,26:1},27:{25:1,28:1},26:{25:1,28:1},28:{26:1,27:1},91:{92:1},92:{93:1},93:{16:1},306:{20:1},307:{24:1}},
 					graph = new Graph(mapSystem);
 			let imcompleteRute = graph.findShortestPath(window.hero.mapId, idWorkMap);
 			if (imcompleteRute != null) {

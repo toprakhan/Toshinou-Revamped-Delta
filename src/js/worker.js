@@ -188,15 +188,15 @@ function init() {
 				window.settings.pause = false;
 				window.hero.lastAction = "Bot running";
 			}
-		} else if ((key == "x" || key == "z" || key == "ч" || key == "я") && (window.settings.lockNpcs || window.settings.lockPlayers)) {
-			let finDist = 600;
+		} else if ((key == "x" || key == "z" || key == "ч" || key == "я") && (window.settings.lockNpc || window.settings.lockPlayers)) {
+			let finDist = 1000;
 			let finalShip;
 
 			for (let property in api.ships) {
 				let ship = api.ships[property];
 				let dist = ship.distanceTo(window.hero.position);
 
-				if (dist < finDist && ((ship.isNpc && window.settings.lockNpcs && (key == "x" || key == "ч")) || (ship.isEnemy && window.settings.lockPlayers && (key == "z" || key == "я") && !ship.isNpc))) {
+				if (dist < finDist && ((ship.isNpc && window.settings.lockNpc && (key == "x" || key == "ч")) || (ship.isEnemy && window.settings.lockPlayers && (key == "z" || key == "я") && !ship.isNpc))) {
 					finalShip = ship;
 					finDist = dist;
 				}
@@ -204,10 +204,8 @@ function init() {
 
 			if (finalShip != null) {
 				api.lockShip(finalShip);
-				if (window.settings.autoAttack) {
-					api.lastAutoLock = $.now();
-					api.autoLocked = true;
-				}
+				api.autoLocked = true;
+				api.lastAutoLock = $.now();
 			}
 		}
 	});
@@ -813,6 +811,7 @@ function logic() {
 	}
 
 	if (api.targetShip && window.settings.killNpcs && api.targetBoxHash == null) {
+		window.hero.lastAction = "Attacking";
 		api.targetShip.update();
 		let dist = api.targetShip.distanceTo(window.hero.position);
 		let radius = 500;
@@ -1028,6 +1027,7 @@ function sentinelLogic() {
 	}
 
 	if (api.targetShip && window.settings.killNpcs && api.targetBoxHash == null) {
+		window.hero.lastAction = "Attacking";
 		api.targetShip.update();
 		let dist = api.targetShip.distanceTo(window.hero.position);
 		let radius = window.settings.getNpc(api.lockedShip.name)["range"];

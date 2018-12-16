@@ -19,8 +19,13 @@ class AttackHandler {
 				}
 				let ship = a.ships[attackerID];
 				if (ship != null){
-					if (a.pet !=null && shipAttackedID == a.pet.id){
-						console.log(a.ships[attackerID].name+" is attacking your pet.");
+					if ((window.globalSettings.avoidAttackedNpcs && ship.isNpc) && (attackerID != window.hero.id) && !window.settings.ggbot && (shipAttackedID != window.hero.id)) {
+						if (a.pet != null && attackerID != a.pet.id) {
+							a.blackListId(shipAttackedID);
+						}
+					}
+					if (a.pet != null && shipAttackedID == a.pet.id){
+						console.log(ship.name + " is attacking your pet.");
 					}
 					if (shipAttackedID == window.hero.id) {
 						a.ships[attackerID].attacksUs = true;

@@ -140,6 +140,8 @@ class StarSystem {
 		this.starSystem.push(new Map(24, "2-8", portals28));
 		let portals2bl = [];
 		portals2bl.push(new Portal(150000206,24)); //2-BL | 2-8
+		portals2bl.push(new Portal(150000207,306)); //2-BL | 1-BL
+		//portals2bl.push(new Portal(150000208,0)); //2-BL | 3-BL
 		this.starSystem.push(new Map(307, "2-BL", portals2bl));
 		let portals35 = [];
 		portals35.push(new Portal(150000319,16)); //3-5 | 4-4

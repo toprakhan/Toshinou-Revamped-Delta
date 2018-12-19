@@ -744,9 +744,6 @@ class Api {
 		}
 		if (window.globalSettings.changeFormation && window.globalSettings.attackFormation != this.formation) {
 			if (this.changeFormation(window.globalSettings.attackFormation)) {
-				let x = window.hero.position.x + MathUtils.random(-100, 100);
-				let y = window.hero.position.y + MathUtils.random(-100, 100);
-				this.moveWithFilter(x, y);
 			}
 			
 		}
@@ -760,9 +757,6 @@ class Api {
 		}
 		if (window.globalSettings.changeFormation && this.formation != window.globalSettings.flyingFormation) {
 			if (this.changeFormation(window.globalSettings.flyingFormation)) {
-				let x = window.hero.position.x + MathUtils.random(-100, 100);
-				let y = window.hero.position.y + MathUtils.random(-100, 100);
-				this.moveWithFilter(x, y);
 			}
 		}
 	}
@@ -775,9 +769,6 @@ class Api {
 		}
 		if (window.globalSettings.changeFormation && this.formation != window.globalSettings.escapeFormation) {
 			if (this.changeFormation(window.globalSettings.escapeFormation)) {
-				let x = window.hero.position.x + MathUtils.random(-100, 100);
-				let y = window.hero.position.y + MathUtils.random(-100, 100);
-				this.moveWithFilter(x, y);
 			}
 		}
 	}

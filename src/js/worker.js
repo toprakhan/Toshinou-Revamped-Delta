@@ -158,9 +158,6 @@ function init() {
 			    case "4":
 			    	window.settings.piratebotsag = true;
 			        break;
-			    case "5":
-			    	window.settings.cubibot = true;
-			        break;
 			    case "6":
 			    	window.settings.ggbot = true;
 			        break;
@@ -685,28 +682,6 @@ function logic() {
 		window.settings.moveRandomly = true;
 	}
 
-	if (window.settings.cubibot) {
-		let cubibotblacklist = [
-			"-=[ Kristallin ]=-",
-			"-=[ Kristallon ]=-",
-			"..::{ Boss Kristallin }::..",
-			"-=[ Plagued Kristallin ]=-",
-			];
-		cubibotblacklist.forEach(npc => {
-			window.settings.setNpc(npc, "0");
-		});
-		window.settings.killNpcs = true;
-		window.settings.moveRandomly = true;
-		window.settings.circleNpc = true;
-		if (api.lockedShip && api.lockedShip.percentOfHp > 5 && api.lockedShip.name == "-=[ Cubikon ]=-"){
-			api.resetTarget("enemy");
-		}
-		let percenlife = MathUtils.percentFrom(window.hero.hp, window.hero.maxHp);
-		if (percenlife < 99) {
-			api.protegitmode;     
-		} 
-	}
-
 	if (window.settings.sentinelMode && api.sentinelship != null) {
 		sentinelLogic();
 		return;
@@ -785,7 +760,13 @@ function logic() {
 		}
 	}
 	
-	if (!window.bigMap && !window.settings.palladium && api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly) {
+	if (window.settings.piratebotsag && api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly){
+		x = MathUtils.random(15900, 20300);
+		y = MathUtils.random(1100, 11100);
+	} else if (window.settings.piratebot && !window.settings.piratebotsag && api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly) { 
+		x = MathUtils.random(600, 4600);
+		y = MathUtils.random(1500, 11500);  
+	} else if (!window.bigMap && !window.settings.palladium && api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly) {
 		api.speedMode();
 		x = MathUtils.random(200, 20800);
 		y = MathUtils.random(200, 12900);
@@ -797,17 +778,6 @@ function logic() {
 		api.speedMode();
 		x = MathUtils.random(13000, 30400);
 		y = MathUtils.random(19000, 25500);
-	}
-	if (window.settings.cubibot && api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly) {
-		api.speedMode();
-		x = MathUtils.random(7000, 14000);
-		y = MathUtils.random(3000, 8500);   
-	} else if (window.settings.piratebotsag && api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly){
-		x = MathUtils.random(15900, 20300);
-		y = MathUtils.random(1100, 11100);
-	} else if (window.settings.piratebot && !window.settings.piratebotsag && api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.moveRandomly) { 
-		x = MathUtils.random(600, 4600);
-		y = MathUtils.random(1500, 11500);  
 	}
 
 	if (api.targetShip && window.settings.killNpcs && api.targetBoxHash == null) {

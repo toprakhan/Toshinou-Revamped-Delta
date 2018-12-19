@@ -2,7 +2,7 @@ class Settings {
 	constructor(pause, 
 			refresh, gatestonpc,
 			lockNpcs, lockPlayers, autoAttack, autoAttackNpcs,
-			ggbot, palladium, piratebot, cubibot) 
+			ggbot, palladium, piratebot) 
 			{
 		this._pause = pause === true;
 		this._refresh = refresh === true;
@@ -14,7 +14,6 @@ class Settings {
 		this._palladium = palladium === true;
 		this._ggbot = ggbot === true;
 		this._piratebot = piratebot === true;
-		this._cubibot = cubibot === true;
 
 		this._npcs = new Array();
 			}
@@ -81,14 +80,6 @@ class Settings {
 
 	set autoAttack(value) {
 		this._autoAttack = value === true;
-	}
-
-	get cubibot() {
-		return this._cubibot;
-	}
-
-	set cubibot(value) {
-		this._cubibot = value === true;
 	}
 
 	get piratebot() {

@@ -31,14 +31,6 @@ class GeneralSettingsWindow {
 				}
 			},
 			{
-				name: 'cubibot',
-				labelText: chrome.i18n.getMessage("cubibot"),
-				appendTo: this.botSettingsWindow,
-				event: function () {
-					window.settings.cubibot = this.checked;
-				}
-			},
-			{
 				name: 'ggbot',
 				labelText: chrome.i18n.getMessage("ggbot"),
 				appendTo: this.botSettingsWindow,

@@ -44,16 +44,18 @@ class Minimap {
 		ct.font = "20px Arial";
 		ct.fillText(this._api.starSystem.getMapName(window.hero.mapId), this.canvas.width() / 2 - 6, this.canvas.height() / 2 + 10);
 		
+		
 		if (window.globalSettings.debug) {
 			ct.font = "10px Arial";
 			ct.fillText(window.hero.lastAction, 4, this.canvas.height() - 15);
 			ct.fillText("X: " + window.hero.position.x + " | Y: " + window.hero.position.y, 4, this.canvas.height() - 5);
-			if (window.hero.xEnd != 0 && window.hero.yEnd != 0) {
-				ct.strokeStyle = "rgb(250, 250, 210)";
-				this._drawLine(ct, window.hero.position.x / window.b1, window.hero.position.y / window.b2, window.hero.xEnd / window.b1, window.hero.yEnd / window.b2);
-			}
 		}
 
+		if (window.hero.xEnd != 0 && window.hero.yEnd != 0) {
+			ct.strokeStyle = "rgb(250, 250, 210)";
+			this._drawLine(ct, window.hero.position.x / window.b1, window.hero.position.y / window.b2, window.hero.xEnd / window.b1, window.hero.yEnd / window.b2);
+		}
+		
 		ct.fillStyle = 'green';
 		this._fillCircle(ct, window.hero.position.x / window.b1, window.hero.position.y / window.b2, 2);
 
@@ -121,10 +123,18 @@ class Minimap {
 
 		ct.strokeStyle = "white";
 		ct.lineWidth = 1;
+		
 		this._api.gates.forEach(gate => {
 			var pos = gate.position;
 			this._strokeCircle(ct, pos.x / window.b1, pos.y / window.b2, 4);
 		});
+		
+		if (window.globalSettings.debug) {
+			this._api.others.forEach(other => {
+				var pos = other.position;
+				this._fillCircle(ct, pos.x / window.b1, pos.y / window.b2, 1.3);
+			});
+		}
 		
 	}
 

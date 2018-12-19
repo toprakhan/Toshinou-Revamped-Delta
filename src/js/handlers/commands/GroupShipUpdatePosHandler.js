@@ -5,8 +5,8 @@ class GroupShipUpdatePosHandler {
 
 	constructor(f) {
 		this._handler = function (e, a) {
+			let parsedCmd = JSON.parse(e.detail);
 			if (window.settings.sentinelMode) {
-				let parsedCmd = JSON.parse(e.detail);
 				let id = parsedCmd[Variables.groupShipID];
 				if (id == window.globalSettings.sentinelid) {
 					if (parsedCmd.updates[0] != null) {

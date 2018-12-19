@@ -58,6 +58,7 @@
 		"js/objects/Map.js",
 		"js/objects/Pet.js",
 		"js/objects/StarSystem.js",
+		"js/objects/Other.js",
 		"js/objects/CBS/Battlestation.js",
 		"js/objects/CBS/BattlestationModule.js",
 		"js/handlers/HandlersManager.js",

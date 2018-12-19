@@ -5,8 +5,8 @@ class GroupCreateHandler {
 
 	constructor(f) {
 		this._handler = function (e, a) {
+			let shipCreateCmd = JSON.parse(e.detail);
 			if (window.settings.sentinelMode) {
-				let shipCreateCmd = JSON.parse(e.detail);
 				if (shipCreateCmd.id == window.globalSettings.sentinelid) {
 					a.sentinelship = {mapId: shipCreateCmd.location.mapId, x: shipCreateCmd.location.x, y: shipCreateCmd.location.y, targetId: null, attackerID: null};
 				}

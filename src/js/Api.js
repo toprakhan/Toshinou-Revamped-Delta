@@ -3,6 +3,7 @@ class Api {
 		this._blackListedBoxes = [];
 		this._blackListedNpcs = [];
 		this.gates = [];
+		this.others = [];
 		this.boxes = {};
 		this.ships = {};
 		this.battlestation = null;
@@ -122,7 +123,7 @@ class Api {
 	}
 
 	changeFormation(n) {
-		if (this.changeFormationTime && $.now() - this.changeFormationTime > 3000 && this.changeConfigTime && $.now() - this.changeConfigTime > 10000) {
+		if (this.changeFormationTime && $.now() - this.changeFormationTime > 3000) {
 			this.changeFormationTime = $.now();
 			this.formation = n;
 			this.quickSlot(n);
@@ -454,28 +455,6 @@ class Api {
 		}
 	}
 
-	protegitmode() {
-		for (let property in this.ships) {
-			let ship = this.ships[property];
-			if (ship && (ship.name == "-=[ Cubikon ]=-") && ship.distanceTo(window.hero.position) < 1000) {
-				let shipsCount = this.countNpcAroundByName("-=[ Protegit ]=-", 2000);
-				if (shipsCount > 1 && !(lockedShip && lockedShip.percentOfHp < 5 && lockedShip.name == "-=[ Cubikon ]=-")) {
-					window.settings.setNpc(ship.name, true);
-					if (lockedShip && lockedShip.percentOfHp < 99 && lockedShip.name == "-=[ Cubikon ]=-") {
-						this.resetTarget("enemy");
-						window.settings.setNpc(ship.name, false);
-					}
-					if (this.targetShip == ship) {
-						this.resetTarget("enemy");
-					}
-				} else {
-					window.settings.setNpc(ship.name, false);
-					this.targetShip = ship;
-				}
-			}
-		}
-	}
-
 	countNpcAroundByName(name, distance){
 		let shipsCount = Object.keys(this.ships).length;
 		let shipsAround = 0;
@@ -764,7 +743,12 @@ class Api {
 			this.changeConfig();
 		}
 		if (window.globalSettings.changeFormation && window.globalSettings.attackFormation != this.formation) {
-			this.changeFormation(window.globalSettings.attackFormation);
+			if (this.changeFormation(window.globalSettings.attackFormation)) {
+				let x = window.hero.position.x + MathUtils.random(-100, 100);
+				let y = window.hero.position.y + MathUtils.random(-100, 100);
+				this.moveWithFilter(x, y);
+			}
+			
 		}
 	}
 
@@ -775,7 +759,11 @@ class Api {
 			}
 		}
 		if (window.globalSettings.changeFormation && this.formation != window.globalSettings.flyingFormation) {
-			this.changeFormation(window.globalSettings.flyingFormation);
+			if (this.changeFormation(window.globalSettings.flyingFormation)) {
+				let x = window.hero.position.x + MathUtils.random(-100, 100);
+				let y = window.hero.position.y + MathUtils.random(-100, 100);
+				this.moveWithFilter(x, y);
+			}
 		}
 	}
 
@@ -786,7 +774,11 @@ class Api {
 			}
 		}
 		if (window.globalSettings.changeFormation && this.formation != window.globalSettings.escapeFormation) {
-			this.changeFormation(window.globalSettings.escapeFormation);
+			if (this.changeFormation(window.globalSettings.escapeFormation)) {
+				let x = window.hero.position.x + MathUtils.random(-100, 100);
+				let y = window.hero.position.y + MathUtils.random(-100, 100);
+				this.moveWithFilter(x, y);
+			}
 		}
 	}
 

@@ -265,6 +265,18 @@ function loadArchive() {
 			if (items.onlyAnswerAttacks != null) {
 				$("#onlyAnswerAttacks").prop('checked', items.onlyAnswerAttacks);
 			}
+			if (items.attackKey) {
+				$("#attackKey").val(items.attackKey);
+			}
+			if (items.jumpKey) {
+				$("#jumpKey").val(items.jumpKey);
+			}
+			if (items.changeConfigKey) {
+				$("#changeConfigKey").val(items.changeConfigKey);
+			}
+			if (items.exitKey) {
+				$("#exitKey").val(items.exitKey);
+			}
 			if (items.whiteList) {
 				var listWhite = items.whiteList;
 				for (i = 0; i < listWhite.length; i++) {

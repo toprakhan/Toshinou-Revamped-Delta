@@ -91,6 +91,10 @@ class GlobalSettings {
 			kuiper: false,
 			attackBattleray: false,
 			onlyAnswerAttacks: false,
+			attackKey: 17,
+			jumpKey: 74,
+			changeConfigKey: 67,
+			exitKey: 76,
 			whiteList: [],
 			blackList: [],
 		}, items => {
@@ -460,5 +464,21 @@ class GlobalSettings {
 	
 	get habilityShieldRepair() {
 		return this._settings.habilityShieldRepair;
+	}
+	
+	get attackKey() {
+		return this._settings.attackKey;
+	}
+	
+	get jumpKey() {
+		return this._settings.jumpKey;
+	}
+	
+	get changeConfigKey() {
+		return this._settings.changeConfigKey;
+	}
+	
+	get exitKey() {
+		return this._settings.exitKey;
 	}
 }

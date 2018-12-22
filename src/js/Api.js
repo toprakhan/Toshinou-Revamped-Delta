@@ -305,7 +305,7 @@ class Api {
 		if (window.globalSettings.actionsMode == 2) {
 			Injector.injectScript('document.getElementById("preloader").laserAttack()');
 		} else {
-			this.pressKey(17);
+			this.pressKey(window.globalSettings.attackKey);
 		}
 		window.hero.lastAction = "Starting the attack";
 	}
@@ -314,9 +314,16 @@ class Api {
 		if (window.globalSettings.actionsMode == 2) {
 			Injector.injectScript('document.getElementById("preloader").jumpGate();');
 		} else {
-			this.pressKey(74);
+			this.pressKey(window.globalSettings.jumpKey);
 		}
 		window.hero.lastAction = "Jumping....";
+	}
+	
+	exitGame(){
+		window.settings.pause = true;
+		setTimeout(() => {
+			this.pressKey(window.globalSettings.exitKey);
+		}, 7000);
 	}
 
 	changeConfig() {
@@ -325,7 +332,7 @@ class Api {
 			if (window.globalSettings.actionsMode == 2) {
 				Injector.injectScript('document.getElementById("preloader").changeConfig();');
 			} else {
-				this.pressKey(67);
+				this.pressKey(window.globalSettings.changeConfigKey);
 			}
 			window.hero.lastAction = "Changing the config";
 			return true;

@@ -162,6 +162,10 @@ function getElements() {
 			kuiper:             $("#kuiper").prop('checked'),
 			attackBattleray:	$("#attackBattleray").prop('checked'),
 			onlyAnswerAttacks:	$("#onlyAnswerAttacks").prop('checked'),
+			attackKey: 			$("#attackKey").val(),
+			jumpKey: 			$("#jumpKey").val(),
+			changeConfigKey:	$("#changeConfigKey").val(),
+			exitKey:			$("#exitKey").val(),
 			npcList:            npcList,
 			whiteList:			whiteList,
 			blackList:			blackList
@@ -195,6 +199,7 @@ function restore() {
 		"sentinelid", "defendSentinel", "followRange",
 		"changeToHonorFormation", "alpha", "beta", "gamma", "delta", "epsilon", "zeta", "kappa", "lambda", "kronos", "hades", "kuiper",
 		"attackBattleray", "onlyAnswerAttacks",
+		"attackKey", "jumpKey", "changeConfigKey", "exitKey",
 		"whiteList", "blackList", "npcList"];
 
 	var onGet = items => {
@@ -457,6 +462,18 @@ function restore() {
 		}
 		if (items.onlyAnswerAttacks) {
 			$("#onlyAnswerAttacks").prop('checked', true);
+		}
+		if (items.attackKey) {
+			$("#attackKey").val(items.attackKey);
+		}
+		if (items.jumpKey) {
+			$("#jumpKey").val(items.jumpKey);
+		}
+		if (items.changeConfigKey) {
+			$("#changeConfigKey").val(items.changeConfigKey);
+		}
+		if (items.exitKey) {
+			$("#exitKey").val(items.exitKey);
 		}
 		if (items.whiteList) {
 			var listWhite = items.whiteList;

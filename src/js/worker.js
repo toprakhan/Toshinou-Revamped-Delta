@@ -369,20 +369,14 @@ function logic() {
 
 	if ((window.globalSettings.stopafterxminutes != 0 && window.settings.runtime >= window.globalSettings.stopafterxminutes && !window.settings.ggbot) || (window.globalSettings.stopWhenCargoIsFull && window.hero.cargoIsFull)) {
 		if (window.settings.palladium && window.hero.hp == window.hero.maxHp) {
-			window.settings.pause = true;
-			setTimeout(() => {
-				api.pressKey(76);
-			}, 7000);
+			api.exitGame();
 		} else {
 			let gate = api.findNearestGate();
 			if (gate.gate) {
 				let x = gate.gate.position.x + MathUtils.random(-100, 100);
 				let y = gate.gate.position.y + MathUtils.random(-100, 100);
 				if (window.hero.position.distanceTo(gate.gate.position) < 200 && !state) {
-					window.settings.pause = true;
-					setTimeout(() => {
-						api.pressKey(76);
-					}, 7000);
+					api.exitGame();
 				}
 				api.resetTarget("all");
 				api.moveWithFilter(x, y);

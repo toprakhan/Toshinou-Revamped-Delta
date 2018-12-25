@@ -493,9 +493,12 @@ function logic() {
 				}
 			}
 			if (window.globalSettings.respondPlayerAttacks && enemyResult.enemy.attacksUs && enemyResult.enemy.isEnemy) {
-				api.lockShip(enemyResult.enemy);
-				api.triedToLock = true;
-				api.targetShip = enemyResult.enemy;
+				if (api.lockedShip == null) {
+					api.lockShip(enemyResult.enemy);
+					api.triedToLock = true;
+					api.targetShip = enemyResult.enemy;
+				}
+				
 				if (!api.attacking && api.lockedShip) {
 					api.startLaserAttack();
 					api.lastAttack = $.now();

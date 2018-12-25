@@ -15,7 +15,7 @@ class ShipCreateHandler {
 						name = "No-Name";
 					}
 					
-					if (shipCreateCmd.npc) {
+					if (shipCreateCmd.npc && !window.settings.ggbot) {
 						name = name.replace(/[^a-zA-Z+\s]/g, "");
 						name = name.trim();
 					}

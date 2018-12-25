@@ -9,6 +9,7 @@ class HeroInitHandler {
 			a.ships = [];
 			a.boxes = {};
 			a.gates = [];
+			a.others = [];
 			a.heroDied = false;
 			a.resetTarget("all");
 			a.battlestation = null;

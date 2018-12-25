@@ -14,6 +14,12 @@ class ShipCreateHandler {
 					if (name == null) {
 						name = "No-Name";
 					}
+					
+					if (shipCreateCmd.npc) {
+						name = name.replace(/[^a-zA-Z+\s]/g, "");
+						name = name.trim();
+					}
+					
 					a.ships[shipCreateCmd.userId] = new Ship(shipCreateCmd.x, shipCreateCmd.y, shipCreateCmd.userId, shipCreateCmd.npc, name, shipCreateCmd.factionId, shipCreateCmd.modifier, shipCreateCmd[Variables.clanDiplomacy].type, shipCreateCmd.cloaked);
 				}
 			} catch (exception) {

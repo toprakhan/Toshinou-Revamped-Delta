@@ -618,6 +618,11 @@ function logic() {
 			}
 		}
 	}
+	
+	if (window.settings.sentinelMode && api.sentinelship != null) {
+		sentinelLogic();
+		return;
+	}
 
 	if (!window.settings.ggbot && window.globalSettings.workmap != 0 && window.hero.mapId != window.globalSettings.workmap && !window.settings.sentinelMode) {
 		api.speedMode();
@@ -677,11 +682,6 @@ function logic() {
 		window.settings.killNpcs = true;
 		window.settings.gatestonpc = true;
 		window.settings.moveRandomly = true;
-	}
-
-	if (window.settings.sentinelMode && api.sentinelship != null) {
-		sentinelLogic();
-		return;
 	}
 
 	if (api.targetBoxHash == null && api.targetShip == null) {
@@ -906,19 +906,11 @@ function sentinelLogic() {
 	if (shipAround) {
 		api.rute = null;
 		if (shipAround.distanceTo(window.hero.position) > window.globalSettings.followRange && !api.targetShip) {
+			api.speedMode();
 			x = shipAround.position.x + MathUtils.random(-100, 100);
 			y = shipAround.position.y + MathUtils.random(-100, 100);
 			api.moveWithFilter(x, y);
 			return;
-		} else if (api.targetShip) {
-			api.targetShip.update();
-			let enemy = api.targetShip.position;
-			let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
-			let s = Math.PI / 180;
-			let rot = MathUtils.random(-10, 10);
-			f += s;
-			x = enemy.x + window.settings.npcCircleRadius * Math.sin(f);
-			y = enemy.y + window.settings.npcCircleRadius * Math.cos(f);
 		}
 	} else {
 		if(api.sentinelship.mapId == window.hero.mapId) {
@@ -955,7 +947,6 @@ function sentinelLogic() {
 				}
 			}
 		}
-
 
 		if (finalShip && finalShip.distance < 1000 && finalShip.id != notrightId) {
 			api.lockShip(finalShip);
@@ -1012,8 +1003,8 @@ function sentinelLogic() {
 			y = api.targetShip.position.y - MathUtils.random(-50, 50);
 			api.lastMovement = $.now();
 		} else if (api.lockedShip && api.lockedShip.id == api.targetShip.id) {
-			if (window.settings.circleNpc) {
-				let enemy = api.targetShip.position;
+			let enemy = api.targetShip.position;
+			if (window.settings.circleNpc && api.targetShip.attacksUs) {
 				let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
 				let s = Math.PI / 180;
 				let rot = MathUtils.random(-10, 10);
@@ -1027,6 +1018,9 @@ function sentinelLogic() {
 						circleBox = nearestBox;
 					}
 				}
+			} else {
+				x = enemy.x + MathUtils.random(-100, 100);
+				y = enemy.y + MathUtils.random(-100, 100);
 			}
 		} else {
 			api.resetTarget("enemy");

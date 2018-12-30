@@ -450,7 +450,7 @@ function logic() {
 	}
 	
 	if (window.globalSettings.enablePet && (window.petReviveCount < window.globalSettings.petReviveLimit || window.globalSettings.petModule == 10) && api.petHasFuel) {
-		if (api.pet != null && api.pet.destroyed && api.pet.id != 0) {
+		if (api.pet != null && api.pet.destroyed) {
 			setTimeout(() => {
 				api.callPet(4);
 				api.pet.destroyed = false;
@@ -856,7 +856,7 @@ function logic() {
 				let enemy = api.targetShip.position; 
 				let gate = api.findNearestGate();   
 				let distgate = window.hero.distanceTo(gate.gate.position);
-				if (dist > 500 && api.lockedShip.percentOfHp == 100 ){
+				if (dist > 700 && api.lockedShip.percentOfHp == 100 ){
 					api.resetTarget("enemy");
 				} else if (gate.gate && api.lockedShip.percentOfHp < 97 ) {
 					if (distgate > 600){
@@ -1036,6 +1036,7 @@ function sentinelLogic() {
 	if (x && y) {
 		api.moveWithFilter(x, y);
 	}
+
 	window.dispatchEvent(new CustomEvent("logicEnd"));
 	return;
 }

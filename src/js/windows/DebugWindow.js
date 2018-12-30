@@ -29,6 +29,14 @@ class DebugWindow {
 				event: function () {
 					window.settings.showMapID = this.checked;
 				}
+			},
+			{
+				name: 'viewOthersObjetsInMap',
+				labelText: 'View unidentified objects',
+				appendTo: this.debugWindow,
+				event: function () {
+					window.settings.viewOthersObjetsInMap = this.checked;
+				}
 			}
 			];
 

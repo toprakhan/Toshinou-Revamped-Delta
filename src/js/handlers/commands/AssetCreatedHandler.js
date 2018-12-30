@@ -35,8 +35,8 @@ class AssetCreatedHandler {
 					}
 					api.battlestation.modules[parsedCmd.assetId] = new BattlestationModule(x, y, parsedCmd.userName, parsedCmd.factionId);
 				} else {
-					if (window.globalSettings.debug) {
-						//console.log(parsedCmd);
+					if (window.settings.viewOthersObjetsInMap) {
+						console.log(parsedCmd);
 						a.others.push(new Other(x, y, type));
 					}
 				}

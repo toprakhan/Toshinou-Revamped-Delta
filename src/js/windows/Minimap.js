@@ -129,7 +129,7 @@ class Minimap {
 			this._strokeCircle(ct, pos.x / window.b1, pos.y / window.b2, 4);
 		});
 		
-		if (window.globalSettings.debug) {
+		if (window.settings.viewOthersObjetsInMap) {
 			this._api.others.forEach(other => {
 				var pos = other.position;
 				this._fillCircle(ct, pos.x / window.b1, pos.y / window.b2, 1.3);

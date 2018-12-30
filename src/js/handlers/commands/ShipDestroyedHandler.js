@@ -9,7 +9,7 @@ class ShipDestroyedHandler {
 			let id = parsed[Variables.shipDestoyedId];
 
 			if (a.pet) {
-				if(id == a.pet.id && window.globalSettings.enablePet){
+				if(id == a.pet.id){
 					if(a.pet.currentModule == 10){
 						a.pet.moduleCooldown = $.now();
 					}

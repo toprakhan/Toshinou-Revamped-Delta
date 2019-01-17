@@ -1019,8 +1019,8 @@ function sentinelLogic() {
 					}
 				}
 			} else {
-				x = enemy.x + MathUtils.random(-100, 100);
-				y = enemy.y + MathUtils.random(-100, 100);
+				x = enemy.x + MathUtils.random(-300, 300);
+				y = enemy.y + MathUtils.random(-300, 300);
 			}
 		} else {
 			api.resetTarget("enemy");
